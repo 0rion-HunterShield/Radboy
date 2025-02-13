@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: radboy
+Version: 0.0.61
+Summary: A Command-Line Style Scanner designed to be used on cellular devices as a list maker, note taker, look up system, and custom calculator.
+Author: Carl Joseph Hirner III
+Author-email: k.j.hirner.wisdom@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Operating System :: Android
+Classifier: Environment :: Console
+Classifier: Programming Language :: SQL
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: sympy
+Requires-Dist: scipy
+Requires-Dist: plotext
+Requires-Dist: haversine
+Requires-Dist: holidays
+Requires-Dist: odfpy
+Requires-Dist: qrcode[pil]
+Requires-Dist: chardet
+Requires-Dist: nanoid
+Requires-Dist: random-password-generator
+Requires-Dist: cython
+Requires-Dist: pint
+Requires-Dist: pyupc-ean
+Requires-Dist: openpyxl
+Requires-Dist: plyer
+Requires-Dist: colored
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: Pillow
+Requires-Dist: python-barcode
+Requires-Dist: qrcode
+Requires-Dist: requests
+Requires-Dist: sqlalchemy
+Requires-Dist: argparse
+Requires-Dist: geocoder
+Requires-Dist: beautifulsoup4
+Requires-Dist: pycryptodome
+Requires-Dist: forecast_weather
+Requires-Dist: boozelib
+Provides-Extra: terminal-readline-support
+Requires-Dist: readline; extra == "terminal-readline-support"
+
+to use this application at its simplest
+
+`pip install radboy==$VERSION`
+
+create a Run.py file and paste the following into it and save
+`from radboy import Run`
+
+for lookups to be made possible please explore the in-prompt help text as a populated data file is not yet ready for use comsumption.

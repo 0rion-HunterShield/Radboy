@@ -1,0 +1,17 @@
+python3 ./renderQR.py
+------------------------------------------------------------------------
+create qrcode from text input
+
+keyboard shortcuts:
+	<Delete> - quit
+	<Home> - clear text entry
+	<Page_Up> - clear text entry and paste latest content from clipboard
+	<Page_Down> - Print this text
+	<End> - render text entry
+
+on startup, renderQR.py will reader code.png, if it exists, and try to 
+decode it, which if successful, will be inserted into the text entry widget.
+Once done, the program will then display the last generated code image 
+contained within code.png, otherwise, nothing is display, and nothing is 
+entered into the entry widget.
+------------------------------------------------------------------------

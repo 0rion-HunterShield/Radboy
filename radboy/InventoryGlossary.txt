@@ -1,0 +1,709 @@
+
+Terms, Definitions, Helpful Data that is NOT mine, with referential info as to its source; please note some is copy-written
+------------------------------------------
+From https://www.inventoryexplained.com/glossary.html
+------------------------------------------
+
+80/20 rule—a more specific version of the Pareto principle. 80/20 implies that 80% of effects are the result of 20% of causes. See also Pareto principle.
+
+ABC stratification—the activity of applying a ranking system (A-B-C-D. . . ) to a characteristic. For example, ABC by times sold is frequently used to rank items based on how frequently they are sold.
+
+Action message—in MRP, DRP, and related planning systems, action messages are notifications to planners that an action needs to be taken. For example, a notification to release or reschedule an order.
+
+Adaptive smoothing—a variation on exponential smoothing that uses a calculation based on forecast error to automatically change the smoothing factor.
+
+Advanced planning and scheduling—APS is a step beyond MRPII and is somewhat more difficult to define, but generally includes capabilities for finite capacity scheduling and reacting to rapidly changing demand.
+
+Advanced shipment notification—a document used to notify a customer of a shipment. ASNs will often include PO numbers, SKU numbers, lot numbers, quantities, and pallet, carton, or container numbers. ASNs may be paper based, however electronic notification is preferred. Advanced shipment notification systems are usually combined with bar coded compliance labeling that allows the customer to receive the shipment into inventory through the use of bar code scanners and automated data collection systems.
+
+Allocations—actual demand created by sales orders or production orders against a specific item.
+Anticipation inventory—anticipation inventory can be thought of as “capacity inventory” because it is usually the result of a buildup of inventory in order to meet demand during a period of time when demand exceeds capacity.
+
+APICS—The Association for Operations Management (previously known as American Production and Inventory Control Society). www.apics.org
+
+ASN—See advanced shipment notification.
+
+Available—refers to the status of inventory as it relates to its ability to be sold or consumed. Availability calculations are used to determine this status. Availability calculations vary from system to system but basically subtract any current allocations or holds on inventory from the current on-hand balance. See also Allocations.
+
+Average forecast bias—the average of a series of forecast errors. See also Forecast error.
+
+Backflush—method for issuing (reducing on-hand quantities) materials to a production order. With backflushing, the material is issued automatically when production is posted against an operation. The backflushing program will use the quantity completed to calculate through the bill of materials the quantities of the components used, and reduce on-hand balances by these quantities.
+
+Backorder—a quantity on an order that was not filled on the required date due to inadequate inventory levels.
+
+Best of breed—the term best of breed became widely used as people started realizing that certain modules within their software suite were inadequate to meet their needs, and started looking at separate software products to replace these modules. Software vendors, trade magazines, and consultants started using the term best of breed to categorize these highly functional, independent software modules (or sets of modules). The idea is that a single software suite cannot possibly have the best modules for every functional area of your business, therefore, rather than settling for the mediocre functionality in some modules just because you liked the functionality in other modules, you could build your system from the best modules from two or more software vendors.
+
+Bias—See Forecast bias.
+
+Bill of distribution—See DRP relationship.
+
+Bill of materials—lists materials (components) required to produce an item. Multilevel BOMs also show subassemblies and their components. Other information such as scrap factors may also be included in the BOM for use in materials planning and costing. Commonly known as a BOM or just a Bill.
+Black-box forecasting—an automated forecasting system that makes forecasting decisions without any human input.
+
+BOM—See Bill of materials.
+
+Bullwhip effect—a phenomenon where demand variation becomes amplified as it progresses up through the supply chain. It’s based on the assumption that an increase in demand at a low level in the supply chain will trigger a series of overreactions at each subsequent level in the supply chain. Bullwhip is often used as a teaching tool in demonstrating the “potential” problems of a disconnected supply chain.
+
+Capacity—the capabilities of a process, machine, location, or facility.
+
+Capacity requirements planning—CRP is a capacity planning tool used to verify the ability of resources to meet scheduled production. CRP uses the routings to calculate loads on work centers, and then compares these loads to the capacity of these work centers. CRP is more detailed than either rough-cut capacity planning or resources requirements planning.
+
+Carrying costs—the costs associated with having specific quantities of inventory. Carrying costs primarily include the cost of the inventory investment and the costs associated with storing the inventory. Carrying costs are used in cost-based lot sizing calculations such as EOQ.
+
+Cheats—I use this term to describe mathematical calculations designed to provide a particular wanted result, but the means of getting that result may not be mathematically correct or even logical. In some cases these cheats are used because a mathematically correct means of getting the result is impractical due to significant data requirements, processing limitations, or a lack of mathematical knowledge by those setting up the system. In other cases, there simply is no mathematically correct means of getting the result. Cheats (as I describe them) are not necessarily bad things. In fact, they can be very useful and even necessary in inventory management. My point in referring to them as cheats, is to make it very clear that there likely is a lack of preciseness associated with them and they may even be completely wrong (or wrong for your application).
+
+COGS—See Cost of goods sold.
+
+Collaborative planning—describes a planning strategy where trading partners (customers and suppliers) share their inventory planning data.
+
+Commodity classification—See Inventory classification
+
+Component—any item used to produce another item.
+
+Composite forecast—a forecast that is created by combining (through averaging or weighted averaging) the results of multiple forecasting methods.
+
+Configuration processing—software functionality that allows a product to be defined by selecting various pre-defined options rather than having every possible combination of options pre-defined as specific SKUs. Placing an order for a computer and specifying hard drive, processor, memory, graphics card, sound card, etc. would be an example of configuration processing.
+
+Configure-to-order—manufacturing strategy that exists somewhere between make-to-stock and make-to-order. In this strategy, all or most components are stocked in anticipation of customer orders. Partial processing—such as production of subassemblies—is often done in advance of customer orders. All that remains are the final assembly or final processing activities.
+
+Consignment inventory—inventory that is in the possession of the customer, but is still owned by the supplier. The supplier places some of his inventory in his customer’s possession (in their store, warehouse, or plant) and allows them to sell or consume directly from his stock. The customer purchases the inventory only after he has resold or consumed it.
+
+Cost of capital—costs associated with having money tied up in inventory. Generally this would be the interest rate paid on business debt, but could optionally be the return on investment a company could expect if it had access to money to invest.
+
+Cost of goods sold—accounting term used to describe the total value (cost) of products sold during a specific period of time. Since inventory is an asset, it is not expensed when it is purchased or produced, it instead goes into an asset account (the inventory account). When product is sold, the value of the product (the cost, not the sell price) is moved from the asset account to an expense account called “cost of goods sold” or COGS. COGS appears on the profit and loss statement and is also used in some inventory measurements (such as inventory turns).
+
+CRP—See Capacity requirements planning
+
+Cumulative forecast bias—the sum of a series of forecast errors. See also Forecast error.
+
+Cumulative lead time—the longest sum of consecutive lead times. Calculated by tracking all lead time paths through the bill-of-materials structure, and using the longest one.
+
+Current-demand inventory—inventory carried to meet immediate expected demand. For example, the inventory that will be shipping in today’s orders. The definition of “current demand” is somewhat subject to interpretation since you must apply a period of time to determine what is considered “current demand” as opposed to “future demand”.
+
+Cycle count—any process that verifies the correctness of inventory quantity data by counting portions of the inventory on an ongoing basis. In other words, any process that uses regularly scheduled counts but does not count the entire facility’s inventory in a single event.
+
+Demand—the need for a specific item in a specific quantity.
+
+Demand override—any adjustment that is used to supersede your demand history (usually for the purposes of forecasting or calculating safety stock). A demand override can be a fixed quantity that will be used to replace the actual demand, or it can be a factor that can be used to adjust the demand.
+
+Demand planning software—software that includes forecasting capabilities and calculations for determining order quantities and safety stock.
+
+Demand variability—changes in demand from period to period. Demand variability is the result of trend, seasonality, events, and noise.
+
+Dependent demand—demand that is created as a direct result of another item’s demand or demand from another facility. Demand for a component is an example of dependent demand since the demand for the component is a direct result of demand for the item(s) that are produced from that component.
+
+De-seasonalize—to remove the seasonality effect on demand. See also Normalize.
+
+De-trend—to remove the trend effect on demand. See also Normalize.
+
+Direct shipping—a procurement strategy that allows a company to sell product without ever stocking or even handling the product. When a customer places an order with a seller, the order is passed on to the seller’s supplier who will then ship the product directly to the customer.
+
+Distribution inventory—distribution inventory is the result of a distribution network and the increases in inventory required to operate out of multiple distribution points. When you decide to have two or three or more strategically located distribution centers rather than a single centrally located distribution center, you will generally increase your overall inventory levels. The reason for this is you are now breaking up your demand among three locations. When demand is broken up (disaggregated) you will usually find greater variability in the demand at each location. This increase in variability results in increases in safety stock in order to meet desired service levels. This increase in safety stock is essentially your distribution inventory. Some practitioners consider all inventory in the distribution network to be distribution inventory. I disagree with that definition, since much of that inventory would exist regardless of the distribution network.
+
+Distribution requirements planning—process for determining inventory requirements in a multiple facility environment. DRP may be used for both distribution and manufacturing. In manufacturing, DRP will work directly with MRP. DRP uses DRP relationships to allow demand to flow from one facility to another.
+
+Dock-to-stock cycle measurement—measuring the amount of time it takes between the time something arrives at your dock, and the time it is in stock and available for sale or use.
+
+Double exponential smoothing—forecasting method that uses exponential smoothing to smooth both the demand and the trend.
+
+DRP—See Distribution requirements planning.
+
+DRP relationship—sometimes called a bill of distribution, a DRP relationship specifies an item-based or facility-based supply relationship between facilities and a lead time, and is used by DRP to flow demand from one facility to another.
+
+Eaches—term used to describe a unit of measure where each individual piece is tracked as a quantity of one in the computer system.
+
+Economic order quantity—a calculation (or the result of a calculation) that determines the most cost effective quantity to order (purchased items) or produce (manufactured items) by finding the point at which the combination of order cost and carrying cost is the least. There is a specific calculation that has historically been known as EOQ, but any calculation (or variation of this calculation) that uses similar logic would also be considered EOQ.
+
+Effective dates—dates on the detail lines of bills of materials and routings that let the system know when these lines should be included in planning and execution activities.
+
+Effective lead time—a lead time that has been adjusted to take into account additional factors. For example, in a fixed-schedule ordering system (periodic review) you may adjust your lead time to include the time between ordering opportunities.
+
+Engineer-to-order—a variation of a make-to-order manufacturing strategy. An engineer-to-order strategy is used when the end product is truly custom. In this strategy, design or engineering tasks must be completed as part of the order process. This strategy has the longest lead time to the customer, but is necessary since the detailed specifications of the product are not known in advance.
+
+EOQ—See Economic order quantity.
+
+ERP—enterprise resource planning. Software systems designed to manage most or all aspects of a manufacturing or distribution enterprise (an expanded version of MRP systems). ERP systems are usually broken down into modules such as financials, sales, purchasing, inventory management, manufacturing, MRP, DRP. The modules are designed to work seamlessly with the rest of the system and should provide a consistent user interface between them.
+
+Event index—consists of a number (factor) for each specific forecast period that describes the relationship of each period’s demand (excluding trend and seasonality) over the length of time demand is affected by an event (such as a promotion).
+
+Excess inventory—inventory greater than the “right amount” of inventory.
+
+Exponential smoothing—forecasting method that is essentially a variation of a weighted moving average. The data inputs to the exponential smoothing include the previous period’s demand, the previous period’s forecast, and a smoothing factor. The smoothing factor is a number between zero and one (0.01, 0.02, . . . 0.99) that is used to weight the most recent period’s demand against the forecast for that period to produce the next period’s forecast. The calculation is [Next period forecast]=([Previous period’s demand]*[Smoothing factor])+([Previous period’s forecast]*(1-[Smoothing factor]).
+
+Exponentially smoothed absolute deviation (ESAD)—a variation of Mean Absolute Deviation (MAD) where instead of averaging the absolute values, you apply the exponential smoothing calculation to them. See also Mean absolute deviation and Exponential smoothing. 
+
+Exponentially smoothed forecast bias—application of exponential smoothing to a series of forecast errors. See also Forecast error.
+Fair share distribution—a method of dividing a receipt or existing inventory at a supplying facility among the facilities being supplied, based on demand at those facilities.
+
+Fill rate—a success rate in filling orders. Stated as line fill, order fill, unit fill, or dollar fill.
+
+Finished goods—inventory that is in a salable or shippable form based upon its location within the supply chain. An item considered a finished good in a supplying plant might be considered a component or raw material in a receiving plant.
+
+Finite capacity scheduling—a manufacturing planning system that schedules within the capacity constraints of work centers.
+
+Firm planned order—a special status applied to a planned order that prevents MRP from replanning it.
+
+Fixed reorder point—also called fixed order point, fixed reorder point is a preset (fixed) quantity that triggers the need for a new order being placed. See also Reorder point.
+
+Fixed-schedule ordering system—a replenishment system where orders can only be placed based on a predetermined schedule. For example, you may have a supplier where you have a set “order day” and “delivery day”, such as placing orders every Tuesday for a Friday delivery. See also Periodic review inventory system.
+
+Flattening—when referring to “flattening your bills of materials”, flattening implies you are removing levels from your bill-of-materials structure. It means that rather than making one item that is then later used to make another item, you make the first item as part of the manufacturing process for the second item (under the same production order in the same production run).
+
+Forecast—an estimation of future demand.
+
+Forecast basis—the data and information that is used to produce the forecast. In most cases, this is the historical demand for the product.
+
+Forecast bias—the tendency of a forecast to be high or low.
+
+Forecast consumption—the process of depleting the forecast as actual orders are received.
+
+Forecast error—measurement that represents forecast error/accuracy. The most common base calculation is ([Forecasted Sales]-[Actual Sales]) / [Actual Sales]. But there are many variations and extensions of forecast error measurements.
+
+Forecast horizon—the length of time into the future over which the entire forecast (all forecast periods) is based. As a general guideline, your forecast horizon must be at least as long as the cumulative lead time of the product being forecast. But, forecast horizons beyond the cumulative lead time may be needed to plan for lot sizing, manufacturing capacity, cash flow, facilities, labor, etc. Some definitions of forecast horizon would also include the period of time into the past over which historical demand was used to produce the forecast.
+
+Forecast interval—the length of time over which each forecast period is based. Forecast intervals usually follow standard cumulative measures of time (years, quarters, months, weeks, days).
+
+Forecast override—any adjustment that is used to supersede your normal forecast. A forecast override can be a fixed quantity that will be used to replace the forecast, or it can be a factor that can be used to adjust the forecast or an element of the forecast (such as a trend override factor).
+
+Forecast period—a specific span of time described by a forecast quantity. For example, if I forecast demand of 500 units each week for the next six weeks, each week is a separate forecast period. Forecast periods are sometimes referred to as “time buckets”, though that can get confusing since some systems have time buckets that are different from the forecast period.
+
+Freight terms—an agreement between a supplier and customer that describes the responsibility for transportation costs.
+
+Generic software—generic software (such as generic ERP systems) are products designed to work in a broad range of environments and tend to focus on standard business practices for general industry.
+
+GMROII—See Gross margin return on inventory investment..
+
+Gross margin—the difference between cost and sell price.
+
+Gross margin return on inventory investment—GMROII is a calculation that shows your margin relative to your average inventory investment. It’s calculated by dividing your annual gross margin (dollars) by your average inventory investment (dollars), and can be calculated for individual items or groups of items.
+
+Gross requirements—the total demand (dependent and independent) for an item within a specific time period. Gross requirements are then used to calculate net requirements. See also Netting and Net requirements.
+
+Group logic—methods used to manage inventory based on groups of items rather than single items
+
+Hedge inventory—inventory that is purchased to protect against or take advantage of price fluctuations. The price fluctuations may be the result of seasonal or cyclical variations that result with imbalances in supply and demand (supply exceeds demand or vice versa), changes in exchange rates with international purchases, or even special promotions.
+
+IF-THEN-ELSE—describes the most common logic used by software to make decisions. IF-THEN-ELSE is used to describe a situation and then describe what the program should do if the situation is true and what it should do if the situation is false. For example, for your computer to tell you when you have email, the software is programmed such that IF there is new mail in your mailbox, THEN execute the sound file that has the “you’ve got mail” message, ELSE do nothing.
+
+IF statement—a calculation that uses IF-THEN-ELSE logic. When I use the term “IF statement”, I am generally referring to a spreadsheet (Excel) formula that uses the IF function, but may be referring to any program where similar logic is used.
+
+Independent demand—demand that is not created as a direct result of another item’s demand or demand from another facility. Demand for customer orders is an example of independent demand.
+
+Industry-specific software—software that is designed with a specific industry in mind, and therefore has functionality that focuses on the typical business practices of that specific industry.
+
+Infinite capacity scheduling—a manufacturing planning system that completely ignores capacity constraints and schedules purely based on demand. MRP is an example of an infinite capacity scheduling system. It requires that planners check the production schedule against capacity and make adjustments accordingly.
+
+In-transit quantity—a quantity that has been shipped from one facility and has not yet been received into another facility
+
+Inventory—any quantifiable item that you handle, buy, sell, store, consume, produce, or track.
+
+Inventory characteristic—any distinguishing trait that describes the types of inventory you are managing. The physical size, the form, demand patterns, and costs, are examples of inventory characteristics.
+
+Inventory classification—any logical grouping of inventory based upon user-defined characteristics.
+
+Inventory management—the control of inventory in a manner that best achieves the business objectives of your organization. It not only involves the physical management of inventory, but also the management of the data used to describe the inventory, and the systems used to process the data. Inventory management ultimately comes down to having the right inventory in the right form in the right quantity in the right place at the right time at the right cost.
+
+Inventory system—the collection of programs and data used to plan and track inventory balances and activities.
+
+Inventory turns—a measure of the velocity of inventory. It is generally calculated by dividing either the average inventory investment during a period of time or the current inventory investment at a point in time, into the annual cost of goods sold (COGS).
+
+ISM—The Institute for Supply Management (previously known as National Association of Purchasing Management (NAPM). www.ism.ws 
+
+Issue—to reduce on-hand inventory and assign it to a specific document or process. Such as issuing raw materials to a production order or issuing finished goods to a sales order.
+
+Item—any unique configuration of a material or product managed as part of your inventory. Item is used synonymously with SKU.
+
+Item master—a collection of data that describes a specific item. Item master is also used to describe the database table that contains this data.
+
+Item number—the identification number assigned to an item. Also called the part number, SKU number, or SKU.
+
+Item numbering scheme—the format or template used for assigning item numbers.
+
+JIT—just-in-time. Term usually thought of as describing inventory arriving or being produced just in time for the shipment or next process. Actually JIT is a strategy for optimizing manufacturing processes by eliminating all process waste, including wasted steps, wasted material, excess inventory, etc. JIT is often used synonymously with “Lean manufacturing” or “Toyota production system”.
+
+Kanban—replenishment system where a replenishment is triggered by emptying a container, and a physical notification such as a card or the empty container is sent up the line to the previous operation or supplier to be refilled. See also Multi-bin system.
+
+Kit—items that are made up of multiple separate parts (not assembled).
+Landed cost—you can think of landed cost as your “delivered cost” for an item. In addition to the unit cost, it should include transportation costs, brokerage fees, and any import duties or taxes required.
+
+Last-period demand—forecasting method that uses demand from the previous period as the forecast for subsequent periods.
+
+Last-relative-period demand—forecasting method that uses the relative period (usually from the previous year) to forecast demand. For example, where last-period demand would use January’s demand to forecast February’s demand, last-relative-period demand would use February’s demand from the previous year to forecast February’s demand for the current year.
+
+Law of large numbers—a simple observation that with larger numbers you can generally expect lower variability.
+Lead-time—amount of time it takes for a purchased item to be delivered after it is ordered, or the amount of time it takes for a manufactured item to be completed after it is ordered. 
+
+Lead-time demand—expected demand during the lead-time period. For example, if your forecasted demand is 3 units per day and your lead time is 12 days, your lead time demand would be 36 units.
+
+Lead-time factor—a multiplier used to adjust a standard deviation based on forecast periods, to an estimated standard deviation based on lead time periods.
+
+Lead-time offsetting—term used in planning systems such as MRP and DRP to describe the process of offsetting the demand of dependent demand items based on the lead time of the parent items or facilities. Or, the process of offsetting the planned order release date from the planned order receipt date by the lead time. Both definitions are commonly used.
+
+Lean—see JIT.
+
+Legacy system—implies an outdated computer system that is either a homegrown (custom built) system, a purchased system that has likely been modified over the years, and/or a hodgepodge of various disconnected software systems. It’s actually a marketing term used by software vendors to convince you that your current system just isn’t up to snuff any more.
+
+Level—also known as normalized demand or base demand, level is your starting point for a forecast. It can be a confusing term because people sometimes think of it as a flat line, when in reality level changes over time (the result of trend). I find it’s easiest to think of level as your current demand after seasonality and noise have been removed.
+
+Line item—a single detail record. The term line item is most commonly used to describe the detail (each line that reflects an item and a quantity) on sales orders or purchase orders.
+
+Lot-for-lot—a very basic lot sizing method that uses demand during the specified planning time period (time bucket) as the lot size. In most cases the planning periods would be your forecast periods, therefore your lot would be equal to the net demand in the forecast period in which the order is planned on being received.
+
+Lot size—also known as order quantity, lot size represents the quantity of an item you order for delivery on a specific date, or manufacture in a single production run.
+
+Lot-size inventory—lot size inventory is the result of ordering or manufacturing more inventory than is required to meet your current demand and safety stock.
+
+MAD—See Mean absolute deviation.
+
+Make-to-order—a manufacturing strategy where you do not manufacture your product until after you receive actual orders from your customers. The primary advantage to this strategy is that you do not have to carry finished goods inventory. This strategy does not necessarily result in zero inventories. Many make-to-order manufactures will forecast and procure some raw materials and components in advance of receiving orders in an effort to reduce the lead time to their customers.
+
+Make-to-stock—manufacturing strategy where you must carry adequate finished goods inventory to meet upcoming forecasted demand. The reason this stocking strategy is so common is not that it is the most cost-effective inventory strategy overall, but rather it is a necessary strategy when market conditions require shipment of goods quicker than you can manufacture them.
+
+Management by exception—a management strategy that consists of automating the majority of decisions and then monitoring for exceptions. 
+Manufacturing execution system—software designed to integrate with enterprise systems to enhance the shop floor control functionality that is usually inadequate in ERP and MRP systems. MES provides for shop floor scheduling, production and labor reporting, and integration with computerized manufacturing systems such as automatic data collection and computerized machinery.
+
+Manufacturing lead time—the combination of setup time (the time it takes to set up equipment), run time (the actual assembly or manufacturing time), move time, and queue time (a buffer that represents the time stuff just sits around waiting to be worked on).
+
+Master production schedule—MPS is a planning tool that exists as a layer between your MRP system and your demand (forecasting system and actual demand). MPS is used to balance demand with capacity by moving production from periods with inadequate capacity into periods with available capacity.
+
+Mean absolute deviation—the average of the absolute values of a series of variances. MAD is used in forecast error measurement, safety stock calculations, and other applications of statistics.
+
+MES—See Manufacturing execution system
+
+Min-max—a slight variation on a fixed-reorder-point/fixed-replenishment-quantity ordering system. The “min” part of min-max is essentially your fixed reorder point. The “max” part represents a quantity you want to order “up to”. When inventory drops at or below your min, you order enough to bring you to your max.
+
+Modular bill of materials—See Planning bill of materials.
+
+Moving average—forecasting method that calculates the average demand over a fixed number of time periods relative to the date the forecast is generated, and uses that as the forecast for subsequent periods. For example, if I am calculating a three-month moving average on July 1st, I will calculate the average demand over April, May, and June. Subsequently, on August 1st, I would use May, June, and July demand for the calculation.
+
+Modification—a change to software that requires changing or adding to the software code.
+
+Move time—the time it takes to physically relocate materials from one manufacturing operation (step in manufacturing process) to the next.
+
+MRO—maintenance, repair, and operating inventory. Term used to describe inventory used to maintain equipment as well as miscellaneous supplies such as office and cleaning supplies.
+
+MRP—material requirements planning (MRP) or manufacturing resource planning (MRPII). MRP was originally designed for materials planning only, and involved exploding demand through a bill-of-materials structure, calculating gross requirements and net requirements, and creating planned orders. MRPII is the consolidation of material requirements planning (MRP), capacity requirements planning (CRP), and master production scheduling (MPS). Today, the definition of MRPII is generally associated with MRP systems (when someone refers to a system as an MRP system, they are probably talking about an MRPII system).
+
+MRP generation—describes the process where MRP uses the bill-of-material structure and other inventory data to calculate gross and net requirements, and create planned orders.
+
+MRP explosion—describes the process where MRP expands demand through the bill-of-materials structure and offsets it by the lead time. The MRP explosion is part of the MRP generation process.
+
+Multi-bin system—a simplistic replenishment system that uses two or more physical bins (or other type of container) for each item. When one bin is emptied, it is sent somewhere to be refilled. See also Kanban and Two-bin system.
+
+Multi-level bill of materials—a bill-of-materials structure where components on one BOM have their own BOMs below them. Technically, a multi-level bill does not actually exist. Instead, you just have numerous single-level bills and your computer software figures out that if an item on one bill has its own bill, it can logically link these together for planning purposes. 
+
+Multi-period forecast error amplitude measurement (MPFEAM)—measurements that quantify the size of the forecast error over multiple forecast periods.
+
+Multi-plant—environments where multiple facilities are managed.
+
+Multi-plant MRP—MRP extended with DRP logic to plan inventory in multi-plant environments. See also Distribution requirements planning.
+
+Nervousness—in MRP systems, nervousness describes frequent changes to planned orders for lower-level items, that result from minor changes in demand of higher-level items.
+
+Net change MRP—a process that only recalculates gross and net requirements and planned orders for items (and components of items) that have had some type of change to planning data (change in on-hand balance, quantity on order, etc.). Net change MRP may be run as a batch program, or may be able to run real-time in a live environment (not all systems can do this).
+
+Net requirements—the result of adjusting gross requirements by current on-hand, safety stock, and inbound quantities.
+
+Netting—the process of adjusting gross requirements by current on-hand, safety stock, and inbound quantities.
+
+Noise—the unpredictable variation in demand. Noise is demand variation that is not the result of trend, seasonality, or other predictable factors.
+
+Non-stock inventory—inventory that is not tracked within your perpetual inventory system. Non-stock inventory will generally not have an item-master record or internal SKU number. An alternate meaning for non-stock inventory is order-as-needed inventory. In this case, you do have an item-master record and an internal SKU number, but do not carry stock of the item.
+
+Normal distribution—term used in statistical analysis to describe a distribution of numbers in which the probability of an occurrence, if graphed, would follow the form of a bell-shaped curve. This is the most popular distribution model for determining probability and has been found to work well in predicting demand variability based upon historical data.
+
+Normalize—to remove elements such as seasonality, trend, or effects of events from demand.
+
+Obsolescence—the process by which inventory becomes obsolete.
+
+Obsolete—the condition of being no longer of use due to passage of time. Usually associated with old, outdated designs.
+
+On-time delivery—a fill-rate measurement generally used by manufacturers to describe the percentage of orders, lines, dollars, or units filled by the requested (or promised) date. Tolerances or time breakdowns may be used to adjust or add detail to this type of measurement.
+
+Operation—in manufacturing, an operation is a step in the manufacturing process (a step in the routing). In more general terms, an operation is the combination of a physical facility and the processes that occur within that facility.
+
+Optimization—the process of getting the “best” result from a stated problem. A typical optimization model would be made up of a value that you would like to optimize (minimize or maximize), one or more changeable values that have a mathematical relationship to the value you want to optimize, and one or more constraints (limits). Though optimization implies an optimal (best) solution, the reality is in most cases we are looking for the “best practical” solution, which is not necessarily the best solution.
+
+Optimization algorithm—a series of steps used (usually by a computer program) to find an optimal solution to a problem.
+
+Optional reorder point—also called optional replenishment point, is a separate reorder point that is a little higher than your normal reorder point, and can be used to avoid down-time on machines for manufactured items or meet minimum order amounts, discounts, or freight policies for purchased items. It’s basically just a quick way of identifying items that are close to reorder point.
+
+Order as needed—a replenishment method (and classification) that only triggers an order when actual demand is present. And generally will only order enough inventory to meet the actual demand.
+
+Order cost—the sum of the fixed costs that are incurred each time an item is ordered or produced. Order costs are the costs associated with the instance, but not the quantity, of an order; which is not necessarily the same as all costs associated with ordering and receiving inventory. Order cost is used in cost-based lot sizing calculations such as EOQ.
+
+Order cycle—the length of time between receipts of an item. You can also think of it as the length of time an ordered quantity should last.
+
+Ordering system—any technique(s) or program(s) used to trigger and/or execute the ordering process. Fixed reorder point, min-max, multi-bin, MRP, and DRP are examples of ordering systems.
+
+Order point—See Reorder point.
+
+Outsourcing—the act of transferring responsibilities for a process to an outside supplier.
+
+Overhead—indirect costs associated with facilities and management that are applied to the costs of manufactured goods through the manufacturing reporting process.
+
+Override—any adjustment that is used to supersede the standard results of a decision or calculation. Overrides are sometimes used in forecasting, safety stock, and lot sizing calculations.
+
+Pareto Principle—a principle that describes a common statistical situation whereby a small number of causes are responsible for a great number of effects. See also 80/20 rule.
+
+Part number—See Item number.
+
+Parts list—a listing of material required for a production order. The manufacturing planning system will use the bill of materials to calculate the material requirements for a manufacturing order, resulting in the parts list (also called a materials list). Parts lists can also be created or edited manually.
+
+Payment terms—an agreement between a supplier and customer that describes how and when payment will be made for products or services.
+
+Period order quantity—a method for stating an order quantity using time rather than units. When it comes time to order, your system will look at the immediate forecasted demand over the length of time designated by the POQ and use that as the order quantity.
+
+Periodic review inventory system—a periodic review inventory system has two different (though related) definitions. When referring to inventory tracking methods, a periodic review system means that you do not keep track of inventory transactions and current inventory balances. Instead, you periodically physically count your inventory to see how much you have. When referring to replenishment systems, periodic review means that you have a fixed schedule (not daily) where you review inventory levels and place replenishment orders.
+
+Perpetual inventory system—an inventory system that uses transactions to adjust on-hand balances to coincide with physical activities that are occurring.
+
+Phantom bill of materials—a fictitious BOM created for common subassemblies or kits that you do not want to produce as separate items. For example, if you have a number of products that all use the same hardware, you can create a phantom bill for the hardware (as if it were a kit) and then just put the phantom item on the bills for all products that use it. Your MRP system will treat the phantom bill components as though they were part of the bill for the higher-level item (rather than treating it as a separate item that needs to be produced). Phantom items never actually exist, they are just a means for simplifying the management of your bills of materials.
+
+Physical inventory—the process of counting all inventory in a warehouse or plant in a single event. Also called a wall-to-wall inventory.
+
+Planned order—term used within MRP and DRP systems for system-generated order recommendations (recommended order dates and quantities). Planned orders only exist within the computer system and serve multiple functions. One function is to notify the materials/planner or buyer to produce or order materials, which is done by converting a planned order into a purchase order, production order, or transfer order. Another function is used by the MRP or DRP system to show net demand that is used by subsequent MRP and DRP programs to generate additional planned orders for lower level items.
+
+Planned order receipt—term used within MRP and DRP systems to describe the date a planned order must be received in order to fulfill net requirements.
+
+Planned order release—term used within MRP and DRP systems to describe the date a planned order must be released in order to meet the lead time. It is essentially the planned order receipt date offset by the lead time.
+
+Planning bill of materials—a fictitious bill of material used to group a family of products or options of a family of products. For example, you may have a line of notebook computers where most of the components are the same, but some will have different hard drives, processors, memory, etc. Rather than creating separate bills for each possible combination, and then attempting to forecast each possible combination, you can create one large planning bill that contains all possible components but uses the “quantity per” to manage the options. If you expect half of the computers will use Drive A, 25% will use Drive B, and 25% will use Drive C, you would set up each drive on the bill, and use 0.50, 0.25, and 0.25 respectively as the quantity per. You would then proceed to do the same for all other options. Your higher-level forecast would then be for the total demand for all computers in this family. Planning bills are sometimes referred to as Super Bills, Modular Bills, or Pseudo Bills.
+
+PO—See Purchase order.
+
+POQ—See Period order quantity.
+
+Postponement—a manufacturing /distribution strategy where specific operations associated with a product are delayed until just prior to shipping. Storing product in a generic state and then applying custom labels or packaging before shipping is an example of postponement.
+
+Predictor variable—in regression analysis, a predictor variable is a set of data that is thought to be able to predict another set of data.
+
+Procure-to-order—an inventory strategy where you do not procure your product until after you receive actual orders from your customers.
+
+Procure-to-stock—an inventory strategy where you must carry adequate finished goods inventory to meet upcoming forecasted demand. The reason this stocking strategy is so common is not that it is the most cost-effective inventory strategy overall, but rather it is a necessary strategy when market conditions require shipment of goods quicker than you can procure them.
+
+Product life cycle—the period of time in which a specific item is considered an active saleable item. Product life cycle starts when a product is first introduced, and ends when a product is removed from active status. Some definitions of product life cycle may also include the development time for a product.
+
+Product life cycle index—consists of a number for each specific forecast period that describes the relationship of each period’s demand (excluding trend and seasonality) over the complete product life cycle.
+
+Production order—the document used to process a production run of an item. Also known as a job, work order, or manufacturing order, a production order is usually made up of a production order header, a parts list, and a routing.
+
+Production plan—a very high-level long-term plan of what will be produced. It is generally stated in terms of families of products rather than specific products, and in large time periods such as months, quarters, or years.
+
+Production run—the physical act of performing all tasks associated with a production order (or a group of production orders that require similar setup and processing).
+
+Promised date—the date a supplier expects to be able to fulfill a customer order.
+
+Pseudo bill of materials—See Planning bill of materials.
+
+Pull system—an ordering or production scheduling system where production or procurement of a product is the direct result of actual customer demand. A pure pull system would be a make-to-order system where something is only manufactured after an actual customer order is placed. However, the term pull has been commonly used to describe other replenishment systems (such as Kanban) that arguably do not fit this pure pull definition.
+
+Purchase order—document used to authorize, track, and process items purchased from a supplier. A purchase order is also a legal document that can include the terms of the sale.
+
+Purchasing contract—a legal document agreed to by the buyer and seller on the pricing and terms of a sales transaction or a series of sales transactions. A formal purchasing contract is generally used when an agreement is made relative to the transfer of goods or services that amount to a significant value and are outside of the normal pricing and terms provided by the seller, or where a significant commitment is being made by the buyer and/or seller.
+
+Push system—an ordering or production scheduling system where production or procurement of a product is triggered by expected (forecasted) demand rather than actual customer orders. Make-to-stock and procure-to-stock are examples of push systems.
+
+Quantity discount—a price structure that involves lower prices for larger purchase quantities. Quantity discounts generally have specific “break points” that designate quantities at which the price changes.
+
+Quantity per—the numeric representation of the quantity of a specific item required to make one unit of another item. Quantity per exists on the bill of materials and on the parts list associated with a production order.
+
+Queue time—the amount of time inventory is staged prior to processing.
+
+Raw materials—inventory used in the manufacturing process. Though some would categorize raw materials as very base materials in bulk form such as carloads of ore or unitized loads of paper, plastic, or steel, I generally consider anything used in the manufacturing process as a raw material. I use the term synonymously with the term “components”.
+
+Receipts—the materials or transactions associated with the receiving process.
+
+Receiving—the process of placing materials into inventory. Also describes the department in which receiving activities take place.
+
+Regenerative MRP—the process of completely regenerating (usually through a batch program) planned orders for all items. All existing planned orders (except firm planned orders) for all items are wiped out, and MRP starts all over calculating gross and net requirements and new planned orders.
+
+Regression analysis—techniques used to determine a mathematical relationship between two or more sets of data where one or more sets of data is thought to be able to predict the other set of data. The data used to predict is known as the predictor variable.
+
+Relevant history—data recorded under business conditions similar enough to current and future conditions, such that it can still be effectively used to forecast future demand.
+
+Reorder point—the inventory level set to trigger an order of a specific item. Reorder point is generally calculated as the expected usage (demand) during the lead time plus safety stock.
+
+Replenishment—within a warehouse or plant, replenishment is the process of moving inventory from secondary storage areas into fixed storage locations. Within a supply chain or a multi-plant environment, replenishment is the process of moving inventory between facilities or from suppliers to meet demand.
+
+Requested date—the date a purchased item is requested to be received at a customer’s location.
+
+Requisitions—a way for people who don’t have purchasing authority (authority to create purchase orders) to create purchase-order-like documents that specify item, quantity, cost, terms, and vendor information for something they require. These requisitions would then be reviewed by someone who does have purchasing authority, and if approved, would be converted to actual purchase orders.
+
+Resources requirements planning—RRP is a capacity planning tool used to verify the ability of key resources to meet a production plan or business plan.RRP deals primarily with resources that require long-term planning, such as facilities, major equipment, capital, and workforce levels.
+
+Rough-cut capacity—a capacity planning tool used to verify the ability of key resources (machines, labor) to meet the master production schedule. Rough-cut capacity exists at a level between resources requirements planning (RRP) and capacity requirements planning (CRP).
+
+Routing—a list of operations (steps) used to complete a manufacturing process. A routing is used in conjunction with the bill of materials. While the BOM contains the material requirements, the routing will contain the specific steps (including labor and machine requirements) required to produce the finished items.
+
+RRP— See Resources requirements planning
+
+Run time—in an operation step in a routing, run time is the amount of time it takes to produce (run) a single unit. It does not include any setup time or queue time. The term can also be used to describe the accumulation of run time for multiple operations or multiple units (based on an entire production order).
+
+Safety lead time—a means of adding some time to your lead time as part of your ordering calculations. Though safety lead time is used in the ordering calculation to determine when you need to order something, it is excluded from the calculation that then determines the “requested date” for the order.
+
+Safety stock—quantity of inventory used in inventory management systems to allow for variation in demand or supply that cannot be effectively forecast.
+
+Sales order—document used to approve, track, and process outbound customer shipments.
+
+Scrap—inventory that must be discarded or recycled as a result of a manufacturing process or damage that occurs during storage or material handling.
+
+Scrap rate—the rate of expected scrap for specific components within the context of manufacturing an item. A scrap rate would be attached to a specific component on the bill of materials for a specific item
+
+Seasonality—fluctuations in demand that repeat with the same pattern over equivalent time periods. The most common representation of seasonality occurs with changing demand patterns measured weekly, monthly, or quarterly, that repeat annually.
+
+Seasonality index—consists of a number for each specific forecast period that describes the relationship of each period’s demand to the average demand over the complete seasonal cycle. The average demand is represented by the number one. If seasonality for a period results in demand greater than the average demand, it will be represented by a number greater than one. For example, if December’s sales were, on average, 30% greater than the average monthly sales for the year, you would have a seasonality index of 1.3 (1 plus .30) for December.
+
+Self-induced seasonality—term I use to describe repeating patterns of demand variability caused by internal processes and policies. For example, having a peak in sales at the end of each quarter because you have incentive policies for your sales people or customers that are based on three-month periods (quarters).
+
+Semi-processed materials—stockable items (meaning they have their own unique item number) that have gone through some processing, but will be later pulled from stock and undergo additional processing.
+
+Service factor—a number used as a multiplier (with the standard deviation) in statistical safety stock calculations. The service factor is associated with a desired service level.
+
+Service level—service level has two meanings. It’s a term used to describe a key input to statistical-based safety stock calculations. It’s also a term used to describe fill-rate and on-time-delivery measurements. It’s important to note that the service level used in safety stock calculations does NOT equate to any typical fill-rate measurement.
+
+Setup costs—the costs associated with initiating a production run. May include labor and machine time to get equipment ready, as well as scrap or tooling associated with the setup process.
+
+Setup time—the time it takes to prepare (equipment and materials) for a production run.
+
+Shipping order—document used to approve, track, and process outbound shipments.
+
+SKU—stock-keeping unit. Referring to a specific item in a specific unit of measure. Also refers to the identification number assigned to each SKU. Used interchangeably with the terms item and item number.
+
+Smoothing—the act of removing variation from demand.
+
+Smoothing factor—also called a smoothing constant, a smoothing factor is a number between zero and one (0.01, 0.02, . . . 0.99) that is used to weight the most recent period’s demand against the forecast for that period to produce the next period’s forecast in an exponential smoothing calculation. See also Exponential smoothing.
+
+Sourcing—the activity of finding suppliers for products, materials, or services.
+
+Spreadsheet modeling—the activity of creating a mathematical representation of a business problem (a set of circumstances that require a decision to be made) in a spreadsheet.
+
+Square root trick—a statistical tool used to “soften” a ratio by taking the square root of the ratio.
+
+Standard business practices—business practices that are typical for general industry or specific industries.
+
+Standard deviation—a statistical term that describes a number (the result of a calculation) used to describe the “spread” of variation in a distribution. Note there are separate formulas for calculating standard deviation depending on whether you are basing the calculation on a sample or the entire population. 
+
+Stocking type—a classification used by planning and execution systems to identify the primary stocking characteristic of the inventory. Examples of stocking types would include classifications that distinguish manufactured inventory, purchased inventory, direct ship inventory, or order-as-needed inventory.
+
+Stocking unit of measure—the unit of measure used to track inventory within a facility. Stocking unit of measure is usually, but not always, the smallest unit of measure handled.
+
+Stockout—a situation where you have inadequate inventory levels to meet current demand.
+
+Storage cost—the costs associated with the physical storage of inventory. This would include the cost of the physical space dedicated to the inventory, as well as storage equipment (racking, shelving) used to store the inventory.
+
+Subassembly—a stockable item that has gone through an assembly process, but is also used in the assembly of other items. A subassembly is also a component.
+
+Super bill of materials—See Planning bill of materials.
+
+Supply-chain optimization software—generally implies considerable functionality related to inventory management, transportation management, and multi-facility planning. But, more importantly, it should include advanced optimization algorithms to optimize supply chain decisions by considering the key variables of a complex supply chain.
+
+Terms—short for “terms of sale”, terms is an agreement between a supplier and customer that describes the conditions of the sale. They would likely include payment terms, freight terms, change-of-ownership terms, and return policies.
+
+Time fence—a time frame within which you want some control over changes to your production schedule. Time fences are typically implemented more as guidelines rather than firm restrictions.
+
+Time-phased order point—describes systems that directly utilize the immediate forecast and actual customer orders to trigger order (reorder) decisions.
+
+Total quality management—a management strategy that focuses on continuous improvement.
+
+TQM—See Total quality management
+
+Tracking signal—a calculation that describes the overall health of the forecast relative to trend, and can be used to initiate changes to the forecasting technique or parameters. There are numerous calculations used as tracking signals.
+
+Transportation inventory—the amount of inventory that is currently in-transit. That is, it is the inventory that has left the shipper’s facility (either an owned facility or a supplier’s facility) and has yet to arrive at the consignee’s facility (may be an owned facility or a customer’s facility).
+
+Trend—a gradual increase or decrease in demand over a period of time.
+
+Trend adjustment—a mathematical calculation used to adjust future period’s forecasts to account for trend (extend the trend).
+
+Trend element—a specific aspect of trend. For example, changes in market share would be a trend element.
+
+Trend lag—a forecast’s inability to adequately account for trend. Usually the result of smoothing calculations reducing the impact of trend and/or a lack of a calculation to properly extend the trend.
+
+Triple exponential smoothing—forecasting method that uses exponential smoothing to smooth the demand, the trend, and the seasonality index.
+
+Two-bin system—a simplistic replenishment system that uses two physical bins (or other type of container) for each item. When one bin is emptied, it is sent somewhere to be refilled. See also Kanban and Multi-bin system.
+
+Unfinished goods—items that are used to produce finished goods items. Unfinished goods are often called components, ingredients, raw materials, semi-processed materials, and subassemblies.
+
+Units—describes the individual pieces of physical inventory that make up the quantity an item (assuming pieces is the unit-of-measure).
+
+Unit of measure—the unit of measure describes how the quantity of an item is tracked in your inventory system. The most common unit of measure is “eaches,” which simply means that each individual item is considered one unit. An item that uses “cases” as the unit of measure would be tracked by the number of cases rather than by the actual piece quantity. Other examples of units of measure would include pallets, pounds, ounces, linear feet, square feet, cubic feet, gallons, thousands, hundreds, pairs, dozens. See also Unit-of-measure conversion.
+
+Unit-of-measure conversion—a conversion ratio used whenever multiple units-of-measure are used with the same item. For example, if you purchased an item in cases (meaning that your purchase order stated a number of cases rather than a number of pieces) and then stocked the item in eaches, you would require a conversion to allow your system to calculate how many eaches are represented by a quantity of cases. This way, when you received the cases, your system would automatically convert the case quantity into an each quantity.
+Vendor managed inventory—phrase used to describe the process of a supplier managing his customers’ inventory levels and purchases of the materials he supplies to them.
+
+VMI—See Vendor managed inventory
+
+Weighted moving average—forecasting method similar to a moving average, however different weights can be applied to the historical periods (the weights must add up to 1). Each previous period’s demand is multiplied by the respective weight, then the results are added up to get your forecast. So where a four-period moving average used the same weight for all periods ( 0.25 + 0.25 + 0.25 + 0.25 = 1), a weighted moving average allows a variety of weights to be used, provided they total 1. For example, 0.15 for the first period, 0.20 the second, 0.30 the third, and 0.35 the fourth (0.15 + 0.20 + 0.30 + 0.35 = 1).
+
+WIP—See Work-in-process.
+
+Work-in-process—work-in-process (WIP) is a financial account that contains the dollar value of all inventory, labor, and overhead that has been issued to production but has not yet produced a finished product.
+
+Work order—See Production order.
+
+Yield rate—the expected “success” rate in the manufacturing process for an item. Yield rate exists at the parent-item level, as opposed to scrap rate that exist at the component level.
+
+
+----------------- from -----------------------------
+https://www.inventoryops.com/component/content/article/dictionary.html?catid=2:uncategorised&Itemid=118
+----------------------------------------------------
+
+Glossary of Inventory Management and Warehouse Operation Terms
+
+All definitions written by Dave Piasecki
+
+Below are some of the terms, acronyms, and abbreviations you may run into on this site and others
+on the web relating to inventory operations. The definitions are based on my understanding of the
+terms and may differ from others opinions. If you disagree with a definition or have additional
+definitions to submit please email me at email@inventoryops.com.
+© Copyright. Content on InventoryOps.com is copyright-protected and is not available for republication.
+
+Safety stock
+—quantity of inventory used in inventory management systems to allow for deviations in demand or supply. Safety stock calculations will take into account historic deviations and use a required service level multiplier to determine the optimal safety stock level. For more info on safety stock, check out my book on inventory management and my article on safety stock.
+Safety lead time
+—safety lead time is a way to represent your safety stock as a number of days demand. Safety lead time can be beneficial when you want to “pad” your lead-time to compensate for supplier variability, transportation variability, or internal process variability. For example, if can take 2 or 3 days to get incoming materials processed through your receiving process, you may want to set your safety lead time to 2 or 3 days. This will calculate the requested dates for your purchase orders 2 or 3 days earlier than actual need. This is much cleaner than adding the 2 to 3 days to the suppliers lead time (which can be confusing when the supplier’s stated lead-time is different from what is in your system).
+Screen mapping
+—software that provides the functionality to change the arrangement of data fields on a computer screen that accesses a mainframe computer program. Screen Mapping is frequently used in combination with terminal emulation software to "Remap" data fields from a standard mainframe program to be used on the smaller screen of a portable handheld device. . a.k.a. Screen scraping
+Seasonality
+—fluctuations in demand that repeat with the same pattern over equivalent time periods.
+Seasonality index
+—consists of a number for each specific forecast period that describes the relationship of each period’s demand to the average demand (level) over the complete seasonal cycle. A seasonality index is used to adjust the forecast to account for these cyclical changes in demand. The average demand is represented by the number “1”. If seasonality for a period results in demand greater than the average demand, it will be represented by a number greater than 1. For example, if December’s sales were, on average, 30% greater than the average monthly sales for the year, you would have a seasonality index of 1.3 ( 1 plus .30) for December. If January’s sales were, on average, 20% less than the average monthly sales for the year, you would have a seasonality index of 0.8 (1 minus .20).
+Selective pallet rack
+—the term selective pallet rack implies standard single-deep pallet rack configurations (and rack designs) where each pallet is immediately accessible from an aisle. In contrast to double-deep rack, drive-in or drive-thru rack, or push-back rack where some loads will be stored behind other loads. See Equipment Pics: Racking page for examples.
+Service factor
+—factor used as a multiplier with the Standard Deviation to calculate a specific quantity to meet the specified service level. See article on safety stock for more information on service factor
+Shipping manifest system
+—software used to associate shipments with carrier, service, rate, etc. Shipping manifest systems will produce a report (physical or electronic) that is sent to the carrier to be used for billing purposes. Shipping systems will usually produce shipping documents such as compliance shipping labels, bill of ladings, Export documents, and Hazmat documentation. They may also have functionality related to rate shopping, freight policy execution, freight cost management. Also see Transportation Management System.
+Sideshift
+—a very common lift truck attachment, the sideshift device allows the fork carriage to slide left and right to allow more accurate placement of the load. Sideshifts will increase productivity and safety as well as reduce product damage by allowing the operator more flexibility in load placement.
+Skatewheel conveyor
+—type of conveyor that uses small wheels (usually made of steel) to move materials. See Conveyor Pics.
+Skid
+—a portable platform designed to allow a forklift, pallet jack, or other material handling equipment lift, move, and store various loads. A skid is similar to a pallet but does not have bottom deck boards. A skid is preferred over a pallet when used with equipment that would have problems with the bottom deck boards. The down side is that a skid usually needs beefier materials (more expensive and heavier) in order to meet the strength requirements of a comparable pallet. Though not technically correct, the terms Skid and Pallet are often used interchangeably. Also see Pallet
+SKU, Stock keeping unit
+—referring to a specific item in a specific unit of measure. For xample, if you distributed thirty-weight motor oil in both quarts and gallons you would maintain the inventory as two SKUs even though they are both thirty-weight motor oil. Also refers to the identification# assigned to each SKU.
+Slap-and-ship
+—term used to describe an approach to complying with customer requirements for physical identification of shipped goods. Most recently, slap-an-ship has been used to describe complying with RFID requirements (such as those from Wal-Mart), however, it is also applicable to any compliance labeling requirement (such as compliance bar code labels). Slap-and-ship implies you are meeting the customer's requirement by applying the bar code labels or RFID tags, but are not utilizing the technology internally.
+Slide-shoe sorter
+—type of conveyor sorting equipment that uses a series of sliding shoes to move materials off of the connveyor. The sliding shoes are part of the conveyor and travel with the materials, when the sorting point is reached, a several shoes will slide accross the conveyor, pushing the materials onto another conveyor or down a chute.
+Slip-sheet attachment
+—lift truck attachment used where slip sheets (a sheet of cardboard, paperboard, or plastic) are used rather than pallets. The slip-sheet attachment has a push/pull mechanism that clamps onto the slip sheet and pulls the load onto a thin platform and then pushes the load off of the platform when the truck reaches the destination.
+Slot
+—the physical space where an item is stored. Examples of slots would include a parts bin on a shelf, a pallet location in pallet rack, or a storage lane where multiple pallets of an item are stacked on the floor.
+Slotting
+—the activities associated with optimizing product placement in pick locations in a warehouse. There are software packages designed just for slotting, and many WMS packages will also have slotting functionality. Slotting decisions will generally use item velocity (times picked), cube usage (cubic velocity), and minimum pick face dimensions to determine best location, but there are numerous other factors that may need to be considered in a given environment. See article on Slotting
+Speech-based technology
+—also known as voice technology is actually composed of two technologies: Voice directed, which converts computer data into audible commands, and Speech recognition, which allows user voice input to be converted into data. Portable voice systems consist of a headset with a microphone and a wearable computer. See article on ADC for more info, also check out My book on inventory accuracy which provides greater detail on speech-based systems.
+SSCC
+—Serial Shipping Container Code (also called Serialized Shipping Container Code). An SSCC is a unique number (code) assigned to a shipping container. The shipping container could be a single carton, a palletized load, or even a full shipping container. Typically used with Advanced Shipment Notifications and EDI, the SSCC is the key to that shipping container and the information that describes the shipping container and its contents. SSCCs are usually printed on a compliance shipping label as a bar code allowing the destination to scan the bar code to automatically receive information about the shipment (often times scanning the bar code will automatically receive the contents of the shipment into inventory). The SSCC could also be incorporated into and RFID tag or any other means of applying a readable (machine or human) code on the shipment.
+Stock Item
+—are those items that you keep inventory on hand as a regular part of business. Basically, when you run low, you order more so that, in theory, you always have some inventory available. Check article Inventory vs Non-inventory
+Stamping
+—generally describes an unfinished item made of metal that is produced through a process that uses pressure to form discrete units from larger raw materials. Also describes the process used to produce stampings. In some cases, stampings may also be referred to as "blanks".
+Standard cost
+—inventory costing method used in manufacturing environments that uses the materials costs in the bill of materials combined with the labor costs (based on standard labor hours and rates per operation) and machine costs in the routing to calculate the cost of the finished or semi-finished item.  This cost is fixed and occasionally recalculated via a cost rollup.  See article on Inventory Costing Methods
+Standard deviation
+—used to describe the spread of the distribution of numbers. Standard deviation is calculated by the following steps:
+determine the mean (average) of a set of numbers.
+determine the difference of each number and the mean
+square each difference
+calculate the average of the squares
+calculate the square root of the average.
+You can also use Excel function STDDEVPA or STDEVP to calculate standard deviation. The above calculation reflects calculating the standard deviation of a population. In many cases we use a sampling of data (rather than the entire population). When calculating the standard deviation of a sample, rather than calculating the true average of the set of numbers, we will divide the sum of the set of numbers by the total count of numbers minus one (1). This allows us to artificially inflate our standard deviation to account for the fact were are not using the entire population. Excel function STDEV calculates the standard deviation of a sample. In safety stock calculations the forecast quantity is often used instead of the mean in determining standard deviation.
+Storage capacity
+—describes the amount of cube (or other unit of measure) available for storage within a warehouse or other faciltiy. There are various ways of measuring and quantifying warehouse storage capacity. See my article on Warehouse Capacity and my book Saving Warehouse Space. .
+Straddle trucks
+—lift trucks that incorporate outriggers set wide enough to allow a pallet to fit between them. Common examples would include straddle reach trucks and straddle s.
+Straight truck
+—delivery trucks that do not have a separate tractor and trailer. Straight trucks (also called box vans, or box trucks) usually only have 2 axles and generally have box lengths of between 12 and 30 feet (as opposed to tractor trailers that have 5 axles and trailer lengths of 45 to 53 feet). .
+Structural pallet rack
+—racking system that uses bolts or other mechanical fasteners (as opposed to Boltless Pallet rack). Structural Pallet Rack is sometimes used to support the roof of the structure (Rack-supported buildings), eliminating the need for posts.
+Super bill of material
+—type of planning bill of material that is created at a very high level tying together a larger and more complex family of products than a typical planning bill. see Planning bill of material
+Tandems
+—Refers to the rear tandem axles (the back 8 wheels on an 18 wheeler) on a trailer that can be adjusted forward or backward on the trailer to even out load weights or make for more stable loading (tandems all the way back).
+Tare Weight
+—Tare weight is the weight of the container or packaging (basically the weight of everything on the scale that is not actually the product being weighed). Most industrial scales allow you to input tare weight (either through actually weighing the packaging or container, or by manually inputting the weight) so the weight displayed on the scale is the weight of the product (total weight minus tare weight). For examstackerple, if you are using a counting scale to count small parts, you may have a small tub or container that you dump the parts into. First you would place the empty tub on the scale and press the "tare" button. This will zero out the scale at the weight of the tub. Then you move on to putting your counted sample into the tub.
+Task interleaving
+—term used in describing functionality of Warehouse Management Systems to mix tasks to reduce travel time. Sending a forklift driver to put away a pallet on his way to his next pick is an example of task interleaving.
+Terminal emulation
+—software used on desktop and portable computers that allows the computer to act like a terminal connected to a mainframe system. If you have a networked desktop PC and are accessing mainframe programs ( a.k.a. green screen programs) you are using terminal emulation. Terminal emulation is also a common method used to connect portable computers (as in warehouse bar code data collection systems) to mainframe software. Also see Screen Mapping
+Third-party logistics
+—(abbreviated 3PL) describes businesses that provide one or many of a variety of logistics-related services. Types of services would include public warehousing, contract warehousing, transportation management, distribution management, freight consolidation. A 3PL provider may take over all receiving, storage, value added, shipping, and transportation responsibilities for a client and conduct them in the 3PL's warehouse using the 3PL's equipment and employees, or may manage one or all of these functions in the client's facility using the client's equipment, or any combination of the above. Another term, 4PL is sometimes used to describe businesses that manage a variety of logistics related services for clients by using 3PLs. Also see article on Public Warehouses and 3PLs or visit International Warehouse Logistics Association (IWLA) site.
+Tilt-tray sorter
+—conveyor sorting system that uses a series of tilting devices (carriers) to sort materials. Each tilting carrier has a tray and is mounted on a conveyor, as the carrier passes the drop-off point, it will tilt allowing the materials to fall onto another conveyor, down a chute, or into some type of container. . a.k.a. Tilt-tray conveyor
+Time buckets
+—term sometimes used to describe forecast periods.
+Time fence
+—period of time prior to the scheduled production date beyond which changes can be made without significant adverse effects.
+TMS
+—Transportation management system (see separate listing).
+Towline Conveyor
+—material handling system that uses a towline (usually a chain) recessed beneath the floor to pull wheeled carts along a fixed path. Towline conveyors have been used for more than 50 years in manufacturing facilities.
+Trailer
+— a.k.a. Semi Trailer, Tractor Trailer. Generally describes enclosed trailers used to transport materials between locations. Standard lengths for trailers are 45', 48', and 53, with standard internal width of 98" to 99" and internal height of 105" to 110". Refrigerated trailers, also known as "reefers," have smaller internal widths of between 90" and 96" and heights of 96" to 100". Other types of trailers include flatbeds, low boys, and container chassis. Also see Container
+Trailer creep
+—no, this isn't referring to the strange dude that lives in the trailer park or the guy that hangs around truck stops. Trailer creep (also known as trailer walk, dock walk) occurs when the lateral and vertical forces exerted each time a lift truck enters and exits the trailer cause the trailer to slowly move away from the dock resulting in separation from the dock leveler. Factors that affect trailer creep are the weight and speed of the lift truck and load, the grade of the drive the trailer is parked on, the softness of the suspension, the type of transition (dock levelers, dock boards) being used, and whether the trailer has been dropped off (spotted) or if it is still connected to the tractor. Read my article on Dock Safety.
+Transportation management system
+—Category of operations software that may include products for shipment manifesting, rate shopping, routing, fleet management, yard management, carrier management, freight cost management. Also see Shipping Manifest System.
+Transverse flue space
+—term used by fire codes to describe the space to either side of pallet in racked storage. Flue spaces allow the water from an overhead sprinkler system to reach lower levels of the rack. Normally a transverse flue space of at least 3 inches is required (6 inches may be required under some circumstances). Also see Longitudinal Flue Space. See article Warehouse Fire Safety,
+Turret truck
+—turret trucks are a man-up lift truck similar to an order selector with the exception that rather than fixed forks the forks are mounted on an additional mast and carriage that operates as a turret, turning 90 degrees in either direction facilitating picking and stocking on either side of the aisle. The man-up design makes it easer to handle loads in very tall racking. Very-narrow-aisle trucks are generally recommended to be used in conjunction with a guidance system (wire, rails, optical) within the aisles to increase safety and reduce property damage. Also Turret Trucks require that the floor be perfectly flat and level to operate correctly. Also see Lift Truck Pics , Lift Truck Basics, and The Aisle Width Decision for more info.
+Tugger
+—an industrial vehicle used to tow carts through a warehouse of production facility. Tuggers are typically used when materials need to be moved over long distances, and will typically tow multiple carts (connected similarly to rail cars) at a time. Tuggers may also be called "Tow Vehicles", "Tow Tractors", etc.
+Two-step picking
+—a picking method where some or all picks from a zone are picked using a consolidated pick list (not segregated by discrete orders), then staged (this is the first step). Next, another picker picking an actual order will stop at the staging area to pick the items on the order that were set for two-step picking. Note that two-step picking is typically not used exclusively in an operation. The typical application would be to pick some or most items on the order using one-step picking, and ony use two-step picking for certain items.
+Unit load
+—material handling term that describes any configuration of materials that allow it to be moved by material handling equipment as a single unit. While smaller manually handled configurations could be considered unit loads, the term generally defines larger configurations that would be moved by a lift truck such as palletized loads, crates, bales, etc. a.k.a. unitized load
+Unit of measure
+—(abbreviated U/M) describes how the quantity of an item is tracked in your inventory system. The most common unit of measure is "eaches" (EA), which simply means that each individual item is considered one unit. An item that uses "cases" (CA or CS) as the unit of measure would be tracked by the number of cases rather than by the actual piece quantity. Other examples of units of measure would include pallets (PL), pounds (LB), ounces (OZ), linear feet (LF), square feet (SF), cubic feet (CF), gallons , thousands, hundreds, pairs, dozens. Also see Unit-of-measure Conversion.
+Unit-of-measure conversions
+—a unit-of-measure conversion is needed whenever you work with multiple units of measure. For example, if you purchased an item in cases (meaning that your purchase order stated a number of cases rather than a number of pieces) and then stocked the item in eaches, you would require a conversion to allow your system to calculate how many eaches are represented by a quantity of cases. This way, when you received the cases, your system would automatically convert the case quantity into an each quantity.
+Variable lead time
+—a lead time that changes (not fixed). When describing supplier lead time, variable lead time means that the lead time from the supplier changes based on his current workload and capacity. Within the context of manufacturing and MRP, variable lead time means the system calculates lead time based on the run quantity and times (setup time, run time, queue time) set up in the routing. Also see Lead time, Fixed Lead time.
+Vehicle restraint systems
+—devices that prevent trailers from moving away from the loading dock. One of the most popular is the ICC bar type restraint system. These systems incorporated a device that engages the ICC bar (rear impact guard) on the rear of the trailer preventing it from moving away from the dock. These devices may be mechanically or hydraulically operated and may vary in design and functionality from one manufacturer to another. There are also other types of restraints such as those that automatically engage the rear wheels of the trailer. As with the ICC bar restraints, the wheel engagement restraints also vary significantly from one manufacturer to another. There is not a one-system-fits-all solution for vehicle restraints, ICC bar systems may not work with damaged ICC bars, lift gates, and low-boy trailers. Wheel engagement systems are more expensive and may have problems in northern climates due to snow or ice. See article on Dock Safety and Dock Equipment Pics for more info.
+Very narrow aisle
+—Lift trucks that operate in aisles less than six feet and often use guidance systems (wire, rail, or optical) to travel within the aisles. Types of VNA trucks include order selectors, swing mast, pivot, mast, and turret trucks. See also article The Aisle Width Decision
+Vendor-managed inventory (VMI)
+—phrase used to describe the process of a supplier managing the inventory levels and purchases of the materials he supplies. This process can be very low tech, such as an office supplies supplier or maintenance supplies supplier coming into your facility once per week to visually check stock levels and place a re-supply order, or high tech, such as an electronic component supplier having remote access to your inventory management and MRP system and producing and automatically shipping to meet your production schedule. Vendor-managed inventory reduces internal costs associated with planning and procuring materials and enables the vendor to better manage his inventory through higher visibility to the supply chain. Vendor-managed inventory may be owned by the vendor (consignment inventory) or the customer.
+Voice directed
+—see Speech-based technology
+VNA
+—Very narrow aisle (see separate listing)
+Walkie or Walkie-rider
+—see Motorized Pallet Truck
+Wave picking
+—variation on zone picking where rather than orders moving from one zone to the next for picking, all zones are picked at the same time and the items are later sorted and consolidated into individual orders/shipments. Wave picking is the quickest method for picking multi item orders however the sorting and consolidation process can be tricky. Picking waves are often designed to isolate shipments to specific carriers, routes, etc. See also batch picking, zone picking A more general definition of wave picking would simply be a method where a group of orders is released to the warehouse for picking and the next group (wave) is not released until the first wave has processed through the pick area. See article on Order Picking.
+Warehouse Control System
+—software used to control automated systems such as sortation systems, AS/RS, AGV's, and carousells in the warehouse. A WCS may also have functionality similar to a WMS just as some WMS's have WCS functionality.
+Warehouse management system
+—computer software designed specifically for managing the movement and storage of materials throughout the warehouse. WMS functionality is generally broken down into the following three operations: Putaway, Replenishment, and Picking. The key to these systems is the logic to direct these operations to specific locations based on user defined criteria. WMSs are often set up to integrate with data-collection systems. Read my article on Warehouse Management Systems.
+Smoothing factor
+—also called a smoothing constant, a smoothing factor is a number between zero and one (0.01, 0.02, . . . 0.99) that is used to weight the most recent period’s demand against the forecast for that period to produce the next period’s forecast in an exponential smoothing calculation. See article on Exponential smoothing.
+WCS
+—Warehouse control system (see separate listing)
+Weighted moving average
+—forecasting method similar to a moving average, however different weights can be applied to the historical periods (the weights must add up to 1). Each previous period’s demand is multiplied by the respective weight, then the results are added up to get your forecast. So where a four-period moving average used the same weight for all periods ( 0.25 + 0.25 + 0.25 + 0.25 = 1), a weighted moving average allows a variety of weights to be used, provided they total 1. For example, 0.15 for the first period, 0.20 the second, 0.30 the third, and 0.35 the fourth (0.15 + 0.20 + 0.30 + 0.35 = 1).
+Weighted out
+—Describes a condition where the weight capacity of a trailer or container has been met. The term "weighted out" is most likely used when you have met the weight capacity of the trailer or container but still have physical space left in the trailer or container. Also see Cubed out.
+Wire-guided
+—term used to describe vehicles that use a wire embedded in the floor to guide the vehicles. Wire guidance systems are frequently used with order selectors and turret trucks in very narrow aisle applications. They are also used with automated guided vehicles.
+WMS
+—Warehouse management system (see separate listing)
+Work-in-process (WIP)
+—generally describes inventory that is currently being processed in an operation, or inventory that has been processed through one operation and are awaiting another operation. WIP is actually an inventory account that represents the value of materials, labor, and overhead that has been issued to manufacturing but has not yet produced a stockable item. Depending on how your accounting and inventory systems are set up, it may also include components picked for production usage or finished products awaiting final inspection. See articles on Work-In-Process (WIP) and Reconciling WIP.
+Zone picking
+—order picking method where a warehouse is divided into several pick zones, order pickers are assigned to a specific zone and only pick the items in that zone, orders are moved from one zone to the next (usually on conveyor systems) as they are picked (also known as "pick-and-pass"). See also batch picking, wave picking See articles on Order Picking and Zone Picking
+Zone skipping
+—also called zone jumping, zone skipping is a method of shipping parcels (primarily) or LTL shipments (not as common), where rather than delivering the shipments directly to the carrier, you consolidate shipments going to a region and ship them together as a single larger shipment (typically truckload or LTL for parcels) to get them closer to the delivery point before handing them off to the delivery carrier. For example, if I have a distribution center in New York, I may consolidate all my west coast parcel shipments and put them on a truck to get them across the country, then hand them off to a parcel carrier (USPS, Fedex, UPS) for final delivery. My rate with the parcel carrier will be based on the point where I hand them off to them, therefore I'll pay a lower zone rate to them.
+
+© Copyright. Content on InventoryOps.com is copyright-protected and is not available for republication.
+
+Dave Piasecki, is owner/operator of Inventory Operations Consulting LLC, a consulting firm providing
+services related to inventory management, material handling, and warehouse operations. He has
+over 25 years experience in operations management and can be reached through his website
+(https://www.inventoryops.com), where he maintains additional relevant information
