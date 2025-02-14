@@ -266,7 +266,7 @@ class TasksMode:
                 fieldname="BASIC_INFO"
             mode='LU'
             h=f'{Prompt.header.format(Fore=Fore,mode=mode,fieldname=fieldname,Style=Style)}'
-            scanned=Prompt.__init2__(None,func=mkT,ptext=f'{h}{Fore.light_yellow}barcode|code[help]?',helpText='',data=self)
+            scanned=Prompt.__init2__(None,func=mkT,ptext=f'{h}{Fore.light_yellow}barcode|code|name[help]?',helpText='search all Entry\'s with InList==True and Barcode|Code|Name|ALT_Barcode == or like $scanned',data=self)
             if scanned in [None,]:
                 return
             elif scanned in ['',]:
@@ -274,14 +274,46 @@ class TasksMode:
                 continue
             else:
                 with Session(self.engine) as session:
-                    result=session.query(Entry).filter(or_(Entry.Barcode==scanned,Entry.Code==scanned,Entry.Barcode.icontains(scanned),Entry.Code.icontains(scanned),Entry.ALT_Barcode==scanned),Entry.InList==True).first()
+                    results=session.query(Entry).filter(or_(Entry.Barcode==scanned,Entry.Code==scanned,Entry.Barcode.icontains(scanned),Entry.Code.icontains(scanned),Entry.ALT_Barcode==scanned,Entry.Name.icontains(scanned)),Entry.InList==True).all()
+                    ct=len(results)
+                    result=None
+                    if ct > 0:
+                        result=results[0]
+                        helpText=[]
+                        for num,i in enumerate(results):
+                            helpText.append(f"{Fore.light_cyan}{num}/{Fore.light_steel_blue}{num+1} of {Fore.light_sea_green} -> {i.seeShort()}")
+                        helpText='\n'.join(helpText)
+                        while True:
+                            try:
+                                print(helpText)
+                                which=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Which index",helpText=helpText,data="integer")
+                                if which in [None,]:
+                                    return
+                                elif which in ['d',]:
+                                    result=results[0]
+                                else:
+                                    if 0 <= which <= ct-1:
+                                        result=results[which]
+                                        break
+                                    else:
+                                        continue
+                                break
+                            except Exception as e:
+                                print(e)
+                    else:
+                        print("No Results")
+                        return
                     if result:
+                        if result.Distress == None:
+                            result.Distress=0
+                            session.commit()
+                            session.refresh(result)
+                        distress=result.Distress*2
                         backroom=result.BackRoom
                         total=0
-                        for f in self.valid_fields:
-                            if f not in self.special:
-                                if getattr(result,f) not in [None,'']:
-                                    total+=float(getattr(result,f))
+                        for f in self.locationFields:
+                            if getattr(result,f) not in [None,'']:
+                                total+=float(getattr(result,f))
                         if not short:
                             print(result)
                         else:
@@ -289,22 +321,23 @@ class TasksMode:
                         if nonZero:
                             print(f"{Back.dark_goldenrod}{Fore.dark_red_1}Non-Zero Locations{Style.reset}")
                             locationFields='''
-Shelf - #3|ls Shelf
-BackRoom - #4|ls BackRoom
-Display_1 - #5|ls Display_1
-Display_2 - #6|ls Display_2
-Display_3 - #7|ls Display_3
-Display_4 - #8|ls Display_4
-Display_5 - #9|ls Display_5
-Display_6 - #10|ls Display_6
-ListQty - #50|lsListQty|ls-lq
-SBX_WTR_DSPLY - #18|ls SBX_WTR_DSPLY
-SBX_CHP_DSPLY - #19|ls SBX_CHP_DSPLY
-SBX_WTR_KLR - #20|ls SBX_WTR_KLR
-FLRL_CHP_DSPLY - #21|ls FLRL_CHP_DSPLY
-FLRL_WTR_DSPLY - #22|ls FLRL_WTR_DSPLY
-WD_DSPLY - #23|ls WD_DSPLY
-CHKSTND_SPLY - #24|ls CHKSTND_SPLY
+Shelf - |ls Shelf
+BackRoom - ls BackRoom
+Display_1 - ls Display_1
+Display_2 - ls Display_2
+Display_3 - ls Display_3
+Display_4 - ls Display_4
+Display_5 - ls Display_5
+Display_6 -  ls Display_6
+ListQty -  lsListQty|ls-lq
+SBX_WTR_DSPLY - ls SBX_WTR_DSPLY
+SBX_CHP_DSPLY - ls SBX_CHP_DSPLY
+SBX_WTR_KLR - ls SBX_WTR_KLR
+FLRL_CHP_DSPLY - ls FLRL_CHP_DSPLY
+FLRL_WTR_DSPLY - ls FLRL_WTR_DSPLY
+WD_DSPLY - ls WD_DSPLY
+CHKSTND_SPLY - ls CHKSTND_SPLY
+Distress - ls Distress
 '''.split("\n")
                             llf=[i.split(" ")[0] for i in locationFields if i != '']
                             for num,i in enumerate(llf):
@@ -318,10 +351,10 @@ CHKSTND_SPLY - #24|ls CHKSTND_SPLY
                                     ss=f"{getattr(result,i)}"
                                     msg=f"{Back.grey_11}{color}{s}{value}{ss}{Style.reset}"
                                     print(msg)
-                        print(f"{Fore.light_yellow}0 -> {color1}Amount Needed Total+BackRoom {Style.reset}{color2}{Style.bold}{total}{Style.reset}! {Fore.grey_70}#if you total everything including backroom{Style.reset}")
-                        print(f"{Fore.cyan}1 -> {color1}Amount Needed Total w/o BackRoom {Style.reset}{color2}{Style.bold}{total-backroom}{Style.reset} {Fore.grey_70}#if you are totalling everything without the backroom!{Style.reset}")
-                        print(f"{Fore.light_green}2 -> {color1}Amount Needed Total w/o BackRoom - BackRoom {Style.reset}{color2}{Style.bold}{(total-backroom)-backroom}{Style.reset}! {Fore.grey_70}#if you are totalling everything needed minus what was/will brought from the backroom{Style.reset}")
-
+                        print(f"{Fore.light_yellow}0 -> {color1}(Amount Needed Total({total})+BackRoom({backroom})+(2*Distress({distress/2}) {Style.reset}{color2}{Style.bold}{(total)+distress}{Style.reset}! {Fore.grey_70}#if you total everything including backroom; Distress is added as double its value as something could not be put up as it was damaged/unsellable!{Style.reset}")
+                        print(f"{Fore.cyan}1 -> {color1}(Amount Needed Total({total}) w/o(-) BackRoom({backroom}))+(2*Distress({distress/2})) {Style.reset}{color2}{Style.bold}{(total-backroom)+distress}{Style.reset} {Fore.grey_70}#if you are totalling everything without the backroom!; Distress is added as double its value as something could not be put up as it was damaged/unsellable!{Style.reset}")
+                        print(f"{Fore.light_green}2 -> {color1}(Amount Needed Total({total}) w/o(-) BackRoom({backroom}) - BackRoom({backroom}))+(2*Distress({distress/2})) {Style.reset}{color2}{Style.bold}{((total-backroom)-backroom)+distress}{Style.reset}! {Fore.grey_70}#if you are totalling everything needed minus what was/will brought from the backroom; Distress is added as double its value as something could not be put up as it was damaged/unsellable!{Style.reset}")
+                        print(f"{Fore.light_red}Distress{Fore.light_green}:{Fore.light_steel_blue}Think like this; one came to the floor, but for some reason the unit/case is unsellable; so you took 1 to the floor for no reason which is now distress! So now you need 1 more to fix the damaged product + 1 damaged that went to distress; as a result now you are accounting for a little over what was damaged+what is needed(owed to the field! think accounting and be real to the actual value! don't hide behind the reality that if you can't account for this you will be behind on your debts! this will keep the DEBT ahead of you!)")
 
                         
                     else:
@@ -331,6 +364,11 @@ CHKSTND_SPLY - #24|ls CHKSTND_SPLY
                         if idF:
                             result=session.query(Entry).filter(Entry.EntryId==idF).first()
                             if result:
+                                if result.Distress == None:
+                                    result.Distress=0
+                                    session.commit()
+                                    session.refresh(result)
+                                distress=result.Distress*2
                                 backroom=result.BackRoom
                                 total=0
                                 for f in self.valid_fields:
@@ -341,12 +379,12 @@ CHKSTND_SPLY - #24|ls CHKSTND_SPLY
                                     print(result)
                                 else:
                                     print(result.seeShort())
-                                print(f"{Fore.light_yellow}0 -> {color1}Amount Needed Total+BackRoom {Style.reset}{color2}{Style.bold}{total}{Style.reset}! {Fore.grey_70}#if you total everything including backroom{Style.reset}")
-                                print(f"{Fore.cyan}1 -> {color1}Amount Needed Total w/o BackRoom {Style.reset}{color2}{Style.bold}{total-backroom}{Style.reset} {Fore.grey_70}#if you are totalling everything without the backroom!{Style.reset}")
-                                print(f"{Fore.light_green}2 -> {color1}Amount Needed Total w/o BackRoom - BackRoom {Style.reset}{color2}{Style.bold}{(total-backroom)-backroom}{Style.reset}! {Fore.grey_70}#if you are totalling everything needed minus what 'was', or 'will be', brought from the backroom{Style.reset}")
+                                print(f"{Fore.light_yellow}0 -> {color1}(Amount Needed Total({total})+BackRoom({backroom}))+(2*Distress({distress/2})) {Style.reset}{color2}{Style.bold}{(total)+distress}{Style.reset}! {Fore.grey_70}#if you total everything including backroom; Distress is added as double its value as something could not be put up as it was damaged/unsellable!{Style.reset}")
+                                print(f"{Fore.cyan}1 -> {color1}(Amount Needed Total({total}) w/o(-) BackRoom({backroom}))+(2*Distress({distress/2})) {Style.reset}{color2}{Style.bold}{(total-backroom)+distress}{Style.reset} {Fore.grey_70}#if you are totalling everything without the backroom!; Distress is added as double its value as something could not be put up as it was damaged/unsellable!{Style.reset}")
+                                print(f"{Fore.light_green}2 -> {color1}(Amount Needed Total({total}) w/o(-) BackRoom({backroom}) - BackRoom({backroom}))+(2*Distress({distress/2})) {Style.reset}{color2}{Style.bold}{((total-backroom)-backroom)+distress}{Style.reset}! {Fore.grey_70}#if you are totalling everything needed minus what 'was', or 'will be', brought from the backroom; Distress is added as double its value as something could not be put up as it was damaged/unsellable!{Style.reset}")
                             else:
                                 print(f"{Fore.light_yellow}Nothing was selected!{Style.reset}")
-
+                                print(f"{Fore.light_red}Distress{Fore.light_green}:{Fore.light_steel_blue}Think like this; one came to the floor, but for some reason the unit/case is unsellable; so you took 1 to the floor for no reason which is now distress! So now you need 1 more to fix the damaged product + 1 damaged that went to distress; as a result now you are accounting for a little over what was damaged+what is needed(owed to the field! think accounting and be real to the actual value! don't hide behind the reality that if you can't account for this you will be behind on your debts! this will keep the DEBT ahead of you!)")
 
 
 

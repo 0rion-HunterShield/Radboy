@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: radboy
-Version: 0.0.61
+Version: 0.0.67
 Summary: A Command-Line Style Scanner designed to be used on cellular devices as a list maker, note taker, look up system, and custom calculator.
 Author: Carl Joseph Hirner III
 Author-email: k.j.hirner.wisdom@gmail.com
@@ -51,4 +51,5 @@ to use this application at its simplest
 create a Run.py file and paste the following into it and save
 `from radboy import Run`
 
-for lookups to be made possible please explore the in-prompt help text as a populated data file is not yet ready for use comsumption.
+for lookups to be made possible please explore the in-prompt help text as a populated data file is not yet ready for use comsumption.# Radboy
+# Radboy
