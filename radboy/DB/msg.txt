@@ -1,0 +1,339 @@
+annual total max 	  =  44833.42
+annual total min 	  =  26900.0524
+annual total med 	  =  35866.736
+Annual Total Pay Accrued (the total of 
+what was on your paystubs)
+	  =  $______.___
+min_hours 	  =  24.0
+med_hours 	  =  32.0
+max_hours 	  =  40.0
+taxRate 	  =  0.2227
+rate 	  =  27.73
+Jan 	 max pay  =  4310.9058
+Jan 	 min pay  =  2586.5435
+Jan 	 med pay  =  3448.7246
+Jan 	 min pay per week  =  517.3087
+Jan 	 med pay per week  =  689.7449
+Jan 	 max pay per week  =  862.1812
+Jan 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jan 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jan 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jan 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jan 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jan 	 Monthly(Jan) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Feb 	 max pay  =  3448.7246
+Feb 	 min pay  =  2069.2348
+Feb 	 med pay  =  2758.9797
+Feb 	 min pay per week  =  517.3087
+Feb 	 med pay per week  =  689.7449
+Feb 	 max pay per week  =  862.1812
+Feb 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Feb 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Feb 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Feb 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Feb 	 Monthly(Feb) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Mar 	 max pay  =  3448.7246
+Mar 	 min pay  =  2069.2348
+Mar 	 med pay  =  2758.9797
+Mar 	 min pay per week  =  517.3087
+Mar 	 med pay per week  =  689.7449
+Mar 	 max pay per week  =  862.1812
+Mar 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Mar 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Mar 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Mar 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Mar 	 Monthly(Mar) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Apr 	 max pay  =  3448.7246
+Apr 	 min pay  =  2069.2348
+Apr 	 med pay  =  2758.9797
+Apr 	 min pay per week  =  517.3087
+Apr 	 med pay per week  =  689.7449
+Apr 	 max pay per week  =  862.1812
+Apr 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Apr 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Apr 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Apr 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Apr 	 Monthly(Apr) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+May 	 max pay  =  4310.9058
+May 	 min pay  =  2586.5435
+May 	 med pay  =  3448.7246
+May 	 min pay per week  =  517.3087
+May 	 med pay per week  =  689.7449
+May 	 max pay per week  =  862.1812
+May 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+May 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+May 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+May 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+May 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+May 	 Monthly(May) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jun 	 max pay  =  3448.7246
+Jun 	 min pay  =  2069.2348
+Jun 	 med pay  =  2758.9797
+Jun 	 min pay per week  =  517.3087
+Jun 	 med pay per week  =  689.7449
+Jun 	 max pay per week  =  862.1812
+Jun 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jun 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jun 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jun 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jun 	 Monthly(Jun) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jul 	 max pay  =  4310.9058
+Jul 	 min pay  =  2586.5435
+Jul 	 med pay  =  3448.7246
+Jul 	 min pay per week  =  517.3087
+Jul 	 med pay per week  =  689.7449
+Jul 	 max pay per week  =  862.1812
+Jul 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jul 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jul 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jul 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jul 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Jul 	 Monthly(Jul) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Aug 	 max pay  =  3448.7246
+Aug 	 min pay  =  2069.2348
+Aug 	 med pay  =  2758.9797
+Aug 	 min pay per week  =  517.3087
+Aug 	 med pay per week  =  689.7449
+Aug 	 max pay per week  =  862.1812
+Aug 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Aug 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Aug 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Aug 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Aug 	 Monthly(Aug) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Sep 	 max pay  =  3448.7246
+Sep 	 min pay  =  2069.2348
+Sep 	 med pay  =  2758.9797
+Sep 	 min pay per week  =  517.3087
+Sep 	 med pay per week  =  689.7449
+Sep 	 max pay per week  =  862.1812
+Sep 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Sep 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Sep 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Sep 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Sep 	 Monthly(Sep) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Oct 	 max pay  =  4310.9058
+Oct 	 min pay  =  2586.5435
+Oct 	 med pay  =  3448.7246
+Oct 	 min pay per week  =  517.3087
+Oct 	 med pay per week  =  689.7449
+Oct 	 max pay per week  =  862.1812
+Oct 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Oct 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Oct 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Oct 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Oct 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Oct 	 Monthly(Oct) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Nov 	 max pay  =  3448.7246
+Nov 	 min pay  =  2069.2348
+Nov 	 med pay  =  2758.9797
+Nov 	 min pay per week  =  517.3087
+Nov 	 med pay per week  =  689.7449
+Nov 	 max pay per week  =  862.1812
+Nov 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Nov 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Nov 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Nov 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Nov 	 Monthly(Nov) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Dec 	 max pay  =  3448.7246
+Dec 	 min pay  =  2069.2348
+Dec 	 med pay  =  2758.9797
+Dec 	 min pay per week  =  517.3087
+Dec 	 med pay per week  =  689.7449
+Dec 	 max pay per week  =  862.1812
+Dec 	 Weekly(0) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Dec 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Dec 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Dec 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+
+Dec 	 Monthly(Dec) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.__
+

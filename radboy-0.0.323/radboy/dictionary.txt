@@ -1,0 +1,1085 @@
+1SYNC™#A data pool that was created via the consolidation of Transora and UCCnet in August 2005 designed to help the industry maximize the value of data synchronization.
+1SYNC™#Data Pool Services A service that validates, stores, routes, and publishes supplier data to retail partners who have subscribed to the data, ensuring that all trading partners are using identical, updated, GS1 System standards-compliant data. This service also ensures that any changes to product data are automatically communicated to the retailers. Notifications are sent when data is published so both suppliers and retailers know the status of the published data.
+1SYNC™ Solution Partner#A solution provider that has been trained and certified by 1SYNC to support user implementation of the 1SYNC Data Pool.
+2005 Sunrise#An industry initiative of United States and Canadian companies to become capable of scanning and processing EAN-8 symbols, EAN-13 symbols, and 12-digit Universal Product Code symbols at the point-of-sale by January 1, 2005. 
+2005 Sunrise Compliant#A company that can scan and process EAN-8 and EAN-13 symbols in addition to 12-digit Universal Product Code symbols at point-ofsale. Compliant companies process and store the product identification numbers scanned from EAN-8, Universal Product Code, and EAN-13 symbols in their entirety. Note: These product identification numbers are properly referred to as Global Trade Item Numbers. 
+2D symbology#Barcode symbols designed to increase data capacity beyond linear barcode symbols while still being readable by optical means. Two categories of two-dimensional symbols exist: multi-row (or stacked) and matrix. A Composite Component is a stacked two-dimensional symbol and a GS1 Data Matrix symbol is a matrix two-dimensional symbol. Accessorial Charges Charges for supplementary services and privileges provided in connection with the transportation of goods. These charges are not included in the freight charge and usually take the form of a flat fee.
+Accredited Standards Committee,X12,ASC X12#The accredited American National Standards Institute committee responsible for the development and maintenance of American National Standards for Electronic Data Interchange.
+Accuracy#A barcode verification term. The determination of whether any element width, or intercharacter gap width, differs from its nominal width by more than the printing tolerance.
+Acknowledgement#In the global data synchronization process, this is an XML response to a command returned to the originator. Every command needs a response. Acknowledgement messages are standardized and may contain the following information: confirmation of message receipt, success/failure of processing for syntax and content, or reason code for each type of failure.
+Act of God#An act beyond human control, such as lightning, flood or earthquake.
+Active Tag#A class of RFID tag that contains a power source, such as a battery, to power the microchip's circuitry. Active tags transmit a signal to a reader and can be read from 100 feet (approximately 31 meters) or more.
+Actual Landed Cost#The true cost of imported goods that include all related charges to the product including shipping.
+Actual Pickup Date/Time#The date/time the shipment was picked up by a carrier.
+Actual Valuation#Actual value of goods required to be shown on the bill of lading by shippers where rate applied is dependent upon that fact.
+Ad Valorem Duty#Duty on imported merchandise based on a percentage of the shipment value.
+Add-On Symbol#A barcode symbol used to encode information supplementary to that in the main EAN/UPC barcode symbol.
+Admiralty Court#A court having jurisdiction over maritime questions pertaining to ocean transport, including contracts, charters, collisions, and cargo damages.
+Advance Against Documents#Load made on the security of the documents covering the shipment.
+
+Advance Ship Notice,ASN#Used to notify a customer of a shipment in advance of arrival. ASN's will often include PO numbers, SKU numbers, lot numbers, quantity, pallet or container numbers and/or carton numbers. ASN's may be paper-based, however, electronic notification is preferred. Advance ship notice systems are usually combined with barcoded compliance labeling which allows the customer to receive the shipment into inventory through the use of barcode scanners and automated data collection systems. Electronically transmitted ASN's are often referred to by their associated EDI transaction number, 856.
+Advanced Charge#The amount of shipment or other charge on a shipment advanced by one transportation line to another or to the shipper to be collected from the consignee. 
+Advanced Planning and Scheduling#APS Software system designed to integrate with ERP and MRP systems to enhance the short term production planning and scheduling systems that are notoriously inadequate in MRP systems. APS systems have extensive programming logic that allows them to be more effective in dealing with rapidly changing customer demands.
+Advising Bank#A bank that receives a letter of credit from an issuing bank, verifies its authenticity, and forwards the original letter of credit to the exporter without obligation to pay.
+Advisory Capacity#A term indicating that a shipper's agent or representative is not empowered to make definite decisions or adjustment without the approval of the group or individual represented.
+Affiliate#A company that controls or is controlled by another company or is one of two or more commonly controlled companies.
+Agency Agreement#An agreement wherein the steamship line appoints the steamship agent and defines the specific duties and areas of responsibility of that agent.
+Agent#A person or entity that is authorized to transact business for and in the name of another.
+Aggregate Shipments#Numerous shipments from different shippers to one consignee that are consolidated and treated as a single consignment.
+Agreed Weight#The weight prescribed by agreement between carrier and shipper for goods shipped in certain packages or in a certain number.
+Air Cargo Agent#A type of freight forwarder that specializes in air cargo and acts for airlines that pay them a fee (usually 5%). The agent is registered with the International Air Transport Association (IATA).
+Air Freight#A service that provides for the air transportation of goods. This mode of transportation allows for decreased shipping time, low damage ratios and for certain commodities, lower shipping costs.
+Air Freight Forwarder#Provides pickup and delivery service to and from the shippers dock. Responsibilities also include consolidating shipments from various shippers into larger units, preparing shipping documentation and tendering freight to the airlines. Forwarders do not generally operate their own aircraft and may be classified as an "indirect air carrier".
+Air Interface#The radio frequency link between a reader and RFID tags.
+Air Waybill,AWB#A shipping document used by the airlines for air freight. A non-negotiable document that is a contract for carriage and supplies written evidence regarding the receipt of goods, the mode of transportation and the arrangement to deliver goods at the requested destination to the lawful holder of the bill of lading. A standard air waybill accommodates both domestic and international traffic.
+Aircraft Pallet#A platform of standard dimensions that is used for assembling goods which is secured by nets and straps prior to being loaded as a unit onto an airplane. Palletizing results in an efficient use of space and improved cargo handling.
+Airfreightment#An agreement by a steamship line to provide cargo space on a vessel at a specified time and for a specified price to accommodate an exporter or importer, who then becomes liable for payment even though he is later unable to make the shipment.
+Airhole#A punch hole, flutter/butterfly vent or pinhole in a polybag.
+All In Rate#Freight rate which is inclusive of all surcharges and extras.
+
+All Risk Insurance#A clause included in marine insurance policies to cover loss and damage from external causes, such as fire, collision, pilferage, etc. but not against innate flaws in the goods, such as decay, germination, nor against faulty packaging, improper packing/ loading or loss of market, nor against war, strikes, riots and civil commotions
+All-Cargo Aircraft#An aircraft used for the sole purpose of transporting cargo only, rather than the combination of passengers and cargo. Freight is loaded in the bulk or container on the main or lower deck of the aircraft.
+Allocations#In inventory management refers to actual demand created by sales orders or work orders against a specific item.
+Allowance#A sum granted as reimbursement or repayment, or a deduction form the gross weight or value of goods.
+All-Risk Clause#An insurance provision that all loss or damage to goods is insured except that of inherent vice (self caused).
+All-Risk Insurance#The broadest form of coverage available, providing protection against all risk of physical loss or damage from any external cause, such as fire collision, pilferage, etc. Does not cover loss or damage due to delay, acts of war, labor strikes, per-shipment conditions, inadequate packaging, or loss of market. All risk insurance of air shipments generally excludes loss due to cold or changes in atmospheric pressure.
+Alongside#A phrase referring to the side of a ship. Goods to be delivered "alongside" are to be placed on the dock or barge within reach of the transport ship's tackle so that they can be loaded abroad the ship.
+Alternative Rates#Two or more rates, of which the one that produces the lowest charge is applicable.
+American National Standards Institute,ANSI#A private, non-profit organization that administers and coordinates the United States voluntary standardization and conformity assessment system.
+American Terms (Marine Insurance),AT#A term used to differentiate between the conditions of American Policies from those of other nations, principally England.
+ANSI Symbol Grade#A symbol grade per the ANSI X3.182–1990 barcode Print Quality Guideline.
+ANSI-Based Verifier#An instrument designed to measure the various characteristics of printed barcode symbols to determine if they meet the requirements of the ANSI X3.182–1990 barcode Print Quality Guideline.
+Antenna#The conductive element that enables a RFID tag or reader to send and receive data.
+Anticipation#An allowance, usually expressed as a percentage, granted for payment of an invoice in advance of the discount or net due date. It is calculated at the stated percentage rate for the number of days between that of actual payment and the due date and is allowed in addition to any discounts.
+Anti-Collision#See Simultaneous ID.
+Anti-Dumping Duties#Duties assessed on imported merchandise of a class of kind that is sold at a price less than fair market value.
+Any-Quantity Rate#A rate applicable to an article in any quantity.
+Aperture#A physical opening that is part of the optical path in a device such as a scanner, photometer, or camera. Most apertures are circular, but they may be rectangular or elliptical.
+Apparent Good Order and Condition#Goods show no visible signs of damage though the carrier cannot guarantee the condition of the goods, which were received packed and ready for shipment.
+Applicability Statement 1, AS1#The draft specification standard by which vendor applications communicate EDI data over simple mail transport protocol (SMTP). When implemented, AS1 enables users to connect, deliver, and reply to data securely and reliably over SMTP.
+Applicability Statement 2, AS2#The draft specification standard by which vendor applications communicate EDI or XML data over the internet using hypertext transfer protocol (HTTP). When implemented, AS2 enables users to connect, deliver, and reply to data securely and reliably over HTTP.
+Applicability Statement 3, AS3#The draft specification standard by which vendor applications communicate EDI data over the internet via file transfer protocol (FTP). When implemented, AS3 enables users to connect, deliver, and reply to data securely and reliably over FTP.
+
+Application Family Identifier,AFI#An international organization for standardization method for classifying radio frequency identification by application.
+Application Identifier AI#The field of two or more digits at the beginning of an element string that uniquely identifies its format and meaning within the GS1 system.
+Application of Rates#The points from, to, or between which the rates and routes shown in the publication, pricing agreement or customer contract applies.
+Application Standards#Rules for producing and applying technical standards to specific business problems. Examples: The framework for implementing the EPC global Network in a sector or guidelines for the physical application of tags to products.
+Arbitrary Charge,ARB#Charge for added expense, such as transshipment charges or ice-breaking charges.
+Arbitration Clause#A standard clause to be included in the contracts of exporters and importers, as suggested by the American Arbitration Association. It states that any controversy or claim will be settled by arbitration in accordance with the rules of the American Arbitration Association.
+Arrival Date#The date the merchandise is expected to arrive at a location.
+Arrival Notice#A notice, furnished to the consignee, of the arrival of a shipment.
+ASC,X12#The American National Standards Institute (ANSI) committee tasked with developing uniform standards for EDI.
+Aspect Ratio#In a barcode symbol, the ratio of barcode symbol height to symbol length.
+Assembly plant#A manufacturing entity that transforms a set of components into a product.
+Assign#To transfer to another party.
+Assignment#The transfer of the rights, duties, responsibilities and/or benefits of an agreement, contract, or financial instrument to third party.
+Assignment of Proceeds#A stipulation within a letter of credit in which some or all of the proceeds are assigned from the original beneficiary to one or more additional beneficiaries.
+Assist#An item that an importer provides directly or indirectly, free of charge, or at a reduced cost.
+Assorted Pack/Setpack AP#This may be a consumable pack with a front end scannable barcode physically attached, or it may be simply a logistical pack with or without a physical barcode that is used by the manufacturer for breakage prevention or other logistical purpose, but is not the primary logistical shipping unit. All components of the pack have their own separate scannable barcodes physically attached.
+Attribute#1) A piece of information reflecting a characteristic related to an identification number, e.g., an expiration date with a Global Trade Item Number. 2) A specification, feature, or characteristic that describes the physical, compositional, or structural properties of a good or service.
+Attribute/Value,Pairs A/VP#The transport mechanism to pass attributes as an extension to the core attributes through the Global Data Synchronization Network.
+Authentication#A mechanism that allows the receiver of an electronic transmission to verify the sender and the integrity of the content of the transmission through the use of an electronic key or algorithm, shared by the trading partners. This is sometimes referred to as an electronic signature.
+Autodiscrimination#The capability of a reader to automatically recognize and decode multiple barcode symbologies.
+Automated Brokerage Interface,ABI#An electronic system allowing customhouse brokers and importers to interface via computer with the U.S. Customs Service for transmitting entry and entry summary data on imported merchandise
+
+Automated Commercial Environment,ACE#ACE is the commercial trade processing system that has been developed by the U.S. Customs & Border Protection to facilitate legitimate trade and strengthen border security requiring every carrier or truck that enters through any and all border crossings to submit an e-manifest (electronic manifest).
+Automated Commercial System,ACS#The electronic system of the U.S. Customs Service, encompassing a variety of industry sectors that permits online access to information in selected areas.
+Automated Manifest System,AMS#The electronic system allowing a manifest inventory to be transmitted to the U.S. Customs Service data center by carrier, port authority or service center computers.
+Automatic Identification and Data Capture,AIDC#Technology associated with the creation and acquisition of machine-readable data. The primary technologies are barcodes and radio frequency identification.
+Available#Refers to the status of inventory as it relates to its ability to be sold or consumed. Availability calculations are used to determine this status. Availability calculations vary from system to system but basically subtract any current allocations of holds on inventory from the current on-hand balance. An example of an availability calculation would be: [Quantity Available] = [Quantity On Hand] -[ Quantity On Hold] - [Quantity Allocated To Sales Orders] - [Quantity Allocated to Production Orders].
+Available Date#The earliest date the shipment will be available for pick up.
+Available to Promise#Available to promise takes the simple availability calculation, adds time phasing and takes into account future scheduled receipts. Available to promise may be calculated for each day or broken down into larger time buckets. The first time period will take on-hand inventory and add any scheduled receipts for that period. It will then deduct any allocations scheduled prior to the next scheduled receipt (which may be several periods in the future). Subsequent periods without any scheduled receipts will have the same available to promise as the previous period. Subsequent periods with scheduled receipts will generally start with a fresh calculation, ignoringany remaining available to promise from previous periods. There are many variations on exactly how available to promise is calculated and it is also important to note that available to promise often works independently of allocation systems.
+Average Background Reflectance#A barcode verification term. Expressed as a percent. See Reflectance.
+Average Cost#Inventory costing method that recalculates an item's cost at each receipt by averaging the actual cost of the receipt with the cost of the current inventory.
+Aviation and Transportation Security Act,ATSA#A bill passed November 2001 to improve aviation security in all modes of transportation.
+Axle Load#Maximum load permitted to be carrier on each axle of a motor vehicle.
+Axle Weight#Amount of weight carried by one axle of a tractor or trailer.
+Backflush#Method for issuing (reducing on-hand quantities) materials to a manufacturing order. With backflushing, the material is issued automatically when production is posted against an operation. The backflushing program will use the quantity completed to calculate through the bill of material the quantities of the components used, and reduce on-hand balances by this amount. There are usually options during the backflush process to report scrap. In operations using backflushing it is advisable to set up specific machine locations and have materials transferred from storage locations to machine locations when they are physically picked for production. The backflush operation will then issue the material from the machine locations.
+Background#The white spaces and quiet zones surrounding a printed barcode.
+
+Backhaul#Transportation term that describes the activity of picking up, transporting, and delivering a new load on a return trip from delivering another load.
+Backorder#A specific quantity of a specific item that could not be filled on the requested date.
+Backstage Areas#Behind-the-scenes areas of malls and shops where stock is held and logistics support and pre-retailing services are undertaken.
+Bailment#A contract that allows a carrier to take possession of goods without ownership.
+Bar#The dark (low reflectance) rectangular element of a barcode symbol.
+Bar Gain/Loss#The increase/decrease in bar dimensions due to effects of the reproduction and printing processes with two-dimensional symbols; bar gain applies to height as well.
+Bar Height#The dimension of a bar (line) measured from top to bottom.
+Bar Width#The thickness of a bar (line) measured from one of its edges to the other.
+Barcode#A technology that uses white spaces and black bars to represent encoded information. This encoded information can then be read with an optical device that converts the bars and spaces into an electrical signal, which is then decoded into the original characters.
+Barcode Character#A group of bars and spaces that represents a letter, number, or other information.
+Barcode Density#The number of symbol characters that can be represented in a specific unit of measure.
+Barcode Reader#A device (light pen, laser gun, fixed scanner, etc.) used to read a barcode field.
+Barge#The cargo-carrying vehicle that inland water carriers primarily use. Basic barges have open tops but there are covered barges for both dry and liquid cargoes.
+Barter#Trade in which merchandise is exchanged directly for other merchandise without use of money. Barter is an important means of trade with countries using currency that is not readily convertible.
+Base Unit,BU#The lowest level of the item hierarchy (packaging configuration). May not have any children.
+Basing Rate#A rate used only for the purpose of constructing other rates.
+Batch EDI#The pre-scheduled transmission or receipt of EDI data.
+Batch Load#Technique for uploading or downloading data. A batch can be scheduled to process at a specific time for a number of transactions.
+Batch Picking#Order picking method where orders are grouped into small batches, an order picker will pick all orders within the batch in one pass. Batch picking is usually associated with pickers with multi-tiered picking carts moving up and down aisles picking batches of usually 4 to 12 orders; however, batch picking is also very common when working with automated material handling equipment such as carousels.
+Battery-Assisted Tag#See Active Tag.
+Bearer Bars#Bars surrounding a barcode symbol to prevent misreads or to improve print quality of the barcode symbol. Mandatory by GS1 System standards for ITF-14 symbols.
+Belly Cargo#Freight carried in the belly of passenger aircraft or below the main deck. 
+Beneficiary#The individual or company in whose favor a letter of credit is opened; the party that will get paid from the Letter of Credit.
+Bermuda Agreement#An agreement concluded in 1946 between the U.K. and the U.S., designed to regulate future international air traffic. Most governments accept its principles and follow it inter alia by limiting traffic rights on international routes to one or two carriers.
+Berth#The place beside a pier, quay or wharf where a vessel can be loaded or discharged.
+Berth Liner Service#A regular scheduled steamship line with regular published schedules (port of call) from and to defined trade areas.
+
+Berth or Liner Terms#An expression covering assessment of ocean freight rates generally implying that loading and discharging expenses will be for ship owner's account and usually apply from the end of ship's tackle in port of loading to the end of ship's tackle in port of discharge.
+Bi-Directional Barcode#A barcode symbol capable of being read successfully if scanned in either direction.
+Bill of Exchange#See Draft.
+Bill of Lading,BOL or B/L#A legal contract that establishes the terms of a contract between a shipper and a transportation company under which freight is to be moved between specified points for a specified charge. Usually prepared by the shipper, it serves as a document of title, contract of carriage, and a receipt for goods.
+Bill of Lading Serial Number#See Shipper Reference.
+Bill of Materials,BOM#A description of the components (often referred to as parts) that go into the assembly of a product.
+Bill to Address#The name and address the invoice for the merchandise is to be mailed.
+Billed Weight#The designated weight shown on an invoice and/or waybill used to calculate freight charges.
+Billing Unit#An item that is priced and invoiced in trade between two parties, at any point in the supply chain.
+Binding Ruling#A binding tariff classification issued by U.S. Customs to determine classification and duty rate of goods.
+Black Mark#Sensor mark usually printed on the reverse (non-printing) side of tag stock or on the liner (backing paper) of label stock.
+Blanket Bond#A bond covering a group of persons, articles or properties.
+Blanket order#A type of purchase order that commits to purchase a specific quantity over a specific period of time, but does not necessarily provide specific dates for shipments. Blanket orders are placed for the quantity of an item (or group of items) that you expect to purchase over extended period of time (3 months, 6 months, a year, etc). A blanket purchase order may provide estimated required dates for specific quantities, but actual releases to ship against the blanked order are triggered by separate requests from the customer to the supplier; the specific quantities and dates of these separate requests (releases) may or may not be similar to the estimated dates and quantities. Providing a blanket order to a supplier may reduce lead times and increase on-time shipments from the supplier and may provide a greater discount on purchases.
+Blanket Rate#The rate applicable from and/or to a group of points, or a special rate applicable on several different articles in a single shipment.
+Blocking or Bracing#Wood or metal supports used to keep shipments in place in or on trailers.
+Bogie#An auxiliary axle assembly having a fifth wheel used for purpose of converting a semi-trailer to a full trailer. Dollies can be used to haul multiple trailers behind a single power unit.
+Bonded Indemnity#An agreement made with a transportation line relieving it from liability for any action on its part for which it would otherwise be liable.
+Bonded Terminal#An airline terminal that is approved by the U.S. Treasury Department for storage of goods until Customs duties are paid or the goods have been released.
+Bonded Warehouse#A warehouse authorized by Customs authorities for storage of goods on which payment of duties is deferred until the goods are removed.
+Bonus Pack#A trade item that has increased quantity, e.g., net weight, count, or volume, and is sold at the same price as the regular quantity item.
+Bottleneck#A section of a highway or rail network that experiences operational problems such as congestion. Bottlenecks may result from factors such as reduced roadway width or steep freeway grades that can slow trucks.
+Boxcar#An enclosed railcar, typically 40 or more feet long, used for packaged freight and some bulk commodities.
+
+Bracket#Grouping used by supply side trading partners to define specific operational characteristics that justify differences in pricing to demand side trading partners, e.g., full truckload, efficiencies in processing orders, EDI, quantity, or weight.
+Bracket Price#Price assigned by the supply side trading partner and offered to the demand side trading partner for meeting bracket conditions. This price is shown to the demand side trading partner as the "list price" for each product within each bracket.
+Brand#A specific product within a category, as indicated by an identifying mark or name. The brand name is the distinctive name of a product, the word part of a trademark, or the name of the manufacturer.
+Brand Owner#Entity (party) owning and in most cases manufacturing a trade item, making them responsible for: 1) allocating GS1 System numbering and barcode symbols on a given trade item as the administrator of a GS1 Company Prefix. 2) establishing the nsumer-recognizable name to uniquely identify a line of trade items or services.
+Breakbulk#a large terminal which separates composite loads into individual shipments, and the route them to different destinations. Also called break or hub or distribution center.
+Breakbulk Cargo, B/B#Cargo of non-uniform sizes, often transported on pallets, sacks, drums, or bags. These cargoes require labor-intensive loading and unloading processes. Examples of breakbulk cargo include coffee beans, logs, or pulp.
+Brick#Lowest level detail of a classification scheme. Below a category and subcategory level.
+Broker#A person whose business it is to prepare shipping and customs documents for international shipments. Brokers often have offices at major freight gateways, including border crossings, seaports, and airports.
+Brokerage License#Authority granted by the Interstate Commerce Commission to persons to engage in the business of arranging for transportation of persons or property in interstate commerce.
+Brussels Tariff Nomenclature Number,BTN#The customs tariff number used by most European nations. The United States does not use the BTN but a similar system known as the Harmonized Tariff Schedule.
+Bulk#1) A method of ordering merchandise that does not have specific store ownership when it is shipped from the supplier to a warehouse.2) Styles received/packaged individually by size and color (by SKU number) rather than in prepacks or by store
+Bulk Cargo#Cargo that is unbound as loaded; it is without count in a loose unpackaged form. Examples of bulk cargo include coal, grain, and petroleum products.
+Bulk Container#A large container designed to carry bulk cargo.
+Bulk Pack#Merchandise packed in one or more cartons, containing one SKU/style, not previously allocated/labeled to specific store locations.
+Bursting Strength#The bursting pressure per square inch required to rupture a board sample, as determined by a Mullen or Cady test. Under Rule 41 (freight) and Rule 18 (express), bursting strength must be shown in the boxmaker's certificate.
+Business Days#Monday through Friday
+Business Message Standard,BMS#A document containing global voluntary standards for the exchange of electronic business documents using XML within the GS1 System. These documents should be used in conjunction with GS1 XML Schemas.
+Business Process Analysis#A component of RosettaNet concept development used to create a generic "to-be" process, illustrating opportunities for realignment in the form of a Partner Interface Process target list.
+Business Process Modeling#Also called "as is" modeling, a component of RosettaNet concept development used to identify the elements of a business process and create a clearly defined model of trading partner interfaces as they exist today
+
+Business Process Specification,Schema,BPSS#The Electronic Business XML Business Process Specification Schema specification is used to describe Partner Interface Process Choreography. Partner Interface Processes are generated using the "Binary Collaboration" element in Business Process Specification Schema v1.01 with modifications.
+Business-to-Business,B2B#The practice of buying and selling between companies through electronic transactions.
+Business-to-Business Integration B2Bi#The secured coordination of business information among companies and their information.
+Butt Cut#Form of label stock used in continuous operations. Butt cut stock usually yields an additional 10% more individual labels than die cut stock.
+Buyer#The person or company purchasing goods.
+Buying Agent#A person or company that represents an importer. A Buying Agent assists, at the direction of the importer, in product sourcing, vendor selection, price negotiation, quality control, and order placement activities.
+Cabotage#Cargo that is carried on what is essentially a domestic flight and therefore not subject to international agreements that fix set rates. Cabotage rates are negotiable between shipper and airline and apply on flights within a country and to its overseas territories.
+Cage#The transporting of goods by truck to or from a vessel, aircraft, or bonded warehouse, all under customs custody.
+Cancel After Date/Cancel Date#The date on which an order cancels. Dependent on the requirements of the purchasing party, the date may mean the last date on which a supplier can ship any merchandise against the order or the last date merchandise can be delivered to the destination specified on the order.
+Candidate Attribute#An attribute that is under evaluation by the Global Standards Management Process Task Group. Once ratified, it becomes part of the GS1 System standards.
+Cantilever Rack#Racking system in which the shelving supports are connected to vertical supports at the rear of the rack. There are no vertical supports on the face of the rack allowing for storage of very long pieces of material such as piping and lumber.
+Capacity#1) Amount of shipment which can be carried in a truck or trailer, expressed in terms of weight and measurement. 2) Refers to the maximum output or producing ability of a machine, a person, a process, a factory, a product, or a service. 
+Capacity Load#That quantity of a shipment which, in the manner loaded, fills a vehicle to the extent that no additional article in the shipping form tendered identical in size to the largest article in the shipment can be loaded.
+Capacity Requirements Planning,CRP#Process for determining amount of machine and labor resources required to meet production.
+Cardinality#Refers to the number of possible occurrences of an element.
+Care Label#Label placed in a garment that states the laundering instructions.
+Caretaker#An individual accompanying a shipment requiring special attention while en route.
+Cargo#The goods or merchandise transported by airplane, ship or vehicle.
+Cargo Claims#Claims written against a Carrier for recoupment of merchandise cost and freight charges as a result of damage or shortage of goods delivered or complete non-delivery.
+Cargo Manifest#A list of cargo being transported or warehoused without listing the applicable charges.
+Cargo Ramp#A dedicated load/unload facility for cargo aircraft.
+Cargo Receipt#A receipt of cargo for shipment by a consolidator (used in ocean freight).
+Cargo Weight#Combined weight of all loads, gear and supplies on a vehicle.
+Carload#Quantity of freight (in tons) required to fill a railcar; amount normally required to qualify for a carload rate
+
+Carnet#A customs document permitting the holder to carry or send merchandise temporarily into certain foreign countries (for display, demonstration, or similar purpose) without paying duties or posting bonds.
+Carousel#Type of automated material handling equipment generally used for high-volume small-parts order-picking operations. Horizontal carousels are a version of the same equipment used by dry cleaners to store and retrieve clothing. They have racks hanging from them that can be configured to accommodate various size storage bins. Vertical carousels consist of a series of horizontal trays on a vertical carousel. Vertical carousels are frequently used in laboratories and specialty manufacturing operations.
+Carriage & Insurance Paid To CIP#The seller has the same obligations as under CPT but must also procure cargo insurance against the buyer's risk of loss of, or damage to the goods during the carriage. The seller contracts for insurance and pays the insurance premium, although he is required to obtain only minimum coverage. The seller must clear the goods for export.
+Carriage Paid To CPT#The seller pays the freight for carriage of the goods to the named destination. The risk of loss of, or damage to the goods, as well as any additional costs due to the events occurring after the time the goods have been delivered into the custody of the carrier. In this context, "carrier" means any person who, in a contract of carriage, undertakes to perform or to procure the performance of carriage by rail, road, sea, air, inland waterway, or by a combination of such modes. If subsequent carriers are used for the carriage to the agreed destination, the risk passes when the goods have been delivered to the first carrier. The CPT team requires the seller to clear the goods for export. The term applies to any mode of transport, including multi-modal transport.
+Carrier#1) The party that provides freight transportation services. 2) A physical or electronic mechanism that carries data.
+Carrier Liability#A contract Carrier is liable for all loss, damage and delay with the exception of act of God, act of a public enemy, act of a public authority, act of the shipper, and the inherent nature of the goods.
+Carrier Shipment Status 214#The Carrier Shipment Status notice is sent by the carrier to the consignee and possibly to the shipper. The 214 includes the Bill of Lading information as well as the pickup date, ETA and schedule time at the consignee's facility. The 214 may be sent to the consignee from 1 to 4 times during the shipment of the goods. The key common data elements between the EDI 214 and the EDI 856 are the Bill of Lading number, the customer order number, and the "ship to" location number.
+Carrier's Shipment Terminal#The service depot or station of the carrier at which shipments are ordinarily loaded or unloaded.
+Carrying Cost#Also called holding cost, carrying cost is the cost associated with having inventory on hand. It is primarily made up of the costs associated with the inventory investment and storage cost. For the purpose of EOQ calculations, if the cost does not change based upon the quantity of inventory on hand it should not be included in carrying cost. Carrying cost is represented as the annual cost per average on-hand inventory unit.
+Cartage#Shipment hauling between locations in the same city, town, suburb, or local area.
+Cartage Agent#A ground transportation service that provides pickup and delivery of freight in locations not served directly by an air or ocean carrier.
+Carton#A corrugation packaging type that protects the contents within.
+Carton Clamp#Lift truck attachment that operates like a paper roll clamp except the clamping surface is flat rather than circular.
+Carton Label#The label attached to the carton in which the merchandise is shipped.
+Case,CA#1) Standard shipping unit level; may contain children in a single instance.2) An enclosed storage unit for product.
+Case Pack#1) Number of selling units packaged within a shippable carton.2) The packaging of the same item in multiple quantities; also referred to as a master pack
+
+Cash Against Documents,CAD#A method of payment for goods in which documents transferring title are given to the buyer upon payment of cash to an intermediary acting for the seller.
+Cash in Advance,CIA#A method of payment for goods whereby buyer pays seller in advance of shipment of goods.
+Cash on Delivery,COD#Cash or check paid for goods at delivery, which may include the cost of shipping.
+Cash with Order,CWO#A method of payment for goods where cash is paid at the time of order and the transaction becomes binding on both buyer and seller.
+Catalogue Item,CI#The representation of a trade item as it is stored in a catalogue for the data synchronization process. The Catalogue Item is uniquely identified by a Global Trade Item Number + Global Location Number + Target Market combination (commonly referred to as a key).
+Catalogue Item Confirmation,CIC#Refers to electronic communication from the Data Recipient through the Global Data Synchronization Network to the Data Source indicating what action has been taken on the Catalogue Item, received through the Catalogue Item Notification. Confirmation is not mandatory. When used, it provides the following choices: 1) Synchronized: Data is integrated, in sync, and added to the synchronization list. 2) Accepted: Data is added to the synchronization list and is in the process of being integrated. 3) Rejected: Data will no longer be synchronized or updates will no longer be provided. 4) Review: A request to the Data Source to "review" their data because the Data Recipient has received inconsistent data, which they cannot synchronize. If the data was previously synchronized, it will be removed from the synchronization list.
+Catalogue Item Confirmation,State CICS#The four states are: Accepted, Rejected, Review, and Synchronized.
+Catalogue Item Dates#A class of information used to describe the dates of the action taken on the Catalogue Item record.
+Catalogue Item Notification,CIN#A business message used to transmit trade item information from a Source Data Pool to a Recipient Data Pool and ultimately to a Data Recipient.
+Catalogue Item Publication,CIP#A business message standard used by a Data Source to trigger the distribution of trade item information. This triggering results in the creation and distribution of a Catalogue Item Notification.
+Catalogue Item Subscription,CIS#A business message within the Global Data Synchronization Network used to establish a request (subscription) from a Data Recipient to a Recipient Data Pool, to the GS1 Global Registry who then forwards the message to the Source Data Pool(s) and ultimately to the Data Source. The Data Source would then publish the requested trade item information and it will synchronize on a continuous basis.
+Catch Weight#Used primarily in the food industry for products such as seafood, meats, and cheeses; catch weights refer to the actual weight of variable-weight items that use weight as the sales unit of measure. Catch weights are generally recorded during the order picking or shipping process. Systems using catch weights must be able to correctly process sales order line items based on the catch weights being within specific tolerances of the "order quantity".
+Category#A classification assigned to an item that indicates the higher level grouping to which the item belongs. Items are put into logical groupings to facilitate the management of a diverse number of items.
+Category Hierarchy#The classification of products by department, category, and subcategory; for example, "Bakery, Bakery Snacks, Cakes."
+Category Management, CM#A joint process between retailer and manufacturer where service and product categories are managed as strategic business units, producing enhanced business results by focusing on delivering consumer value.
+Category Scheme#Structured grouping of category levels used to organize and assign products. 
+
+Centralized Dispatching#The organization of the dispatching function into one central location. This structure often involves the use of data collection devices for communication between the centralized dispatching function, which usually reports to the production control department and the shop manufacturing departments.
+Certificate of Analysis#A certificate required by some countries as proof of the quality and composition of food products or pharmaceuticals. The required analysis may be made by a private or government health agency. The certificate must be legalized by a foreign consul of the country concerned, as is the case with such similar certificates as the phytosanitary certificate.
+Certificate of Inspection#A document certifying that the goods were in apparent good condition immediately prior to shipment.
+Certificate of Insurance#A document containing certain terms of a full-length insurance policy. A one-page document, it is evidence that there is insurance coverage for a shipment. Beneficiaries of open cargo or blanket insurance policies are authorized to issue their own certificates of insurance.
+Certificate of Manufacture#A statement in which a producer specifies where his goods were manufactured, certifies that manufacturing has been completed, and confirms that the goods are at the buyer's disposal.
+Certificate of Origin#A statement signed by the exporter, or his agent, and attested to by a local Chamber of Commerce, indicating that the goods being shipped, or a major percentage of them, originated and were produced in the exporter's country.
+Certificate of Weight#An authoritative statement of the weight of a shipment.
+Certification#The process of conveying a mark or "seal of compliance" from an authority to a vendor's products and/or services that passes a predetermined level of conformance to standards. Certification also includes the rules for using and maintaining the mark and how the mark is communicated.
+CFS Receiving Service#The term "CFS Receiving Services" means the service performed at loading port in receiving and packing cargo into containers from CFS to CY or shipside. "CFS Receiving Services" referred herein are restricted to the following 1) Moving empty containers from CY to CFS 2) Drayage of loaded containers from CFS to CY and/or ship's tackle 3) Tallying 4) Issuing dock receipt/shipping order 5) Physical movement of cargo into, out of and within CFS 6) Stuffing, sealing and marking containers 7) Storage 8) Ordinary sorting and stacking 9) Preparing carrier's internal container load plan Change Catalogue Item The command to update an existing Catalogue Item record.
+Change Request,CR#Formal request document used to review recommendations, request changes and updates to products and documentation.
+Character Set#Characters available for encodation in a particular barcode type. Not all barcode types can encode the entire ASCII character set.
+Characters Per Inch,CPI#A common measurement for barcode density.
+Chargeable Kilo#Rate for goods where volume exceeds six cubic meters to the ton.
+Chargeable Weight#The weight or volume of a shipment used in determining air, vehicle or ocean charges. The chargeable weight could be the dimensional weight or on container shipments, the gross weight of the shipment minus the containers tare weight.
+Chargeback#A financial penalty assessed by a customer to a vendor for non-compliance with established vendor compliance rules
+
+Charged Coupled Device,CCD#A type of barcode scanner that acts like a small digital camera taking a digital image of the barcode as opposed to the standard barcode scanner that uses a laser. CCD scanners are a low cost option for scanning barcodes at a short distance (usually within a few inches).
+Charter#Originally meant a flight where a shipper contracted hire of an aircraft from an airline. Has usually come to mean any non-scheduled commercial service.
+Charter Party#The contract between the owner of a ship and the individual or company chartering it. Among other specifications, the contract usually stipulates the exact obligations of the ship-owner (loading the goods, carrying the goods to a certain point, returning to the charterer with other goods, etc.); or it provides for an outright leasing of the vessel to the charterer, who then is responsible for his own loading and delivery. In either case, the charter party sets forth the exact conditions and requirements agreed upon by both sides.
+Charter Party,Bill of Lading#A bill of lading issued under a charter party. It is not acceptable by banks under letters of credit unless so authorized in the credit.
+Charter Service#Arrangement of a temporary transportation service on an as needed occasion for the movement of cargo or passengers.
+Chassis#A trailer-type device with wheels constructed to accommodate containers, which are lifted on and off.
+Check Digit#A digit calculated from the other digits of an element string, used to check that the data has been correctly composed or correctly keypunched.
+Child#In a hierarchical product structure, the Child represents any item that resides at a subordinate level of a parent Global Trade Item Number. A Child can also be a Parent of another Global Trade Item Number that is subordinate. The Child/Parent relationship is often referred to when describing the Product Hierarchy.
+Child-Labor Certificate#Certificate signed by manufacturer attesting that no child labor was used in any part of the manufacturing process.
+Cityliner#Truck used in the city for pickup and delivery. Also called "cub", "pickup", "whoopee", and "shags".
+Claim#1) A written demand made on a transportation provider for payment because of loss or damage alleged to have occurred while shipment was in the provider's possession. Demand of a refund due to overcharge. 2) A deduction processed against a vendor's account for merchandise returns, shortages, cost differences, markdowns, advertising coop, rebates, etc.
+Claim Tracer#A request for information concerning the status of a claim.
+Class#1) Utilized in the United Nations Standard Products and Services Code as a logical grouping of commodities sharing similar essential properties or characteristics. 2) A department classification number 
+Class I Carrier#A classification of regulated carriers based upon annual operating revenues-motor carrier of property greater than or equal to $5 million; railroads: greater than or equal to $50 million: motor carriers of passengers; greater than or equal to $3 million.
+Class II Carrier#A classification of regulated carriers based upon annual operating revenues-motor carrier of property $1- $5 million; railroads: $10-$50 million: motor carriers of passengers; less than or equal to $3 million.
+Class III Carrier#A classification of regulated carriers based upon annual operating revenues-motor carrier of property less than or equal to $1 million; railroads: greater than or equal to $10 million.
+Class Rates#A class of goods or commodities is a large grouping of various items under one general heading. All items in the group make up a class. The freight rates that apply to all items in the class are called class rates. 
+
+Classification#A systematic categorization of cargo for the purpose of applying class rates, combined with governing rules and regulations for transportation. In customs, the classification determines the duty status of imported merchandise within the Harmonized Tariff Schedule of the United States (HSUS). The classification is the responsibility of an importer customs broker or designated individual preparing the entry papers.
+Classification Yard#A railroad terminal area where railcars are grouped together to form train units.
+Claused Bill of Lading#A bill of lading which has exemptions to the receipt of merchandise in "apparent good order" noted.
+Clean Bill of Lading#A bill of lading which covers goods received in "apparent good order and condition" and without qualification.
+Clear Area#See Quiet Zone.
+Clear Height#Distance measured from the floor to the bottom of the lowest hanging overhead obstruction. Sometimes realtors will use the distance to the bottom of the roof trusses to calculate clear height even though portions of the building may have lower clear heights due to HVAC units or other equipment suspended from the roof.
+Clear Record#A record which shows that a shipment was handled without any loss or damage being sustained.
+Clearance#The completion of customs entry requirements resulting in the release of goods from customs authority to the importer.
+Cleat#A strip of wood or metal used to afford additional strength, to prevent warping or to hold in position.
+Closed Van#A unit with metal sides and top completely enclosing the shipment being transported.
+Close-Out#Merchandise purchased from the vendor, which is part or their entire existing style inventory.
+Clusters#A group of high-level business processes. The Clusters that are addressed by the RosettaNet Initiative represent the core business processes or the backbone of a supply chain, including: Cluster 1: Partner and Product/Service Review Cluster 2: Product Introduction Cluster 3: Order Management Cluster 4: Inventory Management Cluster 5: Marketing Information Management Cluster 6: Service and Support Coastal Shipping Also known as short-sea or coastwise shipping, describes marine shipping operations between ports along a single coast or involving a short sea crossing.
+CODABAR#A numeric-only barcode type, in which each character is composed of seven elements: four bars and three spaces. CODABAR is currently used in a variety of applications such as libraries, medicine, and overnight package delivery. Also known as USD-4 code, NW7, and 2 of 7 code, it was originally developed for retail price-labeling use.
+Code 128#A variable length barcode symbology capable of encoding the full ASCII 128 character set and other special characters. See GS1-128 barcode symbol.
+Code 39#A full alphanumeric barcode type composed of five bars, four spaces, and an intercharacter gap for each character. Code 39 is the standard for many industries, including adoption by the U.S. Department of Defense for its LOGMARS specification. Also known as USD3 code and 3 of 9 code, it is one of three symbologies identified in the ANSI standard MH10.8M-1983.
+Code 49#An extremely compact, multi-row, continuous variable barcode type capable of encoding the full 128 ASCII character set. It is ideally suited to applications where large amounts of data are required in a small space. The code consists of 2 to 8 rows. A row consists of a leading quiet zone, 4 symbol characters encoding 8 code characters, a stop pattern, and a trailing quiet zone. Rows are separated by a one module high separator bar. Each symbol character encodes two characters.
+
+Collaborative Commerce#The processes, technologies, and supporting standards that allow continuous and automated exchange of information between trading partners. Describes how businesses communicate with one another to drive down the cost of the supply chain.
+Collaborative Planning,Forecasting, and Replenishment,CPFR#A set of business processes that entities in a supply chain can use for collaboration on a number of retailer/manufacturer functions towards overall efficiency in the supply chain. CPFR is a registered trademark of the VICS.
+Collect/Freight Collect#Buyer is responsible for picking up the merchandise and the freight charges.
+Collective Paper#All documents (commercial invoices, bills of lading, etc.) submitted to a buyer for the purpose of receiving payment for a shipment.
+Collector of Customs#A representative of the U.S. Treasury Department acting for the government in connection with foreign traffic.
+Color#The abbreviated name of the color ordered.
+Combi#An aircraft with pallet or container capacity on its main deck as well as in its belly holds.
+Combination Rate#A rate made by combining two or more rates in different publications.
+Combination Through Rate#A through rate made by combining two or more rates in different publications.
+Combination Vehicle#An equipment configuration which includes separate power unit (tractor) and at least one trailer
+Combination Vessels#Container/Break-bulk vessel - this type of ship accommodates both container and break-bulk cargo. It can be either self sustaining or non-self sustaining.
+Combined Transport Bill of Lading,FBL#When the document covers transport to and/or from the ports of departure and destination, using another mode of transport. 
+Commercial Invoice#Represents a complete record of the transaction between exporter and importer with regard to the goods sold. Also reports the content of the shipment and serves as the basis for all other documents about the shipment.
+Commercial Risk#Risk carried by the exporter (unless insurance is secured) that the foreign buyer may not be able to pay for goods delivered on an open account basis.
+Commercial Zone#A geographical area of commercial influence of a specified point.
+Commodity#Product being shipped
+Commodity ID#A four-digit number within a VMN-12. This four-digit number is used to designate the commodity for the item that is weighed or measured and then sold.
+Commodity Rate#A rate applicable to an article described or named in the publication containing the rate.
+Commodity Specialist#An official authorized by the U.S. Treasury to determine proper tariff and value of imported goods.
+Common Carrier#Any carrier engaged in the interstate transportation of persons/property on a regular schedule at published rates, whose services are for hire to the general public.
+Company Prefix#See GS1 Company Prefix and UPC Company Prefix.
+Compliance Testing#Testing done to judge a hardware or software product's compliance to a particular standard. This is generally a pass/fail test, which also provides guidance if a product fails to comply.
+Composite Component,CC#Refers to the two-dimensional symbol component within a composite symbol. 
+
+Composite Symbology#A GS1 System composite symbol consists of a linear component (encoding the item's primary identification) associated with an adjacent two-dimensional Composite Component (encoding supplementary data, such as batch number or expiration date). The composite symbol always includes a linear component so that the primary identification is readable by all scanning technologies and so that two-dimensional image scanners can use the linear component as a finder pattern for the adjacent two-dimensional Composite Component. The composite symbol always includes one of three multi-row two-dimensional Composite Component versions (CC-A, CCB, CC-C) for compatibility with linear and area Charge Couple Device scanners and with linear and rastering laser scanners.
+Compositors#Content operators that show how content may be composed. Compositors give users a way to provide ordered bodies of elements in a declaration. The three compositors used in XML instance documents are: 1) All: defines an unordered set of elements 2) Choice: defines a choice between several possible elements or groups of elements 3) Sequence: defines ordered groups of elements that follow the same sequence.
+Concatenation#The representation of several element strings in one barcode symbol.
+Concealed Loss or Damage#Loss or damage to the contents of a package which is not apparent until opened.
+Concealed Shortage#All cartons signed free and clear, merchandise short in sealed carton.
+Concentration Point#A point at which less-than-truckload shipments are brought together to be re-forwarded as a truckload.
+Conditional C#An EDI data element requirement designator that indicates that a given data element is dependent on other data elements in a data segment.
+Conference#A group of vessel operators joined together for the purpose of establishing freight rates.
+Configuration Processing#Software functionality that allows a product to be defined by a selecting various pre-defined options, rather than having every possible combination of options pre-defined as specific SKU's. Placing an order for a computer and specifying hard drive, processor, memory, graphics card, sound card, etc. would be an example of configuration processing.
+Confirmation#Indicates if the document is a confirmation of an existing Purchase order, not to be duplicated.
+Confirmed Letter of Credit#A letter of credit, issued by a foreign bank, with validity confirmed by a U.S. bank. An exporter who requires a confirmed letter of credit from the buyer is assured of payment by the U.S. bank even if the foreign buyer or the foreign bank defaults.
+Confirming Bank#The bank that adds its confirmation to another bank's (the issuing bank's) letter of credit and promises to pay the beneficiary upon presentation of documents specified in the letter of credit.
+Conformance#Agreement of a product or service specification with a specified standard. Conformance is not equivalent to certification until testing has been conducted and a certification mark has been assigned.
+Conformance Testing#See Compliance Testing.
+Connecting Carrier#A carrier which interchanges trailers with another for completion of shipments.
+Consignee#The individual or company to whom a seller or shipper sends merchandise and who, upon presentation of necessary documents, is recognized as merchandise owner for the purpose of declaring and paying customs duties.
+Consignee Marks#a symbol placed on packaged for export, generally consisting of a square, triangle, diamond, circle, cross, etc., with designation letter and/or numbers for the purpose of identification.
+Consignment#Is the physical transfer of goods from a seller (consignor) with whom the title remains, to another legal entity (consignee) who acts as a selling agent, selling the goods and remitting the new proceeds to the consignor.
+Consignment Inventory#Inventory that is in the possession of the customer but is still owned by the supplier. Consignment inventory is used as a marketing tool to make it easier for a customer to stock a specific supplier's inventory.
+Consignor#Shipper of goods.
+
+Consolidated Shipment#An arrangement whereby various shippers pool their boxed goods on the same shipment, sharing the total weight charge for the shipment.
+Consolidation#The combination of multiple shipments into one container.
+Consolidation Center#A warehouse or distribution center in which goods are assembled into larger units for onward distribution.
+Consolidator#A transportation service provider for that combines multiple less-than-truckload shipments into a single volume shipment for a particular location.
+Consortium#The name for an agreement under which several nations or nationals (usually corporations) of more than one nation, join together for a common purpose. It could be for management or exploitation of a natural resource, as in the case of some international petroleum consortiums.
+Consular Declaration#A formal statement, made to the consul of a foreign country, describing goods to be shipped.
+Consular Documents#Special forms signed by the consul of a country to which cargo is destined.
+Consular Invoice#A document, required by some foreign countries, describing a shipment of goods and showing information such as the consignor, consignee, and value of the shipment. Certified by a consular official of the foreign country, it is used by the country's customs officials to verify the value, quantity and nature of the shipment.
+Consumer Goods#products sold to non-business end users. Clothing, food, Music CDs, are examples of consumer goods.
+Consumer Packaged Goods,CPG#describes inventory that is in such a form that is ready for sale to consumers (end-users).
+Consumer Unit#The unit as sold by the retailer to the consumer.
+Consumer Unit Indicator,CUI#Identifies whether the current hierarchy level of a trade item is intended for ultimate consumption. For retail, this trade item will be scanned at point-of-sale. At retail, this data is commonly used to select which Global Trade Item Numbers should be used for shelf planning and for front end point-of-sale databases.
+Contact Documents#The Purchase Order Transmittal Letter, the Purchase Order, the Standard Purchase Order Requirements, the Product Specification(s), the Terms and Conditions and this Supplier Compliance Manual are the Contract Documents.
+Container#A truck trailer body that can be detached from the chassis for loading into a vessel, a rail car or stacked in a container depot. Containers may be ventilated, insulated, refrigerated, flat rack, vehicle rack, open top, bulk liquid or equipped with interior devices. A container may be 20 feet, 40 feet, 45 feet, 48 feet or 53 feet in length, 8'0" or 8'6" in width, and 8'6" or 9'6" in height.
+Container Freight Station,CFS#The term CFS at loading port means the location designated by carriers for the receiving of cargo to be packed into containers by the carrier. At discharge ports, the term CFS means the bonded location designated by carriers in the port area for unpacking and delivery of cargo.
+Container On Flat Car,COFC#Method of moving shipping containers which involves transporting them on railroad flat cars.
+Container Ship#Ocean going ship designed to carry containers both internally and on deck. Some are self sustaining.
+Container Yard,CY#A facility for holding FCL (full container load) and empty containers that are received from or delivered to consignors or consignees by or on behalf of a carrier. It also provides a location to receive merchandise from consignors for packing into containers.
+Containerization#shipping system based upon large cargo-carrying containers which can be easily be interchanged between trucks, trains and ships without rehandling of contents.
+Containerized Cargo#Cargo that is transported in containers that can be transferred easily from one transportation mode to another.
+Content Owner#Entity (party) responsible for organizing the information enclosed within the XML message and submission of message to the GS1 Global Registry.
+Continuous Bond#Annual customs bond insuring compliance with all regulations and requirements.
+
+Continuous Replenishment Program,CRP#The concept of continuous supply of goods between supplier and trading partner based on automated exchange of current demand, inventory, and stock management information, within the framework of an agreed supply policy. The aim of continuous replenishment is to achieve a responsive and precise flow of product to the store with minimum stock holding and handling.
+Continuous Seals#A term denoting that seals on a truck remain intact during the movement of the truck from point of origin to destination; or if broken in transit that it was done by the proper authority and without opportunity for loss to occur before new seals were applied.
+Contract Carrier#A for-hire Carrier who does not serve the general public, but who serves shippers or consignees with whom the Carrier has a continuing contract.
+Contract Logistics#The process of outsourcing product flow management, storage and related information transfer services, usually under long-term contract, with the objective of increasing efficiency and control.
+Contract Rate#A charge levied by carriers selling capacity forward over a given route to a shipper of forwarder; the client is therefore assured of capacity, which must be paid for regardless of load carried.
+Contract Warehouse#A business that handles shipping, receiving, and storage of products on a contract basis. Contract warehouses will generally require a client to commit to a specific period of time (generally in years) for the services. Contracts may or may not require clients to purchase or subsidize storage and material-handling equipment. Fees for contract warehouses may be transaction and storage based, fixed, cost plus, or any combination.
+Contrast#See Symbol Contrast.
+Convertible#A unit that can be used wither as a flat-bed or open top through the use of removable side panels.
+Co-Packing#Contract packing.
+Core Data#Common, reusable data elements across various business processes. They can be mandatory or optional. Core Data is a common denominator upon which extensions are built. Examples: Global Location Number, Global Trade Item Number.
+Core Extensions#Data or data constructs specific to more than one process, industry, or sector but not used across all.
+Correct Item#Refers to a command that allows incorrect data to be altered in ways that would not normally be allowed by standard Global Trade Item Number Allocation Rules. All other validations still apply. This process is intended to correct errors, not to circumvent the validation process.
+Corrected BWR#The uniform reduction in the bar widths of a barcode symbol based on whole imaging device dots.
+Corrected Magnification#A process of altering the desired dimensions of a barcode symbol to create modules consisting of a consistent integer number of addressable imaging device dots.
+Corrected Special Symbol Characters#A process of altering the dimensions of a symbol character (representing the data characters 1, 2, 7, and 8) in a consistent, integer number of addressable imaging device dots.
+Correspondent Bank#A bank that, in its own country, handles the business of a foreign bank.
+Corrugate#A material composed of one or more sheets of fluted paper, between flat sheets of paper, e.g., a brown box used for case packs.
+Cost & Freight CFR or C&F#A Term of Sale where the seller pays the costs and freight necessary to bring the goods to the named port of estination, Terms of Sale but the risk of loss of or damage to the goods, as (continued) well as any additional costs due to events occurring after the time the goods have been delivered on board the vessel, is transferred from the seller to the buyer when the goods pass the ship's rail in the port of shipment. The CFR term requires the seller to clear the goods for export.
+Cost Commitment#An electronic confirmation of negotiated costs for basic and vendor managed inventory/merchandise.
+Cost of Goods and Freight,C&F#A quoted price includes cost of goods and freight.
+
+Cost of Goods and Insurance,C&I#A quoted price includes cost of goods and insurance.
+Cost of Goods Sold,COGS#Accounting term used to describe the total value (cost) of products sold during a specific time period. Since inventory is an asset, it is not expensed when it is purchased or produced. It instead goes into an asset account (usually called Inventory). When product is sold, the value of the product (the cost, not the sell price) is moved form the asset account to an expense account called cost of goods sold or COGS. COGS appears on the profit-and-loss statement and is also used for calculating inventory turns.
+Cost, Insurance & Freight,CIF#A Term of Sale where the seller has the same obligations as under the CFR but also has to procure marine insurance against the buyer's risk of loss or damage to the goods during the carriage. The seller contracts for insurance and pays the insurance premium. The CIF term requires the seller to clear the goods for export.
+Costing#Method Refers to the calculations used to determine inventory cost.
+Countertrade#A reciprocal trading arrangement, which includes a variety of transactions involving two or more parties.
+Countervailing Duties,CVD#Special duties imposed on importers to offset the benefits of subsidies given to producers or exporters in the exporting country when it is proven that the subsidy, which may cause the price of such merchandise to be artificially low, would cause injury to domestic industry.
+Country of Export#The country that the goods are shipped from.
+Country of Origin#The country where merchandise was grown or manufactured, not necessarily the country of export.
+Country of Origin Labeling,COOL#A U.S. law requiring that retail seafood be labeled as to its country of origin, including whether farm-raised or wild caught.
+Coupon#A voucher that can be redeemed at the point-of-sale for a cash value or free item.
+Coupon-12#A 12-digit Restricted Circulation Number for coupons structured according to the rules defined in the Target Market.
+Coupon-13#A 13-digit Restricted Circulation Number for coupons structured according to the rules defined in the Target Market.
+Credit Risk Insurance#Insurance designed to cover risks of nonpayment for delivered goods.
+Cross-Belt Sorter#Conveyor sorting system that uses a series of devices (carriers) mounted on a conveyor to sort materials. Each device has a small belt conveyor mounted on top of it that runs perpendicular to the direction of the main conveyor. When it arrives at a sort point, the conveyor on the carrier will spin, moving the materials to the side of the main conveyor (usually onto another conveyor, dropping down a chute, or into a container).
+Cross-Dock#The practice of unloading freight from an incoming truck and then loading this freight in outbound trailers, with minimal or no warehousing in between.
+Cubage#Cubic volume of space being used or available for shipping or storage.
+Cube#The length, width, and height of an item or container.
+Cube Logic#Term used in Warehouse Management Systems. Cube logic is often incorporated but seldom used in WMS systems because of its tendency to treat your product as liquid (fitting a round peg in a square hole).
+Cube utilization#Refers to the use of space within storage area, trailer, or container. Cube utilization is generally calculated as a percentage of total space or of total "usable" space.
+Cubed Out#Describes a condition where all space in a trailer or container has been completely filled. The term "cubed out" is often used when you have completely filled the trailer or container but are still below the weight capacity.
+Cubic Capacity#The carrying capacity of a truck according to measurement in cubic feet.
+Cubic Foot#The unit of volume measurement that is equaled to 1,728 cubic inches.
+Cubic Meter,CBM#Used to determine freight charges based on utilization of space in a shipping container.
+Cubic Ton#40 cubic feet.
+Customer#The party that receives, buys, or consumes an item or service. 
+
+Customs#The designated government authority that regulates the flow of goods to/from a country and collects duties levied by a country on imports and exports.
+Customs and Border Protection,CBP#U.S. governmental agency, whose major responsibility is to administer the Tariff Act of 1930. Primary duties include the assessment and collection of all duties, taxes and fees on imported merchandise and the enforcement of customs and related laws and treaties. Part of the Department of Homeland Security.
+Customs Bonded Warehouse#A warehouse where imported goods may be stored for a total of three years without the payment of duty or taxes.
+Customs Broker#An individual or firm licensed to enter and clear goods through Customs for another individual or firm.
+Customs Clearance#The procedures involved in getting cargo released by Customs through designated formalities such as presenting import  license/permit, payment of import duties and other required documentations by the nature of the cargo such as FCC or FDA approval.
+Customs Court#The court to which importers might appeal or protest decisions made by Customs officers.
+Customs Duty#A tax levied and government collection by custom officials of duties that is imposed by law on imports.
+Customs Tariff#Is a schedule of charges assessed by the federal government on imported goods.
+Customs Trade Partnership Against Terrorism, CTPAT#A voluntary government-business initiative to build cooperative relationships that strengthen and improve overall international supply chain and U.S. border security.
+Customs Union#An agreement between two or more countries in which they arrange to abolish tariffs and other import restrictions on each other's goods and establish a common tariff for the imports of all other countries.
+Cutter#Also called a knife. An integrated mechanism used to cut individual tickets from a roll of tag supply.
+Cycle Count#Refers to process of regularly scheduled inventory counts (usually daily) that "cycles" through your inventory. User determines how often certain items/locations are counted.
+Damages#Compensation, usually in money, for injury to goods, person, or property.
+Dangerous Goods#Articles or substances capable of posing a significant risk to health, safety, or property when transported by air and that require special attention when being transported.
+Data Alignment#The one-time synchronous exchange of data between trading partners, e.g., names, addresses, agreements, item information, price lists, or locations.
+Data Carrier#A physical or electronic mechanism that carries data.
+Data Character#A letter, digit, or other symbol represented in the data field(s) of an element string.
+Data Driver#An easy-to-use software tool that creates and manages globally unique identification numbers such as, Global Trade Item Numbers, and Global Location Numbers, and also defines barcodes. Available only to GS1 US Partner Connections members.
+Data Element#The smallest item of information in an EDI transaction set. A data element may be a numeric, decimal, identifier, string, date or time value.
+Data Element Delimiters#EDI data element delimiters consist of two levels of data separators and a data terminator. Delimiters are specified in the EDI interchange header and are not used in a data element itself.
+Data Element Requirement Designator#A code defining the requirement for an EDI data element to appear in a data segment if the segment is actually transmitted. The designators are Mandatory (M), Optional (O) and Conditional (C).
+Data Field#The smallest part of the data part of an element string that needs to be distinguished.
+Data Identifier,DI#A compliance marking term. Message prefixes in a barcode that define the general category or intended use of the data that follows.
+Data Mapping#Relationship between the ANSI ASC X12 message syntax and the user's data. 
+
+Data Pool,DP#An entity that provides its customers data synchronization services and a single point of entry to the Global Data Synchronization Network. Data Pools must be certified per GS1 System standards to operate within the Global Data Synchronization Network. Data Pools interoperate with the GS1 Global Registry and each other. Example: 1SYNC Data Pool.
+Data Recipient#Entity within the Global Data Synchronization Network that receives data from a Data Source.
+Data Segment#A data segment consists of a segment identifier, one or more data elements, element separators, and a segment terminator.
+Data Source#Entity that provides their Source Data Pool with master data. Responsible for the maintenance and accuracy of that data. The Source Data Pool is responsible for providing the Global Data Synchronization Network with master data. The Data Source is officially recognized as the owner of this data. For a given Item or Party, the source of data is responsible for permanent updates of the information under its responsibility.
+Data Structure#The GS1 System data structures defined in the various lengths required for the different identification purposes, which all share a hierarchical composition. Their composition blends the needs of international control with the needs of the user.
+Data Synchronization#Data synchronization is the electronic transfer of standardized product and location information between trading partners and the continuous synchronization of that data over time.
+Data Titles#A standard abbreviated description of a data field; used to denote the Human Readable Interpretation of encoded data.
+Data Type#A set of data with values having predefined characteristics. Examples of data types are: integer, floating point, unit number, character, string, and pointer. Usually a limited number of data types are built into a programming language. The language usually specifies the range of values for a given data type, how the computer processes the values, and how they are stored.
+Data Validation Engine,DVE#Set of rules and compliance checks executed against the information contained in messages to verify and validate the content of the information.
+Date Draft#Draft that matures in a specified number of days after the date it is issued, without regard to the date of Acceptance.
+Dating#A method of granting extended credit terms used by sellers to induce buyers to receive goods in advance of their required delivery date, thus permitting the seller to ship goods earlier than the buyer would ordinarily wish to receive them. An example of dating would be for a purchase of spring-season goods shipped in the winter, by a manufacturer whose normal selling terms were "2 percent discount for payment in 10 days, net 30 days as of March 15."
+Dead Freight,DF#Freight charges paid by the charterer of vessel for the contracted space, which is left partially unoccupied.
+Dead Leg#A sector flown without payload.
+Deadhead#The return of an empty transportation container back to a transportation facility. Commonly-used description of an empty backhaul.
+Deadweight,DW#Tons of 2,240 lbs.
+Deck Cargo#Cargo carried on deck rather than stowed under deck. On deck carriage is required for certain commodities, such as explosives.
+Declaration Data#Information that describes a declaration in a schema.
+Declared Value#Value of shipment assigned by the shipper and documented on the Bill of Lading.
+Decodability#A parameter specified by ISO 15416 that measures how closely the Scan Reflectance Profile is to approaching decode failure for a given printed symbol.
+Decode#Converting the bars and spaces in a barcode symbol into its corresponding data. A parameter specified by ISO 15416 that determines if a barcode pattern of bars and spaces matches an existing valid symbology.
+Decoder#As part of a barcode reading system, the electronics that process the signals from the scanner, interpret the signals into meaningful data, and control the interface to other devices.
+PAGE 22 START
+Deconsolidator#The domestic counterpart to the consolidator; the deconsolidator unloads the container and allocates and reloads the freight for shipment to various points.
+Defect#A parameter specified by ANSI/UCC-5 and ISO 15416 that measures voids present within bars and spots within spaces or Quiet Zones of a barcode symbol.
+Deferred Air Freight#Air Freight shipments that are not time sensitive and can be delivered at a lower cost on later flights. Delivery service is as a rule, between three to five business days.
+Deferred Payment Credit#Type of letter of credit providing for payment some time after presentation of shipping documents by exporter.
+Deferred Rebate#The return of a portion of the freight charges by a carrier or a conference shipper in exchange for the shipper giving all or most of his shipments to the carrier or conference over a specified period of time (usually 6 months). Payment of the rate is deferred for a further similar period, during which the shipper must continue to give all or most of his shipments to the rebating carrier or conference. The shipper thus earns a further rebate which will not, however, be paid without an additional period of exclusive or almost exclusive patronage with the carrier of conference. In this way, the shipper becomes tied to the rebating carrier or conference. Although, the deferred rebate system is illegal in U.S. foreign commerce, it generally is accepted in the ocean trade between foreign countries.
+Delete Catalogue Item#The command used to flag the existing Catalogue Item record for deletion (the objective is to enable the eventual removal of the Catalogue Item record from the catalogue).
+Deletion Date#Date assigned and stored in the catalogue of the Data Source reflecting the date the Catalogue Item was flagged for deletion. This date will also be stored in the GS1 Global Registry.
+Delimiter or Delimited#One or more special characters marking the beginning or end of a unit of data. These characters are used to fix the limits of the unit of data.
+Delivered at Frontier,DAF#The seller fulfills his obligation to deliver when the goods are available, cleared for export, at the named point and place at the frontier, but before the customs border of the adjoining country. The term "frontier" covers any frontier including that of the country of export. Therefore, it is vital that the frontier in question be defined precisely by naming the point and place in the term. The term applies primarily to the goods carried by rail, or road, but may be used for any mode of transport.
+Delivered Duty Paid,DDP#The seller fulfills his obligation to deliver when the goods are available at the named place in the country of importation. (named place of destination) The seller fulfills his obligation to deliver when the goods are available at the named place in the country of importation. (named place of destination) The seller fulfills his obligation to deliver when the goods are available at the named place in the country of importation. Also known as "free domicile."
+Delivered Duty Unpaid,DDU#The seller fulfills his obligation to deliver when the goods are available at the named place in the country of importation.
+Delivered EX Quay,DEQ#The seller fulfills his obligation to deliver when the goods are available to the buyer on the quay (wharf) at the named port of destination cleared for importation.
+Delivered EX Ship,DES#The seller satisfies his obligation to deliver when the goods are available to the buyer on board the ship uncleared for import at the named port of destination.
+Delivering Carrier#The transportation line by which a shipment is delivered to the consignee.
+Delivery#The act of transferring possession, such as the transfer of property from shipper to carrier, one carrier to another or carrier to consignee.
+Delivery Trailer Manifest#A list of shipments contained on a Less-than-Truckload trailer ready for delivery. The list includes information relevant to the delivery of the shipments loaded in the trailer, such as pro number, equipment identification, and date available.
+Demand#the need for a specific item in a specific quantity. See Dependent Demand and Independent Demand.
+PAGE 23 START
+Demand Chain#Another name for the supply chain, where the processes employed are viewed in terms of demand (pull) rather than supply (push).The demand chain is therefore driven by consumers and end-users, not manufacturers of goods.
+Demand Forecast#An estimation of the future quantity demanded of a product (in a market).
+Demurrage#A penalty for exceeding free time allowed for loading or unloading at a pier or freight terminal. Also a charge for undue detention of transportation equipment or carriers in port while loading or unloading.
+Density Pounds per cubic foot#The cubage of loose articles or pieces, or packaged articles of a rectangular, elliptical or square shape on one plane shall be determined by multiplying the greatest straight line dimensions of length, width and depth in inches, including all projections, and dividing the total by 1728 (to obtain cubic feet). The density is the weight of the article divided by the cubic feet thus obtained.
+Department Area#wherein merchandise is categorized within a store.
+Department of Civil Aviation,DCA#Commonly used term to denote the government department of any foreign country that is responsible for aviation regulation and granting traffic rights.
+Department of Transportation,DOT#Federal agency that regulates the highway transportation of shipments including commodities designated as hazardous material.
+Dependent Demand#Demand generated from scheduled production of other items.
+Depth of Field#The distance between the maximum and minimum surface in which a scanner is capable of reading barcodes of a specified X dimension.
+Description#The name by which we will refer to a product. UPC/SKU The unique numbers that our system uses to identify a specific item of a particular size, color and dimension.
+Destination#The place to which a shipment is consigned.
+Destination Control Statement#Any of various statements that the U.S. government requires to be displayed on export shipments and that specify the destination for which export of the shipment has been authorized.
+Detention#A charge made for a vehicle held by or for shipper or consignee for loading or unloading, for forwarding directions or for any other purpose.
+Devanning#The removal of freight; i.e., unloading a container.
+Dictionary Conformity#Product and partner identification elements of Global Trade Item Number, United Nations Standard Products and Services Code, Data Universal Numbering System, and technical dictionary required by the Partner Interface Process in production are in compliance with the requirements of that Partner Interface Process. For example, if the Partner Interface Process in production requires a DUNS Number, a DUNS Number is used.
+Die Cut#Type of label supply used in on demand applications.
+Diffuse Reflection#A barcode verification term. The component of reflected light that emanates in all directions from the reflecting surface (as opposed to the focused light of the scanner laser reflected back to the scanner).
+Digit#Any of the Arabic numerals 0 to 9.
+Digital Barcode File#A barcode that is designed and stored in a digitized format.
+digital barcode Font#A barcode character set representing the individual data characters intended to form a barcode symbol.
+Digital Certificate#A computer-based record or electronic message issued by an entity that: (1) identifies the entity issuing it; (2)names or identifies a certificate holder; (3) contains the public key of the certificate holder; (4) identifies the certificate's validity period; and (5) is digitally signed by the entity issuing it.
+Digital Offset#A process of sending digitized images directly to an offset printing press without using intermediate film or printing plates. 
+PAGE 24 START
+Digital Signature#An electronic signature that can be used to authenticate the identity of the sender of a message and, via the encrypted document digest, to ensure that the original content of the data that has been sent is unchanged.
+Dimensional Weight,Dim/Wt#A calculated weight based on a minimum density requirement. Density is the weight per cubic foot of a shipment of cargo. It is computed by dividing the shipment volume by the minimum density requirement. The dimensional weight rule was developed to insure fair compensation to low density shipments under which the transportation charges are based on a cubic dimensional weight rather than upon actual weight. Dim weight is calculated by: Dim weight= (Length x Width x Height)/194 . All dimensional measurements are in inches. a.k.a. Dim weight
+Direct Via#the route of a single carrier.
+Direct Connection#An automated machine-to-machine computer interface for exchanging data. This is not a manual process.
+Direct Exchange UCS, DEX/UCS#The Uniform Communication Standard EDI standard used for Direct Store Delivery.
+Direct Ship#Direct shipping and drop shipping are two terms generally used interchangeably. They describe a process whereby three parties interact with the sales transaction (the buyer, the seller, and the supplier). The buyer initiates a purchase from the seller who then arranges with the supplier to ship the product directly to the seller. The seller does not carry inventory of the product and the supplier does not have any direct communication with the buyer. The buyer pays the seller and the seller pays the supplier.
+Direct Store Delivery,DSD#When goods are shipped directly to a store, the container marking specifications are usually different from those required when shipping to a distribution center.
+Direct Wxchange,DEX#The electronic exchange of information between a vendor's hand-held computer and a store's Direct Store Delivery system. This is encouraged by suppliers who directly stock the retailer's shelves.
+Discontinue Date#Date assigned by the Data Source and stored in the catalogue of the Data Source reflecting the date the Catalogue Item was discontinued. This date will also be stored in the GS1 Global Registry.
+Discontinue Item – Permanent#Refers to permanent removal of an item in the supply chain. This involves maintaining a Discontinue Date in the GS1 Global Registry. The Discontinue Date is used to trigger and track the Global Trade Item Number retention period.
+Discontinue Item – Temporary#Refers to removing an item temporarily from the supply chain. This is communicated via the end availability date. When available again, updated start and end availability dates are provided. Temporary removals are not reflected in the GS1 Global Registry; they are a responsibility of the Data Source that maintains the availability period.
+Discount#An allowance or deduction granted by the seller to the buyer, usually when certain stipulated conditions are met by the buyer, which reduces the cost of the good purchased.
+Discovery Services#A component of the EPC global Network consisting of a suite of services that enable users to find data related to a specific Electronic Product Code and to request access to that data. Object Naming Service is one component of Discovery Services.
+Dispatch Advice#See Advance Ship Notice.
+Dispatcher#An individual tasked to assign available transportation loads to available carriers.
+Dispatching#The scheduling and control of trucks for pickup and delivery or travel between major terminals.
+Display Shipper,DS#A display, a shipper, and mixed case. May have children in multiple instances.
+Distance Rate#Rate that is applicable according to distance.
+Distribution#Describes the process of storing, shipping, and transporting goods. Also describes the facilities (distribution operations, distribution centers) that conduct these activities. In statistical analysis, describes the measurement of a group of events or occurrences.
+Distribution Center,DC#Entity receiving, stocking and shipping products on their way from suppliers to customer. 
+PAGE 25 START
+Distribution Requirements Planning,DRP#process for determining inventory requirements in a multiple plant/warehouse environment. DRP may be used for both distribution and manufacturing. In manufacturing, DRP will work directly with MRP. DRP may also be defined as Distribution Resource Planning which also includes determining labor, equipment, and warehouse space requirements.
+Distributor#A business that does not manufacture its own products but instead purchases and resells products. Such a business usually maintains a finished goods inventory. For the purpose of Collaborative Planning, Forecasting, and Replenishment, the term distributor is intended to include retailers.
+Diversion#Any shipment relinquished to the shipper, consignee or his agent at point of origin or intermediate point or before the shipment has reached its ultimate destination.
+Do not ship before / Cancel if not shipped By#Collect or prepaid shipments: indicates the time period for carrier pick up.
+Dock#The platform where trucks are loaded and unloaded.
+Dock Leveler#Device that provides a bridge to the trailer as well as a ramp to facilitate the transition in height from dock to trailer. Dock levelers are rated by weight capacity and by the service range. The service range, also known as the height differential, rates the safe range above and below dock level you can use the leveler to transition to the trailer height.
+Dock Receipt#A receipt given for a shipment received or delivered at a pier or dock. When delivery of a foreign shipment is completed, the dock receipt is surrendered to the transportation line and a bill of lading is issued.
+Document#Business data being exchanged in support of business processes. It is a named collection of core and extensions. Any self-contained piece of work created with an application program and, if saved on disk, given a unique filename with which it can be retrieved. Documents are generally thought of as word-processed materials only. To a computer, however, data is nothing more than a collection of characters, so a spreadsheet or a graphic is as much a document as is a letter or report.
+Document Object Model,DOM# A platform- and language-neutral interface that enables programs and scripts to dynamically access and update structure, content, and style of documents. Document Object Model supplies a set of objects for representing XML documents, a model for combining these objects, and an interface for manipulating them.
+Document Type#The part of the Global Document Type Identifier allocated by the document issuer to identify a document for a given GS1 Company Prefix.
+Document Type Definition,DTD#Defines the document structure and building blocks of an XML document.
+Documents Against Acceptance,D/A#Instructions given by a shipper to a bank indicating that documents transferring title goods should be delivered to the buyer (or drawee) only upon the buyer's acceptance of the attached draft.
+Dolly#An auxiliary axle assembly equipped with a fifth wheel that is used to convert a semi-trailer to a full trailer or a small platform on rollers or wheels used to handle a shipment in a warehouse.
+Domain Model#Describes objects, the data, and mutual relationships among them that are required to represent a set of requirements of one or more processes. Represented in Unified Modeling Language and XML in different stages of processes.
+Domestic Intercity Trucking#Trucking operations within the territory of the United States, including intra-Hawaiian and intra-Alaskan, which carry freight beyond the local areas and commercial zones
+Door-to-Door#Through transportation of a container and its contents from consignor to consignee. Also known as House to House. Not necessarily a through rate.
+Dot Matrix#A system of impact printing where individual dots are printed by tiny wires striking the supply through an inked ribbon.
+Dots Per Inch,DPI#Used in comparing relative printing resolution of thermal printheads and laser print engines.
+Double#A combination of two trailers pulled by a power unit. Usually refers to a power unit pulling two 28' trailers.
+Double Bottom#A combination of two semi-trailers or a semi-trailer and a full trailer, pulled by a tractor.
+PAGE 26 START
+Double Stack Train,DST#Service which is the transport rail between two points of a trainload of containers with two containers, one on top of the other, per chassis.
+Double-Deep Rack#A type of pallet rack designed to be used with double-deep reach trucks that allow storage of palletized loads 2-deep in rack. Doubledeep rack may be a unique design (designed specifically for double-deep storage) or may just be a double-deep configuration of standard selective pallet rack.
+Doubles Trailer#Any vehicle less than 35 feet in length handled as one unit, propelled or drawn by a single power unit.
+Double-Stack#Railcar movement of containers stacked two high.
+Downstream#The flow of goods and services from the manufacturer to the final user or consumer.
+Draft#An unconditional order in writing from one person (the drawer) to another (the drawee), directing the Drawee to pay a specified amount to a named Drawer at a fixed or determinable future date.
+Draft Bank#An order issued by a seller against a purchaser; directs payment, usually through an intermediary bank. Typical bank drafts are negotiable instruments and are similar in many ways to checks on checking accounts in a bank.
+Drag Line#a mechanized system consisting of a continuous chain, either overhead of recessed in the floor, used in a shipping terminal to move shipments on carts from one part of the platform to another.
+Drawback#A U.S. customs law that permits an American exporter to recover duties paid on imported foreign raw materials or components included in products that are subsequently exported out of the United States.
+Drawee#The individual or firm on whom a draft is drawn and who owes the stated amount to the drawer.
+Drayage#Transporting of rail or ocean freight by truck to an intermediate or final destination; typically a charge for pickup/delivery of goods moving short distances (e.g., from marine terminal to warehouse).
+Draying#The charge made for handling shipments on carts, drays or trucks.
+Drive-in Rack#racking system designed to allow a lift truck to drive into the bay creating very high density storage for non-stackable loads. Useful for operations with limited SKU's and high quantities of pallets per SKU. FIFO is difficult to maintain in drive-in racking systems. a.k.a. Drive-thru Rack.
+Drop#A situation in which an equipment operator deposits a trailer or boxcar at a facility at which it is to be loaded or unloaded.
+Drop Carrier#A carrier with an agreement to deliver a loaded trailer to a distribution center and leave the trailer behind for a scheduled unload.
+Drop Ship#Direct ship.
+Drop-Trailer#Trailer left at the delivery location for future unloading.
+Dry Lease#The rental of a "clean" aircraft without crew, ground staff or supporting equipment.
+Dunnage#1) Fill material. Types of dunnage include loose fill (packing peanuts), papar, bubble wrap, foam, and air pillows.2) The material used to protect or support shipments in or on trucks.
+DUNS® + 4 Dun & Bradstreet DUNS#Number with a four-digit suffix identifying a specific location within a company, e.g., a distribution center or a store. This number may or may not contain the nine digits associated with the parent company.
+DUNS® Number,DUNS®# A unique nine-digit identification sequence managed by Dun & Bradstreet, which provides unique identification of single business entities, while linking corporate family structures together.
+Durable Goods#Generally, any goods whose continuous serviceability is likely to exceed three years.
+Duty#A tax levied by a government on merchandise imported, exported from another country. Duties are based on the value of goods, while other factors include weight on quantity or combination of value and other factors (compound duties).
+PAGE 27 START
+Dynamic Slotting#A term sometimes used by WMS providers to describe a higher level of slotting functionality. Usually refers to the ability to change slotting recommendations as item profiles, order profiles, or other operational characteristics change.
+Each#EA The lowest level of the item hierarchy intended or labeled for individual retail sale. May not have any children. May have multiple instances of parents.
+EAN/UPC Composite Symbology Family#A family of barcode symbols comprising the UPC-A Composite Symbology, UPC-E Composite Symbology, EAN-8 Composite Symbology, and EAN-13 Composite Symbology.
+EAN/UPC Symbol Module#The basic building block for encoding data characters into symbol characters. Bars and spaces are one, two, three, or four modules wide.
+EAN/UPC Symbology#A family of barcode symbols comprising the EAN-8, EAN-13, UPC-A, and UPC-E barcode symbols. Although UPC-E barcode symbols do not have a separate Symbology Identifier, they act like a separate symbology through the scanning application software. See EAN-8 barcode symbol, EAN-13 barcode symbol, UPC-A barcode symbol, and UPC-E barcode symbol.
+EAN-13#A 13-digit Trade Item number that may be in a barcode, database, or EDI message. Also referred to as EAN/UCC-13.
+EAN-13 Barcode Symbol#A barcode symbol of the EAN/UPC Symbology that encodes a GTIN-13, Coupon-13, RCN-13, and VMN-13.
+EAN-13 Composite Symbology#The Composite Symbology that utilizes an EAN-13 barcode symbol as the linear component.
+EAN-8 Barcode Symbol#A barcode symbol of the EAN/UPC symbology that encodes a GTIN-8 or RCN-8.
+EAN-8 Composite Symbology#The Composite Symbology that utilizes an EAN-8 barcode symbol as the linear component.
+EANCOM®#The industry conventions and guidelines for international Electronic Data Interchange within the GS1 System, conforming to the United Nations Directories for Electronic Data Interchange for Administration, Commerce and Transport standard.
+Earliest Ship Date#The first day to ship. It is commonly referred to as the Start Ship Date.
+Early Shipment#Shipments released prior to the "do not ship before date" indicated on the purchase order.
+e-Business#An enterprise that conducts many of its business functions through electronic means. The term also refers to businesses that operate on the Internet and offer goods, services, and information for sale via the web.
+ebXML Messaging Service, ebMS# A standard for sending e-business messages. The specification, which builds on the Simple Object Access Protocol web services message format, aims to act as a neutral format for carrying messages between different systems, such as between legacy systems and web services applications. It is designed to work with any communications protocol, and the content (or "payload") of messages carried over ebXML Messaging Service can be in any format. It interacts with other Electronic Business XML standards, as well as those created by the Organization for the Advancement of Structured Information Standards to add security and reliability features.
+e-Commerce,EC#Conducting business communications and management through electronic methods, such as Electronic Data Interchange, XML, and automated data collection systems.
+Edge Determination#A parameter specified by ISO 15416 that counts the number of crossings over the global threshold of the Scan Reflectance Profile to verify whether the number obtained conforms to a legitimate barcode symbology.
+EDI Over the Internet,EDIINT#A protocol for exchange of information in a decentralized, distributed environment designed by the Internet Engineering Task Force. Originally developed to transmit Electronic Data Interchange via email over the Internet. Applicability Statement 1, the first version, used Simple Mail Transport Protocol as the transport protocol, bouncing direction to get to the end connection. Applicability Statement 2, the current version, uses Hypertext Transport Protocol to build a tunnel to the recipient address, establishes the connection, and then sends the information in a secured environment assuring the sender of receipt.
+EDI Service Provider#A company that performs EDI on behalf of its clients. Most service providers offer various levels of EDI services tailored to a client's needs ranging from fax to web based EDI. 
+PAGE 28 START
+EDI Translation#The conversion of application data to and from an Electronic Data Interchange transaction format.
+EDI Translator#Software that converts application data to and from an Electronic Data Interchange transaction format.
+EDIFACT#The international standard that supports EDI transactions across national boundaries.
+Electronic Article Surveillance,EAS#A theft deterrent system that typically uses electromagnetic techniques to detect the presence of tags applied to items sold in a retail store.
+Electronic Business Extensible Markup Language,ebXML#A modular suite of specifications that enables enterprises of any size and in any geographical location to conduct business over the Internet. Using ebXML, companies now have a standard method to exchange business messages, conduct trading relationships, communicate data in common terms, and define and register business processes.
+Electronic Data Interchange,EDI#The computer-to-computer exchange of structured information, by agreed message standards, from one computer application to another by electronic means and with a minimum of human intervention.
+Electronic Data Interchange for Administration, Commerce and Transport,EDIFACT#From the UN-backed electronic data interchange standards body, to create electronic versions of common business documents that will work on a global scale. One digital document under consideration, the International Forwarding and Transport Message will do the jobs of six different electronic messages currently in use.
+Electronic Funds Transfer,EFT#A method for payment in which the payer orders the bank to electronically debit the payer's account and forward credit information to electronically credit the payee's account.
+Electronic Message#A composition of element strings from scanned data and transaction information assembled for data validation and unambiguous processing in a user application.
+Electronic Mailbox#A term used to refer to the place where an Electronic Data Interchange transmission is stored for pickup or delivery within a 3rd Party Service Provider's system. Trading partners can also maintain mailboxes within their own domain.
+Electronic Product Code™,EPC#An identification scheme for universally identifying physical objects via RFID tags and other means. 
+Standardized Electronic Product#Code data consists of among other partitions of data, an EPC Manager Number, an object class identification, a filter value, and a serial number used to uniquely identify the instance of the object. 
+Element#1) A single bar or space in a barcode symbol.2) The components of a data segment in EDI.
+Element String#A piece of data defined in structure and meaning, comprising an identification part (GS1 Prefix or Application Identifier) and a data part, represented in a GS1 System endorsed data carrier.
+Empty Leg#Results from an aircraft primarily chartered outbound having cargo capacity inbound or vice versa. A cheap form of airfreight. 
+En Route#On the way; in transit.
+Encodation/Mod#Check Traditional measurements for barcode symbols that verify proper encodation of symbol characters and calculation of the Check Digit.
+Encode#To convert data characters into barcode characters.
+Encryption#A process that uses a mathematical algorithm and a key to convert data into an unreadable format (ciphertext). A receiver can then use a key to restore the data to its original readable form.
+End of Month Terms,EOM#When the contract specifies payment terms based upon an EOM term, the 25th day of the calendar month will establish the EOM.
+End-of-Life,EOL#Goods that have reached the end of their operational or shelf life. Can include obsolete items or products that cannot be repaired.
+End-of-Line,EOL#a terminal which receives inbound shipments from the breakbulk for delivery and sends outbound shipments to the breakbulk that has been picked up.
+PAGE 29 START
+Endorsement in Blank#Commonly used on a bank check, an endorsement in blank is an endorsement to the bearer. It contains only the name of the endorser and specifies no particular payee. Also, a common means of endorsing bills of lading dawn to the order of the shipper. The bills are endorsed "For...".
+End-User#A buyer or consumer of products and services from resellers or manufacturers.
+End-User Case/Pallet Performance Testing#A test to measure a device's (applied RFID tag's) performance in a customer's environment conditions with two levels, static (RFID tags applied to objects) and dynamic (RFID tags applied to moving objects).
+Enterprise Application Integration,EAI#The use of middleware to integrate the application programs, databases, and legacy systems involved in an organization's critical business processes.
+Enterprise resource planning,ERP#Describes software systems designed to manage most or all aspects of a manufacturing or distribution enterprise (an expanded version of MRP systems). ERP systems are usually broken down into modules such as Financials, Sales, Purchasing, Inventory Management, Manufacturing, MRP, DRP. The modules are designed to work seamlessly with the rest of the system and should provide a consistent user interface between them. These systems usually have extensive set-up options that allow you to customize their functionality to your specific business needs. Unfortunately, in the real world, ERP systems rarely are sufficient to meet all business needs and a myriad of other software packages such as Customer Relationship Management (CRM), Manufacturing Execution Systems (MES), Advanced Planning and Scheduling (APS), Warehouse Management Systems (WMS) and Transportation Management Systems (TMS) are being sold to make up for these deficiencies.
+Enterprise Resource Planning,ERP#Packaged software systems using database technology and a single interface to control all the information related to a company's business, including customer, product, employee, and financial data.
+Entry#A documentation of the kinds, quantities and values of goods imported together with duties due and declared before a customs officer. It is required to secure the release from customs custody.
+Enumeration#Constrains the value space to a specified set of values.
+Envelope Layer#The outermost layer of the message containing the message and document layers. This layer transports information such as sender, recipient, guaranteed message delivery information, and message identification, which allows routing of messages from a sender to a receiver.
+Environmental Protection Agency,EPA#A federal agency which regulates hazardous substances in the environment.
+EPC Information Services,EPCIS#A component of the EPCglobal Network that enables users to exchange Electronic Product Code-related data in a structured format with trading partners through the Network.
+EPC Manager Number#The number registered to the root Object Naming Service by EPCglobal as identification of the location of the information of the tagged objects.
+EPC Middleware#A component of the EPCglobal Network that manages real-time access to Electronic Product Code-related data. The EPC global community is developing software interface standards for services enabling data exchange between an EPC reader or network of readers and information systems.
+EPC Reader#A RFID reader that complies with EPCglobal standards.
+EPC Tag#A RFID tag that complies with EPCglobal standards containing an Electronic Product Code.
+EPC global Inc™#A joint venture between GS1 and GS1 US. EPCglobal is a neutral, not-for-profit organization entrusted by industry to establish and support the Electronic Product Code and the global adoption of the EPCglobal Network.
+EPC global Network®# The EPC global Network is a community of trading partners engaged in the capture, sharing and discovery of Electronic Product Coderelated data using EPCglobal-certified hardware and software components and standard interfaces. 
+PAGE 30 START
+EPCglobal Reference Architecture#A set of principles, guidelines, and strategies governing the implementation of the EPCglobal Network and related radio frequency identification technologies.
+EPCglobal Standards Specification#An EPCglobal standard is a specification or set of guidelines that, after extensive consensus-building, has received the endorsement of EPCglobal Subscribers and the EPCglobal Inc Board of Governors.
+Error Checking and Correcting,ECC#A series of algorithms used by barcodes such as 2D symbologies (GS1 Data Matrix) as a means to recover encoded data from partially damaged symbols.
+Error Correcting Code#Code stored on an RFID tag that enables the reader to determine the value of incomplete or distorted data. This code is necessary to help prevent readers from misinterpreting data and/or incorrectly identifying objects.
+Estimated Landed Cost,ELC#The estimated cost of goods plus freight, duty, insurance, and other charges related to importation of the goods.
+Estimated Weight#The weight specifically stated in publications for goods shipped in a manner.
+Eurodollars#U.S. dollars on deposit outside of the United States to include dollars on deposit at foreign branches of U.S. banks, and dollars on deposit with foreign banks.
+European Article Number#EAN 13 digit number that is the European equivalent of UPC (i.e., 12 digit number assigned by vendor to uniquely identify merchandise to color and size level used in the US and Canada).
+Even Parity#A characteristic of the encodation of a symbol character whereby the symbol character contains an even number of dark modules.
+Event Driven EDI#The non-scheduled transmission of an Electronic Data Interchange transaction set triggered by the occurrence of a business event.
+Event Management#Software functionality that triggers specific actions based upon the occurrence of a specific event or combination of events. This is another one of those terms used primarily by software vendors and consultants to push "new" technology. In reality, business software has been providing event-management functionality for years. If inventory dropping below a predetermined level (reorder point) triggers a message to a planner (or even a listing on a reorder report), this is essentially event management.
+Event-Based Interface#A type of interface between a parser and an application. Event-based interfaces use the Simple API XML standard. They scan an XML document sequentially and only stop when they encounter a problem.
+Ex#Signifies that the quoted price applies only at the indicated point of origin (e.g. "price ex factory" means that the quoted price is for the goods available at the factory gate of the seller).
+Ex Works,EXW#The seller fulfills his obligation to deliver when the goods are placed at the disposal of the buyer at the premises of the seller or another named place where the goods will begin their transportation.
+Exceptions#Any discrepancy with merchandise that causes a delay with merchandise being processed in the facility (e.g. no allocation, invalid UPCs, and unacceptable substitutions).
+Excess Inventory#Inventory quantities above a specific need. Some businesses may designate excess inventory as inventory beyond a certain time period of demand. For example, any inventory greater than 60 day's demand. Others may designate it as inventory beyond their current safety stock plus lot size (order quantity). The second method assumes you have formulas for adjusting safety stock and lot sizes as demand changes. This method basically calculates how much more inventory you have than you would have if you started with nothing and stocked based on current demand and ordering practices. You will generally use tolerances with the 2nd method.
+Exchange Bill of Lading,Ex B/L#A bill of lading issued in exchange for another bill of lading.
+Exclusive Use of Trailer#A request made by a shipper, on the bill of lading, for the complete use of a trailer. 
+PAGE 31 START
+Exempt Carrier#A for-hire carrier that is free from economic regulation. Trucks hauling certain commodities are exempt from Interstate Commerce Commission economic regulation. By far the largest portion of exempt carrier transports agricultural commodities or seafood.
+Exempt Trailer#Trucks hauling certain commodities are exempt from Interstate Commerce Commission economic regulation. The largest portion of exempt commodities are agricultural commodities or seafood.
+Expediting#To accelerate transportation. Expedited shipment service is usually faster than normal service.
+Explosion-Proof Lift Trucks#Lift trucks designed to work in hazardous environments where highly combustible materials are present. Vehicles are designed to avoid sparks and components reaching combustible temperatures. Special electrical systems and materials are used to achieve this.
+Export#To transport goods away from a country for sale to another country.
+Export Broker#The individual who brings together buyer and seller for a fee, eventually withdrawing from any transaction.
+Export Declaration#A form to be completed by the exporter or their authorized agent and filed in triplicate by a carrier with the United State Collector of customs at the point of exit. It serves a twofold purpose: 1. Primarily, it is used by the U.S. Bureau of Census for the compilation of export statistics on United States foreign trade (for this reason an export declaration is required for practically all shipments from the United States to foreign countries and the United States possessions, except for mail shipments of small value, or for those of a non commercial character); 2. The declaration also serves as an export control document because it must be presented, together with the export license, to the United States Customs at the port of export. If the goods may be exported under general export license, this fact must be stated on the export declaration.
+Export License#A document secured from a government, authorizing an exporter to export a specific quantity of a particular commodity to a certain country. An export license is often required if a government has placed embargoes or other restrictions upon exports. See General Export License.
+Export Trading Company#A corporation or other business unit organized and operated primarily for the purpose of exporting goods and services, or of providing export related services to other companies.
+Exporter#An individual or company that transports goods or merchandise from one country to another in the course of trade.
+Express#Premium-rated service for urgent deliveries.
+Extensible Markup Language,XML#XML is designed to improve the functionality of the Web by providing more flexible and adaptable information identification. It is called extensible because it is not a fixed format like Hypertext Markup Language (a single, predefined markup language). Instead, XML is actually a metalanguage (a language for describing other languages) that allows individuals to customize markup languages for limitless different types of documents. XML can do this because it is written in Standard Generalized Markup Language, the international standard metalanguage for text markup systems.
+Extension Digit#The digit in the leftmost position of a Serial Shipping Container Code used to increase the capacity of the Serial Reference.
+Extension or Extension Attribute#Extensions to core data represent defined business processes which go beyond core requirements. Optional core data may be used in an extension but are not required. Examples: US grocery extension for item and Value-Added Tax.
+Facet#One of the defining properties of a data type that distinguishes the data type from others. Facets include properties, such as a string's length or the bounds of a numeric data type.
+Factor#A factor is an agent for the sale of merchandise. He may hold possession of the goods in his own name or in the name of his principal. He is authorized to sell and to receive payment for the goods.
+False Billing#Describing shipment on shipping documents so as to misrepresent the actual contents of lading.
+Family#Utilized in the United Nations Standard Products and Services Code as a logical grouping of classes sharing similar properties or characteristics. 
+
+PAGE 32 START
+
+Family Code#A three-digit number assigned by the issuer (manufacturer) of coupons that links related products or groups of products for the purpose of coupon validation.
+Fast Moving Consumer Goods,FMCG#Description of common high volume products such as food, hygiene product, or cleaning supplies. These would be products that the average consumer would frequently purchase such as soda, toothpaste, or dish soap.
+Fathom (Nautical)#Conversion equivalents: 6 feet; 1.83 meters.
+FCA Loaded#The seller has accepted the responsibility for loading the buyer's carrier at the seller's premises.
+FCA Unloaded#The seller has accepted the responsibility for arranging for inland carriage to the "named place" designated by the buyer, and delivery occurs while the goods are still on the inland carrier at the dock of the designated place.
+Federal Aviation Administration,FAA #Federal Aviation Agency was created in 1958 and appointed with the responsibility of making known of the operational standards and procedures for all classes of aviation in the United States. The FAA monitors any/all dangerous goods (HAZMAT) for air cargo transportation.
+Federal Communications Commission,FCC#A federal agency responsible with regulating interstate and international communications by television, radio, telephone, telegraph, as well as broadcasting standards and cable television operations. Customs clearance may rely on FCC approval regarding the nature of the cargo.
+Federation of Automated Coding Technologies,FACT#Because of the large number of groups that have been independently developing barcode standards, FACT was formed to foster interindustry communications and coordination. An "association of associations," FACT maintains a database of specifications and data identifiers.
+Field#A zone of radio frequency energy created by a reader and associated antenna(e).
+Field Programming#Programming done outside of the factory, after a RFID tag has shipped. This can be done on RFID tags that use Electrically Erasable Programmable Read-Only Memory, or non-volatile memory. See factory programming.
+Fifth Freedom Flight#Where cargo is carried by an airline between two countries in neither of which it is based.
+Fifth Wheel#A device used to connect a semi-trailer and tractor
+Fill rate#Sales order processing measurement that quantifies the ability to fill orders. There are various ways of measuring fill rate. Line fill compares the number of line items shipped complete to the total number of lines ordered (95 line items shipped complete out of 100 lines ordered would result in a 95% line fill rate). Order fill compares the number of orders shipped complete to the total number of orders shipped. Other examples of fill rates would include dollar fill rate (comparing dollars shipped to dollars ordered), unit fill rate (comparing units shipped to units ordered). In fulfillment operations and some distribution operations where orders are generally shipped within 24 hours of receipt of order, fill rates reflect the ability to immediately ship from stock. In manufacturing operations and distribution operations that have lead-times for products, fill rates reflect the ability to ship to an agreed-to date. In these environments fill rate measurements are sometimes called On-Time-and-Complete (OTC) measurement. Tolerances are sometimes used in fill rate measurements to allow lines or orders that are not shipped complete but are within the tolerance to be considered as "shipped complete". The tolerances may be based on units, dollars, lines, or dates (shipped within certain tolerance of required date). 
+Final Destination#Consignee's facility of where shipment ends its movement as noted on the Bill of Lading.
+Fingerprinting#The process of establishing print characteristics or tolerances for a printing press or process.
+Finished Goods Inventory,FGI#The area of an assembly plant designated for finished products.
+First Cost,FC#The actual price paid to maker/vendor for the goods.
+First Read Rate,FRR#A barcode verification term. The ratio of the number of successful reads to the number of attempts. Commonly expressed as a percentage.
+First-in-First-Out,FIFO#In warehousing describes the method of rotating inventory to used oldest product first. Actually an accounting term used to describe an inventory costing method.
+
+PAGE 33 START
+
+Fixed Beam Scanner#A visible light or laser scanner that requires a more exact positioning of a barcode than a moving beam scanner.
+Fixed Charges#Charges which do not vary with an increase or decrease in traffic.
+Fixed Length#Term used to describe a data field in an element string with an established number of characters.
+Fixed Measure Trade Item#An item always produced in the same pre-defined version, e.g., type, size, weight, contents, design, that may be sold at any point in the supply chain.
+Flag Carrier#An airline of one national registry whose government gives it partial or total monopoly over international routes.
+Flat#A material handling classification of product, which may be processed and shipped in cartons or totes. Generally apparel and peg board merchandise.
+Flat Bed#A semitrailer with no sides and with floor of unit a standard height from the ground.
+Flat Pack#Garments on hangers shipped flat in cartons that are sized to accommodate the hanger and the garment with no more than one fold.
+Flex Conveyor#Portable conveyor that can be expanded, contracted, and flexed around curves.
+Floor Load#A method of loading trucks, trailers, or containers where you load the goods directly on the floor rather than using pallets or other containers. Floor loading tends to be very labor intensive, but provides the greatest opportunity for utilizing the full cube of the truck, trailer, or container.
+Floor Ready#Term referring to merchandise that is received ready to be placed directly on the selling floor.
+Flow Rack#racking system that incorporates sections of conveyor to allow the cartons or pallets to flow to the face of the rack. Stocking is performed from the rear of the rack.
+Flow-Through Distribution#A process that allows seamless flow of product and information through the supply chain.
+FOB#The point at which the title of the goods passes from the shipper to the consignee.
+FOB Consolidator#Title of goods passes to the buyer at the consolidation point. Supplier pays all freight costs to the point of consolidation, plus any additional freight costs, which are dependent on what is agreed in the freight allowance field on the PO.
+FOB Destination#Title of the goods passes at destination, and seller has total responsibility until shipment is delivered. Ownership (title and control) remains with seller until goods are delivered. It is expected that the supplier will make all of the transportation arrangements. This policy recognizes that the supplier may be in a position to handle transportation more economically than the customer or that the customer does not posses the desire or expertise to make such arrangements. The Seller files claims (if any).
+FOB Destination, Freight Collect#The buyer pays the shipment charge, bears the eventual cost of the shipment, but the seller owns the goods in transit and files any damage claim.
+FOB Destination, Freight Collect and Allowed#The buyer pays the shipment charge, but receives a credit for the amount, deducted from the seller's bill for the goods. The seller owns the goods in transit and files any damage claim.
+FOB Destination, Freight Prepaid#The seller pays the shipment charge, bears the eventual cost, owns the goods in transit and files any damage claim.
+FOB Factory#Title of goods passes to the buyer at the factory. Supplier pays no (zero) freight, unless a freight allowance is applicable.
+FOB Origin#Title passes at origin, and buyer has total responsibility over the goods while in shipment. Customer takes ownership (title and control) of the goods at the origin (when the carrier signs for goods) and is responsible for transportation of the goods beyond this point. The customer files claims (if any).
+FOB Origin, Freight Collect#The buyer pays the shipment charge, bears the eventual cost of the shipment, owns the goods in transit and files any damage claim.
+
+PAGE 34 START
+
+FOB Origin, Freight Prepaid#The seller pays the shipment charge and bears the eventual cost, but the buyer owns the goods in transit and files any damage claim.
+FOB Origin, Freight Prepaid and Charged Back#The seller pays the shipment charge, but bills it to buyer, who owns the goods in transit and files any damage claim.
+FOB Point#A term of sale that defines who will incur transportation charges for the shipment, who will control the movement of the shipment, or at which point the title to the goods passes to the buyer. The original meaning was "free on board" ship.
+FOB Pricing#A term of sale defining who is to incur transportation charges for the shipment, who is to control the shipment movement, or where title to the goods passes to the buyer; it originally meant "free on board"
+Folded#An article folded in such a manner as to reduce its bulk 33 1/3% from its normal shipping cubage when not folded.
+Food and Drug Administration,FDA#U.S. Government agency which enforces the Federal Food Drug and Cosmetic Act. Also involved in monitoring of radiation emitted from products such as CD players and CD-Rom.
+For Position Only,barcode FPO Symbol#A barcode symbol that is only intended to indicate the size, orientation, color, and placement of the barcode symbol. It may or may not be encoded properly or produced at the specified resolution.
+Force Majeure#The title of a standard clause found in marine contracts exempting the parties for nonfulfillment of their obligations by reasons of occurrences beyond their control, such as earthquakes, floods or war.
+Forecast#A Forecast is an estimation of future demand. Most forecasts use historical demand to calculate future demand. Adjustments for seasonality and trend are often necessary.
+Forecast Consumption#Describes the method(s) your inventory management software uses to reduce forecasted demand by the actual demand that occurs during the forecast period. Incorrectly set up forecast consumption parameters or lack of functionality related to forecast consumption can often create serious problems with planning systems.
+Forecast error#The difference between the forecast quantity for a period and the actual demand experienced during that period. Forecast error is calculated after the period has passed and is used to evaluate the forecast and make adjustments.
+Foreign Trade Zone,FTZ#Special restricted-access commercial and industrial areas in or near ports of entry that are designated by the government for duty-free entry of any non-prohibited goods. Foreign and domestic merchandise, including raw materials, components, and finished goods may be stored, displayed, and used for manufacturing within the zone and re-exported without duties being paid. Duties are imposed only when the original goods or items manufactured from those goods pass from the zone into an area of the country subject to customs authority.
+Foreign Trade Zone Entry#A form declaring goods which are brought duty free into a Foreign Trade Zone for further processing or storage and subsequent exportation.
+Forging#Generally describes an unfinished item made of metal that is produced through a process that heats the metal (not to melting point) then uses pressure or hammering to change the shape of the metal into a shape that closely resembles the finished item that will ultimately be made (through machining processes) from the forging.
+For-Hire Carrier#Carrier that provides transportation service to the public on a fee basis.
+Fork Lift#A machine used to pick up and move goods loaded on pallets or skids.
+Fork Positioner#Lift truck attachments that allow the operator to adjust the distance between the forks without getting off of the truck. Used primarily in high volume operations where there is a great variety of pallet and crate sizes handled.
+Forklift-Free plants#A strategy to eliminate or reduce forklift use in operations. Used mainly in manufacturing operations, forklift-free usually involves finding ways to eliminate forklift use in specific areas (mainly the production areas). A key benefit is the safety of workers, but other benefits such as better space utilization and reduction of costs associated with lift trucks may also be factors.
+
+PAGE 35 START
+
+Foul Bill of Landing#A receipt for goods issued by a carrier with an indication that the goods were damaged when received.
+Four P's#Set of marketing tools to direct the business offering to the customer. The four P's are product, price, place and promotion.
+Fourth-party logistics provider,4PL#A supplier of outsourced supply chain coordination and management services that generally does not own or operate the underlying logistical assets and resources.
+Free Alongside Ship,FAS#The seller has fulfilled his obligation when the goods have been placed alongside the ship at the port of loading designated by the buyer. The buyer is responsible for any loss or damage from that point on.
+Free Astray#A shipment miscarried or unloaded at the wrong terminal, billed and forwarded to the correct terminal, free of charges, on account of being astray.
+Free Carrier,FCA#The seller is responsible for export clearance and the buyer is responsible for import clearance and payment of import duty and fee.
+Free Carrier FDC#The seller satisfies his obligation to deliver when he has handed over the goods, cleared for export, into the charge of the carrier named by the buyer at the named place or point. If the buyer instructs the seller to deliver the cargo to a person e.g. a freight forwarder who is not a "carrier", the seller is deemed to have completed his obligation to deliver the goods when they are in that person's custody.
+Free Days#Days free of container storage offered by the steam ship line. Negotiable instrument for Imports.
+Free In,FI#Cost of loading a vessel is borne by the charterer.
+Free In and Out,FIO#Cost of loading and unloading a vessel is borne by the charterer.
+Free of Capture and Seizure,FC&S#An insurance clause providing that loss is not insured if due to capture, seizure, confiscation and like actions, whether legal or not , or from such acts as piracy, civil war, rebellion and civil strife.
+Free of Particular Average,FPA#A marine insurance clause providing that partial loss or damage is not insured American conditions (F.P.A.A.C.). Partial loss is not insured unless caused by the vessel being sunk, stranded, burned, on fire, or in collision. English conditions (F.P. A.E.C.). Partial loss not insured unless a result of the vessel being sunk, stranded, burned, on fire, or in collision.
+Free or Freight on Board FOB#The seller has delivered the goods on board an ocean vessel at the port of loading designated by the buyer and paid all costs for inland transport and lifting the goods onto the vessel. Buyer takes ownership for the shipment once on board the vessel.
+Free Out,FO#Cost of unloading a vessel is borne by the charterer.
+Free Port#A port which is a foreign trade zone, open to all traders on equal terms; more specifically a port where merchandise may be stored duty-free, pending re-export or sale within that country.
+Free Time#The period goods will be held before storage charges are applied.
+Free Trade Zone,FTZ# An area or zone set aside at or near a port or airport, under the control of the U.S. Customs Service, for holding goods duty-free pending customs clearance.
+Freight#Any commodity being transported.
+Freight All Kinds,FAK#Pooling of different commodities for simplification of rating or pricing.
+Freight Allowance#Amount of freight the supplier pays per purchase order or signed Corporate Freight Partnership Contract (freight agreement).
+Freight Bill#Document for common carrier shipment. Gives description of the shipment, amount of charges, taxes and whether prepaid or collect. Charges paid by the shipper are called prepaid shipment bills. Charges collected at designation are called destination or collect shipment bills.
+Freight Broker#Any person who sells transportation without actually providing it. Usually refers to agent for TL shipments, matching small shippers with carriers. Freight brokers often do not accept any responsibility for their shipments. 
+
+PAGE 36 START
+
+Freight Cargo Receipt,FCR#Document passed to the shipper from the freight carrier upon receipt of import goods for shipment.
+Freight Claim#Legal request for payment of goods shorted or damaged during transit time of shipment – while in the care of the carrier.
+Freight Forwarder#A person or company involved in the collection, consolidation, shipping and distribution of goods from overseas territories. Typically, freight forwarders clear freight through customs, prepare documents and arrange shipping, warehousing and delivery.
+Freight Line Charge#The cost of transporting shipments.
+Freight Management#The management of third-party carriers to ensure the swift, safe and cost-efficient delivery of shipments - often involving the integration of a range of services.
+Frequency#The number of repetitions of a complete radio wave within one second. One hertz equals one complete waveform in one second. RFID tags utilize low, high, ultra-high, and microwave frequencies.
+Fuel Surcharges#An adjustment based on a rounded average of the national U.S. on-highway average prices for a gallon of diesel fuel.
+Fulfillment#The activity of processing customer shipments. Though most manufacturing and warehouse operations will process customer shipments, this term usually refers to operations that ship many small orders (usually parcels) to end users as opposed to operations that process larger shipments to other manufacturers, wholesalers, or resellers. Examples of fulfillment operations would include operations that process shipments for mail-order catalogs, internet stores, or repair parts.
+Full Container Load,FCL#A delivery of cargo that fills a given container either by bulk or maximum weight.
+Full Hierarchy#A construct of data containing a set of Global Trade Item Numbers and links that makes up a unique relationship from the highest level Global Trade Item Number with no parent down to the lowest level Global Trade Item Number with no children.
+Full String#The data transmitted by the barcode reader from reading a data carrier, including Symbology Identifier and element string(s).
+Full Truckload,FTL#A shipment tendered by a single shipper that is contained on one trailer.
+Function Code,FNC#Function codes define instructions for a barcode reader decoding Code 128 barcodes. FNC 1, for example, is a required component of the GS1-128 specification. FNC 2 tells the reader to store the data read and transmit it with the next symbol. FNC 3 is reserved for code reader initializing and other reader functions. FNC 4 is reserved for future use.
+Functional Acknowledgement,FA#A Functional Acknowledgement is an electronically transmitted document (997) that your acknowledges the  receipt of other EDI documents
+Functional Group#EDI documents (called transaction sets) of similar type sent to the same EDI trading partner.
+Gang#Group of stevedores usually 4 to 5 members with supervisor assigned to a hold or portion of the vessel being loaded or unloaded.
+Garments on Hangers,GOH#Transport and storage of garments in hanging format, minimising handling and pre-retailing requirements.
+Gateway#Port of entry into a country or region.
+Gaylord#A large corrugated container usually sized to match the length and width dimensions of a pallet. Gaylord is actually a trade name that has become synonymous with this specific type of container.
+General Agreement on Tariffs and Trade,GATT#A multilateral treaty intended to help reduce trade barriers and promote tariff concessions.
+General Average#When damage to cargo on board a vessel exceeds carrier's insurance, carrier will release cargo only with an acceptance agreement to claim only a general percentage of all the damage sustained.
+
+PAGE 37 START
+
+General Business Model,GBM#A universal business process model developed using the Unified Modeling Language. The purpose of the General Business Model within the GS1 System is to link business processes with GS1 System XML Schemas and the Global Data Dictionary. The General Business Model provides a solid foundation upon which business-specific processes can be built.
+General Cargo Rate,GCR#The basic tariff category which was introduced to cover most air cargo now covers only a minority, the remainder being under SCR or class rates.
+General Distribution Scanning#Unattended, fixed mount scanning environments where items are scanned automatically as they pass by on a conveyor.
+General Export License#Any of various export licenses covering export commodities for which validated export licenses are not required. No formal application or written authorization is needed to ship exports under a general export license.
+General Order#Government contract warehouse for the storage of cargoes left unclaimed for ten working days after availability. Unclaimed cargoes are auctioned publicly after one year.
+General Sales Agent,GSA#Acting on behalf of an airline. Usually Broker or Forwarder.
+Generalized System of Preferences,GSP#A program providing for free rates of duty for merchandise from beneficiary developing independent countries and territories to encourage economic growth. Textiles and footwear are excluded from GSP.
+Global Attribute#Indicates that the attribute is relevant for business cases around the world and can only have a single meaning throughout the world (e.g., Global Trade Item Numbers, but a different value (e.g., Value-Added Tax-France = 1.00, Belgium = 1.05). relevant globally, but has different values.
+
+Global Central Operations Team#A group composed of GS1 staff members, responsible for reviewing, deciding on a disposition, and routing submitted change requests for the Global Standards Management Process.
+Global Class Identifier#RosettaNet-branded term for the United Nations Standard Products and Services Code. The Global Class Identifier is the RosettaNet object, and the United Nations Standard Products and Services Code is the specified solution.
+Global Commerce Initiative,GCI#A global initiative that brings manufacturers and retailers together on a worldwide parity basis to simplify and enhance global commerce and improve consumer value in the overall retail supply chain. It is a global user group and its charter is to drive the implementation of GS1 System standards and best practices.
+Global Company Identifier#RosettaNet-branded term for the Data Universal Numbering System. The Global Company Identifier is the RosettaNet object and Data Universal Numbering System is the specified solution.
+Global Data Dictionary,GDD#The repository of definitions and attributes of all data elements used within GS1 Business Message Standards.
+Global Data Synchronization Network®, GDSN®#The GS1 Global Registry and a network of interoperable, certified Data Pools that enable data synchronization per GS1 System standards.
+Global Document Type Identifier,GDTI#The globally unique GS1 System identification number for documents. The Global Document Type Identifier comprises a GS1 Company Prefix, Document Type, and Check Digit. Global Elements and Attributes Global Elements and Attributes are declared in the immediate child of an element.
+Global GS1 Party Information Registry,GEPIR#A web-based global search service used to find information about other companies based on known Global Location Number, Global Trade Item Number, or Serial Shipping Container Code information.
+
+Global Individual Asset Identifier,GIAI#The globally unique GS1 System identification number for a physical entity of any characteristics. The Global Individual Asset Identifier comprises the GS1 Company Prefix of the company assigning the asset identifier, an Individual Asset Reference, and Check Digit. The Individual Asset Reference is numeric or alphanumeric, and its structure is left to the discretion of the assigning company. 
+
+PAGE 38 START
+
+Global Location Number,GLN#The globally unique GS1 System identification number for legal entities, functional entities, and physical locations. The Global Location Number is 13 digits, which comprise a GS1 Company Prefix, Location Reference, and Check Digit. Supply side trading partner locations generally include corporate headquarters, regional offices, warehouses, plants, and distribution centers. Demand side trading partner locations generally include corporate headquarters, divisional offices, stores, and distribution centers.
+Global Product Classification,GPC#A GS1 System standard for the classification of products. It is a 'flat' classification system based on bricks, attributes, and values. Global Product Classification is a required element of the global data based on bricks, attributes, and values and is a required element of the Global Data Synchronization Network.
+
+Global Product Identifier#RosettaNet-branded term for Global Trade Item Number. The Global Product Identifier is the RosettaNet object and Global Trade Item Number is the specified solution.
+Global Registry#See GS1 Global Registry.
+Global Returnable Asset Identifier,GRAI#The globally unique GS1 System identification number for a reusable package or transport equipment of a certain value, such as a beer keg, gas cylinder, pallet, or create. The Global Returnable Asset Identifier comprises a mandatory part: the Asset Identification Number (GS1 Company Prefix, Asset Type, and Check Digit) and an optional part: the Serial Number.
+Global Service Relation Number,GSRN#The globally unique GS1 System identification number used to identify the recipient of services in the context of a service relationship. It provides a unique and unambiguous identification number for the service provider to store data relevant to service(s) provided to the recipient. The Global Service Relation Number comprises a GS1 Company Prefix, Service Reference, and Check Digit. 
+Global Trade Item Number®, GTIN®#The globally unique GS1 System identification number for products and services. A Global Trade Item Number may be 8, 12, 13, or 14 digits in length, represented as GTIN-8, GTIN-12, GTIN-13, and GTIN-14 respectively.
+Globalisation#The internationalisation of trade, by which domestic economies become inter-dependent.
+
+GMA pallet#Also known as a Grocery Pallet, a GMA pallet is made to the specifications of the Grocery Manufacturer's Association. It is basically a 4-way pallet that is 40 inches wide, by 48 inches deep, by 5 inches in height and has the deck boards and bottom boards mounted flush with with the outside stringers (more detailed specs are available from the Grocery Manufacturer's Association).
+Goods Merchandise, supplies, raw materials, commodities and finished product.#All things are treated as moveable and indicated as sold to a particular buyer.
+Gravity Conveyor#Types of conveyor that use gravity to move materials. Skatewheel conveyer and roller conveyor are the most common types of gravity conveyor used, however, even a simple steel chute is essentially a gravity conveyor.
+Gross Margin#Return on Inventory Investment
+GROII#Calculation that shows your margin relative to your average inventory investment. Calculated by dividing your annual gross margin (dollars) by your average inventory (dollars). Particularly useful in determining which items provide the greatest profit potential relative to your investment in inventory. As with all calculations that use "gross margin" as an input, the output may be flawed if other costs not included in the gross calculation may vary significantly from one item to another.
+Gross Ton#2,240 pounds, commonly called a long ton.
+Gross Vehicle Weight,GVW#The combined total weight of a vehicle and its freight.
+Gross Weight,G.R.Wt./GW#The full weight of a shipment, including containers and packaging materials.
+Group Identifier#The first digit (or digits) in the International Standard Book Number. It may be either a language group, such as 0 or 1 for Englishspeaking countries, or a country designator, such as 2 for France.
+
+PAGE 39 START 
+
+Groupage or Consolidated#For use with smaller shipments. Freight delivers to a warehouse for consolidation with other freight moving to the same destination. The container is dispatched to the port as soon as there are enough consignments to fill the container. A very cost effective way to ship small to medium size shipments but will take longer than LCL shipments.
+GS1 Company Prefix#A globally unique number assigned to companies by GS1 Member Organizations to create the identification numbers of the GS1 System. It comprises a GS1 Prefix and a Company Number. 
+GS1 Data Matrix#A two-dimensional symbology utilizing an array of dark and light square modules for data encodation within a distinct L-shaped finder pattern. GS1 Data Matrix symbols are read by two-dimensional imaging scanners or vision systems. Data Matrix ISO version ECC 200 is the only version that supports GS1 System identification numbers, including Function Code 1.
+GS1 DataBar Composite Symbology#The GS1 Composite Symbology that utilizes a GS1 DataBar barcode symbol as the linear component.
+GS1 DataBar Composite Symbology Family#A family of symbols including the GS1 DataBar Composite Symbology, GS1 DataBar Stacked Composite Symbology, GS1 DataBar Limited Composite Symbology, and GS1 DataBar Expanded Composite Symbology.
+GS1 DataBar Expanded barcode symbol#A barcode symbol that encodes a Global Trade Item Number plus supplementary Application Identifier element strings, such as weight and best before date, in a linear symbol that can be scanned omnidirectionally by suitably programmed point-of-sale scanners.
+GS1 DataBar Expanded Composite Symbology#The GS1Composite Symbology that utilizes a GS1 DataBar Expanded barcode symbol as the linear component.
+GS1 DataBar Expanded Stacked barcode symbol#A barcode symbol that is a variation of the GS1 DataBar Expanded barcode symbol that is stacked in multiple rows and is used when the normal symbol would be too wide for the application.
+GS1 DataBar Expanded Stacked Composite barcode symbol#The GS1 Composite Symbology that utilizes a GS1 DataBar Expanded Stacked barcode symbol as the linear component.
+
+GS1 DataBar Limited barcode symbol#A barcode symbol that encodes a Global Trade Item Number with Indicators of 0 or 1 in a linear symbol; for use on small items that will not be scanned at the point-of-sale.
+GS1 DataBar Limited Composite Symbology#The GS1 Composite Symbology that utilizes a GS1 DataBar Limited barcode symbol as the linear component.
+GS1 DataBar Omnidirectional and Stacked Omnidirectional barcode symbol#A barcode symbol that encodes a Global Trade Item Number in a linear symbol that can be scanned omnidirectionally by suitably programmed point-of-sale scanners.
+GS1 DataBar Stacked barcode symbol#A barcode symbol that is a variation of the GS1 DataBar Symbology that is stacked in two rows and is used when the normal symbol would be too wide for the application. It comes in two versions: a truncated version used for small item marking applications and a taller omnidirectional version that is designed to be read by omnidirectional scanners. GS1 DataBar Expanded can also be printed in multiple rows as a stacked symbol.
+GS1 DataBar Stacked Composite Symbology#The GS1 Composite Symbology that utilizes an GS1 DataBar Stacked barcode symbol as the linear component.
+GS1 DataBar™#A linear barcode symbology that is part of the GS1 System and has seven different configurations: GS1 DataBar Omnidirectional, GS1 DataBar Stacked Omnidirectional, GS1 DataBar Truncated, GS1 DataBar Stacked, GS1 DataBar Limited, GS1 DataBar Expanded, and GS1 DataBar Expanded Stacked.
+
+PAGE 40 START
+
+GS1 Global Registry®#The global directory of the Global Data Synchronization Network for the registration of Items and Parties that validates registered data and ensures the uniqueness of Items and Parties based on their Global Trade Item Numbers and Global Location Numbers. Basic Item and Party information is stored in the Registry and a pointer is provided to the appropriate Data Pool where more information about a specific Item or Party can be found. The GS1 Global Registry also facilitates the subscription process between retailers and suppliers.
+GS1 Global Registry® Subscription Agreement#A contractual agreement between a member of the GS1 community and the GS1 Global Registry that allows access to the Global Data Synchronization Network.
+GS1 Identification Numbers#A globally managed system of numbering to identify trade items, logistic units, locations, legal entities, assets, service relationships, and more. The numbers are built by combining the GS1 Company Prefix with standards based rules for allocating reference numbers.
+GS1 Prefix#A number with two or more digits, administered by GS1 that is allocated to GS1 Member Organizations or for Restricted Circulation Numbers.
+GS1 System#The specifications, standards, and guidelines administered by GS1. GS1, through the Global Standards Management Process, manages the GS1 System to maintain the most implemented standards in the world.
+GS1 System XML Schemas#The GS1 System XML Schemas specify five key business transactions: Item Alignment, Party Alignment, Order, Dispatch Advice, and Invoice, as well as extensions for Allowances, Charges, and Payment Terms. Other business processes are also supported.
+GS1 US™#GS1 US is a not-for-profit organization dedicated to the adoption and implementation of standards-based, global supply chain solutions. Under its auspices, GS1 US operates four divisions, 1SYNC, BarCodes and eCom, EPCglobal North America, and RosettaNet. GS1 US manages the United Nations Standard Products and Services Code for the United Nations Development Programme. GS1 USbased solutions,  including business processes, business message standards using XML, Electronic Data Interchange transaction sets, and the barcode identification standards of the GS1 System are currently used by more than one million member companies worldwide.
+GS1®#GS1, based in Brussels, Belgium, is comprised of global GS1 Member Organizations and manages the GS1 System and Global Standards Management Process.
+GS1-128#Scannable bar-coded label with unique SSCC 18 serialized carton code, located on the outside of a shipping carton.
+GS1-128 Barcode Symbol#A subset of Code 128 that is utilized exclusively for GS1 System element strings. Code 128 symbols have a special start code pattern (consisting of a Start Character in the first symbol character position followed by the Function Code 1 in the second character position) to designate the data that follows will comply with GS1 System standards.
+GS1-128 Composite Symbology#A Composite Symbology that utilizes a GS1-128 barcode symbol as the linear component.
+GS1-128 Coupon Extended Barcode#A supplemental barcode that can be printed on a coupon next to the Coupon-12 to provide additional information, such as offer codes, expiration dates, and household identification numbers.
+GS1-8 Prefix#A one-, two-, or three-digit index number of the GS1 System, denoting the area of distribution of trade items identified by a GTIN-8 or RCN-8.
+GTIN® Compliant#A company or product that is able to process, store, and communicate with trading partners using all Global Trade Item Numbers, whether 8, 12, 13, or 14 digits. Global Trade Item Number compliance does not assume the ability to scan GS1 DataBar symbols.
+GTIN® Format#The format in which all Global Trade Item Numbers are represented in a 14-digit reference field (key) in computer files to ensure uniqueness of the identification numbers.
+PAGE 41 START
+
+GTIN-12#The 12-digit construction of the Global Trade Item Number used to identify trade items, composed of a UPC Company Prefix, Item Reference, and Check Digit.
+GTIN-13#The 13-digit construction of the Global Trade Item Number used to identify trade items, composed of a GS1 Company Prefix, Item Reference, and Check Digit.
+GTIN-14#The 14-digit construction of the Global Trade Item Number used to identify trade items, composed of an Indicator Digit (1-9), GS1 Company Prefix, Item Reference, and Check Digit.
+GTIN-8#The 8-digit construction of the Global Trade Item Number used to identify trade items, composed of a GS1-8 Prefix, Item Reference, and Check Digit.
+Guard Bar Pattern#An auxiliary pattern of bars/spaces corresponding to start or stop patterns in barcode symbologies and serving to separate the two halves of EAN-8, EAN-13, and UPC-A Symbols.
+Guard Bars#The bars that are at both ends and center of a UPC and EAN barcode type. They provide reference points for reading, serving a function similar to start/stop codes.
+Guidance Systems#guidance systems are used to guide automated guided vehicles through plants, guide lift trucks in very-narrow-aisle storage areas. Wire-guided and Rail-guided tend to be the most common guidance systems, but others including laser, optical systems, and magnetic tape are also available.
+Guidelines#Directions or principles used in the development/building, maintenance, and application of classifications. Guidelines are not necessarily mandatory, but are provided as an aid to interpretation and use of classifications.
+Hand-Held Terminal,HHT#Radio frequency terminal.
+Handling Unit#A term used to describe a good or aggregation of goods bundled together for distribution and logistical purposes. Unit loads are typically handling units, and transport packages may be as well. A single handling unit may consist of a bundle of goods bought and sold between trading partners (traded units) or may itself be a traded unit.
+Hard Goods#Non Food Product that could conceivably be sold as a stand-alone item or could be combined with food and resold. Examples: cutting board, ceramic bowls, tins.
+Harmonization#To bring into agreement, e.g., to make the same.
+Harmonize Tariff Schedule of the United States,HTS or HTSUS#An organized listing of goods and their duty rates which is used as the basis for classifying imported products and identifying the rates of duty to be charged. The tariff schedule is divided into a variety of sections and chapters dealing independently with merchandise in wide-ranging product categories. The U.S. International Trade Commission is responsible for publishing the information.
+Harmonized Systems#A key provision of the recently signed trade bill, effective Jan. 1, 1989, that establishes international uniformity for product classifications. Most U.S. Trading partners adopted it a year earlier, and it was drafted in Brussels a decade ago with U.S. representatives' input. In essence, it is a new tariff schedule in that it changes methods of rating some items.
+Hatch#The cover of - or opening- in the deck of a vessel, through which cargo is loaded.
+Hazard Class#Numerical designation of the primary transportation hazard based upon the chemical and physical properties of the hazardous chemical. For example, the hazard class assigned to acetone is 3, which corresponds to a flammable liquid.
+Hazard Label#A diamond shaped designation that has a unique pictorial symbol that describes each of nine hazard classes.
+Hazardous Material,HM#A substance or material which has been determined by the Department of Transportation to be capable of posing an unreasonable risk to health, safety and property when transported in commerce. A complete listing of hazardous material can be found in 49 CFR 172.101.
+Hazmat#Hazardous materials, as classified by the U.S. Environmental Protection Agency (EPA). Transport of hazardous materials is strictly regulated by the U.S. Department of Transportation.
+PAGE 42 START
+
+
+Header#Identifies the structure of an Electronic Product Code.
+Heater Service#The protection of freezable shipments by heat.
+Heavy Duty Truck#Truck with a gross vehicle weight generally in excess of 19,500 pounds (class 6-8). Other minimum weights are used by various laws or government agencies
+Heavy Lift Vessel#Specifically designed to be self sustaining with heavy lift cranes, to handle unusually heavy and/or out-sized cargoes.
+Heavy Lifts#Freight too heavy to be handled by regular ship's tackle.
+Hi#The number of tiers or layers per pallet.
+Hierarchy#A classification structure that is arranged in levels of detail from the broadest to the most detailed level. Each level of the classification is defined in terms of the categories at the next lower level of the classification.
+High Cube#A trailer body with above average cubic content.
+High-and-Tight#Description of how the trailer is loaded. Merchandise is floor-loaded, from side-to-side and floor-to-ceiling; from the nose of the trailer to the tail (door end) of the trailer. A loading method to maximize vertical and horizontal space of a trailer.
+High-Density Storage#Describes storage methods where unitized loads are stored more than one unit deep and/or high. Stacked bulk floor storage, drivein/drive-thru rack, push-back rack, flow rack, and, to a lesser extent, double-deep rack, are examples of high-density storage.
+High-Frequency Tags,HF tags#RFID tags that operate at 13.56MHz.
+High-Piled Combustible Storage#Term used in fire codes to refer to codes relating to floor or racked storage exceeding 12 feet in height or high-hazard commodity storage exceeding 6 feet in height.
+Home Delivery#The transportation of goods to customers' locations of choice (including workplaces); can also refer to order fulfilment. Most ecommerce sales involve home delivery.
+Homogeneity#Measure of the degree to which categories consist of components with similar characteristics, achieved by systematic grouping and stratifying members of the population being classified. One of the characteristics of a good classification system is reasonably high homogeneity for its categories.
+Honeycombing#Refers to the unused pallet positions in high-density storage that result when the number of unit-loads for an item does not completely fill the storage lane. Since mixing SKU's in high-density storage is normally not done, these unused pallet positions are not available to store other materials.
+Horizontal Barcode#A barcode type presented in such a manner that its overall length dimension is parallel to the horizon. The bars are presented in an array which looks like a picket fence.
+Hot Load#Emergency shipment of goods needed in a hurry.
+Hot Tag#A shipment requiring special handling to achieve earlier-than-normal delivery service.
+Hours of Service,HOS#Ruling that stipulates the amount of time a driver is allotted to work.
+House Air Waybill#An air waybill issued by a freight consolidator.
+House to House,CY/CY# The term CY/CY means containers packed by shipper off Carrier's premises and delivered by shipper to Carrier's CY and accepted by consignee at Carrier's CY and unpacked by consignee off Carrier's premises, all at the risk and expense of cargo.
+House to Pier CY/CFS#The term CY/CFS means containers packed by shipper of carrier's premises and delivered by shipper to Carrier's CY, all at shipper's risk and expense and unpacked by Carrier at the destination port CFS.
+Household ID Number#An eight-digit number in a GS1-128 Coupon Extended barcode that can be used by manufacturers to identify a specific household or group of households for focused promotions. 
+
+PAGE 43 START
+
+Hub#A common connection point for devices in a network. Referenced for a transportation network as in "hub and spoke" which is common in the airline and trucking industry.
+Human Readable Interpretation, HRI#Characters, such as letters and numbers, that can be read by people, as opposed to symbol characters within barcodes or electronic data tags, which are read by machines.
+Hundred weight,CWT#One hundred pounds
+Husbanding#Term used by steamship lines, agents, or port captains who are appointed to handle all matters in assisting the master of the vessel while in port to obtain bunkering, fresh water, food and supplies, payroll for the crew, doctors appointments, ship repair, etc.
+Icing#Refrigeration applied to preserve perishables.
+ID System (EPC tags and readers)#The ID System is a component of the EPCglobal Network that consists of EPC tags and readers. EPC tags are radio frequency identification devices that consist of a microchip and an antenna attached to a substrate. The Electronic Product Code is stored on this tag, which is applied to cases, pallets, and/or items. EPC tags communicate their Electronic Product Codes to EPC readers using radio frequency identification. EPC readers communicate with EPC tags via radio waves and deliver information to local business information systems using EPC Middleware.
+Identification Number,ID#A numerical designation that uniquely identifies an object in the supply chain. Identification numbers are used to retrieve information previously exchanged between trading partners and stored in their computer database files.
+Igloo#A container designed to the dimensions of the full main deck width of carrying aircraft.
+Imaging Tool#The mechanism that performs the image transfer directly or indirectly to the printed substrate, e.g., plate, screen, cylinder. 
+Import#To receive goods from a foreign country.
+Import License#A certificate, issued by countries exercising import controls, that permits importation of the articles stated in the license. The issuance of such a permit frequently is connected with the release of foreign exchange needed to pay for the shipment for which the import license has been requested.
+Importer#The individual firm or legal entity that brings goods from a foreign source into a customs territory during the course of trade.
+Importer of Record#The company or individual who is listed as the importer with U.S. Customs at the time the goods enter the U.S. The Tax ID or social security number of the "Importer of Record" must also be submitted to Customs. The Importer of Record bears all responsibility and liability for the imported merchandise.
+In Bond#A procedure under which goods are transported or warehoused under Customs supervision until they are formally entered into the customs territory of the United States.
+In Store Date#Date the merchandise is actually in store available for sale.
+In-Bond#A customs program for inland ports that provide for cargo arriving at a seaport to be shipped under a Customs bond to a more conveniently located inland port where the entry documents have been filed. Customs clears the shipment there, and the cargo is trucked to its destination, which normally is close to the inland port.
+Inbound Logistics#The movement of materials from shippers and vendors into production processes or storage facilities.
+Include Mechanism#The schema component 'Include' is used to include schemas within other schemas. This eases maintenance and access control and increases readability.
+Incoterms#A codification of terms used in foreign trade contracts that is maintained by the International Chamber of Commerce.
+Incremental Cost to Export#The additional costs incurred while manufacturing and preparing a product for export (e.g., product modifications, special export packaging and export administration costs.) This does not include the costs to manufacture a standard domestic product, export crating and transportation to the foreign market.
+PAGE 44 START
+
+Independent Action#A move by whereby a member of a shipping conference elect to depart from the specific service rates set forth by the conference, giving ten calendar days notice of such action. The conference member's new schedule of rate, or rates, officially takes effect no later than ten days after receipt of notice by the conference.
+Independent Demand#Demand generated from forecasts, customer orders or service parts.
+Indicator#The leftmost digit of a Global Trade Item Number in a GTIN-14. The digit '0' indicates a base unit Global Trade Item Number, digits 1 to 8 are used to define a packaging hierarchy of a product with the same Item Reference, and digit 9 indicates a variable measure trade item.
+Indirect Air Carrier,IAC#An organization or entity, within the United States, not in possession of an FAA air carrier operating certificate, that initiates to engage indirectly in air transportation of property and uses for any part of such transportation of services to a passenger air carrier.
+Individual asset#An entity that is part of the inventory of a given company.
+Individual Asset Reference#A number within a Global Individual Asset Identifier assigned by the holder of a GS1 Company Prefix to an individual asset.
+Inducement#Some steamship lines publish in their schedules the name of a port and the words by inducement in parentheses. This means the vessel will call at the port if there is sufficient amount of profitable cargo available and booked.
+Industrial/Commercial EDI, I/C EDI#The industry conventions and guidelines for Electronic Data Interchange issued by GS1 US and based on the ANSI ASC X12 standard, for companies dealing with maintenance, repair, operations, raw materials, and packaging materials.
+Industry Conventions#Defines how the Accredited Standards Committee X12 standards are used by a specific industry.
+Information Provider#Serves the role of communicating the information in the Catalogue Item Notification.
+Infrared#The band of light wavelengths too long to be seen by the human eye. Used in access control and security applications where barcode fields must not be visible by human eye -- only to an infrared scanner.
+Initial Carrier#The transportation line to which a shipment is delivered by the shipper.
+Initial Load#A type of Global Data Synchronization Network publication when a supplier publishes its items that are already traded with a retailer for the first time using data synchronization
+Initial Point#The point at which a shipment originates.
+Inland Carrier#A transportation line which hauls export or import traffic between ports and inland points.
+Inland Port#Sites located away from traditional borders where international trade is processed and value-added services are available.
+Inner Carton#A group of small boxes, poly-bags or bundles containing a standard number of identical or similar items placed inside an outer carton. (May also be referred to as an "Inner Pack".)
+Inner Pack#This represents a quantity of items in a polybag or hard pack within a master carton. The items can be a multiple of a single SKU or single or multiple pre-packs assortment.
+Inspection Certificate#A document certifying that merchandise (such as perishable goods) was in goods condition immediately prior to shipment.
+Instance#Document An XML document that conforms to a specific schema.
+In-store Logistics#The provision of services such as pre-retailing, storage and unpacking within shops, usually undertaken in backstage areas, plus sales floor replenishment.
+Insulated Van#A closed van with insulated body to assist in protecting shipments from heat and cold.
+Integrated Carriers#Carriers that have multiple fleet operations. Examples would be air and ground services or sea, rail and truckload services. 
+PAGE 45 START
+
+Integrated Circuit,IC#A microelectronic semiconductor device consisting of several interconnected transistors and other components. Integrated Circuits are integrated into most RFID tags.
+Integrated Hang Tags#Vendor's logo tag and retailer's retail tag integrated into one tag.
+Integrated Logistics/Supply Chain#The management of multiple supply chain components as a single entity on a global or regional scale. The practice can result in a more efficient supply chain and lower costs.
+Intellectual Property#Ownership of the legal rights to possess, use or dispose of products created by human ingenuity, including patents, trademarks and copyrights.
+Interchange#Transfer of shipments from one carrier to another.
+Interchange Format#A specific data layout that defines a structured business document. The interchange format specifies the sequence, representation, and grouping of granular data elements, and may describe each element in terms of data type, options, cardinality, size, and valid values.
+Intercity Trucking#Trucking operations which carry freight beyond the local areas and commercial zones
+Interleaved 2 of 5#A high density, self-checking, continuous numeric barcode type in which each character is composed of five elements: five bars or five spaces. Of the five elements, two are wide and three are narrow. The barcode is formed by interleaving characters formed with all spaces into characters formed with all bars. Total number of digits must be even.
+Interline#Mutual agreement between airlines to link their route network.
+Interline Freight#Freight moving from point of origin to destination over the lines of two or more transportation lines.
+Interline Shipping#The movement of a single shipment via two or more carriers.
+Intermeddle#Referring to the capacity to go from ship to train to truck, or the like, the adjective generally refers to containerized shipping or the capacity to handle same.
+Intermediate Carrier#A transportation line over which a shipment moves but on which neither the point of origin or destination is located.
+
+Intermodal#Transportation term describing the use of multiple modes of transportation for a shipment. Ocean containers that are picked up by a truck, delivered to port, transported by ship, and then picked up by another truck are a common example of intermodal transportation. In the trucking industry, intermodal usually refers to the combination of trucking and rail transportation.
+Intermodal Container Transfer Facility,ICTF#An on-dock facility for moving containers from ship to rail or truck.
+Intermodal Terminal#A location where links between different transportation modes and networks connect. Using more than one mode of transportation in moving persons and goods. For example, a shipment moved over 1000 miles could travel by truck for one portion of the trip, and then transfer to rail at a designated terminal.
+International Air Transport Association,IATA#A trade organization of airlines that works together offers the highest possible standards to passengers and cargo shippers.
+International Currency Designator#A one-digit indicator of the unit of currency represented by the four-digit price code, which follows a Bookland EAN Number.
+International Maritime Dangerous Goods,IMDG#Regulations that govern the transportation of hazardous material by water outside the territorial boundaries of the United States.
+International Organization for Standardization,ISO#Worldwide federation of national standards bodies promoting the development of standardization, whose work results in the publication of international standards. 
+
+PAGE 46 START
+
+International Standard Book Number,ISBN#An internationally accepted system for uniquely numbering all books and related information-carrying items. The International Standard Book Number may be incorporated into a GTIN-13 with GS1 Prefix 978. Beginning in 2007, this term is replaced by ISBN-13, which is a GTIN-13 using GS1 Prefix 978 or 979.
+International Standard Serial Number,ISSN#An eight-digit number that identifies periodical publications, including electronic serials.
+Interoperability#The ability of a system or application to work with other systems or applications without special effort on the part of the user.
+Interoperability Testing#Testing done against industry-accepted standards with varying combinations of hardware or software products to ensure that the product interoperates with other products. Example: Hardware, as in an EPC tag and reader interoperability.
+Interrogator#See RFID reader.
+Interstate Traffic#having origin in one state and destination in another state.
+Interstate Commerce Act#An act of Congress regulating the practices, rates and rules of transportation lines engaged in handling interstate traffic.
+Interstate Commerce Commission,ICC#The federal body charged with enforcing Acts of Congress affecting interstate commerce. Because of recent changes in regulation, this body may be obsolete.
+Intrastate Traffic#having origin, destination, and entire transportation within the same state.
+Inventory#The number of units and/or value of the stock of good a company holds.
+Inventory Management#The direction and control of activities with the purpose of getting the right inventory in the right place at the right time in the right quantity in the right form at the right cost.
+Inventory Turn#Number of times inventory is consumed or sold during a one year period. Generally calculated by dividing the average inventory level (or current inventory level) into the annual inventory usage (annual Cost of Goods Sold). In my opinion, Inventory Turns is probably the most overused, misused, and abused inventory metric. That's primarily because it doesn't really tell you a hell of a lot, yet companies insist on building order policies on it.
+Inverse Exponent#The Application Identifier digit that denotes the implied decimal point position in an element string.
+Invoice#A document showing the character, quantity, price, terms, nature of delivery, and other particulars of goods sold or of services rendered in request for payment.
+Irrevocable Letter of Credit#Letter of credit in which the specified payment is guaranteed by the bank if all terms and conditions are met by the drawee and which cannot be revoked without joint agreement of both the buyer and the seller.
+ISO-Based Verifier#An instrument designed to measure the various characteristics of the printed barcode symbol to determine if it meets the requirements of a parameter specified by ISO 15416.
+Issue Code#A two-digit number used to indicate the calendar issue number of magazines and periodicals, whether they are published weekly, monthly, quarterly, or with any other frequency.
+Issuing Bank#The bank responsible for issuing the Letter of Credit (L/C) on behalf of the importer. This bank assumes the obligation to pay the beneficiary (or another bank) if the documents presented are in accordance with the terms of the L/C.
+ISTA-3A#Packaging vibration and drop test method used for all products that can be delivered via UPS to retail and DTC customers.
+Item#See Trade Item.
+Item Containment#See Product Hierarchy.
+Item Hierarchy#The classification of Items indicating the parent/child relationships between Items.
+Item Label#The label attached to each individual item.
+
+PAGE 47 START
+
+Item Management,IM#Module within the 1SYNC Data Pool that is a GS1 standards-compliant global master repository for Item information. The module supports core Item, Target Market, retailer specific, and extension attributes required to support real-world trading relationships in multiple geographies and industry verticals.
+Item Management Response,IMR#The response message generated from the 1SYNC Item Management module back to the Information Provider.
+Item Profile#Data that describes the characteristics of an item. May include physical characteristics such as size and weight, transactional characteristics such as times sold/consumed and units sold/consumed, or group characteristics such as sales channel, commodity, hazardous classification, etc. Item profiles are used in warehouse design and slotting.
+Item Reference#The part of the Global Trade Item Number allocated by the user to identify a trade item for a given GS1 Company Prefix.
+ITF-14#A barcode symbol used by the GS1 System to carry Global Trade Item Numbers.
+Jacket#A wood or fiber cover placed around such containers as cans or bottles.
+Jackpot Line#Refers to an area where exceptions are routed. Exceptions may include orders that could not be completed (shortages or WMS error), orders requiring special processing, or weight or size exceptions. The terms Jackpot Lane, or Jackpot Area are also used to describe similar exception areas.
+JETSAM#Goods from a ship's cargo, or parts of its equipment, that have been thrown overboard to lighten the load in time of danger, or to set a stranded ship adrift.
+Joint Rate#A rate from a point located in one point located in one transportation line or a point located on another transportation line. A joint rate is made by agreement or arrangement between the carriers and published in a single publication under the concurrence of all transportation lines involved.
+Joint Requirements Group,JRG#An EPCglobal Working Group created from participants of Industry Action Groups and Technical Action Groups to produce requirements for specifications.
+Joint Routes#Routes established by two or more carriers for the continuous through movement of traffic via their respective lines.
+Joint Traffic#Traffic moving between stations located on one transportation line and stations located on another transportation line..
+Joint Venture#A form of business partnership involving joint management and the sharing of risks and profits between enterprises sometimes based in different countries.
+Joker Tag#A vendor tag that includes size, style number, barcode, retailer's variable data. Tag is sewn to waist band(pant) or bottom of sleeve (suit or sport coat) of garment.
+Just-in-Sequence#A combination of just-in-time delivery with production line sequencing of delivered items. A customer will notify a supplier of the items needed and the sequence based on the customer's manufacturing schedule, the supplier will then put together the shipment with the items in the appropriate sequence and deliver them to the customer (sometimes directly to the assembly line). This is most common in the automotive and similar assembly line industries where each unit on the assembly line can be configured differently (component options).
+Just-in-Time,JIT#The concept of reducing inventories by working closely with one's suppliers to coordinate delivery of materials just before their use in the manufacturing process.
+Kerbside,curb-side,curb side,curbside#Delivery to and/or collection from the roadside.
+Kitting#The process where components are assembled and supplied to the production floor on a job by job basis.
+Knocked Down,KD#An article taken apart, folded or telescoped so as to reduce its normal cubage when set up or assembled by 33 1/3%.
+Knocked Down Flat,KD Flat#An article taken apart, folded or telescoped so as to reduce its normal cubage when set up or assembled by 66 2/3%.
+Knot (Nautical)#The unit of speed equivalent to one nautical mile, or 6,080.20 feet per hour or 1.85 kilometers per hour.
+Known Loss#A loss discovered before or at the time of delivery of a shipment. 
+
+PAGE 48 START
+
+K-Resin#A petroleum based product used in hangers that gives the material a clear appearance, makes it flexible and break resistant. Brand is patented by US Phillips Petroleum.
+Label Gap#The space between adjacent labels on continuous form, die cut supply.
+Labeler Code#A company number assigned by the Food and Drug Administration to create 10-digit National Drug Codes or National Health Related Item Codes.
+Ladder Orientation#A barcode field printed in a rotation perpendicular to the horizon so that the individual bars appear as rungs on a ladder. Also referred to as a vertical barcode.
+Laden#Loaded aboard a vessel.
+Lading#That which constitutes a load. The shipments in a vehicle.
+Lagan#Cargo or equipment to which an identifying marker or buoy is fastened, thrown over-board in time of danger to lighten a ship's load. Under maritime law if the goods are later found they must be returned to the owner whose marker is attached; the owner must make a salvage payment. 
+Landed Cost#Inventory costing method that includes the purchased cost plus transportation costs, import fees, duties, taxes, and other costs incurred in obtaining the inventory.
+Landed Duty Paid#The total cost of a product delivered to a given location, i.e., the cost of production plus the transportation cost to the customer's location. U.S. Customs Clearance is the responsibility of the seller. The seller or agent of the seller is the "Importer of Record". All U.S. Customs duties and applicable taxes are for the account of the seller. Delivery to the named place of destination is for the account of the seller.
+Laser Light Amplification by the Stimulated Emission of Radiation,LASER#A focused light source (as opposed to LEDs used in wands and CCD readers) used in fixed, moving beam, and handheld scanners.
+Laser Scanner#device that uses a moving laser to read barcodes. Devices can be portable hand-held units, or fixed units.
+Laser-Guided#Guidance system used with AGVs that uses a rotating laser (mounted on top of the vehicle) to determine the vehicles location. Reflective targets need to be strategically placed along the vehicle's route. Must always maintain clear line-of-site to reflective targets for the system to work properly.
+Lash Vessel#Designed to load internally, barges specifically designed for the vessel. The concept is to quickly float the barges to the vessel (using tugs or ships wenches) load these barges through the rear of the vessel, then sails. Upon arrival at the foreign port, the reverse happens; Barges are quickly floated away from the vessel and another set of waiting barges quickly are loaded. Designed for quick vessel turn-around. Usually crane-equipped; handles mostly breakbulk cargo.
+Last 50 yards/metres#Typically the transfer of goods from the rear of the delivery vehicle to the store shelf.
+Last Change Date#Date assigned by system indicating last time the information was changed. This date is generic, will be stored where assigned, and will accompany every message.
+Last-in-First-Out,LIFO#in warehousing, describes the method for using the newest inventory first (I've never seen an operation that uses this). In accounting, it's a term used to describe an inventory costing method.
+Late Shipment#Shipments released after the "cancel if not shipped by date" or approved "extended cancel date" indicated on the purchase order. 
+Lay Days#The dates between which a chartered vessel is to be available in a port for loading of cargo.
+Lead-Time#The total time that elapses between an order's placement and it receipt. It includes the time required for order transmittal, order processing, order preparation, and transit.
+Lead-Time Demand#Forecasted demand during the lead-time period. For example, if your forecasted demand is 3 units per day and your lead time is 12 days, your lead-time demand would be 36 units.
+
+PAGE 49 START
+
+Lean Manufacturing#Alternate term used to describe the philosophies and techniques associated with Just-in-time (JIT) manufacturing.
+Legacy System#Implies a business computer/information system that is old or outdated. Often used to describe home-grown (custom built) mainframe systems, however, software companies will use the term legacy system to define any system that is not based on the current version of a business software package.
+Legal Holidays#Christmas Day, Independence Day, Labor Day, Memorial Day, New Years Day, Presidents Day, Thanksgiving Day
+Legal Weight#The weight of the goods plus any immediate wrappings which are sold along with the goods: e.g., the weight of a tin can as well as its contents.
+Less than Container Load,LCL#A shipment of cargo that does not fill a container and is merged with cargo from more than one consignee or from more than one shipper.
+Less than Truckload,LTL#A shipment mode (service level) describing a motor carrier that transports shipments and do not constitute a full truckload quantity and do not qualify for the application of a truckload freight rate. Standard qualifications are shipments under 10, 000 pounds.
+Letter of Credit,L/C#A letter containing a request that the party to whom it is addressed pay the bearer or person named therein money, sell him commodities on credit, or give him something of value, with the intention that the addressee later seek payment from the writer of the letter. It is used by a buyer to secure goods without the necessity of having cash in hand.
+Level of Service,LOS#A qualitative assessment of a road's operating conditions. For local government comprehensive planning purposes, level of service means an indicator of the extent or degree of service provided by, or proposed to be provided by, a facility based on and related to the operational characteristics of the facility. Level of service indicates the capacity per unit of demand for each public facility.
+Lexical Space#The set of string literals that represent the values of a data type. These literals always consist of "text" characters.
+License Plate,LPN#License plates are often used with warehouse management systems. They are basically an ID number placed on a pallet, tote, carton or other container, and are used to track the contents of that container as it moves through the warehouse. The license plate will almost always have a barcode that contains this ID number. So by scanning a single barcode on the pallet you can initiate or complete movement transactions for all items and quantities on that pallet.
+Lien#A legal claim upon goods for the satisfaction of some debt or duty.
+Lift Truck#vehicles used to lift, move, stack, rack, or otherwise manipulate loads. Material handling workers use a lot of terms to describe lift trucks; some terms describe specific types of vehicles, others are slang terms or trade names that people often mistakenly use to describe trucks. Terms include, industrial truck, forklift, reach truck, motorized pallet trucks, turret trucks, counterbalanced forklift, walkie, rider, walkie rider, walkie stacker, straddle lift, side loader, order pickers, high lift, cherry picker, Jeep, Towmotor, Yale, Crown, Hyster, Raymond, Clark, Drexel.
+Lift-on, Lift-off Lo/Lo#Denotes the method by which cargo is loaded onto and discharged from an ocean vessel, which in this case is by the use of a crane.
+Light Pen#Also known as a wand. A scanning device which is used as a hand held barcode reader. Requires direct contact with the printed barcode field.
+Lighter#An open or covered barge equipped with a crane and towed by a tugboat. Used mostly in harbors and inland waterways.
+Lighterage#The cost of loading or unloading a vessel by means of barges alongside.
+Lights-Out Warehouse a.k.a. Lights-out facility.#Describes fully-automated facilities. The idea being that if the facility requires no human operators, you can run it with no lights. Use of AS/RS units, AGVs, automated conveyors, robots, etc makes this possible.
+Limited Quantity,LTD QTY#A hazardous material that due to the quantity of material and type of packaging container may be exempt form labeling requirements, if it is not classified as a 6.1 poison
+
+PAGE 50 START
+
+Line Haul#Movement of freight between cities, excluding pickup and delivery service
+Line Haul Truck#Vehicles used to carry shipments long distances, usually a tractor-trailer combination of three or more axles.
+Line Item#A single detail record. The term line item is most commonly used to describe the detail (each line that reflects an item and a quantity) on sales orders or purchase orders. For example, if a customer orders 20 red pens, 50 black pens, and 10 green pens, this equates to an order with three line items.
+Liner#Derived from the term "line traffic" which denotes operation along definite routes on the basis of definite, fixed schedules; a liner thus is a vessel that engages in this kind of transportation, which generally involves the haulage of general cargo as distinct from bulk cargo.
+Lingua Franca#Latin phrase for "common language."
+Liquid Bulk Cargo#A type of bulk cargo that consists of liquid items, such as petroleum, water, or liquid natural gas.
+Liquidation#The ultimate determination by Customs of the duties due for a given entry.
+Literals#Literals specify the content of internal entities, the values of attributes, and external identifiers. Literals always consist of text characters.
+Live Delivery Trailer#unloading method that requires merchandise to be received at date and time of delivery to location.
+Live Load#As situation in which the equipment operation stays with the trailer or boxcar while being loaded or unloaded.
+Live Unload#Delivery of merchandise that requires complete unload at time of arrival. "Live" unloads require an appointment from the receiving Distribution Center and are not recommended. See Transportation section for more details.
+Load Materials#being transported.
+Load Factor#Capacity sold as against capacity available, expressed as a percentage.
+Load Locks#Adjustable support bars used inside trailers to prevent movement of the load. a.k.a Load bars, Cargo bars
+Loadability#The packaging of freight where vendor uses the full cube utilization of a trailer.
+Local Assigned Code,LAC#A particular use of the UPC-E barcode symbol for restricted distribution.
+Local Delivery#Those points served direct and are within 25 miles of the original destination point.
+Local Reconsignment#Reconsignment within the local (direct) delivering area of the original destination terminal. Local deliveries are those points served direct and are within twenty-five (25) miles of the original destination point.
+Local Terminal#A local facility of a transportation line.
+Location Number#See Global Location Number.
+Location Reference#A number within a Global Location Number assigned by various parties to identify a different entity.
+Locator System#locator systems are inventory-tracking systems that allow you to assign locations to your inventory to facilitate greater tracking and the ability to store product randomly. Prior to locator systems, warehouses needed to store product in some logical manner in order to be able to find it (stored in item number sequence, by vendor, by product description, etc.) By using locator systems you can increase space utilization by slotting your product by matching the physical characteristics of the product to a location whose physical characteristics match that of the product. You can also increase productivity by locating fast moving product to closer, more accessible locations, and increase accuracy by separating similar items. Location functionality in software can range from a simple text field  attached to an item that notes a single location, to systems that allow multiple locations per item and track inventory quantities by location. Warehouse management systems (WMS) take locator systems to the next level by adding functionality to direct the movement between locations.
+Lock#A channel where the water rises and falls to allow boats to travel a dammed river. 
+Lockout/Tagout#The process of disabling (lockout) and identifying (tagout) equipment and energy sources during maintenance or service to prevent injury of personnel from an unexpected startup or power up.
+PAGE 51 START

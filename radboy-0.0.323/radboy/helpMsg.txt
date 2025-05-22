@@ -1,0 +1,50 @@
+{Fore.green}CMD{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan} ACTION {Style.reset}
+{Fore.GREY_50}|{Style.reset} -> {Fore.magenta} lines with this character means OR so 's'|'search' is means s and search are the same thing{Style.reset}
+{Fore.GREY_50},{Style.reset} -> {Fore.violet} this is the cmd-field separator, so 's,Name,C4' is search field $Name with value C4. In Other words consider the ',' to be a space to separate cmds from their values{Style.reset}
+{Fore.GREY_50}${Style.reset} -> {Fore.magenta}a variable value represented by the suffix-following, i.e. $field could be {Style.bold}Entry.Name{Style.reset}
+{Fore.yellow}---------------------------{Style.reset}
+{Fore.green}cl|clear_list|clrl{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}clear list{Style.reset}
+{Fore.green}search|s|sch,$fieldName,$value{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}search for item ; before results are displayed, you will be asked if you want to save your results to a user defined csv file.{Style.reset}
+{Fore.green}img|im|Image,$EntryId{Style.reset}-{Fore.cyan}Display Image Path for EntryId{Style.reset}
+{Fore.green}img|im|Image,$EntryId,$value{Style.reset}-{Fore.cyan}set Image for $EntryId with $value{Style.reset}
+{Fore.green}rm_img|rm_im|del_img,$EntryId{Style.reset}-{Fore.cyan}remove Image from $EntryId{Style.reset}
+{Fore.green}show,$EntryId{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}Display By EntryId{Style.reset}
+{Fore.green}save|sv|save_csv{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}Save Entry Table to CSV file{Style.reset}
+{Fore.green}save_bar|sb|svbr{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}Save Entry Table barcodes{Style.reset}
+{Fore.green}save_bar_cd|savebrcd|sbc{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}Save Entry Table Barcode,Code{Style.reset}
+{Fore.green}factory_reset{Style.reset} {Style.bold}-{Style.reset} {Fore.red}RESET Menu{Style.reset}
+{Fore.green}fields|f|flds{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}Display Entry fields{Style.reset}
+{Fore.green}slm{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}show list mode{Style.reset}
+{Fore.green}tlm{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}Toggle List Mode{Style.reset}
+{Fore.green}remove,$EntryId{Style.reset} {Style.bold}-{Style.reset} {Fore.cyan}Delete/Remove Entry By $EntryId{Style.reset}
+{Fore.green}sl,show_list{Style.reset}-{Fore.cyan}Display items with inList=True{Style.reset}
+{Fore.green}show,$EntryId{Style.reset}-{Fore.cyan}Display Item by $EntryId{Style.reset}
+{Fore.green}list_all,la{Style.reset}-{Fore.cyan}Display All Items in DB{Style.reset}
+{Fore.green}smzl,sum_list{Style.reset}-{Fore.cyan}Display All Items in List as summary{Style.reset}
+{Fore.green}+|-|=,Qty,Barcode|code{Style.reset}-{Fore.cyan}apply value with operator to first item to return from Barcode|code{Style.reset}
+{Fore.light_steel_blue}clear_which|cw|clrw{Style.reset}-{Fore.cyan}Clear values in prompted fieldname, but do {Fore.light_red}NOT{Fore.cyan} set {Fore.light_yellow}InList={Fore.green_yellow}0{Style.reset}
+{Fore.light_blue}ca|clear_all,clrall{Style.reset}-{Fore.cyan}Clear all values in Items in DB and {Fore.light_red}Set{Fore.cyan}  {Fore.light_yellow}InList={Fore.green_yellow}0{Style.reset}
+{Fore.green}cam|clear_all_img|clrallimg{Style.reset}-{Fore.cyan}Clear all images in db items{Style.reset}
+{Fore.green}export_list|el{Style.reset}-{Fore.cyan}export InList=True items to file prompted for{Style.reset}
+{Fore.green}clear|reset|screen_reset|#<>?{Style.reset}-{Fore.cyan}reset screen in case of screen corruption{Style.reset}
+{Fore.green}smle|smle,[Code|Barcode]{Style.reset}-{Fore.cyan}show list items if no argument, or show list items summary for item with Code or Barcode{Style.reset}
+{Fore.green}el|export_list{Style.reset}-{Fore.cyan}Export List to CSV file with delimiter ';', if you use 'q'|'quit' you will quit, 'b'|'back' you will return to previous menu, 'r'|'review_export'|'read' you will read the exported file provided by prompt or default at prompt!{Style.reset}
+{Fore.green}code_len{Style.reset}-{Fore.cyan}print len of scanned code{Style.reset}
+{Fore.green}location|geo|lctn|ln|l,$code{Style.reset}-{Fore.cyan}print location finding data for $code{Style.reset}
+{Fore.green}smle-e{Style.reset}-{Fore.cyan}save list items as png{Style.reset}
+{Fore.green}ni|new_item{Style.reset}-{Fore.cyan}create new Entry Item{Style.reset}
+{Fore.green}le-img{Style.reset}-{Fore.cyan}export list items as png{Style.reset}
+{Fore.green}smle,s|search|?{Style.reset} - {Fore.cyan}calls a prompt to search for InList==True with CODE|BARCODE instead of direct search waits for b for back, q for quit, for next CODE|BARCODE{Style.reset}
+{Fore.green}sai0|set_all_inlist_0{Style.reset} - {Fore.cyan}set all Entry's to InList=False{Style.reset}
+{Fore.green}sai1|set_all_inlist_1{Style.reset} - {Fore.cyan}set all Entry's to InList=True{Style.reset}
+{Fore.green}sau0|set_all_userUpdated_0{Style.reset} - {Fore.cyan}set all Entry's to userUpdated=False{Style.reset}
+{Fore.green}sau1|set_all_userUpdated_1{Style.reset} - {Fore.cyan}set all Entry's to userUpdated=True{Style.reset}
+{Fore.green}lau0|list_all_userUpdated_0{Style.reset} - {Fore.cyan}list all Entry's with userUpdated=False{Style.reset}
+{Fore.green}lau1|list_all_userUpdated_1{Style.reset} - {Fore.cyan}list all Entry's with userUpdated=True{Style.reset}
+{Fore.green}import_csv{Style.reset} - {Fore.cyan}Import CSV data, must have Barcode,Code,Name headers and if other Entry Fields are specified, then those will be used too, icluding valid image paths.{Style.reset}
+{Fore.green}ie|item_editor|itm_edt{Style.reset}-{Fore.cyan}Use the Item Editor,auto-scaling for new fields when new fields are added!{Style.reset}
+{Fore.green}export_list_field|elf{Style.reset}-{Fore.cyan}Export specified field to QREncoded Img from Entry.InList==True{Style.reset}
+{Fore.green}total_entries|te|count_all|cta{Style.reset}-{Fore.cyan}count all Entry's{Style.reset}
+{Fore.green}qsl|quick_show_list{Style.reset}-{Fore.cyan}Briefly display list contents{Style.reset}
+{Fore.orange_red_1}Heavily Experimental & Not Top Priority{Fore.green}import_smartlabel_html|ish{Style.reset}-{Fore.cyan}import content from {Fore.light_green}'https://smartlabel.org/product-search/?br=all&product=all&perPage=500'{Style.reset}
+{Fore.grey_35}HFL:#Number{Fore.cyan} - current length of STDOUT.TXT{Style.reset}

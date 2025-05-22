@@ -33,6 +33,11 @@ from colored import Style,Fore
 import json,sys,math,re,calendar
 from radboy.InListRestore.ILR import *
 from radboy.Compare.Compare import *
+from radboy.Unified.Unified2 import Unified2
+from copy import copy
+from decimal import Decimal
+from radboy.GDOWN.GDOWN import *
+
 def today():
     dt=datetime.now()
     return date(dt.year,dt.month,dt.day)
@@ -44,6 +49,63 @@ RATE*RATE|int|float=RATE
 
 RATE*timedelta = RATE.GROSS(float)
 '''
+
+def check_back_ups():
+    backup_dir=detectGetOrSet("Backup Directory",f"RadBoy Backups/{VERSION}",setValue=False,literal=True)
+    if backup_dir == None:
+        backup_dir=Path('.')
+    else:
+        backup_dir=Path(backup_dir)
+        if not backup_dir.exists():
+            backup_dir.mkdir(parents=True)
+    registry=UnitRegistry()
+    def walker(path):
+        total=0
+        for root,dirs,fnames in backup_dir.walk(top_down=True):
+            xnames=fnames
+            for fname in xnames:
+                p=root/Path(fname)
+                if p.exists():
+                    total+=p.stat().st_size
+                    cvted={}
+                    cvted['kilobytes']={'cvt':registry.convert(p.stat().st_size,"bytes","kilobytes"),'limit':1024}
+                    cvted['megabytes']={'cvt':registry.convert(p.stat().st_size,"bytes","megabytes"),'limit':1024**2}
+                    cvted['gigabytes']={'cvt':registry.convert(p.stat().st_size,"bytes","gigabytes"),'limit':1024**3}
+                    cvted['terabytes']={'cvt':registry.convert(p.stat().st_size,"bytes","terabytes"),'limit':1024**4}
+                    cvted['petabytes']={'cvt':registry.convert(p.stat().st_size,"bytes","petabytes"),'limit':1024**5}
+                    for i in reversed(cvted):
+                        if cvted[i]['limit'] > total:
+                            pass
+                        else:
+                            timex=datetime.fromtimestamp(p.stat().st_ctime)
+                            age=datetime.now()-timex
+                            ctime=timex.ctime()
+                            print(f"{Fore.light_yellow}{cvted[i]['cvt']:.3f}{Fore.light_sea_green} {i} {Fore.light_steel_blue}- '{Fore.orange_red_1}{p}{Fore.light_steel_blue}' - {Fore.light_magenta}{ctime}, which is {age} old{Style.reset}")
+                            break
+            for d in dirs:
+                p=root/Path(d)
+                if d.exists():
+                    total+=walker(p)
+        return total
+    total=walker(backup_dir)
+    
+    cvted={}
+    cvted['kilobytes']={'cvt':registry.convert(total,"bytes","kilobytes"),'limit':1024}
+    cvted['megabytes']={'cvt':registry.convert(total,"bytes","megabytes"),'limit':1024**2}
+    cvted['gigabytes']={'cvt':registry.convert(total,"bytes","gigabytes"),'limit':1024**3}
+    cvted['terabytes']={'cvt':registry.convert(total,"bytes","terabytes"),'limit':1024**4}
+    cvted['petabytes']={'cvt':registry.convert(total,"bytes","petabytes"),'limit':1024**5}
+    for i in reversed(cvted):
+        if cvted[i]['limit'] > total:
+            pass
+        else:
+            print(f"{Fore.light_yellow}{cvted[i]['cvt']:.3f}{Fore.light_sea_green} {i} {Fore.light_steel_blue}- '{Fore.orange_red_1}{backup_dir}{Fore.light_steel_blue}'{Style.reset}")
+            break
+    #print(total,cvted)
+
+
+
+
 
 class RATE:
     class GROSS:
@@ -218,6 +280,324 @@ def td(time_string):
     return TD(time_string)
 
 class TasksMode:
+    def prec_calc(self):
+        text=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Formula :",helpText="text formula",data="decimal")
+        if text is None:
+            return
+        else:
+            return text
+
+    def pricing(self):
+        while True:
+            try:
+                default_taxrate=float(detectGetOrSet("Tax Rate",0.0925,setValue=False,literal=True))
+                default_price=float(detectGetOrSet("pricing default price",1,setValue=False,literal=True))
+                default_bottle_qty=float(detectGetOrSet("pricing default bottle_qty",1,setValue=False,literal=True))
+                default_bottle_size=float(detectGetOrSet("pricing default bottle_size",16.9,setValue=False,literal=True))
+                default_purchased_qty=float(detectGetOrSet("pricing default purchased_qty",1,setValue=False,literal=True))
+                defaults_msg=f"""
+{Fore.orange_red_1}Default Settings [changeable under sysset]{Style.reset}
+{Fore.light_sea_green}default_taxrate=={Fore.turquoise_4}{default_taxrate},
+{Fore.grey_70}default_price=={Fore.light_yellow}{default_price},
+{Fore.light_sea_green}default_bottle_qty=={Fore.turquoise_4}{default_bottle_qty},
+{Fore.grey_70}default_bottle_size=={Fore.light_yellow}{default_bottle_size},
+{Fore.light_sea_green}default_purchased_qty=={Fore.turquoise_4}{default_purchased_qty}{Style.reset}"""
+
+                def beverage_PTCRV_base():
+                    result=None
+                    print('Beverage Total Price+Tax+CRV of Size')
+                    price=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Price ($)(default={default_price}):",helpText="A float or integer",data="float")
+                    if price is None:
+                        return None
+                    elif price in ['','d']:
+                        price=default_price
+
+
+                    bottle_size=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Size in FlOz(or eqivalent,oz assumed if not specified({default_bottle_size})):",helpText="a value plus its unit",data="string")
+                    if bottle_size is None:
+                        return None
+                    elif bottle_size in ['d',]:
+                        bottle_size=default_bottle_size
+                    try:
+                        bts=float(bottle_size)
+                        bottle_size=f"{bts} floz"
+                    except Exception as e:
+                        print(e)
+                    x=pint.UnitRegistry()
+                    xx=x(bottle_size)
+                    xxx=xx.to("floz")
+                    bottle_qty=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Qty Of Containers({default_bottle_qty}):",helpText="A float or integer",data="float")
+                    if bottle_qty is None:
+                        return None
+                    elif bottle_qty in ['d',]:
+                        bottle_qty=default_bottle_qty
+
+                    if xxx.magnitude < 24:
+                        crv=0.05*bottle_qty
+                    else:
+                        crv=0.10*bottle_qty
+
+                    tax_rate=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax Rate (0.01==1%(Default={default_taxrate})):",helpText="A float or integer",data="float")
+                    if tax_rate is None:
+                        return None
+                    elif tax_rate == 'd':
+                        tax_rate=default_taxrate
+
+                    purchased_qty=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Qty purchased({default_purchased_qty})?",helpText=f"how much is being purchased for {price}",data="float")
+                    if purchased_qty is None:
+                        return None
+                    elif purchased_qty in ['d',]:
+                        purchased_qty=default_purchased_qty
+
+                    price=(price*purchased_qty)+crv
+                    tax=price*tax_rate
+
+                    result=round(price+tax,3)
+                    return result
+
+                def tax_with_crv():
+                    result=None
+                    print('Tax+CRV of Size')
+                    price=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Price ($({default_price})):",helpText="A float or integer",data="float")
+                    if price is None:
+                        return None
+                    elif price in ['','d']:
+                        price=default_price
+
+
+                    bottle_size=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Size in FlOz(or eqivalent,oz assumed if not specified({default_bottle_size})):",helpText="a value plus its unit",data="string")
+                    if bottle_size is None:
+                        return None
+                    elif bottle_size in ['d',]:
+                        bottle_size=default_bottle_size
+                    try:
+                        bts=float(bottle_size)
+                        bottle_size=f"{bts} floz"
+                    except Exception as e:
+                        print(e)
+                    x=pint.UnitRegistry()
+                    xx=x(bottle_size)
+                    xxx=xx.to("floz")
+                    bottle_qty=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Qty Of Containers({default_bottle_qty}):",helpText="A float or integer",data="float")
+                    if bottle_qty is None:
+                        return None
+                    elif bottle_qty in ['d',]:
+                        bottle_qty=default_bottle_qty
+
+                    if xxx.magnitude < 24:
+                        crv=0.05*bottle_qty
+                    else:
+                        crv=0.10*bottle_qty
+
+                    tax_rate=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax Rate (0.01==1%(Default={default_taxrate})):",helpText="A float or integer",data="float")
+                    if tax_rate is None:
+                        return None
+                    elif tax_rate == 'd':
+                        tax_rate=default_taxrate
+
+                    purchased_qty=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Qty purchased({default_purchased_qty})?",helpText=f"how much is being purchased for {price}",data="float")
+                    if purchased_qty is None:
+                        return None
+                    elif purchased_qty in ['d',]:
+                        purchased_qty=default_purchased_qty
+
+                    price=(price*purchased_qty)+crv
+                    tax=price*tax_rate
+
+                    result=round(tax,3)
+                    return result
+
+                def crv_total():
+                    result=None
+                    print('Total CRV for Qty of Size')
+                    bottle_size=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Size in FlOz(or eqivalent,oz assumed if not specified({default_bottle_size})):",helpText="a value plus its unit",data="string")
+                    if bottle_size is None:
+                        return None
+                    elif bottle_size in ['d',]:
+                        bottle_size=default_bottle_size
+                    try:
+                        bts=float(bottle_size)
+                        bottle_size=f"{bts} floz"
+                    except Exception as e:
+                        print(e)
+                    x=pint.UnitRegistry()
+                    xx=x(bottle_size)
+                    xxx=xx.to("floz")
+                    bottle_qty=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Qty Of Containers({default_bottle_qty}):",helpText="A float or integer",data="float")
+                    if bottle_qty is None:
+                        return None
+                    elif bottle_qty in ['d',]:
+                        bottle_qty=default_bottle_qty
+
+                    if xxx.magnitude < 24:
+                        crv=0.05*bottle_qty
+                    else:
+                        crv=0.10*bottle_qty
+
+                    
+                    result=round(crv,3)
+                    return result
+
+                def price_tax():
+                    result=None
+                    print('Price+Tax')
+                    price=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Price ($({default_price})):",helpText="A float or integer",data="float")
+                    if price is None:
+                        return None
+                    elif price in ['','d']:
+                        price=default_price
+
+
+                    bottle_qty=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Qty Of Containers/Product({default_bottle_qty}):",helpText="A float or integer",data="float")
+                    if bottle_qty is None:
+                        return None
+                    elif bottle_qty in ['d',]:
+                        bottle_qty=default_bottle_qty
+
+                    tax_rate=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax Rate (0.01==1%(Default={default_taxrate})):",helpText="A float or integer",data="float")
+                    if tax_rate is None:
+                        return None
+                    elif tax_rate == 'd':
+                        tax_rate=default_taxrate
+
+                    price=price*bottle_qty
+                    tax=price*tax_rate
+
+                    result=round(price+tax,3)
+                    return result
+
+                def tax_no_crv():
+                    result=None
+                    print('Tax without CRV')
+                    price=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Price ($({default_price})):",helpText="A float or integer",data="float")
+                    if price is None:
+                        return None
+                    elif price in ['','d']:
+                        price=default_price
+
+
+                    bottle_qty=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Qty Of Containers/Product({default_bottle_qty}):",helpText="A float or integer",data="float")
+                    if bottle_qty is None:
+                        return None
+                    elif bottle_qty in ['d',]:
+                        bottle_qty=default_bottle_qty
+
+                    tax_rate=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax Rate (0.01==1%(Default={default_taxrate})):",helpText="A float or integer",data="float")
+                    if tax_rate is None:
+                        return None
+                    elif tax_rate == 'd':
+                        tax_rate=default_taxrate
+
+                    price=price*bottle_qty
+                    tax=price*tax_rate
+
+                    result=round(tax,3)
+                    return result
+
+                def tax_rate_from_priceAndTax():
+                    result=None
+                    print('tax_rate_from_priceAndTax()')
+                    price=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Price ($({default_price})):",helpText="A float or integer",data="float")
+                    if price is None:
+                        return None
+                    elif price in ['','d']:
+                        price=default_price
+
+
+                    taxed=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax ($) (0.01==1%(Default={0})):",helpText="A float or integer",data="float")
+                    if taxed is None:
+                        return None
+                    elif taxed == 'd':
+                        taxed=0
+
+
+                    tax_rate=taxed/price
+
+                    result=round(tax_rate,3)
+                    return result
+
+                def tax_rate_from_oldPriceAndNewPrice():
+                    result=None
+                    print('tax_rate_from_oldPriceAndNewPrice()')
+                    old_price=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Old Price ($({default_price})):",helpText="A float or integer",data="float")
+                    if old_price is None:
+                        return None
+                    elif old_price in ['','d']:
+                        old_price=default_price
+
+                    new_price=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"New Price ($({default_price})):",helpText="A float or integer",data="float")
+                    if new_price is None:
+                        return None
+                    elif new_price in ['','d']:
+                        new_price=default_price
+
+                    taxed=round(new_price-old_price,3)
+                    tax_rate=round(taxed/old_price,3)
+
+                    result=round(tax_rate,3)
+                    return result
+
+                while True:
+                    options={
+                    '0':{
+                        'cmds':['beverage price+tax+CRV','b-ptcrv','0'],
+                        'desc':f'{Fore.light_yellow}beverage Price+Tax+CRV{Fore.medium_violet_red} asking for base questions like bottle size and qty to get total cost with tax{Style.reset}',
+                        'exec':beverage_PTCRV_base
+                    },
+                    '1':{
+                        'cmds':['price+tax','p+t','1'],
+                        'desc':f'{Fore.light_yellow}Price+Tax{Fore.medium_violet_red} asking questions like price and qty to get total cost with tax{Style.reset}',
+                        'exec':price_tax
+                    },
+                    '2':{
+                        'cmds':['crvttl','crv total','crvtotal','crv_total','2'],
+                        'desc':f'{Fore.light_yellow}total crv{Fore.medium_violet_red} asking questions like price and qty to get total crv{Style.reset}',
+                        'exec':crv_total
+                    },
+                    '3':{
+                        'cmds':['tax+crv','t+c','tax crv','3'],
+                        'desc':f'{Fore.light_yellow}tax+crv{Fore.medium_violet_red} asking questions like price and qty to get total crv{Style.reset}',
+                        'exec':tax_with_crv
+                    },
+                    '4':{
+                        'cmds':['tax','tax no crv','tax 0 crv','4'],
+                        'desc':f'{Fore.light_yellow}tax+crv{Fore.medium_violet_red} asking questions like price and qty to get total crv{Style.reset}',
+                        'exec':tax_no_crv
+                    },
+                    '5':{
+                        'cmds':['trfpt','tax_rate_from_price_and_tax','tax rate from price and tax','taxRateFromPriceAndTax','5'],
+                        'desc':f'{Fore.light_yellow}tax rate{Fore.medium_violet_red} from price and tax as a decimal{Style.reset}',
+                        'exec':tax_rate_from_priceAndTax
+                    },
+                    '6':{
+                        'cmds':['tax_rate_from_old_price_and_new_price','tax rate from old price and new price','taxRateFromOldPriceAndNewPrice','trfopnp','6'],
+                        'desc':f'{Fore.light_yellow}tax rate{Fore.medium_violet_red} from old price and new price{Style.reset}',
+                        'exec':tax_rate_from_oldPriceAndNewPrice
+                    },
+                    }
+                    helpText=[]
+                    for i in options:
+                        msg=f"{Fore.light_green}{options[i]['cmds']}{Fore.light_red} -> {options[i]['desc']}{Style.reset}"
+                        helpText.append(msg)
+                    helpText='\n'.join(helpText)
+                    print(helpText)
+                    print(defaults_msg)
+                    cmd=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Pricing Analisys Tool|Do What?:",helpText=helpText,data="string")
+                    if cmd is None:
+                        return None
+                    result=None
+                    for i in options:
+                        els=[ii.lower() for ii in options[i]['cmds']]
+                        if cmd.lower() in els:
+                            result=options[i]['exec']()
+                            break
+                    print(result)
+                    returnResult=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Return Result?[y/n]",helpText=f"result to return is '{result}'",data="boolean")
+                    if returnResult in [True,]:
+                        return result
+            except Exception as e:
+                print(e,str(e),repr(e))
+
     Lookup=Lookup2
     #extra is for future expansion
     def exportList2Excel(self,fields=False,extra=[]):
@@ -435,7 +815,7 @@ Distress - ls Distress
                 if len(results) < 1:
                     print(f"{Fore.light_red}{Style.bold}Nothing is in List!{Style.reset}")
                 for num,result in enumerate(results):
-                    print(f"{numColor}{num}{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{eidColor}{getattr(result,'EntryId')}{Style.reset}")
+                    print(f"{numColor}{num}{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{eidColor}{getattr(result,'EntryId')}{Style.reset}")
         print(f"{m}\n{hr}")
 
     def SearchAuto(self,InList=None,skipReturn=False):
@@ -548,6 +928,11 @@ Distress - ls Distress
 
 
     def NewEntrySchematic(self):
+        defaultEnter=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Enter Clears[True/YES/yes/y/1/t] or Enter Skips[False,NO,no,n,0,f] -< DEFAULT: ",helpText="boolean yes or no",data="boolean")
+        if defaultEnter in [None,]:
+            return
+        elif defaultEnter == 'd':
+            defaultEnter=False
         master_tag=sys._getframe().f_code.co_name
         def mkT(text,self):
                 return str(text)
@@ -565,7 +950,7 @@ Distress - ls Distress
                 check=session.query(Entry).filter(Entry.Barcode==code).first()
                 data=OrderedDict({'Code':code,'Name':code,'Facings':1,'CaseCount':1})
                 if not check:
-                    newEntry=self.mkNew(code=code,data=data)
+                    newEntry=self.mkNew(code=code,data=data,defaultEnter=defaultEnter)
                     if self.next_barcode():
                         continue
                     if newEntry == None:
@@ -609,7 +994,7 @@ Distress - ls Distress
                         msg=f"{Fore.light_red}{k}: {Fore.light_yellow}{data[k]}{Style.reset}"
                         print(msg)
                     print(f"{Fore.light_red}Item Exists please use '{Fore.light_yellow}ni{Fore.light_red}' to {Fore.light_sea_green}bypass... {Fore.light_magenta}prompting now for {Style.bold}updates...{Style.reset}")
-                    updates=self.mkNew(code=check.Barcode,data=data)
+                    updates=self.mkNew(code=check.Barcode,data=data,defaultEnter=defaultEnter)
                     if self.next_barcode():
                         continue
                     if updates != None:
@@ -835,6 +1220,11 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
 
 
     def NewEntryShelf(self):
+        defaultEnter=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Enter Clears[True/YES/yes/y/1/t] or Enter Skips[False,NO,no,n,0,f] -< DEFAULT: ",helpText="boolean yes or no",data="boolean")
+        if defaultEnter in [None,]:
+            return
+        elif defaultEnter == 'd':
+            defaultEnter=False
         master_tag=sys._getframe().f_code.co_name
         while True:
             code=''
@@ -849,7 +1239,7 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
                 check=session.query(Entry).filter(Entry.Barcode==code).first()
                 data=OrderedDict({'Code':code,'Name':code,'Price':1,'CaseCount':1})
                 if not check:
-                    newEntry=self.mkNew(code=code,data=data)
+                    newEntry=self.mkNew(code=code,data=data,defaultEnter=defaultEnter)
                     if self.next_barcode():
                         continue
                     if newEntry == None:
@@ -889,7 +1279,7 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
                         msg=f"{Fore.light_red}{k}: {Fore.light_yellow}{data[k]}{Style.reset}"
                         print(msg)
                     print(f"{Fore.light_red}Item Exists please use '{Fore.light_yellow}ni{Fore.light_red}' to {Fore.light_sea_green}bypass... {Fore.light_magenta}prompting now for {Style.bold}updates...{Style.reset}")
-                    updates=self.mkNew(code=check.Barcode,data=data)
+                    updates=self.mkNew(code=check.Barcode,data=data,defaultEnter=defaultEnter)
                     if self.next_barcode():
                         continue
                     if updates != None:
@@ -1315,7 +1705,7 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
                         print(ne)
 
 
-    def mkNew(self,code,data=None,extra=[]):
+    def mkNew(self,code,data=None,extra=[],defaultEnter=True):
         if data != None:
             if 'Tags' in list(data.keys()):
                 data.pop('Tags')
@@ -1350,52 +1740,62 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
                         elif str(f) in otherExcludes:
                             print(f"Not working on this one RN! '{f}'")
                         elif str(f) == 'Location':
-                            def lclg(text,data):
+                            def lclg(text,data,defaultEnter):
                                 try:
                                     if text.lower() in keys:
                                         return text.lower()
-                                    if text in ['',]:
-                                        return '///'
+                                    if not defaultEnter and text in ['',]:
+                                        return 'KEEP'
+                                    elif text in ['',]:
+                                        return '///'    
                                     else:
                                         return text
                                 except Exception as e:
                                     print(e)
                                     return 
-                            dtmp=Prompt.__init2__(None,func=lclg,ptext=f"Entry[default:{data[f]}] {f}",helpText=f"{Fore.light_steel_blue}Enter a value for {f}, or leave blank to use scanned code; 'b' goes back to 'TaskMode'; 'e' to skip/exit entry altogether! 'p' for previous ; 'd' to use default stored value, if you entered a value, then 'd' will use that value when coming back from 'p'{Style.reset}",data=self)
+                            dtmp=Prompt.__init2__(None,func=lambda text,data,defaultEnter=defaultEnter:lclg(text,data,defaultEnter=defaultEnter),ptext=f"Entry[default:{data[f]}] {f}",helpText=f"{Fore.light_steel_blue}Enter a value for {f}, or leave blank to use scanned code; 'b' goes back to 'TaskMode'; 'e' to skip/exit entry altogether! 'p' for previous ; 'd' to use default stored value, if you entered a value, then 'd' will use that value when coming back from 'p'{Style.reset}",data=self)
                             if dtmp in [None,]:
                                 print(f"{Fore.orange_red_1}User Canceled!{Style.reset}")
                                 return
 
 
                         elif str(f) == 'Price':
-                            def lclf(text,data):
+                            def lclf(text,data,defaultEnter):
                                 try:
-                                    if text.lower() in keys:
+                                    if not defaultEnter and text in ['',]:
+                                        return 'KEEP'
+                                    elif text.lower() in keys:
                                         return text.lower()
                                     return float(eval(text))
                                 except Exception as e:
                                     return float(0)
-                            dtmp=Prompt.__init2__(None,func=lclf,ptext=f"Entry[default:{data[f]}] {f}",helpText=f"{Fore.light_steel_blue}Enter a value for {f}, or leave blank to use scanned code; 'b' goes back to 'TaskMode'; 'e' to skip/exit entry altogether! 'p' for previous ; 'd' to use default stored value, if you entered a value, then 'd' will use that value when coming back from 'p'{Style.reset}",data=self)
+                            dtmp=Prompt.__init2__(None,func=lambda text,data,defaultEnter=defaultEnter:lclf(text,data,defaultEnter),ptext=f"Entry[default:{data[f]}] {f}",helpText=f"{Fore.light_steel_blue}Enter a value for {f}, or leave blank to use scanned code; 'b' goes back to 'TaskMode'; 'e' to skip/exit entry altogether! 'p' for previous ; 'd' to use default stored value, if you entered a value, then 'd' will use that value when coming back from 'p'{Style.reset}",data=self)
                             if dtmp in [None,]:
                                 print(f"{Fore.orange_red_1}User Canceled!{Style.reset}")
                                 return
 
                         elif str(f) == 'CaseCount':
-                            def lcli(text,data):
+                            def lcli(text,data,defaultEnter):
                                 try:
-                                    if text.lower() in keys:
+                                    if not defaultEnter and text in ['',]:
+                                        return 'KEEP'
+                                    elif text.lower() in keys:
                                         return text.lower()
                                     return int(eval(text))
                                 except Exception as e:
                                     return int(1)
-                            dtmp=Prompt.__init2__(None,func=lcli,ptext=f"Entry[default:{data[f]}] {f}",helpText=f"{Fore.light_steel_blue}Enter a value for {f}, or leave blank to use scanned code; 'b' goes back to 'TaskMode'; 'e' to skip/exit entry altogether! 'p' for previous ; 'd' to use default stored value, if you entered a value, then 'd' will use that value when coming back from 'p'{Style.reset}",data=self)
+                            dtmp=Prompt.__init2__(None,func=lambda text,data,defaultEnter=defaultEnter:lcli(text,data,defaultEnter),ptext=f"Entry[default:{data[f]}] {f}",helpText=f"{Fore.light_steel_blue}Enter a value for {f}, or leave blank to use scanned code; 'b' goes back to 'TaskMode'; 'e' to skip/exit entry altogether! 'p' for previous ; 'd' to use default stored value, if you entered a value, then 'd' will use that value when coming back from 'p'{Style.reset}",data=self)
                             if dtmp in [None,]:
                                 print(f"{Fore.orange_red_1}User Canceled!{Style.reset}")
                                 return
                         else:
-                            def lclt(text,data):
-                                return text
-                            dtmp=Prompt.__init2__(None,func=lclt,ptext=f"Entry[default:{data[f]}] {f}",helpText=f"{Fore.light_steel_blue}Enter a value for {f}, or leave blank to use scanned code; 'b' goes back to 'TaskMode'; 'e' to skip/exit entry altogether! 'p' for previous ; 'd' to use default stored value, if you entered a value, then 'd' will use that value when coming back from 'p'{Style.reset}",data=self)
+                            def lclt(text,data,defaultEnter):
+                                if not defaultEnter and text in ['',]:
+                                    return 'KEEP'
+                                else:
+                                    return text
+
+                            dtmp=Prompt.__init2__(None,func=lambda text,data,defaultEnter=defaultEnter:lclt(text,data,defaultEnter),ptext=f"Entry[default:{data[f]}] {f}",helpText=f"{Fore.light_steel_blue}Enter a value for {f}, or leave blank to use scanned code; 'b' goes back to 'TaskMode'; 'e' to skip/exit entry altogether! 'p' for previous ; 'd' to use default stored value, if you entered a value, then 'd' will use that value when coming back from 'p'{Style.reset}",data=self)
                             if dtmp in [None,]:
                                 print(f"{Fore.orange_red_1}User Canceled!{Style.reset}")
                                 return
@@ -1416,6 +1816,8 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
                             else:
                                 raise Exception(f"{Fore.red}{Style.bold}Unsupported Field {Fore.light_red}'{f}'{Style.reset}")
                             #data[f]=code
+                        elif dtmp in ['KEEP']:
+                            break
                         elif dtmp in ['',None] and f in ['Price','CaseCount']:
                             continue
                         elif isinstance(dtmp,str):
@@ -1459,13 +1861,13 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
 
     entrySepStart=f'{Back.grey_30}{Fore.light_red}\\\\{Fore.light_green}{"*"*10}{Fore.light_yellow}|{Fore.light_steel_blue}#REPLACE#{Fore.light_magenta}|{Fore.orange_red_1}{"+"*10}{Fore.light_yellow}{Style.bold}({today()}){Fore.light_red}//{Style.reset}'
     entrySepEnd=f'{Back.grey_30}{Fore.light_red}\\\\{Fore.orange_red_1}{"+"*10}{Fore.light_yellow}|{Fore.light_steel_blue}#REPLACE#{Fore.light_magenta}|{Fore.light_green}{"*"*10}{Fore.light_yellow}{Style.bold}({today()}){Fore.light_red}//{Style.reset}'
-    def setFieldInList(self,fieldname,load=False,repack_exec=None,barcode=None):
-        default_quantity_action=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Set The Default Quantity to the quantity retrieved + this value?",helpText="a positive(+) or Negative(-) integer.",data="float")
+    def setFieldInList(self,fieldname,load=False,repack_exec=None,barcode=None,only_select_qty=False):
+        default_quantity_action=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Set The Default Quantity to the quantity retrieved + this value? 'd'=1",helpText="a positive(+) or Negative(-) integer.",data="float")
 
         if default_quantity_action in [None,]:
             return
         elif default_quantity_action in ['d',]:
-            default_quantity_action=0
+            default_quantity_action=1
 
         #extras that are not always necessary
         use_notes=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Ask for Entry Notes after Quantity Input? [y/N]",helpText="a boolean value from either of (0,f,n,no,false,False) or (1,t,true,True,yes,y) or formula that equates to a True or a False",data="boolean")
@@ -1961,15 +2363,24 @@ Location Fields:
 
                         result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code)),Entry.InList==True).first()
                         if result == None:
+
                             result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code))).first()
                             #print(isinstance(result,Entry))
-                            hafnhaf=f'''{Fore.grey_70}[{Fore.light_steel_blue}ListMode Entry Info{Fore.grey_70}]
-    {Style.reset}{Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
+                           
+
+                            hafnhaf=f'''{Fore.grey_70}[{Fore.light_steel_blue}ListMode Entry Info{Fore.grey_70}]{Style.reset}
+    {Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
     {Fore.green_yellow}LoadCount={Fore.dark_goldenrod}{loadcount}{Style.reset}|{Fore.light_red}PalletCount={Fore.orange_red_1}{palletcount}|{Fore.spring_green_3a}{fieldname}={Fore.light_sea_green}{ci}{Style.reset}
     {Fore.cyan}Name{Fore.light_steel_blue}={Name}{Style.reset}
     {Fore.dark_goldenrod}Barcode={Fore.light_green}{BCD}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
     {Style.bold}{Fore.orange_red_1}Code={Fore.spring_green_3a}{CD}{Style.reset}'''
                             if isinstance(result,Entry):
+                                if result.Price is None:
+                                    result.Price=0
+                                if result.Tax is None:
+                                    result.Tax=0
+                                if result.CRV is None:
+                                    result.CRV=0
                                 for k in ['PalletCount','ShelfCount','LoadCount','CaseCount','Facings']:
                                     if getattr(result,k) < 1 or getattr(result,k) == None:
                                         setattr(result,k,1)
@@ -1987,12 +2398,18 @@ Location Fields:
                                 ABCD=result.ALT_Barcode 
                                 ci=getattr(result,fieldname)
                                 code=result.Barcode
+                                total_price=0
+                                if result.Tax == 0:
+                                    total_price=round(result.Price+result.CRV,3)
+                                else:
+                                    total_price=round(round(result.Price+result.Tax,3)+round(result.CRV,3),3)
                                 hafnhaf=f'''{Fore.grey_70}[{Fore.light_steel_blue}ListMode Entry Info{Fore.grey_70}]
+    {Fore.orange_red_1}Cost({Fore.light_red}${Fore.light_green}{round(total_price,3)}({Fore.light_steel_blue}Price({round(result.Price,3)}),{Fore.light_sea_green}CRV({round(result.CRV,3)}),{Fore.spring_green_3a}Tax({round(result.Tax,3)}){Fore.light_green}){Style.reset}
     {Style.reset}{Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
     {Fore.green_yellow}LoadCount={Fore.dark_goldenrod}{loadcount}{Style.reset}|{Fore.light_red}PalletCount={Fore.orange_red_1}{palletcount}|{Fore.spring_green_3a}{fieldname}={Fore.light_sea_green}{ci}{Style.reset}
     {Fore.cyan}Name{Fore.light_steel_blue}={Name}{Style.reset}
-    {Fore.dark_goldenrod}Barcode={Fore.light_green}{BCD}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
-    {Style.bold}{Fore.orange_red_1}Code={Fore.spring_green_3a}{CD}{Style.reset}'''
+    {Fore.dark_goldenrod}Barcode={Fore.light_green}{result.rebar()}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
+    {Style.bold}{Fore.light_sea_green}Code={Fore.spring_green_3a}{Entry.cfmt(None,CD)}{Style.reset}'''
 
                             print(hafnhaf)
                             results=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code),Entry.Code==code,Entry.ALT_Barcode==code)).all()
@@ -2000,8 +2417,8 @@ Location Fields:
                             resultsName=session.query(Entry).filter(or_(Entry.Name.icontains(code))).all()
                             resultsName_ct=len(resultsName)
                             if results_ct > 0:
-                                warn1=f"{Fore.light_sea_green}Enter will default to Skipping anything from this option, and will probably present {Fore.light_yellow}another prompt{Style.reset}"
-                                select=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{Fore.white}{Back.dark_red_1}Do you wish to select an alternative to the first? {warn1}",helpText="yes or no, default=no",data="boolean")
+                                warn1=f"{Fore.light_sea_green}Enter/<CODE> will default to Skipping anything from this option, and will probably present {Fore.light_yellow}another prompt{Style.reset}"
+                                select=Prompt.__init2__(None,func=lambda text,data,self=self,code=code: FormBuilderMkText(text,data,alternative_false=code),ptext=f"{Fore.white}{Back.dark_red_1}Do you wish to select an alternative to the first? {warn1}",helpText="yes or no, default=no",data="boolean")
                                 if select in [False,'d']:
                                     pass
                                 elif select in [True,]:
@@ -2010,11 +2427,13 @@ Location Fields:
                                             for num,i in enumerate(results):
                                                 msg=f'''{Fore.light_green}{num}/{Fore.light_red}{results_ct} -> {i.seeShort()}{Style.reset}'''
                                                 print(msg)
-                                            which=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{Fore.white}{Back.dark_red_1}Which number?",helpText="number in yellow",data="integer")
+                                            which=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{Fore.white}{Back.dark_red_1}Which number? {Fore.orange_red_1}[-1 will break loop]{Fore.light_yellow}",helpText=f"number in yellow  {Fore.orange_red_1}[-1 will break loop]{Fore.light_yellow}",data="integer")
                                             if which in [None,]:
                                                 continue
                                             elif which in ['d',]:
                                                 result=results[0]
+                                            elif which in [-1]:
+                                                break
                                             else:
                                                 result=results[which]
                                             break
@@ -2024,10 +2443,10 @@ Location Fields:
                                     continue
 
                             if resultsName_ct > 0:
-                                warn=f', this will overwrite the other yes? {Fore.light_green}Enter Will Use the First Entry,{Fore.light_yellow}or the Entry Provided by the previous {Fore.dark_goldenrod}YES{Style.reset}'
+                                warn=f', this will overwrite the other yes? {Fore.light_green}Enter/<CODE> Will Use the First Entry,{Fore.light_yellow}or the Entry Provided by the previous {Fore.dark_goldenrod}YES{Style.reset}'
                                 if results_ct < 1:
                                     warn=''
-                                select=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{Fore.white}{Back.dark_red_1}Do you wish to select an alternative to the first {warn}",helpText="yes or no, default=no",data="boolean")
+                                select=Prompt.__init2__(None,func=lambda text,data,self=self,code=code: FormBuilderMkText(text,data,alternative_false=code),ptext=f"{Fore.white}{Back.dark_red_1}Do you wish to select an alternative to the first {warn}",helpText="yes or no, default=no",data="boolean")
                                 if select in [False,'d']:
                                     pass
                                 elif select in [True,]:
@@ -2036,11 +2455,13 @@ Location Fields:
                                             for num,i in enumerate(resultsName):
                                                 msg=f'''{Fore.light_green}{num}/{Fore.light_red}{resultsName_ct} -> {i.seeShort()}{Style.reset}'''
                                                 print(msg)
-                                            which=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{Fore.white}{Back.dark_red_1}Which number?",helpText="number in yellow",data="integer")
+                                            which=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{Fore.white}{Back.dark_red_1}Which number? {Fore.orange_red_1}[-1 will break loop]{Fore.light_yellow}",helpText=f"number in yellow {Fore.orange_red_1}-1 will break loop{Fore.light_yellow}",data="integer")
                                             if which in [None,]:
                                                 continue
                                             elif which in ['d',]:
                                                 result=resultsName[0]
+                                            elif which in [-1,]:
+                                                break
                                             else:
                                                 result=resultsName[which]
                                             break
@@ -2050,6 +2471,12 @@ Location Fields:
                                     continue
                         
                         if isinstance(result,Entry):
+                            if result.Price is None:
+                                result.Price=0
+                            if result.Tax is None:
+                                result.Tax=0
+                            if result.CRV is None:
+                                result.CRV=0
                             for k in ['PalletCount','ShelfCount','LoadCount','CaseCount','Facings']:
                                 if getattr(result,k) < 1 or getattr(result,k) == None:
                                     setattr(result,k,1)
@@ -2068,13 +2495,19 @@ Location Fields:
                             ci=getattr(result,fieldname)
                             code=result.Barcode
                             mkTextStore=deepcopy(result)
+                            total_price=0
+                            if result.Tax == 0:
+                                total_price=round(result.Price+result.CRV,3)
+                            else:
+                                total_price=round(round(result.Price+result.Tax,3)+round(result.CRV,3),3)
 
-                            hafnhaf=f'''{Fore.grey_70}[{Fore.light_steel_blue}ListMode Entry Info{Fore.grey_70}]
-{Style.reset}{Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
+                            hafnhaf=f'''{Fore.grey_70}[{Fore.light_steel_blue}ListMode Entry Info{Fore.grey_70}]{Style.reset}
+{Fore.orange_red_1}Cost({Fore.light_red}${Fore.light_green}{round(total_price,3)}({Fore.light_steel_blue}Price({round(result.Price,3)}),{Fore.light_sea_green}CRV({round(result.CRV,3)}),{Fore.spring_green_3a}Tax({round(result.Tax,3)}){Fore.light_green}){Style.reset}                            
+{Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
 {Fore.green_yellow}LoadCount={Fore.dark_goldenrod}{loadcount}{Style.reset}|{Fore.light_red}PalletCount={Fore.orange_red_1}{palletcount}|{Fore.spring_green_3a}{fieldname}={Fore.light_sea_green}{ci}{Style.reset}
 {Fore.cyan}Name{Fore.light_steel_blue}={Name}{Style.reset}
-{Fore.dark_goldenrod}Barcode={Fore.light_green}{BCD}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
-{Style.bold}{Fore.orange_red_1}Code={Fore.spring_green_3a}{CD}{Style.reset}'''
+{Fore.dark_goldenrod}Barcode={Fore.light_green}{result.rebar()}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
+{Style.bold}{Fore.light_sea_green}Code={Fore.spring_green_3a}{Entry.cfmt(None,CD)}{Style.reset}'''
 
                         ptext=f'''{hafnhaf}
 {Fore.light_red}Enter {Style.bold}{Style.underline}{Fore.orange_red_1}Quantity/Formula{Style.reset} amount|+amount|-amount|a,+a,-a(advanced)|r,+r,-r(ReParseFormula) (Enter==1)|{Fore.light_green}ipcv={Fore.dark_goldenrod}PalletCount-value[{Fore.light_steel_blue}:-){Fore.dark_goldenrod}]|{Fore.light_green}iscv={Fore.dark_goldenrod}ShelfCount-value[{Fore.light_steel_blue}:-(){Fore.dark_goldenrod}]|{Fore.light_green}ilcv={Fore.dark_goldenrod}LoadCount-value[{Fore.light_steel_blue};-){Fore.dark_goldenrod}]|{Fore.light_green}iccv={Fore.dark_goldenrod}CaseCount-value[{Fore.light_steel_blue}:-P{Fore.dark_goldenrod}]|{Fore.light_green}ipcvc{Fore.dark_goldenrod}=(PalletCount-value)/CaseCount[{Fore.light_steel_blue}:-D{Fore.dark_goldenrod}]|{Fore.light_green}iscvc{Fore.dark_goldenrod}=(ShelfCount-value)/CaseCount[{Fore.light_steel_blue}:-|{Fore.dark_goldenrod}]|{Fore.light_green}ilcvc{Fore.dark_goldenrod}=(LoadCount-value)/CaseCount[{Fore.light_steel_blue}:-*{Fore.dark_goldenrod}]|{Fore.light_green}iccvc{Fore.dark_goldenrod}=(CaseCount-value)/CaseCount[{Fore.light_steel_blue}:O{Fore.dark_goldenrod}]{Style.reset}'''
@@ -2124,11 +2557,15 @@ Location Fields:
                                     session.refresh(result)
                                     if callable(repack_exec):
                                         repack_exec(result)
-                                    print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
+                                    print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
                                     print(f"{m}\n{hr}")
                                     print(self.entrySepEnd.replace('#REPLACE#',f'{code}@{fieldname}'))
                                 else:
-                                    replacement=self.SearchAuto()
+                                    if only_select_qty:
+                                        replacement=self.SearchAuto()
+                                    else:
+                                        replacement=None
+
                                     if self.next_barcode():
                                             continue
                                     if isinstance(replacement,int):
@@ -2141,31 +2578,41 @@ Location Fields:
                                             session.refresh(result)
                                             if callable(repack_exec):
                                                 repack_exec(result)
-                                            print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
+                                            print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
                                             print(f"{m}\n{hr}")
                                             print(self.entrySepEnd.replace('#REPLACE#',f'{code}@{fieldname}'))
                                         else:
                                             raise Exception(f"result is {result}")
                                     else:
-                                        data=self.mkNew(code=code)
-                                        if self.next_barcode():
-                                            continue
-                                        if data in [None,]:
-                                            return
-                                        
-                                        name=data['Name']
-                                        icode=data['Code']
-                                        iprice=data['Price']
-                                        icc=data['CaseCount']
-                                        n=Entry(Barcode=code,Code=icode,Price=iprice,Note=note+"\nNew Item",Name=name,CaseCount=icc,InList=True)
+                                        if only_select_qty:
+                                            data=self.mkNew(code=code)
+                                            if self.next_barcode():
+                                                continue
+                                            if data in [None,]:
+                                                return
+                                            
+                                            name=data['Name']
+                                            icode=data['Code']
+                                            iprice=data['Price']
+                                            icc=data['CaseCount']
+                                        else:
+                                            if self.next_barcode():
+                                                continue
+                                            name=code
+                                            icode="UNASSIGNED_TO_NEW_ITEM"
+                                            iprice=0
+                                            icc=1
+                                        tax,crv=self.calculate_tax_crv(iprice)
+                                        n=Entry(Barcode=code,Code=icode,Price=iprice,Note=note+"\nNew Item",Tax=tax,CRV=crv,Name=name,CaseCount=icc,InList=True)
                                         setattr(n,fieldname,value)
                                         session.add(n)
                                         session.commit()
                                         session.flush()
                                         session.refresh(n)
-                                        n.copySrc()
+                                        if only_select_qty:
+                                            n.copySrc()
                                         result=n
-                                        print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
+                                        print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
 
                                         print(f"{m}\n{hr}")
                                         print(self.entrySepEnd.replace('#REPLACE#',f'{code}@{fieldname}'))
@@ -2196,15 +2643,18 @@ Location Fields:
                                     session.refresh(result)
                                     if callable(repack_exec):
                                         repack_exec(result)
-                                    print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
+                                    print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
 
                                     print(f"{m}\n{hr}")
                                     print(self.entrySepEnd.replace('#REPLACE#',f'{code}@{fieldname}'))
 
                                 else:
-                                    replacement=self.SearchAuto()
-                                    if self.next_barcode():
-                                            continue
+                                    if only_select_qty:
+                                        replacement=self.SearchAuto()
+                                        if self.next_barcode():
+                                                continue
+                                    else:
+                                        replacement=None
                                     if isinstance(replacement,int):
                                         result=session.query(Entry).filter(Entry.EntryId==replacement).first()
                                         if result:
@@ -2215,36 +2665,47 @@ Location Fields:
                                             session.refresh(result)
                                             if callable(repack_exec):
                                                 repack_exec(n)
-                                            print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
+                                            print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
                                             print(f"{m}\n{hr}")
                                             print(self.entrySepEnd.replace('#REPLACE#',f'{code}@{fieldname}'))
                                         else:
                                             raise Exception(f"result is {result}")
                                     else:
-                                        data=self.mkNew(code=code)
-                                        #print(data)
-                                        if self.next_barcode():
-                                            continue
-                                        if data in [None,]:
-                                            return
-                                        name=data['Name']
-                                        icode=data['Code']
-                                        iprice=data['Price']
-                                        icc=data['CaseCount']
-                                        n=Entry(Barcode=code,Code=icode,Note=note+"\nNew Item",Name=name,Price=iprice,CaseCount=icc,InList=True)
+                                        if only_select_qty:
+                                            data=self.mkNew(code=code)
+                                            #print(data)
+                                            if self.next_barcode():
+                                                continue
+                                            if data in [None,]:
+                                                return
+                                            name=data['Name']
+                                            icode=data['Code']
+                                            iprice=data['Price']
+                                            icc=data['CaseCount']
+                                        else:
+                                            if self.next_barcode():
+                                                    continue
+                                            name=code
+                                            icode="UNASSIGNED_TO_NEW_ITEM"
+                                            iprice=0
+                                            icc=1
+                                        tax,crv=self.calculate_tax_crv(iprice)
+                                        n=Entry(Barcode=code,Code=icode,Price=iprice,Note=note+"\nNew Item",Tax=tax,CRV=crv,Name=name,CaseCount=icc,InList=True)
+                                        #n=Entry(Barcode=code,Code=icode,Note=note+"\nNew Item",Name=name,Price=iprice,CaseCount=icc,InList=True)
                                         setattr(n,fieldname,value)
                                         session.add(n)
                                         session.commit()
                                         session.flush()
                                         session.refresh(n)
-                                        n.copySrc()
+                                        if only_select_qty:
+                                            n.copySrc()
                                         session.commit()
                                         session.flush()
                                         session.refresh(n)
                                         result=n
                                         if callable(repack_exec):
                                             repack_exec(n)
-                                        print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
+                                        print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
 
                                         print(f"{m}\n{hr}")
                                         print(self.entrySepEnd.replace('#REPLACE#',f'{code}@{fieldname}'))
@@ -2278,6 +2739,42 @@ if CaseCount is less than 1, or not set, assume casecount == 1
 result in setting the value to 'Default Qty'+'Location Field'{Style.reset}
 {Fore.light_yellow}{'*'*os.get_terminal_size().columns}{Style.reset}
     """
+    def calculate_tax_crv(self,price):
+        tax,crv=0,0
+        useMe=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Do you want to calculate Tax w/ or w/o CRV?",helpText="yes or no, default == No",data="boolean")
+        if useMe in [None,'d',False]:
+
+            return tax,crv
+        default_taxrate=float(detectGetOrSet("Tax Rate",0.0925,setValue=False,literal=True))
+        default_price=float(detectGetOrSet("pricing default price",1,setValue=False,literal=True))
+        default_bottle_qty=float(detectGetOrSet("pricing default bottle_qty",1,setValue=False,literal=True))
+        default_bottle_size=float(detectGetOrSet("pricing default bottle_size",16.9,setValue=False,literal=True))
+        default_purchased_qty=float(detectGetOrSet("pricing default purchased_qty",1,setValue=False,literal=True))
+
+        while True:
+            try:
+                crv=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{Fore.light_steel_blue}CRV({Fore.medium_violet_red}0.5<24FlOz*{Fore.cyan}QTY|{Fore.magenta}0.10>=24FlOz*{Fore.cyan}QTY: {Style.reset}",helpText="what is the crv, default is 0.",data="float")
+                if crv is None:
+                    return tax,crv
+                elif crv in ['d',]:
+                    crv=0
+                tax_rate=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax({default_taxrate}): ",helpText=f"What is the tax rate, default is {default_taxrate}.",data="float")
+                if tax_rate is None:
+                    return tax,crv
+                elif tax_rate in ['d',]:
+                    tax_rate=default_taxrate
+
+                price=round(float(price),4)
+                tax_rate=round(float(tax_rate),4)
+                crv=round(float(crv),4)
+                
+                tax=((round(price,4)+crv)*round(tax_rate,4))
+                print(f"{Fore.dark_goldenrod}Total(${price+tax}){Fore.light_green} = ${tax}/{Fore.green_yellow}{tax_rate}% on {Fore.turquoise_4}Total({Fore.orange_red_1}CRV({crv})+{Fore.light_steel_blue}Price({price}){Fore.turquoise_4}){Style.reset}")
+                return tax,crv
+            except Exception as e:
+                print(e)
+            return tax,crv
+
     def setBarcodes(self,fieldname):
          while True:
             try:
@@ -2403,7 +2900,7 @@ where:
                                 print(f"""
     Name: {query.Name}
     Barcode: {query.Barcode}
-    Code: {query.Code}
+    Code: {query.cfmt(query.Code)}
     EntryId: {query.EntryId}
     CaseId 6W: {query.CaseID_6W}
     CaseId LD: {query.CaseID_LD}
@@ -2516,7 +3013,7 @@ where:
                                                     colorEntry=Fore.grey_70+Style.underline
                                                 addTag(session,r,tag)
                                                 session.refresh(r)
-                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                 if num == 0:
                                                     color1=Fore.light_green
                                                 elif num > 0 and num%2==0:
@@ -2543,7 +3040,7 @@ where:
                                                 colorEntry=Fore.grey_70+Style.underline
                                             addTag(session,r,tag)
                                             session.refresh(r)
-                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                             if num == 0:
                                                 color1=Fore.light_green
                                             elif num > 0 and num%2==0:
@@ -2568,7 +3065,7 @@ where:
                                                 colorEntry=Fore.grey_70+Style.underline
                                             addTag(session,r,tag)
                                             session.refresh(r)
-                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                             if num == 0:
                                                 color1=Fore.light_green
                                             elif num > 0 and num%2==0:
@@ -2591,7 +3088,7 @@ where:
                                             else:
                                                 colorEntry=Fore.grey_70+Style.underline
                                             addTag(session,r,tag)
-                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                             if num == 0:
                                                 color1=Fore.light_green
                                             elif num > 0 and num%2==0:
@@ -2662,7 +3159,7 @@ where:
                                                     colorEntry=Fore.grey_70+Style.underline
                                                 rmTag(session,r,tag)
                                                 session.refresh(r)
-                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                 if num == 0:
                                                     color1=Fore.light_green
                                                 elif num > 0 and num%2==0:
@@ -2689,7 +3186,7 @@ where:
                                                 colorEntry=Fore.grey_70+Style.underline
                                             rmTag(session,r,tag)
                                             session.refresh(r)
-                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                             if num == 0:
                                                 color1=Fore.light_green
                                             elif num > 0 and num%2==0:
@@ -2714,7 +3211,7 @@ where:
                                                 colorEntry=Fore.grey_70+Style.underline
                                             rmTag(session,r,tag)
                                             session.refresh(r)
-                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                             if num == 0:
                                                 color1=Fore.light_green
                                             elif num > 0 and num%2==0:
@@ -2737,7 +3234,7 @@ where:
                                             else:
                                                 colorEntry=Fore.grey_70+Style.underline
                                             rmTag(session,r,tag)
-                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                            compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                             if num == 0:
                                                 color1=Fore.light_green
                                             elif num > 0 and num%2==0:
@@ -2845,7 +3342,7 @@ where:
                                                         colorEntry=Fore.grey_70+Style.underline
                                                     addTag(session,r,tag)
                                                     session.refresh(r)
-                                                    compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                    compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                     if num == 0:
                                                         color1=Fore.light_green
                                                     elif num > 0 and num%2==0:
@@ -2873,7 +3370,7 @@ where:
                                                     colorEntry=Fore.grey_70+Style.underline
                                                 addTag(session,r,tag)
                                                 session.refresh(r)
-                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                 if num == 0:
                                                     color1=Fore.light_green
                                                 elif num > 0 and num%2==0:
@@ -2899,7 +3396,7 @@ where:
                                                     colorEntry=Fore.grey_70+Style.underline
                                                 addTag(session,r,tag)
                                                 session.refresh(r)
-                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                 if num == 0:
                                                     color1=Fore.light_green
                                                 elif num > 0 and num%2==0:
@@ -2923,7 +3420,7 @@ where:
                                                 else:
                                                     colorEntry=Fore.grey_70+Style.underline
                                                 addTag(session,r,tag)
-                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                 if num == 0:
                                                     color1=Fore.light_green
                                                 elif num > 0 and num%2==0:
@@ -2998,7 +3495,7 @@ where:
                                                         colorEntry=Fore.grey_70+Style.underline
                                                     remTag(session,r,tag)
                                                     session.refresh(r)
-                                                    compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                    compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                     if num == 0:
                                                         color1=Fore.light_green
                                                     elif num > 0 and num%2==0:
@@ -3026,7 +3523,7 @@ where:
                                                     colorEntry=Fore.grey_70+Style.underline
                                                 remTag(session,r,tag)
                                                 session.refresh(r)
-                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                 if num == 0:
                                                     color1=Fore.light_green
                                                 elif num > 0 and num%2==0:
@@ -3054,7 +3551,7 @@ where:
                                                     colorEntry=Fore.grey_70+Style.underline
                                                 remTag(session,r,tag)
                                                 session.refresh(r)
-                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                 if num == 0:
                                                     color1=Fore.light_green
                                                 elif num > 0 and num%2==0:
@@ -3079,7 +3576,7 @@ where:
                                                     colorEntry=Fore.grey_70+Style.underline
                                                 remTag(session,r,tag)
                                                 session.refresh(r)
-                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                                                compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                                                 if num == 0:
                                                     color1=Fore.light_green
                                                 elif num > 0 and num%2==0:
@@ -3122,7 +3619,7 @@ where:
                             colorEntry=Style.bold
                         else:
                             colorEntry=Fore.grey_70+Style.underline
-                        compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                        compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                         if num == 0:
                             color1=Fore.light_green
                         elif num > 0 and num%2==0:
@@ -3165,7 +3662,7 @@ where:
                             colorEntry=Style.bold
                         else:
                             colorEntry=Fore.grey_70+Style.underline
-                        compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.Code}|{r.EntryId}|{r.Tags}{Style.reset}'
+                        compound=f'{colorEntry}{r.Name}|{r.Barcode}|{r.cfmt(r.Code)}|{r.EntryId}|{r.Tags}{Style.reset}'
                         if num == 0:
                             color1=Fore.light_green
                         elif num > 0 and num%2==0:
@@ -3330,24 +3827,28 @@ where:
         Expiration()
 
     def findAndUse(self):
+        options=copy(self.options)
+        u2=Unified2(count=len(options))
+        for num,i in enumerate(u2.options):
+            options[f"{i} unified2"]=u2.options[i]
         cmd=Prompt.__init2__(None,func=FormBuilderMkText,ptext="what cmd are your looking for?",helpText="type the cmd",data="string")
         if cmd in ['d',None]:
             return
         else:
             selector=[]
-            for k in self.options:
+            for k in options:
                 stage=0
-                cmds=self.options[k]['cmds']
+                cmds=options[k]['cmds']
                 if cmd.lower() not in cmds:
                     stage-=1
                 cmdsLower=[i.lower() for i in cmds]
                 if cmd.lower() not in cmdsLower:
                     stage-=1
-                desc=self.options[k]['desc'].lower()
+                desc=options[k]['desc'].lower()
                 if not cmd.lower() in desc:
                     stage-=1
                 if stage > -3:
-                    EX=self.options[k]['exec']
+                    EX=options[k]['exec']
                     line=[EX,desc,cmds]
                     selector.append(line)
             ct=len(selector)
@@ -3369,18 +3870,24 @@ where:
 
     def findAndUse2(self):
         with Session(ENGINE) as session:
-            cmd=Prompt.__init2__(None,func=FormBuilderMkText,ptext="what cmd are your looking for?",helpText="type the cmd",data="string")
+            cmd=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{Fore.light_red}[FindAndUse2]{Fore.light_yellow}what cmd are your looking for?",helpText="type the cmd",data="string")
             if cmd in ['d',None]:
                 return
             else:
+                options=copy(self.options)
+                
+                u2=Unified2(count=len(options))
+                for num,i in enumerate(u2.options):
+                    options[f"{i} unified2"]=u2.options[i]
+
                 session.query(FindCmd).delete()
                 session.commit()
-                for num,k in enumerate(self.options):
+                for num,k in enumerate(options):
                     stage=0
-                    cmds=self.options[k]['cmds']
+                    cmds=options[k]['cmds']
                     l=[]
                     l.extend(cmds)
-                    l.append(self.options[k]['desc'])
+                    l.append(options[k]['desc'])
                     cmdStr=' '.join(l)
                     cmd_string=FindCmd(CmdString=cmdStr,CmdKey=k)
                     session.add(cmd_string)
@@ -3397,13 +3904,13 @@ where:
                     print(f"No Cmd was found by {Fore.light_red}{cmd}{Style.reset}")
                     return
                 for num,x in enumerate(results):
-                    msg=f"{Fore.light_yellow}{num}/{Fore.light_steel_blue}{num+1} of {Fore.light_red}{ct} -> {Fore.turquoise_4}{f'{Fore.light_yellow},{Style.reset}{Fore.turquoise_4}'.join(self.options[x.CmdKey]['cmds'])} - {Fore.green_yellow}{self.options[x.CmdKey]['desc']}"
+                    msg=f"{Fore.light_yellow}{num}/{Fore.light_steel_blue}{num+1} of {Fore.light_red}{ct} -> {Fore.turquoise_4}{f'{Fore.light_yellow},{Style.reset}{Fore.turquoise_4}'.join(options[x.CmdKey]['cmds'])} - {Fore.green_yellow}{options[x.CmdKey]['desc']}"
                     print(msg)
                 select=Prompt.__init2__(None,func=FormBuilderMkText,ptext="which index?",helpText="the number farthest to the left before the /",data="integer")
                 if select in [None,'d']:
                     return
                 try:
-                    ee=self.options[results[select].CmdKey]['exec']
+                    ee=options[results[select].CmdKey]['exec']
                     if callable(ee):
                         ee()
                 except Exception as e:
@@ -3478,6 +3985,35 @@ where:
         entry=Entry(Barcode='7-13-Digit-Code',Code='8-Digit-Code or 7-13-Digit-Code',Name='Blank Entry')
         print(entry)
 
+    def unique_reciept_id(self):
+        with Session(ENGINE) as session:
+            x=UniqueRecieptIdInfo()
+            session.add(x)
+            session.commit()
+            session.refresh(x)
+            excludes=["urid","DTOE"]
+            data={str(i.name):{"type":str(i.type),"default":getattr(x,i.name)} for i in x.__table__.columns if i.name not in excludes}
+            fd=FormBuilder(data=data)
+            if fd is None:
+                session.delete(x)
+                session.commit()
+                return ''
+            final_text=[]
+            for k in fd:
+                setattr(x,k,fd[k])
+                session.commit()
+                if fd[k] == data[k]['default'] and not isinstance(fd[k],datetime):
+                    continue 
+                elif k == 'Comment' and fd[k] in [None,[],'',data[k]['default']]:
+                    continue
+                if isinstance(fd[k],datetime):
+                    fd[k].strftime("On %m/%d/%Y @ %H:%M:%S")
+                msg=f"{k}={fd[k]}"
+
+                final_text.append(msg)
+            final_text=x.asID()
+            return final_text
+
     def __init__(self,engine,parent,init_only=False,root_modes={}):
         self.MasterLookup=MasterLookup
         self.detectGetOrSet=detectGetOrSet
@@ -3497,25 +4033,7 @@ where:
         self.engine=engine
         self.parent=parent
         self.special=['Tags','ALT_Barcode','DUP_Barcode','CaseID_6W','CaseID_BR','CaseID_LD','Facings']
-        self.locationFields=[
-        'Shelf',
-        'BackRoom',
-        'Display_1',
-        'Display_2',
-        'Display_3',
-        'Display_4',
-        'Display_5',
-        'Display_6',
-        'SBX_WTR_DSPLY',
-        'SBX_CHP_DSPLY',
-        'SBX_WTR_KLR',
-        'FLRL_CHP_DSPLY',
-        'FLRL_WTR_DSPLY',
-        'WD_DSPLY',
-        'CHKSTND_SPLY',
-        'Distress',
-        'ListQty'
-        ]
+        self.locationFields=LOCATION_FIELDS
         self.valid_fields=['Shelf',
         'BackRoom',
         'Display_1',
@@ -3611,7 +4129,26 @@ where:
             "set FLRL_WTR_DSPLY":None,
             "set WD_DSPLY":None,
             "set CHKSTND_SPLY":None,
-            "set Distress":None
+            "set Distress":None,
+
+            "set Shelf True":None,
+            "set BackRoom True":None,
+            "set Display_1 True":None,
+            "set Display_2 True":None,
+            "set Display_3 True":None,
+            "set Display_4 True":None,
+            "set Display_5 True":None,
+            "set Display_6 True":None,
+            "set ListQty True":None,
+            "set ListQty True":None,
+            "set SBX_WTR_DSPLY True":None,
+            "set SBX_CHP_DSPLY True":None,
+            "set SBX_WTR_KLR True":None,
+            "set FLRL_CHP_DSPLY True":None,
+            "set FLRL_WTR_DSPLY True":None,
+            "set WD_DSPLY True":None,
+            "set CHKSTND_SPLY True":None,
+            "set Distress True":None
         }
         def print_location_fields(location_fields):
             for num,k in enumerate(location_fields):
@@ -3641,15 +4178,24 @@ where:
 
         #setoptions
         #self.setFieldInList("Shelf")
+        only_select_qty=[True,False]
         for entry in self.valid_fields:
-            self.options[entry+"_set"]={
-                    'cmds':["#"+str(count),f"set {entry}"],
-                    'desc':f'set needed @ {entry}',
-                    'exec':lambda self=self,entry=entry: self.setFieldInList(f"{entry}"),
-                    }
-            if f"set {entry}" in list(location_fields.keys()):
-                location_fields[f"set {entry}"]=self.options[entry+"_set"]['cmds']
-            count+=1
+            for state in only_select_qty:
+                if state == False:
+                    self.options[entry+f"_set_{state}"]={
+                            'cmds':["#"+str(count),f"set {entry} {state}"],
+                            'desc':f'set needed @ {entry} where automatically creating a new item by asking user for info is "{state}"',
+                            'exec':lambda self=self,entry=entry,state=state: self.setFieldInList(f"{entry}",only_select_qty=state),
+                            }
+                else:
+                    self.options[entry+f"_set_{state}"]={
+                            'cmds':["#"+str(count),f"set {entry} {state}",f"set {entry}"],
+                            'desc':f'set needed @ {entry} where automatically creating a new item by asking user for info is "{state}"',
+                            'exec':lambda self=self,entry=entry,state=state: self.setFieldInList(f"{entry}",only_select_qty=state),
+                            }
+                if f"set {entry}" in list(location_fields.keys()) or f"set {entry} {state}" in list(location_fields.keys()):
+                    location_fields[f"set {entry}"]=self.options[entry+f"_set_{state}"]['cmds']
+                count+=1
         self.options["lu"]={
                     'cmds':["#"+str(count),f"lookup","lu","check","ck"],
                     'desc':f'get total for valid fields',
@@ -3662,13 +4208,22 @@ where:
                     'exec':lambda self=self,entry=entry: self.setName(),
                     }
         count+=1
-        self.options["setListQty"]={
-                    'cmds':["#"+str(count),f"setListQty","slq"],
-                    'desc':f'set ListQty for Values not wanted to be included in totals.',
-                    'exec':lambda self=self: self.setFieldInList("ListQty",load=True),
+        self.options["setListQty True"]={
+                    'cmds':["#"+str(count),f"setListQty","setListQty True","set ListQty True","slqt","slq True","slq"],
+                    'desc':f'set ListQty for Values not wanted to be included in totals where automatically creating a new item by asking user for info is "True"',
+                    'exec':lambda self=self: self.setFieldInList("ListQty",load=True,only_select_qty=True),
                     }
-        location_fields["set ListQty"]=self.options["setListQty"]['cmds']
+        location_fields["set ListQty True"]=self.options["setListQty True"]['cmds']
         count+=1
+
+        self.options["setListQty False"]={
+                    'cmds':["#"+str(count),f"setListQty","set ListQty False","slqf","slq False"],
+                    'desc':f'set ListQty for Values not wanted to be included in totals where automatically creating a new item by asking user for info is "False"',
+                    'exec':lambda self=self: self.setFieldInList("ListQty",load=True,only_select_qty=False),
+                    }
+        location_fields["set ListQty False"]=self.options["setListQty False"]['cmds']
+        count+=1
+
         self.options["lsListQty"]={
                     'cmds':["#"+str(count),f"lsListQty","ls-lq"],
                     'desc':f'show ListQty for Values not wanted to be included in totals.',
@@ -3929,6 +4484,18 @@ where:
                     'exec':InListRestoreUI,
                     }
         count+=1
+        self.options["RestoreFromGDrive"]={
+                    'cmds':["#"+str(count),"rfgd","restore from google-drive",],
+                    'desc':f"download a back from google-drive and restore from it",
+                    'exec':RestoreFromGDrive,
+                    }
+        count+=1
+        self.options["check backup storage"]={
+                    'cmds':["#"+str(count),"check backup storage","chk bkp strg",],
+                    'desc':f"display amount of storage backup dir is using and request if user wishes to cleanup",
+                    'exec':check_back_ups,
+                    }
+        count+=1
         #self.product_history=
         
         '''
@@ -3971,9 +4538,19 @@ where:
                         print(f"{color}{self.options[option]['cmds']}{Style.reset} - {color1}{self.options[option]['desc']}{Style.reset}")
 
                 command=Prompt.__init2__(None,func=mkT,ptext=f'{Fore.grey_70}[{Fore.light_steel_blue}TaskMode{Fore.grey_70}] {Fore.light_yellow}Do What[help/??/?]',helpText=HELP(),data=self)
-                print(command)
+                
+                if command is not None:
+                    print(command)
                 if command in [None,]:
-                    break
+                    return
+                elif isinstance(command,float):
+                    continue
+                elif isinstance(command,Decimal):
+                    continue
+                elif not isinstance(command,str):
+                    continue
+
+                
                 elif command == '':
                     print(HELP())
                     help2(self)
@@ -3985,10 +4562,18 @@ where:
                     help2(self)
                 else:
                     for option in self.options:
-                        if self.options[option]['exec'] != None and (command.lower() in self.options[option]['cmds'] or command in self.options[option]['cmds']):
-                            self.options[option]['exec']()
-                        elif self.options[option]['exec'] == None and (command.lower() in self.options[option]['cmds'] or command in self.options[option]['cmds']):
-                            return
+                        try:
+                            if self.options[option]['exec'] != None and (command.lower() in self.options[option]['cmds'] or command in self.options[option]['cmds']):
+                                if callable(self.options[option]['exec']):
+                                    self.options[option]['exec']()
+                                    break
+                            elif self.options[option]['exec'] == None and (command.lower() in self.options[option]['cmds'] or command in self.options[option]['cmds']):
+                                return
+                        except Exception as e:
+                            print(e)
+                            print(type(command),f"{command}")
+                            break
+
     def promptForOp(self,n,total,entryIdList,barcode):
         with Session(ENGINE) as session:
             try:
@@ -4217,7 +4802,7 @@ Do What? [rms,rma,edit/e,<ENTER>/next,prev]"""
                             session.commit()
                             session.flush()
                             session.refresh(result)
-                            print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
+                            print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
                             print(f"{m}\n{hr}")
                             print(self.entrySepEnd.replace('#REPLACE#',f'{code}@{fieldname}'))
                             '''
@@ -4277,7 +4862,7 @@ Do What? [rms,rma,edit/e,<ENTER>/next,prev]"""
                         session.refresh(n)
                         result=n
                        
-                        print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
+                        print(f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}")
 
                         print(f"{m}\n{hr}")
                         print(self.entrySepEnd.replace('#REPLACE#',f'{code}@{fieldname}'))
@@ -4347,7 +4932,7 @@ Do What? [rms,rma,edit/e,<ENTER>/next,prev]"""
                 session.commit()
                 session.refresh(selected)
                 result=selected
-                msg=f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.Barcode}|{result.ALT_Barcode}{Style.reset}|{color3}{result.Code}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}"
+                msg=f"{Fore.light_red}0{Style.reset} -> {color1}{result.Name}{Style.reset}|{color2}{result.rebar()}|{result.ALT_Barcode}{Style.reset}|{color3}{result.cfmt(result.Code)}{Style.reset}|{color4}{getattr(result,fieldname)}{Style.reset}|{color4}{getattr(result,'EntryId')}{Style.reset}"
                 print(msg)
 
     def bcd_img(self):

@@ -1,0 +1,22 @@
+[project]
+name = "radboy"
+version = "0.0.323"
+authors = [
+  { name="Carl Hirner III", email="k.j.hirner.wisdom@gmail.com" },
+]
+description = "A small example package"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://google.com"
+Issues = "https://google.com"
+[build-system]
+requires = ["setuptools >= 77.0.3",'gdown','biip','sympy','scipy','plotext','haversine','holidays','odfpy','qrcode[pil]','chardet','nanoid','random-password-generator','cython','pint','pyupc-ean','openpyxl','plyer','colored','numpy','pandas','Pillow','python-barcode','qrcode','requests','sqlalchemy','argparse','geocoder','beautifulsoup4','pycryptodome','forecast_weather','boozelib']
+build-backend = "setuptools.build_meta"

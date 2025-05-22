@@ -607,7 +607,7 @@ Location Fields:
                 df=df[['Barcode','Code']]
                 df.to_csv(sfile,index=False)
             return Prompt(func=save_csv,ptext="Save Where",helpText=self.help(print_no=True),data=self).state
-        elif args[0].lower() in ["factory_reset"]:
+        elif args[0].lower() in ["factory_reset",]:
             #just delete db file and re-generate much simpler
             ResetTools(engine=self.engine,parent=self)
             #reInit()
@@ -693,6 +693,13 @@ Location Fields:
                     print(os.system("clear "))
                     return True
         elif args[0].lower() in ['backup',]:
+                    backup_dir=detectGetOrSet("Backup Directory",f"RadBoy Backups/{VERSION}",setValue=False,literal=True)
+                    if backup_dir == None:
+                        backup_dir=Path('.')
+                    else:
+                        backup_dir=Path(backup_dir)
+                        if not backup_dir.exists():
+                            backup_dir.mkdir(parents=True)
                     startTime=datetime.now()
                     print(f"{Fore.orange_red_1}Backing {Fore.light_yellow}Files {Fore.light_green}up!{Style.reset}")
                     backup=''
@@ -715,11 +722,11 @@ Location Fields:
                             elif isinstance(date_file,bool):
                                 if date_file:
                                     d=datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
-                                    backup=Path(f"./codesAndBarcodes-{d}.tgz")
+                                    backup=backup_dir/Path(f"codesAndBarcodes-{d}.tgz")
                                 else:
-                                    backup=Path(f"./codesAndBarcodes.tgz")
+                                    backup=backup_dir/Path(f"codesAndBarcodes.tgz")
                             else:
-                                backup=Path(f"./codesAndBarcodes-{d}.tgz")
+                                backup=backup_dir/Path(f"codesAndBarcodes-{d}.tgz")
                             break
                         except Exception as e:
                             print(e)
@@ -814,6 +821,26 @@ rmc.quikRn()
                             if export_folder.exists() and export_folder.is_dir():
                                 print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{export_folder}{Style.reset}")
                                 gzf.add(export_folder)
+
+                        pay_ws=Path("EstimatedPayCalendarWorkSheet.txt")
+                        pay_ws=Path(detectGetOrSet("EstimatedPayCalendarExportFile",pay_ws,setValue=False,literal=True))
+                        if pay_ws:
+                            if pay_ws.exists():
+                                print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{pay_ws}{Style.reset}")
+                                gzf.add(pay_ws)
+
+                        combinations_receipt=Path(detectGetOrSet("combinations_receipt","combos.json.csv",setValue=False,literal=True))
+                        if combinations_receipt:
+                            if combinations_receipt.exists():
+                                print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{combinations_receipt}{Style.reset}")
+                                gzf.add(combinations_receipt)
+
+                        WebArchiveStore_folder=Path(detectGetOrSet("WebArchiveDownloadsFilePath","WebArchiveDownloads",literal=True))
+                        if WebArchiveStore_folder:
+                            WebArchiveStore_folder=Path(WebArchiveStore_folder)
+                            if WebArchiveStore_folder.exists() and WebArchiveStore_folder.is_dir():
+                                print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{WebArchiveStore_folder}{Style.reset}")
+                                gzf.add(WebArchiveStore_folder)
                         #from DB/Prompt.py
                         scanout=detectGetOrSet('CMD_TO_FILE',str(Path('./SCANNER.TXT')))
                         if scanout:
@@ -901,6 +928,26 @@ rmc.quikRn()
                                 print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{generated_string}{Style.reset}")
                                 gzf.add(generated_string)
                         
+                        holidays_file=Path('Holidays.txt')
+                        if holidays_file:
+                            holidays_file=Path(holidays_file)
+                            if holidays_file.exists():
+                                print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{holidays_file}{Style.reset}")
+                                gzf.add(holidays_file)
+
+                        cost_report_xlsx_file=Path(detectGetOrSet("xlsx_cr_export","cost_report.xlsx",setValue=False,literal=True))
+                        if cost_report_xlsx_file:
+                            cost_report_xlsx_file=Path(cost_report_xlsx_file)
+                            if cost_report_xlsx_file.exists():
+                                print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{cost_report_xlsx_file}{Style.reset}")
+                                gzf.add(cost_report_xlsx_file)
+
+                        cost_report_txt_file=Path(detectGetOrSet("text_cr_export","cost_report.txt",setValue=False,literal=True))
+                        if cost_report_txt_file:
+                            cost_report_txt_file=Path(cost_report_txt_file)
+                            if cost_report_txt_file.exists():
+                                print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{cost_report_txt_file}{Style.reset}")
+                                gzf.add(cost_report_txt_file)
 
                         with Session(ENGINE) as session:
                             files=session.query(SystemPreference).filter(SystemPreference.name.icontains('ClipBoordImport_')).all()

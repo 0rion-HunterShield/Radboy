@@ -35,37 +35,44 @@ from radboy import VERSION
 import radboy.possibleCode as pc
 
 def clear_all(self):
-	def mkBool(text,self):
-		try:
-			if text.lower() in ['','y','yes','ye','true','1']:
-				return True
-			elif text.lower() in ['n','no','false','0']:
-				return False
-			else:
-				return eval(text)
-		except Exception as e:
-			print(e)
-
 	fieldname='TaskMode'
 	mode='ClearAll'
 	h=f'{Prompt.header.format(Fore=Fore,mode=mode,fieldname=fieldname,Style=Style)}'
-	htext=f"""{Fore.light_red}Type one of the following between commas:
-{Fore.light_yellow}y/yes/ye/true/1 {Fore.green} to continue, this is the default so <Enter>/<return> will also result in this!!!
-{Fore.light_green}n/no/false/0 {Fore.green} to cancel delete{Style.reset}"""
-	really=True
+	
+	code=''.join([str(random.randint(0,9)) for i in range(10)])
+	verification_protection=detectGetOrSet("Protect From Delete",code,setValue=False,literal=True)
 	while True:
 		try:
-			really=Prompt.__init2__(None,func=mkBool,ptext=f"{h}Really Clear All Lists, and set InList=0?",helpText=htext,data=self)
-			break
+			really=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{h}Really Clear All Lists, and set InList=0?",helpText="yes or no boolean,default is NO",data="boolean")
+			if really in [None,]:
+				print(f"{Fore.light_steel_blue}Nothing was {Fore.orange_red_1}{Style.bold}Deleted!{Style.reset}")
+				return True
+			elif really in ['d',False]:
+				print(f"{Fore.light_steel_blue}Nothing was {Fore.orange_red_1}{Style.bold}Deleted!{Style.reset}")
+				return True
+			else:
+				pass
+			really=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"To {Fore.orange_red_1}Delete everything completely,{Fore.light_steel_blue}what is today's date?[{'.'.join([str(int(i)) for i in datetime.now().strftime("%m.%d.%y").split(".")])}]{Style.reset}",helpText="type y/yes for prompt or type as m.d.Y",data="datetime")
+			if really in [None,'d']:
+				print(f"{Fore.light_steel_blue}Nothing was {Fore.orange_red_1}{Style.bold}Deleted!{Style.reset}")
+				return True
+			today=datetime.today()
+			if really.day == today.day and really.month == today.month and really.year == today.year:
+				really=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Please type the verification code {Style.reset}'{Entry.cfmt(None,verification_protection)}'?",helpText=f"type '{Entry.cfmt(None,verification_protection)}' to finalize!",data="string")
+				if really in [None,]:
+					print(f"{Fore.light_steel_blue}Nothing was {Fore.orange_red_1}{Style.bold}Deleted!{Style.reset}")
+					return True
+				elif really in ['d',False]:
+					print(f"{Fore.light_steel_blue}Nothing was {Fore.orange_red_1}{Style.bold}Deleted!{Style.reset}")
+					return True
+				elif really == verification_protection:
+					break
+			else:
+				pass
 		except Exception as e:
 			print(e)
-	if really in [False,None]:
-		print(f"{Fore.light_steel_blue}Nothing was {Fore.orange_red_1}{Style.bold}Deleted!{Style.reset}")
-		return True
-	else:
-		print(f"{Fore.orange_red_1}Deleting {Fore.light_steel_blue}{Style.bold}All Location Field Values,{Fore.light_blue}{Style.underline} and Setting InList=0!{Style.reset}")
 
-	
+	print(f"{Fore.orange_red_1}Deleting {Fore.light_steel_blue}{Style.bold}All Location Field Values,{Fore.light_blue}{Style.underline} and Setting InList=0!{Style.reset}")
 	print("-"*10)
 	with Session(ENGINE) as session:
 			result=session.query(Entry).update(

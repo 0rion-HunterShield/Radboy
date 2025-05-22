@@ -1,48 +1,18 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: radboy
-Version: 0.0.67
-Summary: A Command-Line Style Scanner designed to be used on cellular devices as a list maker, note taker, look up system, and custom calculator.
+Version: 0.0.326
+Summary: A small example package
 Author: Carl Joseph Hirner III
-Author-email: k.j.hirner.wisdom@gmail.com
+Author-email: Carl Hirner III <k.j.hirner.wisdom@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://google.com
+Project-URL: Issues, https://google.com
 Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
 Classifier: Operating System :: OS Independent
-Classifier: Operating System :: Android
-Classifier: Environment :: Console
-Classifier: Programming Language :: SQL
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
-Requires-Dist: sympy
-Requires-Dist: scipy
-Requires-Dist: plotext
-Requires-Dist: haversine
-Requires-Dist: holidays
-Requires-Dist: odfpy
-Requires-Dist: qrcode[pil]
-Requires-Dist: chardet
-Requires-Dist: nanoid
-Requires-Dist: random-password-generator
-Requires-Dist: cython
-Requires-Dist: pint
-Requires-Dist: pyupc-ean
-Requires-Dist: openpyxl
-Requires-Dist: plyer
-Requires-Dist: colored
-Requires-Dist: numpy
-Requires-Dist: pandas
-Requires-Dist: Pillow
-Requires-Dist: python-barcode
-Requires-Dist: qrcode
-Requires-Dist: requests
-Requires-Dist: sqlalchemy
-Requires-Dist: argparse
-Requires-Dist: geocoder
-Requires-Dist: beautifulsoup4
-Requires-Dist: pycryptodome
-Requires-Dist: forecast_weather
-Requires-Dist: boozelib
-Provides-Extra: terminal-readline-support
-Requires-Dist: readline; extra == "terminal-readline-support"
+Dynamic: author
+Dynamic: requires-python
 
 to use this application at its simplest
 

@@ -1,0 +1,7 @@
+Sales and use Tax is 9.25%, 0.0925
+What is hot food taxed at? 
+CRV FOR < 24 Fl. OZ == 0.05
+CRV FOR >= Fl. OZ == 0.10
+Holidays That May Not be Listed:
+Mother's Day
+Easter Sunday

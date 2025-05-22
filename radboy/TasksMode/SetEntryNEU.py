@@ -2,6 +2,7 @@ from radboy.DB.db import *
 from radboy.DB.RandomStringUtil import *
 import radboy.Unified.Unified as unified
 import radboy.possibleCode as pc
+import radboy.DB.db as db
 from radboy.DB.Prompt import *
 from radboy.DB.Prompt import prefix_text
 from radboy.TasksMode.ReFormula import *
@@ -288,12 +289,41 @@ class NEUSetter:
                     elif which in ['d',]:
                         which=0
                     selected=results[which]
+                    tax_adjusted=False
                     for fname in fnames:
                         column=getattr(Entry,fname)
                         newValue=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"[{Fore.medium_violet_red}old{Fore.light_yellow}] {Fore.light_magenta}{fname} = {Fore.light_red}{getattr(selected,fname)}{Fore.orange_red_1} to: {Style.reset}",helpText="new value",data=str(column.type))
                         if newValue in [None,'d']:
                             continue
-                        setattr(selected,fname,newValue)
+                        if fname.lower() == 'tax':
+                            if not tax_adjusted:
+                                setattr(selected,fname,newValue)
+                        else:
+                            setattr(selected,fname,newValue)
+
+                        if fname.lower() == 'price':
+                            session.commit()
+                            session.refresh(selected)
+                            adjust_tax=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Adjust Tax using Price({newValue}),CRV({selected.CRV}), and the Tax Rate",helpText="yes/no/boolean",data="boolean")
+                            if adjust_tax in ['d',True]:
+                                tax_adjusted=True
+                                ROUNDTO=int(db.detectGetOrSet("lsbld ROUNDTO default",3,setValue=False,literal=True))
+                                default_taxrate=round(float(db.detectGetOrSet("Tax Rate",0.0925,setValue=False,literal=True)),4)
+                                tax_rate=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax({default_taxrate}): ",helpText=f"What is the tax rate, default is {default_taxrate}.",data="float")
+                                if tax_rate is None:
+                                    return tax,crv
+                                elif tax_rate in ['d',]:
+                                    tax_rate=default_taxrate
+
+                                tax=round(selected.Price+selected.CRV,ROUNDTO)*tax_rate
+                                tax=round(tax,ROUNDTO)
+                                selected.Tax=tax
+                                session.commit()
+                                session.refresh(selected)
+                                continue
+                            elif adjust_tax in [None,False]:
+                                continue
+
                     session.commit()
                     session.flush()
                     session.refresh(selected)

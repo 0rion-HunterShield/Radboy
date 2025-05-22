@@ -1,0 +1,47 @@
+11:25 am 04-1-2024 -- found a bug in db.Entry for NoneType correction
+11:26 am 04-1-2024 -- planning to add 4 new classes 
+11:59 am 04-1-2024 -- added new accounting class for New module, POS
+04:22 pm 04-1-2024 -- add new functionality to POS module for Billing Table management
+12:04 pm 04-2-2024 -- add massive functionality to brand new POS mode with receipt generation now in your hands
+11:59 am 04-4-2024 -- add protective measures in plus versions of Collect Mode (11) to prevent duplicate entries of data, with non-plus versions retaining initial duplicity issues should duplicity be required
+06:37 am 04-9-2024 -- add a new field userUpdated to entry so if Entry is edited with 'ie' then field will be marked true, for reference on Entries the User has edited, import will add duplicated codes to Inlist==True so Entries can be reviewed, added total_entries to unified to shortlist total entries
+09:30 am 04-13-2024 -- added new functionalty for task mode whereby if a code
+is not found a search prompt is presented, with 'r' to rset search or 'b' to
+cancel entry; added new prompts for PunchCard
+11:48 am 04-13-2024 -- replaced unified's factory_reset with a class based toolset to reset only certain, or all, components
+12:41 pm 04-21-2024 -- add DatePkr() to edit_punchcard as was not initially built-in, now is, add a websearchframework module for later development
+08:06 pm 04-23-2024 -- haulted dev of web search framework as go-upc is not free
+07:23 pm 04-24-2024 -- added new calculator module to PunchCard, CalcTimePad to add addition tool functionality, for better planning, or other
+06:26 am 04-25-2024 -- scan barcode/code -> search for item
+						if not item:
+							begin similar process to t->#40 and create new item
+						if item:
+							prompt for location field to set
+							prompt for amount, or leave blank to skip
+							set InList==True so le-img can export the Entry, or qsl
+								can be used to quick-show-list
+6:27 am 04-25-2024 -- added version value
+12:16 pm 04-25-2024 -- added EntryExtras class to add operator functionality to classes Entry and DayLog, so one can 						do:
+							a=Entry(Barcode='BARCODE',Code='CODE',Name='NAME',Price=1.99)
+							#any of [+|-|*|/|**]
+							b=a+10
+							b will be 11.99
+11:19 am 04-30-2024 -- added ability to add images from FS to db Images, added ability to edit timestamp using ie->ss-$barcode
+9:52 am 05-01-2024 -- updated code due to a crash being caused by not checking for None in DatePicker Module
+05:12 pm 05-03-2024 -- add convenience statement to Field Select for 'b1' mode under Tasks.py to allow for numeric selection of Entry fields to set
+06:41 pm 05-03-2024 -- added additional functionality to PunchCard 'ed' to add new shift, updated helptext in PunchCard to reflect new functionality
+12:00 pm 05-14-2024 -- added a repack system for handling repacking from retail products
+
+9:49 am 05-21-2024 -- update ie edit module to use more Prompt class, and
+added default=0 to Entry Selection so as to speed up entries
+12:53 pm 05-21-2024 -- update to quanity input in task mode to accept more
+advanced formulas using @=units,#=cases
+04:06 pm 05-22-2024 -- added re powered module ReFomula to use re module to
+process formulas with {number}.{suffixes}, like 1.c == (1 * c ) whatever c's
+value may be, this mode can be accessed using task mode in any of the list
+modes, like  #25-#46, where qty is requested before item selection, use set
+'r',increment '+r', decrement '-r', like advanced mode, but without wierd
+character formulas; all modes remain as to provide best formula support
+05:21 am 05-23-2024 -- add extra prompt text indicating info for the user
+about the product scanned at the list entry prompt under task mode
+

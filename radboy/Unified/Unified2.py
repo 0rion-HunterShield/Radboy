@@ -35,6 +35,8 @@ from radboy.EntryExtras.Extras import *
 from radboy import VERSION
 import radboy.possibleCode as pc
 from radboy.Unified.clearalll import *
+from radboy.WebArchive.WebArchive import *
+
 def format_bytes(size):
             """
             Auto-convert bytes to a human-readable format.
@@ -50,7 +52,7 @@ def format_bytes(size):
             return f"{size:.2f} {power_labels[n]}B"
 class Unified2:
     cmds={}
-    def __init__(self,*args,**kwargs):
+    def __init__(self,count=0,*args,**kwargs):
         '''Add Commands like:
 
         self.options["compare product"]={
@@ -60,7 +62,7 @@ class Unified2:
                     }
         count+=1
         '''
-        count=0
+        self.options={}
         self.options["remove entry"]={
                     'cmds':["#"+str(count),f"remove entry","remove","rm",'del','delete'],
                     'desc':f'remove an entry via EntryId',
@@ -136,7 +138,298 @@ class Unified2:
                     'exec':lambda self=self: self.clear_list(),
                     }
         count+=1
+        self.options["clear_which"]={
+                    'cmds':["#"+str(count),"clear_which","cw","clrw"],
+                    'desc':f'''{Fore.cyan}Clear values in prompted fieldname, but do {Fore.light_red}NOT{Fore.cyan} set {Fore.light_yellow}InList={Fore.green_yellow}0{Style.reset}{Style.reset}''',
+                    'exec':lambda self=self: self.clear_which(),
+                    }
+        count+=1
 
+        self.options["code_len"]={
+                    'cmds':["#"+str(count),"code_len"],
+                    'desc':f'''{Fore.cyan}Display length of input code/barcode/text{Style.reset}''',
+                    'exec':lambda self=self: self.code_len(),
+                    }
+        count+=1
+
+        self.options["countThemAll"]={
+                    'cmds':["#"+str(count),"total_entries","te","count_all",'cta'],
+                    'desc':f'''{Fore.cyan}count all Entry's in Entry Table{Style.reset}''',
+                    'exec':lambda self=self: self.countThemAll(),
+                    }
+        count+=1
+
+        self.options["quick show list"]={
+                    'cmds':["#"+str(count),"qsl","quick_show_list",],
+                    'desc':f'''{Fore.cyan}Briefly display list contents{Style.reset}''',
+                    'exec':lambda self=self: self.quickShowList(),
+                    }
+        count+=1
+
+        '''["clear_all_img","cam","clrallimg"]'''
+        self.options["clear all image"]={
+                    'cmds':["#"+str(count),"clear_all_img","cam","clrallimg"],
+                    'desc':f'''{Fore.cyan}Clear all images in db items{Style.reset}''',
+                    'exec':lambda self=self: self.clear_all_img(),
+                    }
+        count+=1
+
+        self.options["save csv"]={
+                    'cmds':["#"+str(count),"save_csv","save","sv"],
+                    'desc':f'''{Fore.cyan}Save Entry Table to CSV file{Style.reset}''',
+                    'exec':lambda self=self: self.save_csv_root(),
+                    }
+        count+=1
+
+        self.options["save bar"]={
+                    'cmds':["#"+str(count),"save_bar","sb","svbr"],
+                    'desc':f'''{Fore.cyan}Save Entry Table barcodes to CSV{Style.reset}''',
+                    'exec':lambda self=self: self.save_bar_root(),
+                    }
+        count+=1
+
+        self.options["save barcode code"]={
+                    'cmds':["#"+str(count),"save_bar_cd","sbc","svbrcd"],
+                    'desc':f'''{Fore.cyan}Save Entry Table Barcode,Code{Style.reset}''',
+                    'exec':lambda self=self: self.save_barcode_root(),
+                    }
+        count+=1
+
+        self.options["factory_reset"]={
+                    'cmds':["#"+str(count),"factory_reset"],
+                    'desc':f'''{Fore.cyan}RESET Menu{Style.reset}''',
+                    'exec':lambda self=self: self.factory_reset(),
+                    }
+        count+=1
+
+        self.options["fields"]={
+                    'cmds':["#"+str(count),"fields","f","flds"],
+                    'desc':f'''{Fore.cyan}Display Entry fields{Style.reset}''',
+                    'exec':lambda self=self: self.fields(),
+                    }
+        count+=1
+
+        self.options["sum_list"]={
+                    'cmds':["#"+str(count),'sum_list','smzl'],
+                    'desc':f'''{Fore.cyan}Display All Items in List as summary{Style.reset}''',
+                    'exec':lambda self=self: self.sum_list(),
+                    }
+        count+=1
+
+        self.options["smle-no-arg-2"]={
+                    'cmds':["#"+str(count),'smle-no-arg-2'],
+                    'desc':f'''{Fore.cyan}show list items if no argument,{Style.reset}''',
+                    'exec':lambda self=self: self.smle_no_args2(),
+                    }
+        count+=1
+
+        self.options["smle-no-arg-2-e"]={
+                    'cmds':["#"+str(count),'smle-no-arg-2-e'],
+                    'desc':f'''{Fore.cyan}save list items as png{Style.reset}''',
+                    'exec':lambda self=self: self.smle_no_args2_e(),
+                    }
+        count+=1
+
+        self.options["le_img"]={
+                    'cmds':["#"+str(count),'le_img'],
+                    'desc':f'''{Fore.cyan}export list items as png{Style.reset}''',
+                    'exec':lambda self=self: self.le_img(),
+                    }
+        count+=1
+        self.options["item edit"]={
+                    'cmds':["#"+str(count),'ie','item_editor','itm_edt','item edit'],
+                    'desc':f'''{Fore.cyan}Edit an Entry's fields{Style.reset}''',
+                    'exec':lambda self=self: EntrySet(engine=ENGINE,parent=self),
+                    }
+        count+=1
+        self.options["export list csv"]={
+                    'cmds':["#"+str(count),'export_list','el','export list'],
+                    'desc':f'''{Fore.cyan}export a list to csv{Style.reset}''',
+                    'exec':lambda self=self: ExportListCSV(parent=self,engine=ENGINE),
+                    }
+        count+=1
+
+        #stopped at line 662
+        #add a version of setFieldInList that does not ask for details other than item selection and qty, and if something does not exist, adds it with a name as the scanned code, the code will be 'NewItem_NotAssigned', the barcode will be the scanned code ; this is for Tasks
+        #when tasks mode starts scan for codes with NewCode, count them and mention the count for codes with 'NewItem_NotAssigned'
+        #add a menu to assign data to these specific codes
+
+
+
+    def smle_no_args2_e(self):
+        with Session(self.engine) as session:
+            results=session.query(Entry).filter(Entry.InList==True).all()
+            if len(results) < 1:
+                print(f"{Fore.dark_goldenrod}No Items in List!{Style.reset}")
+            for num,result in enumerate(results):
+                result.saveListExtended(num=num)
+            return True
+
+
+    def le_img(self):
+        with Session(self.engine) as session:
+            results=session.query(Entry).filter(Entry.InList==True).all()
+            if len(results) < 1:
+                print(f"{Fore.dark_goldenrod}No Items in List!{Style.reset}")
+            for num,result in enumerate(results):
+                result.saveItemData(num=num)
+            return True
+
+
+    def sum_list(self):
+        '''['sum_list','smzl']'''
+        with Session(ENGINE) as session:
+            results=session.query(Entry).filter(Entry.InList==True).all()
+            for num,result in enumerate(results):
+                result.listdisplay(num=num)
+        
+        return True
+
+    def fields(self):
+        print("fields in table!")
+        for column in Entry.__table__.columns:
+            print(column.name)
+        return True
+
+    def factory_reset(self):
+        #just delete db file and re-generate much simpler
+        ResetTools(engine=ENGINE,parent=self)
+        #reInit()
+        '''with Session(self.engine) as session:
+            done=session.query(Entry).delete()
+            session.commit()
+            session.flush()
+            print(done)'''
+        return True
+
+    def save_barcode_code(self):
+        def save_csv(sfile,self):
+            df=pd.read_sql_table('Entry',ENGINE)
+            if sfile == "":
+                sfile="./db.csv"
+                print(f'{Fore.orange_3}{Path(sfile).absolute()}{Style.reset}')
+            df=df[['Barcode','Code']]
+            df.to_csv(sfile,index=False)
+        return Prompt(func=save_csv,ptext="Save Where",helpText=self.help(print_no=True),data=self).state
+
+    def save_bar_root(self):
+        def save_csv(sfile,self):
+            df=pd.read_sql_table('Entry',ENGINE)
+            if sfile == "":
+                sfile="./db.csv"
+                print(f'{Fore.orange_3}{Path(sfile).absolute()}{Style.reset}')
+            df=df['Barcode']
+            df.to_csv(sfile,index=False)
+        return Prompt(func=save_csv,ptext="Save Where",helpText=self.help(print_no=True),data=self).state
+
+
+    def save_csv_root(self):
+        def save_csv(sfile,self):
+            if sfile == "":
+                sfile="./db.csv"
+                print(f'{Fore.orange_3}{Path(sfile).absolute()}{Style.reset}')
+            try:
+                print("Exporting")          
+                
+                with Session(ENGINE) as session,Path(sfile).open("w") as CSV:
+                    writer=csv.writer(CSV,delimiter=',')
+                    allResults=session.query(Entry).all()
+                    headers=[]
+                    ct=len(allResults)
+
+                    for num,r in enumerate(allResults):
+                        if headers==[]:
+                            headers=r.csv_headers()
+                        print(f"{Fore.light_green}{num}{Style.reset}/{Fore.light_yellow}{ct-1}{Style.reset}")
+                        if num == 0:
+                            writer.writerow(headers)
+                        elif num > 0:
+                            writer.writerow(r.csv_values())
+                        #if r.csv_headers() != headers and num > 1:
+                        #   exit(f'{headers}|{r.csv_headers()}')
+
+                    print(f"{Fore.light_red}Done!{Style.reset} - {Fore.green_yellow}{Path(sfile).absolute()}{Style.reset}")
+                
+            except Exception as e:
+                print(e)
+        return Prompt(func=save_csv,ptext="Save Where",helpText=self.help(print_no=True),data=self).state
+
+    def countThemAll(self):
+        print("-"*10)
+        with Session(ENGINE) as session:
+            result=session.query(Entry).all()
+            ct=len(result)
+            bcode=Fore.light_yellow
+            ccode=Fore.dark_goldenrod
+            ncode=Fore.light_red
+            cur=Fore.cyan
+            total=Fore.medium_violet_red
+            line=f"{cur}Index/Current of Total -> {bcode}Barcode | {ccode}Code | {ncode}Name{Style.reset}"
+            for num,item in enumerate(result):
+                line=f"{cur}{num}/{num+1} of {total}{ct} -> {bcode}{item.Barcode} | {ccode}{item.Code} | {ncode}{item.Name}{Style.reset}"
+                print(line)
+
+
+    def smle_no_args2(self):
+        with Session(self.engine) as session:
+            results=session.query(Entry).filter(Entry.InList==True).all()
+            if len(results) < 1:
+                print(f"{Fore.dark_goldenrod}No Items in List!{Style.reset}")
+            for num,result in enumerate(results):
+                result.listdisplay_extended(num=num)
+
+    def clear_all_img(self):
+        '''["clear_all_img","cam","clrallimg"]'''
+        print("-"*10)
+        with Session(ENGINE) as session:
+            result=session.query(Entry).all()
+            for num,item in enumerate(result):
+                print(f"{Style.bold+Style.underline+Fore.orange_red_1}{num} - clearing img field -> {item}")
+                if Path(item.Image).exists():
+                    try:
+                        if Path(item.Image).is_file():
+                            Path(item.Image).unlink()
+                            item.ImagePath=''
+                            session.commit()
+                            #session.flush()
+                            #session.refresh(item)
+                    except Exception as e:
+                        item.Image=''
+                        session.commit()
+                        #session.flush()
+                        #session.refresh(item)
+                else:
+                    item.Image=''
+                    session.commit()
+                    #session.flush()
+                    #session.refresh(item)
+            session.commit()
+            session.flush()
+            print(result)
+            print("-"*10)
+            return True
+
+    def quickShowList(self):
+        print("-"*10)
+        with Session(ENGINE) as session:
+                result=session.query(Entry).filter(Entry.InList==True).all()
+                ct=len(result)
+                bcode=Fore.light_yellow
+                ccode=Fore.dark_goldenrod
+                ncode=Fore.light_red
+                cur=Fore.cyan
+                total=Fore.medium_violet_red
+                line=f"{cur}Index/Current of {total}Total -> {bcode}Barcode | {ccode}Code | {ncode}Name{Style.reset}"
+                for num,item in enumerate(result):
+                    line=f"{cur}{num}/{num+1} of {total}{ct} -> {bcode}{item.Barcode} | {ccode}{item.Code} | {ncode}{item.Name}{Style.reset}"
+                    print(line)
+
+    def code_len(self):
+        while True:
+            def display_lcl(text,self):
+                print(f"{Fore.cyan}{text}{Style.reset} is {Fore.green}'{len(text)}'{Style.reset} characters long!")
+            return Prompt(func=display_lcl,ptext="code|barcode|text[q/b]",helpText=self.help(print_no=True),data=self).state
+        return True
 
     def argSMLE(self):
         arg=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Barcode,Code: ",helpText="a barcode or code",data="list")
@@ -147,7 +440,7 @@ class Unified2:
 
     def smle(self,args=[]):
         if len(args) == 0:
-            with Session(self.engine) as session:
+            with Session(ENGINE) as session:
                 results=session.query(Entry).filter(Entry.InList==True).all()
                 if len(results) < 1:
                     print(f"{Fore.dark_goldenrod}No Items in List!{Style.reset}")
@@ -158,7 +451,7 @@ class Unified2:
                 while True:
                     def search(text,self):
                         code=text.lower()
-                        with Session(self.engine) as session:
+                        with Session(ENGINE) as session:
                             result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code),Entry.InList==True).first()
                             if result:
                                 result.listdisplay_extended(num=0)  
@@ -166,7 +459,7 @@ class Unified2:
                                 print(f"{Style.bold+Style.underline+Fore.orange_red_1}No Such Item by {Style.underline}{code}{Style.reset}")
                     return Prompt(func=search,ptext="code|barcode|q/quit|b/back",helpText=self.help(print_no=True),data=self).state
             else:
-                with Session(self.engine) as session:
+                with Session(ENGINE) as session:
                     result=session.query(Entry).filter(or_(Entry.Barcode==args[1],Entry.Code==args[1]),Entry.InList==True).first()
                     if result:
                         result.listdisplay_extended(num=0)
@@ -207,11 +500,11 @@ class Unified2:
     def img(self):
         '''['img','im','Image']'''
         args=Prompt.__init2__(None,func=FormBuilderMkText,ptext="ls/set",helpText="type ls or set",data="string")
-                if args in [None,'d']:
-                    return
+        if args in [None,'d']:
+            return
         entryId=Prompt.__init2__(None,func=FormBuilderMkText,ptext="EntryId",helpText="EntryId integer",data="integer")
-                if entryId in [None,'d']:
-                    return
+        if entryId in [None,'d']:
+            return
         if args.lower() == "ls":
             with Session(ENGINE) as session:
                     result=session.query(Entry).filter(Entry.EntryId==int(entryId)).first()
@@ -238,7 +531,7 @@ class Unified2:
     def rm_img(self):
         '''['rm_img','rm_im','del_img']'''
         try:
-            with Session(self.engine) as session:
+            with Session(ENGINE) as session:
                 entryId=Prompt.__init2__(None,func=FormBuilderMkText,ptext="EntryId",helpText="EntryId integer",data="integer")
                 if entryId in [None,'d']:
                     return
@@ -262,8 +555,8 @@ class Unified2:
     def upce2upca(self):
         '''['upce2upca','u2u','e2a']:'''
         args=Prompt.__init2__(None,func=FormBuilderMkText,ptext="ls/setd",helpText="type ls or set",data="string")
-                if args in [None,'d']:
-                    return
+        if args in [None,'d']:
+            return
         entryId=Prompt.__init2__(None,func=FormBuilderMkText,ptext="EntryId",helpText="EntryId integer",data="integer")
         if entryId in [None,'d']:
             return
@@ -291,8 +584,8 @@ class Unified2:
     def modify_listQty(self):
         '''['+','-','=']'''
         args=Prompt.__init2__(None,func=FormBuilderMkText,ptext="+/-/=",helpText="type + or - or =",data="string")
-                if args in [None,'d']:
-                    return
+        if args in [None,'d']:
+            return
         qty=Prompt.__init2__(None,func=FormBuilderMkText,ptext="EntryId",helpText="EntryId integer",data="float")
         if entryId in [None,'d']:
             return
@@ -300,7 +593,7 @@ class Unified2:
         if code in [None,'d']:
             return
         if args.lower() in ["+","-","="]:
-            with Session(self.engine) as session:
+            with Session(ENGINE) as session:
                 result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code)).first()
                 if result:
                     if args == '-':
@@ -326,9 +619,9 @@ class Unified2:
         if entryId in [None,'d']:
             return
         with Session(ENGINE) as session:
-                result=session.query(Entry).filter(Entry.EntryId==entryId).all()
-                for num,e in enumerate(result):
-                    print(num,e)
+            result=session.query(Entry).filter(Entry.EntryId==entryId).all()
+            for num,e in enumerate(result):
+                print(num,e)
         return True
 
     def search_all(self):
@@ -500,7 +793,7 @@ class Unified2:
         return True
 
     def showAll(self):
-    """["list_all","la"]"""
+        """["list_all","la"]"""
         print("-"*10)
         with Session(ENGINE) as session:
                 result=session.query(Entry).all()
@@ -510,7 +803,7 @@ class Unified2:
         return True
 
     def show_list(self):
-    """["show_list","sl",]"""
+        """["show_list","sl",]"""
         print("-"*10)
         with Session(ENGINE) as session:
                 result=session.query(Entry).filter(Entry.InList==True).all()
@@ -520,7 +813,7 @@ class Unified2:
         return True
 
     def clear_list(self):      
-    """["clear_list","cl","clrl"]"""
+        """["clear_list","cl","clrl"]"""
         print("-"*10)
         with Session(ENGINE) as session:
                 result=session.query(Entry).filter(Entry.InList==True).update({'InList':False,'ListQty':0})
@@ -531,4 +824,90 @@ class Unified2:
         return True
 
 
-    '''Stopped at 349.''''
+    '''Stopped at 349.'''
+    def clear_which(self):
+        print("-"*10)
+        color_1=Fore.light_red
+        color_2=Fore.light_magenta
+        hstring=f'''
+{Fore.orange_red_1}{Style.bold}Does not set InList==0{Style.reset}
+Location Fields:
+{Fore.deep_pink_3b}Shelf - {color_1}{Style.bold}0{Style.reset}
+{Fore.light_steel_blue}BackRoom - {color_2}{Style.bold}1{Style.reset}
+{Fore.cyan}Display_1 - {color_1}{Style.bold}2{Style.reset}
+{Fore.cyan}Display_2 - {color_2}{Style.bold}3{Style.reset}
+{Fore.cyan}Display_3 - {color_1}{Style.bold}4{Style.reset}
+{Fore.cyan}Display_4 - {color_2}{Style.bold}5{Style.reset}
+{Fore.cyan}Display_5 - {color_1}{Style.bold}6{Style.reset}
+{Fore.cyan}Display_6 - {color_2}{Style.bold}7{Style.reset}
+{Fore.cyan}SBX_WTR_DSPLY - {color_1}{Style.bold}8{Style.reset}
+{Fore.cyan}SBX_CHP_DSPLY - {color_2}{Style.bold}9{Style.reset}
+{Fore.cyan}SBX_WTR_KLR - {color_1}{Style.bold}10{Style.reset}
+{Fore.violet}FLRL_CHP_DSPLY - {color_2}{Style.bold}11{Style.reset}
+{Fore.violet}FLRL_WTR_DSPLY - {color_1}{Style.bold}12{Style.reset}
+{Fore.grey_50}WD_DSPLY - {color_2}{Style.bold}13{Style.reset}
+{Fore.grey_50}CHKSTND_SPLY - {color_1}{Style.bold}14{Style.reset}
+{Fore.grey_50}ListQty - {color_2}{Style.bold}15{Style.reset}
+{Fore.grey_50}Distress - {color_2}{Style.bold}16{Style.reset}'''
+
+        def mkfields(text,data):
+            def print_selection(selected):
+                print(f"{Fore.light_yellow}Using selected {Style.bold}{Fore.light_green}'{selected}'{Style.reset}!")
+            try:
+                selected=None
+                #use upper or lower case letters/words/fieldnames
+                fields=tuple([i.name for i in Entry.__table__.columns])
+                fields_lower=tuple([i.lower() for i in fields])
+                if text.lower() in fields_lower:
+                    index=fields_lower.index(text.lower())
+                    selected=fields[index]
+                    print_selection(selected)
+                    return fields[index]
+                else:
+                    #use numbers
+                    mapped={
+                        '0':"Shelf",
+                        '1':"BackRoom",
+                        '2':"Display_1",
+                        '3':"Display_2",
+                        '4':"Display_3",
+                        '5':"Display_4",
+                        '6':"Display_5",
+                        '7':"Display_6",
+                        '8':"SBX_WTR_DSPLY",
+                        '9':"SBX_CHP_DSPLY",
+                        '10':"SBX_WTR_KLR",
+                        '11':"FLRL_CHP_DSPLY",
+                        '12':"FLRL_WTR_DSPLY",
+                        '13':"WD_DSPLY",
+                        '14':"CHKSTND_SPLY",
+                        '15':"ListQty",
+                        '16':"Distress"
+                    }
+                    #print(text,mapped,text in mapped,mapped[text])
+                    if text in mapped:
+                        selected=mapped[text]
+                        print_selection(selected)
+                        return mapped[text]
+            except Exception as e:
+                print(e)
+        #for use with header
+        z='TaskMode'
+        mode='Clear Which Field'
+        header_here=f'{Prompt.header.format(Fore=Fore,mode=mode,fieldname=z,Style=Style)}'
+        while True:
+            fieldname=Prompt.__init2__(None,func=mkfields,ptext=f"{header_here}Location Field(see h|help)",helpText=hstring,data=self)
+            if fieldname in [None,]:
+                break
+            break
+        if fieldname in [None,]:
+            return True
+        with Session(ENGINE) as session:
+            result=session.query(Entry).filter(Entry.InList==True).update({fieldname:0})
+            session.commit()
+            session.flush()
+            print(result)
+        print("-"*10)
+        return True
+
+        '''Stopped at line 533 of Unified.py'''

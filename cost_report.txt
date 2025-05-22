@@ -1,0 +1,200 @@
+2025-04-28 07:13:13.132701[NOW]/[2025-04-01 00:00:00(From)]-[2025-04-28 07:12:34(To)]
+0/1 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:17.849999999999998
+	Total:17.849999999999998
+For Date:2025-04-02(April[Mnth]/Wednesday[DayNm]/14[WK#])
+Totaling:  17.849999999999998 ListQty Field for Total
+1/2 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:27.01
+	Total:27.01
+For Date:2025-04-03(April[Mnth]/Thursday[DayNm]/14[WK#])
+Totaling:  27.01 ListQty Field for Total
+2/3 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:17.71
+	Total:17.71
+For Date:2025-04-03(April[Mnth]/Thursday[DayNm]/14[WK#])
+Totaling:  17.71 ListQty Field for Total
+3/4 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:19.83
+	Total:19.83
+For Date:2025-04-04(April[Mnth]/Friday[DayNm]/14[WK#])
+Totaling:  19.83 ListQty Field for Total
+4/5 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:22.16
+	Total:22.16
+For Date:2025-04-05(April[Mnth]/Saturday[DayNm]/14[WK#])
+Totaling:  22.16 ListQty Field for Total
+5/6 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:24.063375
+	Total:24.063375
+For Date:2025-04-06(April[Mnth]/Sunday[DayNm]/14[WK#])
+Totaling:  24.063375 ListQty Field for Total
+6/7 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:17.58
+	Total:17.58
+For Date:2025-04-07(April[Mnth]/Monday[DayNm]/15[WK#])
+Totaling:  17.58 ListQty Field for Total
+7/8 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:19.919999999999998
+	Total:19.919999999999998
+For Date:2025-04-07(April[Mnth]/Monday[DayNm]/15[WK#])
+Totaling:  19.919999999999998 ListQty Field for Total
+8/9 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:24.150000000000002
+	Total:24.150000000000002
+For Date:2025-04-08(April[Mnth]/Tuesday[DayNm]/15[WK#])
+Totaling:  24.150000000000002 ListQty Field for Total
+9/10 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:20.96
+	Total:20.96
+For Date:2025-04-08(April[Mnth]/Tuesday[DayNm]/15[WK#])
+Totaling:  20.96 ListQty Field for Total
+10/11 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:21.59
+	Total:21.59
+For Date:2025-04-10(April[Mnth]/Thursday[DayNm]/15[WK#])
+Totaling:  21.59 ListQty Field for Total
+11/12 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:20.490000000000002
+	Total:20.490000000000002
+For Date:2025-04-11(April[Mnth]/Friday[DayNm]/15[WK#])
+Totaling:  20.490000000000002 ListQty Field for Total
+12/13 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:17.849999999999998
+	Total:17.849999999999998
+For Date:2025-04-12(April[Mnth]/Saturday[DayNm]/15[WK#])
+Totaling:  17.849999999999998 ListQty Field for Total
+13/14 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:18.63
+	Total:18.63
+For Date:2025-04-13(April[Mnth]/Sunday[DayNm]/15[WK#])
+Totaling:  18.63 ListQty Field for Total
+14/15 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25 [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:21.840000000000003
+	Total:21.840000000000003
+For Date:2025-04-14(April[Mnth]/Monday[DayNm]/16[WK#])
+Totaling:  21.840000000000003 ListQty Field for Total
+15/16 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[9CLW131,1.50 TIP] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:15.72
+	Total:15.72
+For Date:2025-04-17(April[Mnth]/Thursday[DayNm]/16[WK#])
+Totaling:  15.72 ListQty Field for Total
+16/17 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:17.55
+	Total:17.55
+For Date:2025-04-18(April[Mnth]/Friday[DayNm]/16[WK#])
+Totaling:  17.55 ListQty Field for Total
+17/18 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[00266900302112504182105] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:15.48
+	Total:15.48
+For Date:2025-04-18(April[Mnth]/Friday[DayNm]/16[WK#])
+Totaling:  15.48 ListQty Field for Total
+18/19 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[00266900200052504190146] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:15.48
+	Total:15.48
+For Date:2025-04-19(April[Mnth]/Saturday[DayNm]/16[WK#])
+Totaling:  15.48 ListQty Field for Total
+19/20 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:17.52
+	Total:17.52
+For Date:2025-04-19(April[Mnth]/Saturday[DayNm]/16[WK#])
+Totaling:  17.52 ListQty Field for Total
+20/21 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:18.9
+	Total:18.9
+For Date:2025-04-21(April[Mnth]/Monday[DayNm]/17[WK#])
+Totaling:  18.9 ListQty Field for Total
+21/22 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:3.0
+	Total:3.0
+For Date:2025-04-23(April[Mnth]/Wednesday[DayNm]/17[WK#])
+Totaling:  3.0 ListQty Field for Total
+22/23 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:15.4
+	Total:15.4
+For Date:2025-04-24(April[Mnth]/Thursday[DayNm]/17[WK#])
+Totaling:  15.4 ListQty Field for Total
+23/24 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:22.58
+	Total:22.58
+For Date:2025-04-25(April[Mnth]/Friday[DayNm]/17[WK#])
+Totaling:  22.58 ListQty Field for Total
+24/25 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:16.8
+	Total:16.8
+For Date:2025-04-25(April[Mnth]/Friday[DayNm]/17[WK#])
+Totaling:  16.8 ListQty Field for Total
+25/26 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:22.05
+	Total:22.05
+For Date:2025-04-26(April[Mnth]/Saturday[DayNm]/17[WK#])
+Totaling:  22.05 ListQty Field for Total
+26/27 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:16.98
+	Total:16.98
+For Date:2025-04-27(April[Mnth]/Sunday[DayNm]/17[WK#])
+Totaling:  16.98 ListQty Field for Total
+27/28 of 28 ----- Short Data -----Price Per Unit: 1.0
+LYFT OR UBER RIDE MAX COST $25[No_Receipt_ID] [EID=3911] (LYFT-UBER-25[UPC]:UNASSIGNED_TO_NEW_ITEM[SHELF/TAG/CIC])	CRV:0.0
+	TAX:0.0
+	Price:18.65
+	Total:18.65
+For Date:2025-04-28(April[Mnth]/Monday[DayNm]/18[WK#])
+Totaling:  18.65 ListQty Field for Total
+100.0% of 527.743 ** 0/1 of 1 'LYFT OR UBER RIDE MAX COST $25' = 527.743375 acquired, From 2025-04-01 00:00:00 To 2025-04-28 07:12:34,for a period of 27 days, 7:12:34, for a total cost of 527.743375 [DayLogId(463),EntryId(3911)].
+
+Total Expense:527.743375

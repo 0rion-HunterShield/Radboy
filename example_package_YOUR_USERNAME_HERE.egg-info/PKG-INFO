@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: example_package_YOUR_USERNAME_HERE
+Version: 0.0.242
+Summary: A small example package
+Author: Carl Joseph Hirner III
+Author-email: Carl Hirner III <k.j.hirner.wisdom@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://google.com
+Project-URL: Issues, https://google.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: requires-python
+
+to use this application at its simplest
+
+`pip install radboy==$VERSION`
+
+create a Run.py file and paste the following into it and save
+`from radboy import Run`
+
+for lookups to be made possible please explore the in-prompt help text as a populated data file is not yet ready for use comsumption.# Radboy
+# Radboy

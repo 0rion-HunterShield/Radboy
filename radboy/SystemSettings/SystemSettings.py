@@ -151,17 +151,40 @@ class systemSettingsMenu:
                     return
                 else:
                     for ix in which:
-                        try:
-                            ix=int(ix)
-                            newValue=Prompt.__init2__(None,func=FormBuilderMkText,ptext="What is the new literal value?",helpText=f"new value for {results[ix].name}",data="string")
-                            print(newValue)
-                            if newValue in [None,'d']:
-                                return
-                            f=detectGetOrSet(results[ix].name,newValue,setValue=True,literal=True)
-                            #print(results[ix],"was selected, but not yet ready; an advanced type formatter needs to be planned so nothing will be set")
-                            print(f)
-                        except Exception as e:
-                            print(e,"trying next one...")
+                        print(results[ix])
+                        decide=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Edit['d','e','edit','chnge','change','chng'] or Delete['del','rm','rem','remove']?",helpText="edit or delete",data="string")
+                        if decide in [None,]:
+                            return
+                        elif decide.lower() in ['d','e','edit','chnge','change','chng']:
+                            try:
+                                ix=int(ix)
+                                literal=Prompt.__init2__(None,FormBuilderMkText,ptext="[False==interpreted|True==str]Is this literal or an interpreted value",helpText="'False'=='str or 'False'==Boolean False",data="boolean")
+                                if literal in [None,]:
+                                    return
+                                elif literal in ['d',]:
+                                    literal=True
+                                newValue=Prompt.__init2__(None,func=FormBuilderMkText,ptext="What is the new literal value?",helpText=f"new value for {results[ix].name}",data="string")
+                                print(newValue)
+                                if newValue in [None,'d']:
+                                    return
+                                
+
+                                f=detectGetOrSet(results[ix].name,newValue,setValue=True,literal=literal)
+                                #print(results[ix],"was selected, but not yet ready; an advanced type formatter needs to be planned so nothing will be set")
+                                print(f,type(f))
+                            except Exception as e:
+                                print(e,"trying next one...")
+                        elif decide.lower() in ['del','rm','rem','remove']:
+                            try:
+                                ix=int(ix)
+                                print(f"Deleting {results[ix]}")
+                                session.delete(results[ix])
+
+                                session.commit()
+                                #print(results[ix],"was selected, but not yet ready; an advanced type formatter needs to be planned so nothing will be set")
+                                
+                            except Exception as e:
+                                print(e,"trying next one...")
         except Exception as e:
             print(e)
 
@@ -178,14 +201,14 @@ class systemSettingsMenu:
 {Fore.light_green}set Expiration_DelPol{Fore.light_steel_blue} - {Fore.light_magenta}Set time in seconds for prompt-delete in Expiry Tracking System{Style.reset}
 {Fore.light_green}set Expiration_PastPoll{Fore.light_steel_blue} - {Fore.light_magenta}Set time in seconds to warn that you have past the Expiration Date in Expiry Tracking System{Style.reset}
 {Fore.light_green}set Expiration_Poll{Fore.light_steel_blue} - {Fore.light_magenta}Set time in seconds to warn that you are approaching the Best-By/Expiration Date in Expiry Tracking System{Style.reset}
-{Fore.light_yellow}select edit,se{Fore.cyan} - {Fore.light_steel_blue}search, select, edit SystemPreference{Style.reset}
+{Fore.light_yellow}select edit delete,select_edit_delete,sed,elect edit/delete,select_edit/delete{Fore.cyan} - {Fore.light_steel_blue}search and select; to edit, or delete, a SystemPreference{Style.reset}
 {Style.reset}"""
         while True:
             with Session(ENGINE) as session:
                 doWhat=Prompt.__init2__(None,func=mkText,ptext="System Settings: Do What?",helpText=htext,data=None)
                 if doWhat in [None,]:
                     break
-                elif doWhat.lower() in "select edit,select_edit,se".split(","):
+                elif doWhat.lower() in "select edit delete,select_edit_delete,sed,elect edit/delete,select_edit/delete".split(","):
                     self.search_edit()
                 elif doWhat.lower() in "show_all,sa".split(","):
                     settings=session.query(SystemPreference).all()

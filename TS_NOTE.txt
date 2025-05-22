@@ -1,0 +1,29 @@
+2/3 of 3 - Note:
+Note Text:
+Nobody told Dino that load was going to be here so back room has to be rearranged, 10:39pm
+Ray s told Dino to ensure  truck stays on left side of receiving
+Ray tied the bale
+Truck unloaded and broken down by 12am, took break at 1:06am sbx entrance 
+Put Marianne's pallets on the floor 135 pallet of 35 refresh Waters on the Starbucks side one stack of eight empty chep pallets on the floral side the Charmin toilet paper shipper pallet the paper palette from the night before with Ray's load for paper and the pallet with the tide and then I also delivered a two chemical dollies to the front one with the tide empty boxes that she asked me to say for her and one small six wheeler with chemicals on it that vaguely was described by her the day before including Downey rinse so I move those to the front so that she would have them
+I put three pallets on the floor I have to pull one off right now at 1:16 a.m. anyways load on the floor that was to be broken down one of them was actually back stock so actually two pallets of load put on the floor right in front of the dairy and this was before Dino told me about the motor on the floor thing but I am already aware I just was following with the others including Ray well no actually I don't know if it was right or not but someone using a Tow Motor to put pallets on the floor and I did do two there because of necess it while time but despite that I will accept responsibility for that incident if they write me up but anyways so while everyone else is breaking down I finished getting that all of Marianne's pallets to the floor
+Made 2 crate pallets and left them in the dairy box, 3:08am
+Ray asked for help changing the middle frozen front end display so I stopped before getting to chemicals, let Carrie and arecelli know that I was to help him and they were to throw chemicals. After which, I went to dairy and dropped dairy fluids. I then went back to Carrie and arecelli, checked to see if they needed anything, and if they were gtg. They said yes, and I went back to dairy and threw the dropped load. 
+12.30.24
+Antonio Mendoza,Dino Cesar - START
+	-	FirstName = Dino Cesar
+	-	LastName = Antonio Mendoza
+	-	DTOE = 2024-12-31 00:00:00
+Antonio Mendoza,Dino Cesar - END
+
+
+Time of Occurance: Mon Dec 30 00:00:00 2024
+
+
+Location of Occurance: safeway 2669
+
+Timestamp:
+2024-12-31 13:16:40.090161
+TouchStampId:
+40
+EntryId:
+None

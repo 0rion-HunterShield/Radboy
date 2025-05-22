@@ -1,0 +1,607 @@
+Your Estimated PayDay Calendar Worksheet TDY(is=Tue May 20 14:11:36 2025)
+Dec 	 max pay-TotalTaxRate(0.2227)  =  3448.7246
+Dec 	 med pay-TotalTaxRate(0.2227)  =  2758.9797
+Dec 	 min pay-TotalTaxRate(0.2227)  =  2069.2348
+Dec 	 max pay[untaxed]  =  4436.8
+Dec 	 med pay[untaxed]  =  3549.44
+Dec 	 min pay[untaxed]  =  2662.08
+Dec 	 min pay per week[untaxed]  =  665.52
+Dec 	 med pay per week[untaxed]  =  887.36
+Dec 	 max pay per week[untaxed]  =  1109.2
+Dec 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Dec 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Dec 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Dec 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Dec 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Dec 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Dec 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Dec 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Dec 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Dec 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Dec 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Dec 	 Monthly(Dec) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Dec 	 Hours Worked(Dec) for Total Pay Accrued
+	  =  ________.____
+
+Nov 	 max pay-TotalTaxRate(0.2227)  =  3448.7246
+Nov 	 med pay-TotalTaxRate(0.2227)  =  2758.9797
+Nov 	 min pay-TotalTaxRate(0.2227)  =  2069.2348
+Nov 	 max pay[untaxed]  =  4436.8
+Nov 	 med pay[untaxed]  =  3549.44
+Nov 	 min pay[untaxed]  =  2662.08
+Nov 	 min pay per week[untaxed]  =  665.52
+Nov 	 med pay per week[untaxed]  =  887.36
+Nov 	 max pay per week[untaxed]  =  1109.2
+Nov 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Nov 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Nov 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Nov 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Nov 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Nov 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Nov 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Nov 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Nov 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Nov 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Nov 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Nov 	 Monthly(Nov) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Nov 	 Hours Worked(Nov) for Total Pay Accrued
+	  =  ________.____
+
+Oct 	 max pay-TotalTaxRate(0.2227)  =  4310.9058
+Oct 	 med pay-TotalTaxRate(0.2227)  =  3448.7246
+Oct 	 min pay-TotalTaxRate(0.2227)  =  2586.5435
+Oct 	 max pay[untaxed]  =  5546.0
+Oct 	 med pay[untaxed]  =  4436.8
+Oct 	 min pay[untaxed]  =  3327.6
+Oct 	 min pay per week[untaxed]  =  665.52
+Oct 	 med pay per week[untaxed]  =  887.36
+Oct 	 max pay per week[untaxed]  =  1109.2
+Oct 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Oct 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Oct 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Oct 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Oct 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Oct 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Oct 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Oct 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Oct 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Oct 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Oct 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Oct 	 Weekly(5) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Oct 	 Hours Worked_per_week(5) for Total Pay Accrued
+	  =  ________.__
+
+Oct 	 Monthly(Oct) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Oct 	 Hours Worked(Oct) for Total Pay Accrued
+	  =  ________.____
+
+Sep 	 max pay-TotalTaxRate(0.2227)  =  3448.7246
+Sep 	 med pay-TotalTaxRate(0.2227)  =  2758.9797
+Sep 	 min pay-TotalTaxRate(0.2227)  =  2069.2348
+Sep 	 max pay[untaxed]  =  4436.8
+Sep 	 med pay[untaxed]  =  3549.44
+Sep 	 min pay[untaxed]  =  2662.08
+Sep 	 min pay per week[untaxed]  =  665.52
+Sep 	 med pay per week[untaxed]  =  887.36
+Sep 	 max pay per week[untaxed]  =  1109.2
+Sep 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Sep 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Sep 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Sep 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Sep 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Sep 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Sep 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Sep 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Sep 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Sep 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Sep 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Sep 	 Monthly(Sep) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Sep 	 Hours Worked(Sep) for Total Pay Accrued
+	  =  ________.____
+
+Aug 	 max pay-TotalTaxRate(0.2227)  =  3448.7246
+Aug 	 med pay-TotalTaxRate(0.2227)  =  2758.9797
+Aug 	 min pay-TotalTaxRate(0.2227)  =  2069.2348
+Aug 	 max pay[untaxed]  =  4436.8
+Aug 	 med pay[untaxed]  =  3549.44
+Aug 	 min pay[untaxed]  =  2662.08
+Aug 	 min pay per week[untaxed]  =  665.52
+Aug 	 med pay per week[untaxed]  =  887.36
+Aug 	 max pay per week[untaxed]  =  1109.2
+Aug 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Aug 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Aug 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Aug 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Aug 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Aug 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Aug 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Aug 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Aug 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Aug 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Aug 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Aug 	 Monthly(Aug) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Aug 	 Hours Worked(Aug) for Total Pay Accrued
+	  =  ________.____
+
+Jul 	 max pay-TotalTaxRate(0.2227)  =  4310.9058
+Jul 	 med pay-TotalTaxRate(0.2227)  =  3448.7246
+Jul 	 min pay-TotalTaxRate(0.2227)  =  2586.5435
+Jul 	 max pay[untaxed]  =  5546.0
+Jul 	 med pay[untaxed]  =  4436.8
+Jul 	 min pay[untaxed]  =  3327.6
+Jul 	 min pay per week[untaxed]  =  665.52
+Jul 	 med pay per week[untaxed]  =  887.36
+Jul 	 max pay per week[untaxed]  =  1109.2
+Jul 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Jul 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Jul 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Jul 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jul 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Jul 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jul 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Jul 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jul 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Jul 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jul 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Jul 	 Weekly(5) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jul 	 Hours Worked_per_week(5) for Total Pay Accrued
+	  =  ________.__
+
+Jul 	 Monthly(Jul) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jul 	 Hours Worked(Jul) for Total Pay Accrued
+	  =  ________.____
+
+Jun 	 max pay-TotalTaxRate(0.2227)  =  3448.7246
+Jun 	 med pay-TotalTaxRate(0.2227)  =  2758.9797
+Jun 	 min pay-TotalTaxRate(0.2227)  =  2069.2348
+Jun 	 max pay[untaxed]  =  4436.8
+Jun 	 med pay[untaxed]  =  3549.44
+Jun 	 min pay[untaxed]  =  2662.08
+Jun 	 min pay per week[untaxed]  =  665.52
+Jun 	 med pay per week[untaxed]  =  887.36
+Jun 	 max pay per week[untaxed]  =  1109.2
+Jun 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Jun 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Jun 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Jun 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jun 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Jun 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jun 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Jun 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jun 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Jun 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jun 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Jun 	 Monthly(Jun) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jun 	 Hours Worked(Jun) for Total Pay Accrued
+	  =  ________.____
+
+May 	 max pay-TotalTaxRate(0.2227)  =  4310.9058
+May 	 med pay-TotalTaxRate(0.2227)  =  3448.7246
+May 	 min pay-TotalTaxRate(0.2227)  =  2586.5435
+May 	 max pay[untaxed]  =  5546.0
+May 	 med pay[untaxed]  =  4436.8
+May 	 min pay[untaxed]  =  3327.6
+May 	 min pay per week[untaxed]  =  665.52
+May 	 med pay per week[untaxed]  =  887.36
+May 	 max pay per week[untaxed]  =  1109.2
+May 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+May 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+May 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+May 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+May 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+May 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+May 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+May 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+May 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+May 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+May 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+May 	 Weekly(5) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+May 	 Hours Worked_per_week(5) for Total Pay Accrued
+	  =  ________.__
+
+May 	 Monthly(May) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+May 	 Hours Worked(May) for Total Pay Accrued
+	  =  ________.____
+
+Apr 	 max pay-TotalTaxRate(0.2227)  =  3448.7246
+Apr 	 med pay-TotalTaxRate(0.2227)  =  2758.9797
+Apr 	 min pay-TotalTaxRate(0.2227)  =  2069.2348
+Apr 	 max pay[untaxed]  =  4436.8
+Apr 	 med pay[untaxed]  =  3549.44
+Apr 	 min pay[untaxed]  =  2662.08
+Apr 	 min pay per week[untaxed]  =  665.52
+Apr 	 med pay per week[untaxed]  =  887.36
+Apr 	 max pay per week[untaxed]  =  1109.2
+Apr 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Apr 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Apr 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Apr 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Apr 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Apr 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Apr 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Apr 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Apr 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Apr 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Apr 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Apr 	 Monthly(Apr) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Apr 	 Hours Worked(Apr) for Total Pay Accrued
+	  =  ________.____
+
+Mar 	 max pay-TotalTaxRate(0.2227)  =  3448.7246
+Mar 	 med pay-TotalTaxRate(0.2227)  =  2758.9797
+Mar 	 min pay-TotalTaxRate(0.2227)  =  2069.2348
+Mar 	 max pay[untaxed]  =  4436.8
+Mar 	 med pay[untaxed]  =  3549.44
+Mar 	 min pay[untaxed]  =  2662.08
+Mar 	 min pay per week[untaxed]  =  665.52
+Mar 	 med pay per week[untaxed]  =  887.36
+Mar 	 max pay per week[untaxed]  =  1109.2
+Mar 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Mar 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Mar 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Mar 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Mar 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Mar 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Mar 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Mar 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Mar 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Mar 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Mar 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Mar 	 Monthly(Mar) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Mar 	 Hours Worked(Mar) for Total Pay Accrued
+	  =  ________.____
+
+Feb 	 max pay-TotalTaxRate(0.2227)  =  3448.7246
+Feb 	 med pay-TotalTaxRate(0.2227)  =  2758.9797
+Feb 	 min pay-TotalTaxRate(0.2227)  =  2069.2348
+Feb 	 max pay[untaxed]  =  4436.8
+Feb 	 med pay[untaxed]  =  3549.44
+Feb 	 min pay[untaxed]  =  2662.08
+Feb 	 min pay per week[untaxed]  =  665.52
+Feb 	 med pay per week[untaxed]  =  887.36
+Feb 	 max pay per week[untaxed]  =  1109.2
+Feb 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Feb 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Feb 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Feb 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Feb 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Feb 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Feb 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Feb 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Feb 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Feb 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Feb 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Feb 	 Monthly(Feb) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Feb 	 Hours Worked(Feb) for Total Pay Accrued
+	  =  ________.____
+
+Jan 	 max pay-TotalTaxRate(0.2227)  =  4310.9058
+Jan 	 med pay-TotalTaxRate(0.2227)  =  3448.7246
+Jan 	 min pay-TotalTaxRate(0.2227)  =  2586.5435
+Jan 	 max pay[untaxed]  =  5546.0
+Jan 	 med pay[untaxed]  =  4436.8
+Jan 	 min pay[untaxed]  =  3327.6
+Jan 	 min pay per week[untaxed]  =  665.52
+Jan 	 med pay per week[untaxed]  =  887.36
+Jan 	 max pay per week[untaxed]  =  1109.2
+Jan 	 min pay per week-TotalTaxRate(0.2227)  =  517.3087
+Jan 	 med pay per week-TotalTaxRate(0.2227)  =  689.7449
+Jan 	 max pay per week-TotalTaxRate(0.2227)  =  862.1812
+Jan 	 Weekly(1) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jan 	 Hours Worked_per_week(1) for Total Pay Accrued
+	  =  ________.__
+
+Jan 	 Weekly(2) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jan 	 Hours Worked_per_week(2) for Total Pay Accrued
+	  =  ________.__
+
+Jan 	 Weekly(3) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jan 	 Hours Worked_per_week(3) for Total Pay Accrued
+	  =  ________.__
+
+Jan 	 Weekly(4) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jan 	 Hours Worked_per_week(4) for Total Pay Accrued
+	  =  ________.__
+
+Jan 	 Weekly(5) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jan 	 Hours Worked_per_week(5) for Total Pay Accrued
+	  =  ________.__
+
+Jan 	 Monthly(Jan) Total Pay Accrued
+	 (What was on your paystub)
+	  =  $________.____
+
+Jan 	 Hours Worked(Jan) for Total Pay Accrued
+	  =  ________.____
+
+rate 	  =  27.73
+taxRate 	  =  0.2227
+max_hours 	  =  40.0
+med_hours 	  =  32.0
+min_hours 	  =  24.0
+Annual Total Hours for Pay Accrued (the total of number of hours 
+to get what was on your paystubs)
+	  =  $______._____
+Annual Total Pay Accrued (the total of 
+what was on your paystubs)
+	  =  $______.___
+annual total med-TotalTaxRate(0.2227) 	  =  35866.7363
+annual total min-TotalTaxRate(0.2227) 	  =  26900.0522
+annual total max-TotalTaxRate(0.2227) 	  =  44833.4203

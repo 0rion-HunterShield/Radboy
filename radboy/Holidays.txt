@@ -1,0 +1,77 @@
+Holidays.txt for 2025
+World AIDS Day,December 1  
+Cyber Monday,(Date depends on Thanksgiving; typically falls in late November or early December)  
+Hanukkah Starts,December 17 (date may vary by year)  
+Winter Solstice,December 21  
+Christmas Eve,December 24  
+Christmas,December 25  
+National Cookie Day,December 4  
+Human Rights Day,December 10  
+International Universal Health Coverage Day,December 12  
+St. Nicholas Day,December 6  
+International Volunteer Day,December 5  
+International Day of Persons with Disabilities,December 3  
+New Year’s Eve,December 31  
+New Year’s Day,January 1  
+National Spaghetti Day,January 4  
+National Whipped Cream Day,January 5  
+National Milk Day,January 11  
+Orthodox Christmas Day,January 7  
+Epiphany,January 6  
+Martin Luther King Jr. Day,January 20 (third Monday in January)  
+International Customs Day,January 26  
+Lunar New Year,January 29 (date varies by year)  
+National Beer Can Appreciation Day,January 24  
+Groundhog Day,February 2  
+Superbowl Sunday,February 2 (date varies)  
+National Bagel Day,February 9  
+National Wear Red Day,February 7 (first Friday in February)  
+National Women Physicians Day,February 3  
+National Engineers Week Begins,February 16  
+National Engineers Week Ends,February 22  
+Valentine’s Day,February 14  
+Galentine’s Day,February 13  
+St. Patrick’s Day,March 17  
+World Social Work Day,March 18 (third Tuesday of March)  
+International Day of Happiness,March 20  
+World Down Syndrome Day,March 21  
+World Water Day,March 22  
+Pi Day,March 14  
+Employee Appreciation Day,March 7 (first Friday in March)  
+National Plant A Flower Day,March 12  
+Holi,March 14 (date may vary)  
+Daylight Saving Time Starts,March 9 (second Sunday in March)  
+Labor Day,September 1 (first Monday in September)  
+International Literacy Day,September 8  
+Grandparents’ Day,September 14 (second Sunday in September)  
+World Alzheimer’s Day,September 21  
+World Bollywood Day,September 21  
+National Public Lands Day,September 27 (last Saturday in September)  
+International Day of Sign Languages,September 23  
+Hispanic Heritage Month Begins,September 15  
+National Coffee Day,September 29  
+World Heart Day,September 29  
+International Equal Pay Day,September 18  
+Daylight Saving Time Ends,November 2 (first Sunday in November)  
+World Adoption Day,November 11  
+National Personal Space Day,November 30  
+Veterans Day,November 11  
+National Happy Hour Day,November 12  
+World Kindness Day,November 13  
+National Entrepreneurs’ Day,November 19 (third Tuesday in November)  
+Black Friday,November 28 (day after Thanksgiving)  
+National Hiking Day,November 17  
+National Zinfandel Day,November 20  
+World Television Day,November 21  
+Halloween,October 31  
+United Nations Day,October 24  
+Yom Kippur,October 3 (date varies by year)  
+World Teachers’ Day,October 5  
+Columbus Day,October 13 (second Monday in October)  
+World Mental Health Day,October 10  
+National First Responders Day,October 28  
+Global Handwashing Day,October 15  
+National Pumpkin Day,October 26  
+Diwali,October 20 (date varies by year)  
+National Pasta Day,October 17  
+

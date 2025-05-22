@@ -1,0 +1,7 @@
+#USER INPUT# -> :"dl"
+#USER INPUT# -> :"coin"
+#USER INPUT# -> :"1"
+#USER INPUT# -> :"b"
+#USER INPUT# -> :"b"
+#USER INPUT# -> :"q"
+#USER INPUT# -> :"b"
