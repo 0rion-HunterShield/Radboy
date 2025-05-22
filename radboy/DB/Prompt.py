@@ -1747,6 +1747,7 @@ Suffix {hw_delim}\\n
  {Fore.orange_red_1}**{Fore.grey_50}Add a {Fore.light_magenta}-{Fore.grey_50} to the end of each cmd to include negatives, but ignore '0' and 'None' if spaces are included then put a space before the last -, elsewise put a it immediately behind the cmd to to enable this feature{Style.reset}
  {Fore.grey_70}**{Fore.light_green}es{Fore.light_red}u{Fore.light_steel_blue} - search entry menu{Style.reset}
  {Fore.grey_70}**{Fore.light_green}tv{Fore.light_red}u{Fore.light_steel_blue} - show tag data info{Style.reset}
+  {Fore.grey_70}**{Fore.light_green}ca{Fore.light_red}u{Fore.light_steel_blue} - clear all lists{Style.reset}
  {Fore.grey_70}**{Fore.light_green}dl{Fore.light_red}u{Fore.light_green},daylog{Fore.light_red}u{Fore.light_steel_blue} - Entry History System{Style.reset}
  {Fore.grey_70}**{Fore.light_green}mlu{Fore.light_steel_blue} - master lookup search for something in {SEARCH_TABLES}{Style.reset}
  {Fore.grey_70}**{Fore.light_green}exp{Fore.light_steel_blue} - product expiration menu{Style.reset}
@@ -1821,6 +1822,8 @@ which will result in a cmd of 'ls Shelf'{Style.reset}
                     continue
                 resultant=db.Entry.rebar(None,code)
                 print(resultant)
+            elif cmd in ['clear all universion',"cau","clear_all_universal"]:
+                TM.Tasks.TasksMode(parent=self,engine=db.ENGINE,init_only=True).clear_all()
             elif cmd in ['codify','format code','fcode']:
                 def mkT(text,data):
                     return text

@@ -37,6 +37,7 @@ from radboy.Unified.Unified2 import Unified2
 from copy import copy
 from decimal import Decimal
 from radboy.GDOWN.GDOWN import *
+from radboy.Unified.clearalll import clear_all
 
 def today():
     dt=datetime.now()
@@ -4518,6 +4519,7 @@ where:
                     }
         count+=1
         '''
+        self.clear_all=lambda self=self:clear_all(self)
         if not init_only:
             while True:
                 def mkT(text,self):
