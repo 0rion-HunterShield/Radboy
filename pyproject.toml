@@ -1,6 +1,6 @@
 [project]
 name = "radboy"
-version = "0.0.422"
+version = "0.0.423"
 authors = [
   { name="Carl Hirner III", email="k.j.hirner.wisdom@gmail.com" },
 ]
