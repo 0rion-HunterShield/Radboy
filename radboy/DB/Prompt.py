@@ -988,7 +988,7 @@ class Prompt(object):
                     #print(super_total)
                     msg+=f"""{Fore.light_magenta} |-|{Fore.light_green} Total = {Fore.light_sea_green}{total}
 {Fore.light_magenta}Price({Decimal(i.Price).quantize(Decimal("0.00"))}){Fore.medium_violet_red}*{Fore.light_slate_blue}Total({total}):{Decimal(i.Price).quantize(Decimal("0.00"))*total}
-{Fore.grey_70}+CRV({Decimal(i.CRV).quantize(Decimal("0.00"))})*Total({round(total,ROUNDTO)}){Fore.slate_blue_1}
+{Fore.grey_70}+CRV({Decimal(i.CRV).quantize(Decimal("0.00"))})*Total({total.quantize(Decimal("0.00"))}){Fore.slate_blue_1}
  {Fore.medium_spring_green}= {Fore.slate_blue_1}TotalCRV({crv})+TotalPrice({total*Decimal(i.Price).quantize(Decimal("0.00"))})
  {Fore.medium_spring_green}= {Fore.green_3a}NetPrice({total*Decimal(i.Price).quantize(Decimal("0.00"))+crv}){Style.reset}
 {Fore.grey_70}+Tax({Decimal(i.Tax).quantize(Decimal("0.00"))}) w/o CRV({Decimal(i.CRV).quantize(Decimal("0.00"))})*Total({total}){Fore.slate_blue_1}
