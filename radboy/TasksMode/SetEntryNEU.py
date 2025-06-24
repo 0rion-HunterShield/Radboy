@@ -322,8 +322,8 @@ class NEUSetter:
                                 ROUNDTO=int(db.detectGetOrSet("lsbld ROUNDTO default",3,setValue=False,literal=True))
                                 default_taxrate=round(float(db.detectGetOrSet("Tax Rate",0.0925,setValue=False,literal=True)),4)
                                 tax_rate=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax({default_taxrate}): ",helpText=f"What is the tax rate, default is {default_taxrate}.",data="float")
-                                if tax_rate is None:
-                                    return tax,crv
+                                if tax_rate in [None,]:
+                                    return selected.Tax,selected.CRV
                                 elif tax_rate in ['d',]:
                                     tax_rate=default_taxrate
 
