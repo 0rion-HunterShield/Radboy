@@ -15,12 +15,18 @@ import uuid
 from radboy.whatIs15 import get_bill_combinations
 from radboy.DB.PayDay import EstimatedPayCalendar,setup
 from radboy.DB.CoinCombo import *
+from radboy.DayLog.Wavelength4Freq import HoleSize
+from radboy.DayLog.TaxiFares import TaxiFare
+from radboy.Compare.Compare import *
+from sqlalchemy.sql import functions as func
+from collections import OrderedDict
+from radboy.DayLog.BhTrSa.bhtrsaa import *
 
 class DayLogger:
     helpText=f"""
 {Fore.light_red}
 prefixes for #code:
-        .d - daylog id
+        .d - DayLog id
         .b - barcode
         .c - code/shelf tag barcode/cic
 {Style.reset}
@@ -28,13 +34,13 @@ prefixes for #code:
 {Fore.light_magenta}''|?|help{Style.reset} -{Fore.light_yellow} help info{Style.reset}
 {Fore.light_magenta}q|quit{Style.reset}   -{Fore.light_yellow} quit{Style.reset}
 {Fore.light_magenta}b|back{Style.reset}    -{Fore.light_yellow} back{Style.reset}
-{Fore.light_magenta}rm|del{Style.reset}   -{Fore.light_yellow} remove a daylog{Style.reset}
-{Fore.light_magenta}a|add|+{Style.reset}   -{Fore.light_yellow} store todays data values as a daylog snapshot{Style.reset}
+{Fore.light_magenta}rm|del{Style.reset}   -{Fore.light_yellow} remove a DayLog{Style.reset}
+{Fore.light_magenta}a|add|+{Style.reset}   -{Fore.light_yellow} store todays data values as a DayLog snapshot{Style.reset}
 {Fore.light_magenta}l|list|*{Style.reset}  -{Fore.light_yellow} list * entries{Style.reset}
 {Fore.light_magenta}ld|list_date{Style.reset}  -{Fore.light_yellow} list * entries from DayLogDate from prompt{Style.reset}
 {Fore.light_magenta}'ldr','list date range','ls dt rng' -{Fore.light_yellow}list entry totals for time between dates{Style.reset}
 {Fore.light_magenta}cd|clear_date{Style.reset}  -{Fore.light_yellow} clear * entries from DayLogDate from prompt for date{Style.reset}
-{Fore.light_magenta}reset daylog{Style.reset}  -{Fore.light_yellow} clear * entries from DayLogDate{Style.reset}
+{Fore.light_magenta}reset DayLog{Style.reset}  -{Fore.light_yellow} clear * entries from DayLogDate{Style.reset}
 {Fore.light_magenta}ed|export_date{Style.reset}  -{Fore.light_yellow} export * entries from DayLogDate from prompt{Style.reset}
 {Fore.light_magenta}ea|export_all{Style.reset}  -{Fore.light_yellow} export * entries from DayLogDate from prompt{Style.reset}
 {Fore.light_magenta}ec|export_code{Style.reset}  -{Fore.light_yellow} export * entries from DayLogDate by Barcode from prompt{Style.reset}
@@ -60,12 +66,16 @@ prefixes for #code:
 fxtbl - update table with correct columns
 'avg field graph','afg' - create a graph of avg field
 'fft','fast fourier transform' - create fast fourier transform of the data and graph data
-'restore bckp','rfb' - restore Daylogs from backup file
+'restore bckp','rfb' - restore DayLogs from backup file
+{Fore.light_magenta}"compare product","p1==p2?","compare"{Fore.medium_violet_red}compare two products qty and price{Style.reset}
 {Fore.light_magenta}Banking/{Fore.medium_violet_red}Petty-Cash{Style.reset}
 {Fore.light_sea_green}'bnc','21','banking and cashpool','banking_and_cashpool','bank','piggy-bank' {Fore.light_steel_blue}- Banking and CashPool tools{Style.reset}
 {Fore.light_sea_green}'prc chng','prcchng','prc.chng','prc_chng','prc-chng','price change' {Fore.light_steel_blue}- detect price change over a date-range{Style.reset}
 {Fore.light_sea_green}'cr','ttl spnt','ttlspnt','cost report','cst rpt'{Fore.light_steel_blue}- generate an expense/cost report for a date-range{Style.reset}
 {Fore.light_sea_green}'epdc','estimated pay day calendar'{Fore.light_steel_blue}- review your estimated paydays{Style.reset}
+{Fore.light_sea_green}'taxi fare','calc taxi fare','ctf','taxi'{Fore.light_steel_blue}- Calculate Taxi Fares{Style.reset}
+{Fore.light_sea_green}'faraday','holesize','frdy hs'{Fore.light_steel_blue}- get wavelength needed for a frequency/for making a faraday cage {Fore.orange_red_1}[Indirectly Related]{Style.reset}
+{Fore.light_sea_green}'bhtrsa','business hours tax rates scheduled and appointments'{Fore.light_steel_blue}- Business Hours, Tax Rates, Scheduled and Appointments {Fore.orange_red_1}[Indirectly Related]{Style.reset}
 """
     def listAllDL(self):
         with Session(self.engine) as session:
@@ -493,7 +503,7 @@ fxtbl - update table with correct columns
                                         return
                                     else:
                                         pass
-                                    really=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"To {Fore.orange_red_1}Delete daylog completely,{Fore.light_steel_blue}what is today's date?[{'.'.join([str(int(i)) for i in datetime.now().strftime("%m.%d.%y").split(".")])}]{Style.reset}",helpText="type y/yes for prompt or type as m.d.Y",data="datetime")
+                                    really=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"To {Fore.orange_red_1}Delete DayLog completely,{Fore.light_steel_blue}what is today's date?[{'.'.join([str(int(i)) for i in datetime.now().strftime("%m.%d.%y").split(".")])}]{Style.reset}",helpText="type y/yes for prompt or type as m.d.Y",data="datetime")
                                     if really in [None,'d']:
                                         return
                                     today=datetime.today()
@@ -747,21 +757,54 @@ fxtbl - update table with correct columns
                     """)
                 if totals[i] >= occurances and totals[i] <= occurances_max: 
                     print(msg)
-
+    def f_orderByTotalValue(self,query):
+        #just a dummy extra filtering can be here
+        return query
 
     def TotalSpent(self):
+        local_start=datetime.now()
+        LookUpState=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
+        if not isinstance(LookUpState,bool):
+            LookUpState=db.detectGetOrSet('list maker lookup order',False,setValue=True,literal=False)
+        '''
+        if LookUpState == True:
+            results=results_query.order_by(db.Entry.Timestamp.asc()).all()
+        else:
+            results=results_query.order_by(db.Entry.Timestamp.desc()).all()
+        '''
         #cost report
         #export results Both text and xlsx
         #yes no
-        graph_it=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Graph Results (if possible)[y/n]:",helpText="yes or no",data="boolean")
+        orderByTotalValue=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Order Final Results by total qty value[y/N]:",helpText="yes or no; default is No.",data="boolean")
+        
+        if orderByTotalValue in [None,]:
+            return
+        elif orderByTotalValue in ['d',]:
+            orderByTotalValue=False
+
+        reverse=True
+        if orderByTotalValue:
+            reverse=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Order Asc(True/Yes/First Line Newest or Smallest & Last Line Biggest or Oldest)[Default]/Desc(false/no/First Line Oldest or Biggest & Last Line Newest or Smallest):",helpText="yes or no; default is yes.",data="boolean")
+            
+            if reverse in [None,]:
+                return
+            elif reverse in ['d',]:
+                reverse=True
+
+        graph_it=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Graph Results (if possible)[y/N]:",helpText="yes or no; default is No.",data="boolean")
         
         if graph_it in [None,]:
             return
+        elif graph_it in ['d',]:
+            graph_it=False
 
-        export=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Export[y/n]:",helpText="yes or no",data="boolean")
+
+        export=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Export[y/N]:",helpText="yes or no; default is No.",data="boolean")
         
         if export in [None,]:
             return
+        elif export in ['d',]:
+            export=False
 
         text_cr_export=detectGetOrSet("text_cr_export","cost_report.txt",setValue=False,literal=True)
         xlsx_cr_export=detectGetOrSet("xlsx_cr_export","cost_report.xlsx",setValue=False,literal=True)
@@ -889,21 +932,35 @@ fxtbl - update table with correct columns
                 if date(date_from.year,date_from.month,date_from.day) == date(date_to.year,date_to.month,date_to.day):
                     print(f"{Fore.orange_red_1}Same Day Results!{Style.reset}")
                     query=session.query(DayLog).filter(DayLog.DayLogDate==date(date_from.year,date_from.month,date_from.day))
+                    if LookUpState == True:
+                        query=query.order_by(DayLog.DayLogDate.asc())
+                    elif LookUpState == False:
+                        query=query.order_by(DayLog.DayLogDate.desc())
                     if export:
                         exporter_excel(query,xlsx_cr_export)
                     if graph_it:
                         x=GraphIt(query,fields_for_total)
                         if x is None:
                             return
+                    if orderByTotalValue:
+                        query=self.f_orderByTotalValue(query)
+                    
                     query=query.all()
                 else:
                     query=session.query(DayLog).filter(DayLog.DayLogDate.between(date_from,date_to))
+                    if LookUpState == True:
+                        query=query.order_by(DayLog.DayLogDate.asc())
+                    elif LookUpState == False:
+                        query=query.order_by(DayLog.DayLogDate.desc())
                     if export:
                         exporter_excel(query,xlsx_cr_export)
                     if graph_it:
                         x=GraphIt(query,fields_for_total)
                         if x is None:
                             return
+
+                    if orderByTotalValue:
+                        query=self.f_orderByTotalValue(query)
                     query=query.all()
             else:
                 exclude_code=Prompt.__init2__(None,func=FormBuilderMkText,ptext="exclude this code from results:",helpText="yes or no",data="boolean")
@@ -924,6 +981,14 @@ fxtbl - update table with correct columns
                             DayLog.DayLogDate==date(date_from.year,date_from.month,date_from.day),
                                 or_(*filt)        
                             )
+                        if LookUpState == True:
+                            query=query.order_by(DayLog.DayLogDate.asc())
+                        elif LookUpState == False:
+                            query=query.order_by(DayLog.DayLogDate.desc())
+
+                        if orderByTotalValue:
+                            query=self.f_orderByTotalValue(query)
+                        
                     else:
                         filt=[]
                         for q in code:
@@ -940,6 +1005,12 @@ fxtbl - update table with correct columns
                                 not_(DayLog.Name.icontains(q)))
                             ])
                         query=session.query(DayLog).filter(DayLog.DayLogDate==date(date_from.year,date_from.month,date_from.day),*filt)
+                        if LookUpState == True:
+                            query=query.order_by(DayLog.DayLogDate.asc())
+                        elif LookUpState == False:
+                            query=query.order_by(DayLog.DayLogDate.desc())
+                        if orderByTotalValue:
+                            query=self.f_orderByTotalValue(query)
                     if export:
                         exporter_excel(query,xlsx_cr_export)
                     if graph_it:
@@ -947,6 +1018,8 @@ fxtbl - update table with correct columns
                         if x is None:
                             return
 
+                    if orderByTotalValue:
+                        query=self.f_orderByTotalValue(query)
                     query=query.all()
                 else:
                     if not exclude_code:
@@ -962,6 +1035,12 @@ fxtbl - update table with correct columns
                                 or_(
                                 *filt)
                         )
+                        if LookUpState == True:
+                            query=query.order_by(DayLog.DayLogDate.asc())
+                        elif LookUpState == False:
+                            query=query.order_by(DayLog.DayLogDate.desc())
+                        if orderByTotalValue:
+                            query=self.f_orderByTotalValue(query)
                     else:
                         filt=[]
                         for q in code:
@@ -981,19 +1060,27 @@ fxtbl - update table with correct columns
                             DayLog.DayLogDate.between(date_from,date_to),
                                 *filt
                         )
+                        if LookUpState == True:
+                            query=query.order_by(DayLog.DayLogDate.asc())
+                        elif LookUpState == False:
+                            query=query.order_by(DayLog.DayLogDate.desc())
+                        if orderByTotalValue:
+                            query=self.f_orderByTotalValue(query)
                     if export:
                         exporter_excel(query,xlsx_cr_export)
                     if graph_it:
                         x=GraphIt(query,fields_for_total)
                         if x is None:
                             return
+                    if orderByTotalValue:
+                        query=self.f_orderByTotalValue(query)
                     query=query.all()
                 
-            totals={}
-            totals_dl={}
-            total_price={}
-            total_tax={}
-            total_crv={}
+            totals=OrderedDict({})
+            totals_dl=OrderedDict({})
+            total_price=OrderedDict({})
+            total_tax=OrderedDict({})
+            total_crv=OrderedDict({})
             if export:
                 msg=f'{datetime.now()}[NOW]/[{date_from}(From)]-[{date_to}(To)]'
                 logInput(msg,user=False,filter_colors=True,maxed_hfl=False,ofile=text_cr_export,clear_only=True)
@@ -1014,7 +1101,6 @@ fxtbl - update table with correct columns
                         total_crv[i.EntryId]=i.CRV*0
                         total_tax[i.EntryId]=i.Tax*0
                         total_price[i.EntryId]=i.Price*0
-
                     for x in fields_for_total:
                         try:
                             
@@ -1027,6 +1113,7 @@ fxtbl - update table with correct columns
                             if export:
                                 logInput(msg,user=False,filter_colors=True,maxed_hfl=False,ofile=text_cr_export)
                             msg2=' '.join([str(i) for i in (f"{Fore.light_green}Totaling: {Style.reset}",getattr(i,x),x,f'{Fore.light_red}Field for Total{Style.reset}')])
+                            msg2+=f"""{Fore.orange_red_1}(Estimated/Inverted Shelf Qty) Shelf=ShelfCount - Qty {Fore.light_yellow}[{Fore.cyan}{i.ShelfCount}{Fore.light_yellow} -{Fore.cyan}{i.Shelf}{Fore.light_yellow}]={Fore.pale_green_1b}{i.ShelfCount-i.Shelf}{Style.reset}\n"""
                             print(msg2)
                             if export:
                                 logInput(msg2,user=False,filter_colors=True,maxed_hfl=False,ofile=text_cr_export)
@@ -1053,15 +1140,43 @@ fxtbl - update table with correct columns
                 #    return
                 #else:
                 #    pass
+        #
+        if orderByTotalValue:
+            totals_ordered_keys=OrderedDict({})
+            for key in totals:
+                totals_ordered_keys[key]=round(((total_crv[key]+total_tax[key]+total_price[key])/total_expense)*100,ROUNDTO)
+            #need to sort dictionary
+            #according to -> round(((total_crv[key]+total_tax[key]+total_price[key])/total_expense)*100,ROUNDTO)
+            totals_ordered_keys=OrderedDict(sorted(totals_ordered_keys.items(),key=lambda item:item[1],reverse=not reverse))
+            tmp=OrderedDict()
+            for key in totals_ordered_keys.keys():
+                tmp[key]=totals[key]
+            totals=tmp
+
         totals_len=len(totals)
         for num,key in enumerate(totals):
-            dl=session.query(DayLog).filter(DayLog.EntryId==key).first()
+            if LookUpState == True:
+                dl=session.query(DayLog).filter(DayLog.EntryId==key).order_by(DayLog.DayLogDate.desc()).first()
+            else:
+                dl=session.query(DayLog).filter(DayLog.EntryId==key).first()
             if dl:
+                counter=0
+                for f in fields_for_total:
+                    if getattr(dl,f) == 0:
+                        counter+=1
+                if counter >= len(fields_for_total):
+                    continue
                 msg=f"{Fore.orange_red_1}{round(((total_crv[key]+total_tax[key]+total_price[key])/total_expense)*100,ROUNDTO)}% of {round(total_expense,ROUNDTO)} ** {Fore.light_cyan}{num}/{Fore.light_yellow}{num+1} of {Fore.light_red}{totals_len}{Fore.light_sea_green} '{dl.Name}' = {Fore.grey_70}{round(totals[key],ROUNDTO)} acquired,{Fore.dark_goldenrod} From {date_from} {Fore.dark_green}To {date_to},{Fore.spring_green_3a}for a period of {date_to-date_from},{Fore.medium_violet_red} for a total cost of {round(total_crv[key]+total_tax[key]+total_price[key],ROUNDTO)} [{Fore.light_steel_blue}DayLogId({Fore.green_yellow}{dl.DayLogId}{Fore.light_steel_blue}),{Fore.cadet_blue_1}EntryId({Fore.light_sea_green}{dl.EntryId}{Fore.cadet_blue_1}){Fore.medium_violet_red}].{Style.reset}\n"
                 if export:
                     logInput(msg,user=False,filter_colors=True,maxed_hfl=False,ofile=text_cr_export)
                 print(msg)
-        msg3=f"{Fore.orange_red_1}Total Expense:{Fore.light_magenta}{total_expense}{Style.reset}"
+        ex=f"{Fore.light_red}Duration:{Fore.light_steel_blue}{datetime.now()-local_start}|{Fore.light_cyan}OrderByFinalValue[{Fore.deep_pink_4c}{orderByTotalValue}{Fore.light_cyan}]|GraphIt[{Fore.deep_pink_4c}{graph_it}{Fore.light_cyan}]|Export[{Fore.deep_pink_4c}{export}{Fore.light_cyan}]"
+        if orderByTotalValue:
+            reverse_state={False:'False - Desc. (First Line Oldest/Biggest,Last Line Newest/Smallest)',True:'True - Asc. (Firt Line Newest/Smallest,Last Line Newest/Biggest)'}
+            ex+=f": Final Results Reverse:{reverse_state[reverse]}|{Fore.orange_red_1}\n"
+        else:
+            ex+=f'{Fore.orange_red_1}\n'
+        msg3=f"{ex}Total Expense:{Fore.light_magenta}{total_expense}{Style.reset}"
         print(msg3)
         if export:
             logInput(msg3,user=False,filter_colors=True,maxed_hfl=False,ofile=text_cr_export)
@@ -1661,8 +1776,8 @@ fxtbl - update table with correct columns
                             check_entry=session.query(Entry).filter(Entry.EntryId==results[i].EntryId).first()
                             if not check_entry:
                                 '''Delete Extras if no other EntryId's are found.'''
-                                check_daylog=session.query(DayLog).filter(DayLog.EntryId==results[i].EntryId).all()
-                                if len(check_daylog) < 1:
+                                check_DayLog=session.query(DayLog).filter(DayLog.EntryId==results[i].EntryId).all()
+                                if len(check_DayLog) < 1:
                                     extras=session.query(EntryDataExtras).filter(EntryDataExtras.EntryId==results[i].EntryId).all()
                                     for ii in extras:
                                         session.delete(ii)
@@ -1757,7 +1872,7 @@ fxtbl - update table with correct columns
                         self.listDate()
                     elif what.lower() in 'cd|clear_date'.split("|"):
                         self.clearDate()
-                    elif what.lower() in 'reset daylog'.split("|"):
+                    elif what.lower() in 'reset DayLog'.split("|"):
                         self.clearAllDL()
                     elif what.lower() in 'ea|export_all'.split("|"):
                         self.exportAllDL()
@@ -1819,6 +1934,14 @@ fxtbl - update table with correct columns
                         EstimatedPayCalendar(**setup())
                     elif what.lower() in ['coin']:
                         CoinComboUtil()
+                    elif what.lower() in ['faraday','faraday holesize','frdy hs']:
+                        HoleSize()
+                    elif what.lower() in ['taxi fare','calc taxi fare','ctf','taxi']:
+                        TaxiFare()
+                    elif what.lower() in [f"compare product","p1==p2?","compare"]:
+                        CompareUI()
+                    elif what.lower() in ['bhtrsa','business hours tax rates scheduled and appointments']:
+                        BhTrSa_Gui()
 
 
                                         

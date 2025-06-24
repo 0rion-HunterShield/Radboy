@@ -23,6 +23,7 @@ from sqlalchemy.ext.automap import automap_base
 from pathlib import Path
 import upcean
 from copy import deepcopy
+from radboy.RNE.dateAhead import dateAhead
 
 def detectGetOrSet(name,value,setValue=False):
 		value=str(value)
@@ -692,6 +693,7 @@ class Expiration:
 	{Fore.light_steel_blue}'update expiry from entry barcode','uefeb'{Fore.light_green} -{Fore.cyan} look for Expiry with Name=='New Item' and checks Entry Table for product and updates the name by First result{Style.reset}
 	{Fore.light_steel_blue}'is','is expired','ise'{Fore.light_green} -{Fore.cyan}is the input date expired!{Style.reset}
 	{Fore.light_steel_blue}'ddiff','date diff','datediff'{Fore.light_green} -{Fore.cyan}display the difference between dates!{Style.reset}
+	{Fore.light_steel_blue}'date forwards','forwards date','dt+','date+'{Fore.light_green} -{Fore.cyan}calculate a future date by adding values to the date relatively!{Style.reset}
 {Style.bold}{Fore.orange_red_1}Notes{Style.reset} {Fore.orange_red_1}Dates{Fore.grey_70}
 	Dates can be provided as DD{Fore.light_green}#SEPCHAR#{Fore.grey_70}MM{Fore.light_green}#SEPCHAR#{Fore.grey_70}YY|YYYY
 	where {Fore.light_green}#SEPCHAR#{Fore.grey_70} can be any of the punctuation-chars, save for '%'.
@@ -754,6 +756,8 @@ class Expiration:
 				self.isExpired()
 			elif doWhat.lower() in ['ddiff','date diff','datediff']:
 				self.diff()
+			elif doWhat.lower() in ['date forwards','forwards date','dt+','date+']:
+				dateAhead()
 			else:
 				print(helpText)
 

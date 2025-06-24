@@ -8,7 +8,7 @@ from datetime import datetime,timedelta
 import pint
 from colored import Fore,Style
 from pathlib import Path
-
+NOTINT=f"{Fore.light_red}Text provided is not an integer, attempting to evaluate it to one.{Style.reset}"
 def mkint(text,TYPE):
     try:
         if text.lower() in ['sun_we','sat_we','mon_ws','sun_ws','sat_ws','fri_we']:
@@ -22,25 +22,58 @@ def mkint(text,TYPE):
         elif text not in ['',]:
             drange=(0,calendar.monthrange(date.today().year,date.today().month)[-1])
             if TYPE == 'day':
-                if int(text) not in [i+1 for i in range(*drange)]:
-                    raise Exception(f"Not in {drange}")
+                try:
+                    if int(text) not in [i+1 for i in range(*drange)]:
+                        raise Exception(f"Not in {drange}")
+                except Exception as e:
+                    print(NOTINT,e)
+                    if int(eval(text)) not in [i+1 for i in range(*drange)]:
+                        raise Exception(f"Not in {drange}")
             elif TYPE == 'month':
-                if int(text) not in [i for i in range(1,13)]:
-                    raise Exception(f"Not in {[i for i in range(1,13)]}")
+                try:
+                    if int(text) not in [i for i in range(1,13)]:
+                        raise Exception(f"Not in {[i for i in range(1,13)]}")
+                except Exception as e:
+                    print(NOTINT,e)
+                    if int(eval(text)) not in [i for i in range(1,13)]:
+                        raise Exception(f"Not in {[i for i in range(1,13)]}")
             elif TYPE == 'year':
                 pass
             elif TYPE == 'hour':
-                if int(text) not in [i for i in range(24)]:
-                    raise Exception(f"Not in {[i for i in range(24)]}")
+                try:
+                    if int(text) not in [i for i in range(24)]:
+                        raise Exception(f"Not in {[i for i in range(24)]}")
+                except Exception as e:
+                    print(NOTINT,e)
+                    if int(eval(text)) not in [i for i in range(24)]:
+                        raise Exception(f"Not in {[i for i in range(24)]}")
             elif TYPE == 'minute':
-                if int(text) not in [i for i in range(60)]:
-                    raise Exception(f"Not in {[i for i in range(60)]}")
+                try:
+                    if int(text) not in [i for i in range(60)]:
+                        raise Exception(f"Not in {[i for i in range(60)]}")
+                except Exception as e:
+                    print(NOTINT,e)
+                    if int(eval(text)) not in [i for i in range(60)]:
+                        raise Exception(f"Not in {[i for i in range(60)]}")
             elif TYPE == 'second':
-                if int(text) not in [i for i in range(60)]:
-                    raise Exception(f"Not in {[i for i in range(60)]}")
+                try:
+                    if int(text) not in [i for i in range(60)]:
+                        raise Exception(f"Not in {[i for i in range(60)]}")
+                except Exception as e:
+                    print(NOTINT,e)
+                    if int(eval(text)) not in [i for i in range(60)]:
+                        raise Exception(f"Not in {[i for i in range(60)]}")
             elif TYPE == 'float':
-                return float(text)
-            return int(text)
+                try:
+                    return float(eval(text))
+                except Exception as e:
+                    print(e)
+                    return float(text)
+            try:
+                return int(eval(text))
+            except Exception as e:
+                print(e)
+                return int(text)
         else:
             if TYPE == 'day':
                 return datetime.now().day

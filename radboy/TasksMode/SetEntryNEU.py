@@ -53,8 +53,8 @@ class NEUSetter:
             session.commit()
             return f
 
-    def __init__(self):
-        pass
+    def __init__(self,code=None):
+        self.code=code
 
     def newCodesFromExpireds(self):
         print(f"{Fore.light_green}Expiry{Style.reset}")
@@ -207,6 +207,7 @@ class NEUSetter:
         print(f"{Fore.light_sea_green}Done{Fore.light_yellow} Cleaning PairCollection's{Style.reset}")
 
         #scan through PairCollection table and check each barcode for an entry in Entry and if not exists, prompt to create it/skip it/delete it, perform said action, and remove PairCollection with corresponding Barcode
+                
 
     def setFieldByName(self,fname):
         fnames=[]
@@ -262,11 +263,15 @@ class NEUSetter:
             except Exception as e:
                 print(e)
                 return
+
         while True:
             try:
-                barcode=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"[{fnames}] {Fore.light_green}Barcode|{Fore.turquoise_4}Code|{Fore.light_magenta}Name{Fore.light_yellow}:",helpText="what are you looking for?",data="string")
-                if barcode in ['d',None]:
-                    return
+                if self.code in [None,]:
+                    barcode=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"[{fnames}] {Fore.light_green}Barcode|{Fore.turquoise_4}Code|{Fore.light_magenta}Name{Fore.light_yellow}:",helpText="what are you looking for?",data="string")
+                    if barcode in ['d',None]:
+                        return
+                else:
+                    barcode=self.code
                 with Session(ENGINE) as session:
                     query=session.query(Entry).filter(or_(
                         Entry.Barcode==barcode,
@@ -279,13 +284,20 @@ class NEUSetter:
                     ct=len(results)
                     if ct == 0:
                         print("Nothing Found")
-                        continue
+                        if self.code in [None,]:
+                            continue
+                        else:
+                            return
+
                     for num,entry in enumerate(results):
                         msg=f'{Fore.light_green}{num}/{Fore.light_yellow}{num+1} of {Fore.light_red}{ct} -> {entry.seeShort()}'
                         print(msg)
                     which=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"[{fnames}]which {Fore.light_green}index{Fore.light_yellow}?: ",helpText=f"{Fore.light_steel_blue}which index {Fore.light_yellow}number in light yellow{Style.reset}",data="integer")
                     if which in [None,]:
-                        continue
+                        if not self.code:
+                            continue
+                        else:
+                            break
                     elif which in ['d',]:
                         which=0
                     selected=results[which]
@@ -320,9 +332,15 @@ class NEUSetter:
                                 selected.Tax=tax
                                 session.commit()
                                 session.refresh(selected)
-                                continue
+                                if self.code in [None,]:
+                                    continue
+                                else:
+                                    return
                             elif adjust_tax in [None,False]:
-                                continue
+                                if self.code in [None,]:
+                                    continue
+                                else:
+                                    return
 
                     session.commit()
                     session.flush()

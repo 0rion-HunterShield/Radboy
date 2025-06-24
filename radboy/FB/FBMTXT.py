@@ -1,13 +1,14 @@
 import radboy.TasksMode as TM
 import radboy.DB.db as db
 import string
-from datetime import datetime
+from datetime import datetime,date,time
 from pathlib import Path
 from decimal import Decimal,getcontext
 import re
 from datetime import timedelta
 import calendar
 from colored import Fore,Back,Style
+
 fm_data={
         'Decimal':{
             'type':'decimal',
@@ -69,7 +70,7 @@ def FormBuilderHelpText():
     {Fore.light_cyan}last year {Fore.light_green}-{Fore.light_steel_blue} {datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*365)}{Style.reset}
     {Fore.light_cyan}next month {Fore.light_green}-{Fore.light_steel_blue} {datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*30)}{Style.reset}
     {Fore.light_cyan}next week {Fore.light_green}-{Fore.light_steel_blue} {datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*7)}{Style.reset}
-    {Fore.light_cyan}last week {Fore.light_green}-{Fore.light_steel_blue} {datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*30)}{Style.reset}
+    {Fore.light_cyan}last week {Fore.light_green}-{Fore.light_steel_blue} {datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*7)}{Style.reset}
     {Fore.light_cyan}next year {Fore.light_green}-{Fore.light_steel_blue} {datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*365)}{Style.reset}
     {Fore.light_cyan}end week {Fore.light_green}-{Fore.light_steel_blue} {TODAY_IS+timedelta(days=TODAY_IS.weekday())}{Style.reset}
     {Fore.light_cyan}end month {Fore.light_green}-{Fore.light_steel_blue} {datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=calendar.monthrange(z.year,TODAY_IS.month)[-1])}{Style.reset}
@@ -77,11 +78,18 @@ def FormBuilderHelpText():
     {Fore.light_cyan}start week {Fore.light_green}-{Fore.light_steel_blue} {TODAY_IS-timedelta(days=TODAY_IS.weekday())}{Style.reset}
     {Fore.light_cyan}start month {Fore.light_green}-{Fore.light_steel_blue} {datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=1)}{Style.reset}
     {Fore.light_cyan}start year {Fore.light_green}-{Fore.light_steel_blue} {datetime(year=TODAY_IS.year,month=1,day=1)}{Style.reset}
+    {Fore.light_cyan}last month start{Fore.light_steel_blue} last month's start date (1) {Style.reset}
+    {Fore.light_cyan}last month end{Fore.light_steel_blue} last month's end date(28,29,30, or 31){Style.reset}
+    {Fore.light_cyan}next month start{Fore.light_steel_blue} next month's start date (1){Style.reset}
+    {Fore.light_cyan}next month end{Fore.light_steel_blue} next month's end date(28,29,30, or 31){Style.reset}
     {Fore.grey_70}**{Fore.light_yellow}A Date Can be represented as {Fore.light_cyan}10.26.25={Fore.cyan}10/26/25=10/26/2025={Fore.light_green}oct.26.25={Fore.spring_green_3a}oct/26/25={Fore.light_steel_blue}oct.26.2025{Style.reset}
     {Fore.grey_70}**{Fore.light_yellow}Any of {Fore.yellow}{string.punctuation} {Fore.light_cyan}in `datetime` can be use as the separator, as long as they are the same throughout the string{Style.reset}
     {Fore.grey_70}**{Fore.light_yellow}10.26.1993@4:30{Fore.light_cyan} represents 10/26/1993 at 4:30am, where at indicates a separation to the time string{Style.reset}
     {Fore.grey_70}**{Fore.light_yellow}when {Fore.light_cyan}-{Fore.light_yellow} is used, ususally when a daterange is expected, needs to be between two(2) datestrings, i.e. {Fore.light_steel_blue}10.26.1993-12.15.1997{Style.reset}
     {Fore.grey_70}**{Fore.light_yellow}RETRY{Fore.light_cyan} is issued when parsing fails.{Style.reset}
+    {Fore.light_cyan}**{Fore.light_steel_blue}Boolean True={Fore.spring_green_3a}y,yes,Yes,Y,True,T,t,1 or an equation that results in a True such as {Fore.orange_red_1}`datetime.now()`/{datetime.now()}`!=datetime(2001,1,1)`/{datetime(2001,1,1)} or 1==1.{Style.reset}
+    {Fore.light_cyan}**{Fore.light_steel_blue}Boolean False={Fore.spring_green_3a}false,no,n,N,No,False,0 or an equation that results in a False such as {Fore.orange_red_1}`datetime.now()`/{datetime.now()}`==datetime(2001,1,1)`/{datetime(2001,1,1)} or 1==0.{Style.reset}
+    {Fore.medium_violet_red}**{Fore.light_magenta}When Asked for a List of integers {Fore.magenta}use 1,2,3 for indexes 1-3, {Fore.orange_red_1}or 1,3 for indexes 1 and 3, {Fore.light_red}or 1,4,6-8,10 for indexes 1,4,6,7,8, and 10,{Fore.purple_1a} or 1 for index 1.{Style.reset}
     '''
     print(msg)
 
@@ -166,10 +174,73 @@ def FormBuilderMkText(text,data,passThru=[],PassThru=True,alternative_false=None
             value=text
         elif data.lower() == 'date':
             if text.lower() in ['y','yes','1','t','true']:
-                value=DatePkr()
+                value=TM.Tasks.TasksMode(parent=None,engine=db.ENGINE,init_only=True).DatePkr()
+            else:
+                try:
+                    def try_date(ds,format='%m%d%Y'):
+                        try:
+                            #print(format)
+                            return datetime.strptime(ds,format)
+                        except Exception as e:
+                            #print(e)
+                            return None
+                    def process_ds(ds):
+                        months=['january','february','march','april','may','june','july','august','september','october','november','december']
+                        predate="%m{c}%d{c}{year}"
+                        t1=[]
+                        chars=[i for i in string.punctuation]
+                        chars.pop(chars.index('%'))
+                        for i in chars:
+                            test=ds.split(i)
+                            if len(test) == 3:
+                                for num,m in enumerate(months):
+                                    if test[0].lower() == m or m.startswith(test[0].lower()):
+                                        test[0]=str(num+1).zfill(2)
+                                        ds=f'{i}'.join(test)
+                                        break
+                        for i in chars:
+                            for year in ['%y','%Y']:
+                                t1.append(predate.format(c=i,year=year))
+                                for ii in chars:
+                                    for year in ['%y','%Y']:
+                                        t1.append(f"%m{i}%d{ii}{year}")
+                        for f in t1:
+                                dt=try_date(format=f,ds=ds)
+                                if dt:
+                                    return dt
+                    value=process_ds(text)
+                except Exception as e:
+                    print(e)
         elif data.lower() == 'time':
             if text.lower() in ['y','yes','1','t','true']:
-                value=TimePkr()
+                value=TM.Tasks.TasksMode(parent=None,engine=db.ENGINE,init_only=True).TimePkr()
+            else:
+                try:
+                    def try_time(ds,format='%m%d%Y'):
+                        try:
+                            #print(format)
+                            todaysDate=datetime.strptime(ds,format)
+                            return time(todaysDate.hour,todaysDate.minute,todaysDate.second)
+                        except Exception as e:
+                            print(e)
+                            return None
+                    def process_time(ds):
+                        predate="%H{c}%M{c}%S"
+                        t1=[]
+                        chars=[i for i in string.punctuation]
+                        chars.pop(chars.index('%'))
+
+                        for i in chars:
+                            t1.append(predate.format(c=i))
+                            for ii in chars:
+                                t1.append(f"%H{i}%M{ii}%S")
+                        for f in t1:
+                            dt=try_time(format=f,ds=ds)
+                            if dt:
+                                return dt
+                    value=process_time(text)
+                except Exception as e:
+                    print(e)
         elif data.lower() in ['datetime','datetime-','datetime~']:
             try:
                 
@@ -195,11 +266,50 @@ def FormBuilderMkText(text,data,passThru=[],PassThru=True,alternative_false=None
                 elif text.lower() in ['next week',]:
                     return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*7)
                 elif text.lower() in ['last week',]:
-                    return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*30)
+                    return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*7)
+
+                    '''
+                    #new cmds to be added, tab below backwards
+                    elif text.lower() in ['next week start',]:
+                        return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*7)
+                    elif text.lower() in ['next week end',]:
+                        return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*7)
+
+                    elif text.lower() in ['last week start',]:
+                        return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*7)
+                    elif text.lower() in ['last week end',]:
+                        return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*7)
+                    '''
                 elif text.lower() in ['next year',]:
                     TODAY_IS=datetime.now()
                     return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*365)
-                
+
+                elif text.lower() in ['last month start',]:
+                    TODAY_IS=datetime.now()
+                    lastMonth=datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=1)-timedelta(days=1)
+                    lastMonth_real=datetime(year=lastMonth.year,month=lastMonth.month,day=1)
+                    return lastMonth_real
+                elif text.lower() in ['last month end',]:
+                    TODAY_IS=datetime.now()
+                    lastMonth=datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=1)-timedelta(days=1)
+                    #lastMonth_real=datetime(year=lastMonth.year,month=lastMonth.month,day=1)
+                    return lastMonth
+                elif text.lower() in ['next month start',]:
+                    TODAY_IS=datetime.now()
+                    days=calendar.monthrange(TODAY_IS.year,TODAY_IS.month)[-1]
+                    lastMonth=datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=days)+timedelta(days=1)
+                    #lastMonth_real=datetime(year=lastMonth.year,month=lastMonth.month,day=1)
+                    return lastMonth
+                elif text.lower() in ['next month end',]:
+                    TODAY_IS=datetime.now()
+                    days=calendar.monthrange(TODAY_IS.year,TODAY_IS.month)[-1]
+
+                    lastMonth=datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=days)+timedelta(days=1)
+                    nmdays=calendar.monthrange(lastMonth.year,lastMonth.month)[-1]
+
+                    lastMonth=datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=days)+timedelta(days=nmdays)
+                    return lastMonth
+
                 elif text.lower() in ['end week',]:
                     return TODAY_IS+timedelta(days=TODAY_IS.weekday())
                 elif text.lower() in ['end month',]:

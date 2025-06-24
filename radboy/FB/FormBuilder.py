@@ -13,7 +13,9 @@ from datetime import date,time,datetime
 from radboy.FB.FBMTXT import *
 
 
-def FormBuilder(data,extra_tooling=False):
+def FormBuilder(data,extra_tooling=False,passThruText=None):
+    if passThruText != None:
+        passThruText=f"{Fore.light_green}{passThruText}: {Fore.light_yellow}"
     GOTOK=None
     def keys_index(data):
         for num,k in enumerate(data.keys()):
@@ -103,7 +105,7 @@ def FormBuilder(data,extra_tooling=False):
                         lines=[]
                         skip_review=False
                         while True:
-                            line=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"You(m):{item.get(k)}|Default(d):{data[k]['default']} Field:{str(k)}",helpText=f'{ht}\nuse {Fore.light_red}{Style.bold}{Back.grey_50}#done#{Style.reset} to stop.',data=data[k]['type'][:-1])
+                            line=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{passThruText}You(m):{item.get(k)}|Default(d):{data[k]['default']} Field:{str(k)}",helpText=f'{ht}\nuse {Fore.light_red}{Style.bold}{Back.grey_50}#done#{Style.reset} to stop.',data=data[k]['type'][:-1])
                             if line in [None,]:
                                 return
                             elif line.lower() in ['#done#',]:
@@ -168,7 +170,7 @@ def FormBuilder(data,extra_tooling=False):
                             lines.append(line)
                         cmd='\n'.join(lines)
                         if not skip_review:
-                            use=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{cmd}\nUse? [y/n]",helpText="type something that can be represented as a boolean, this includes boolean formulas used in if/if-then statements(True=y/1/t/true/yes/1==1,False=n/no/0/f/false/1==0)",data="boolean")
+                            use=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{passThruText}{cmd}\nUse? [y/n]",helpText="type something that can be represented as a boolean, this includes boolean formulas used in if/if-then statements(True=y/1/t/true/yes/1==1,False=n/no/0/f/false/1==0)",data="boolean")
                             if use in [None,]:
                                 return
                             elif use:
@@ -179,7 +181,7 @@ def FormBuilder(data,extra_tooling=False):
                                 continue
                 else:
                     passThru=['gotoi','goto i','gotok','goto k','showkeys','show keys']
-                    cmd=Prompt.__init2__(None,func=lambda text,data:FormBuilderMkText(text,data,passThru=passThru),ptext=f"You(m):{item.get(k)}|Default(d):{data[k]['default']} Field:{str(k)}",helpText=f'{ht}',data=data[k]['type'])
+                    cmd=Prompt.__init2__(None,func=lambda text,data:FormBuilderMkText(text,data,passThru=passThru),ptext=f"{passThruText} You(m):{item.get(k)}|Default(d):{data[k]['default']} Field:{str(k)}",helpText=f'{ht}',data=data[k]['type'])
                     if cmd in [None,]:
                         return
                     elif isinstance(cmd,list) and [i.lower() for i in cmd] in [['gotoi',],['goto i']]:
@@ -226,7 +228,7 @@ def FormBuilder(data,extra_tooling=False):
                         item[k]=cmd
                 else:
                     item[k]=cmd
-        review=Prompt.__init2__(None,func=FormBuilderMkText,ptext="review?",helpText="",data="bool")
+        review=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{passThruText}review?",helpText="",data="bool")
         #print(review)
         if review in ['f',]:
             review=False
@@ -242,14 +244,14 @@ def FormBuilder(data,extra_tooling=False):
         #ask if extra data is needed
         count=len(tmp_item)
         while True:
-            nkv=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"New Key:Value Pair",helpText="yes or no",data="boolean")
+            nkv=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{passThruText}New Key:Value Pair",helpText="yes or no",data="boolean")
             if nkv in ['d',True]:
-                key=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"default[{count}] Key",helpText="yes or no",data="string")
+                key=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{passThruText}default[{count}] Key",helpText="yes or no",data="string")
                 if key in [None,]:
                     continue
                 elif key in ['d',]:
                     key=str(count)
-                value=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Value",helpText="data text",data="string")
+                value=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{passThruText}Value",helpText="data text",data="string")
                 if value in [None,]:
                     continue
                 tmp_item[key]=value
@@ -259,7 +261,7 @@ def FormBuilder(data,extra_tooling=False):
         #loop through lines for removal
         final_result={}
         for k in tmp_item:
-            keep=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"['{tmp_item[k]}'] keep?",helpText="yes or no",data="boolean")
+            keep=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{passThruText}['{tmp_item[k]}'] keep?",helpText="yes or no",data="boolean")
             if keep in ['d',True]:    
                 final_result[k]=tmp_item[k]
         return final_result

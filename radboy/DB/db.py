@@ -29,22 +29,137 @@ import forecast_weather as fw
 import requests
 import holidays
 import platform
-
+from uuid import uuid1
 import sys
 
-boot_dirs=Path("RadBoy_Boot_Directory")
-if not boot_dirs.exists():
-    boot_dirs.mkdir()
+class switch_bootable:
+    '''Template Cmd
+str(uuid1()):{
+    'cmds':[],
+    'exec':None,
+    'desc':""
+    },
 
-while True:
-    try:
+    '''
+    def quick_parse(self,text,helptext='',no_dir_name=False):
+        if text.lower() in ['',]:
+            if no_dir_name:
+                return ''
+            else:
+                text=f"BOOTABLE {datetime.now().strftime('%m-%d-%Y')}"
+            return text
+        elif text.lower() in ['q','quit']:
+            exit("User quit!")
+        elif text.lower() in ['b','back']:
+            return None
+        elif text.lower() in ['?','h','help']:
+            print(helptext)
+            return False
+        else:
+            return text
+
+    def quick_parse_int(self,text,helptext=''):
+        if text.lower() in ['',]:
+            return None
+        elif text.lower() in ['q','quit',]:
+            exit("User quit!")
+        elif text.lower() in ['b','back']:
+            return None
+        elif text.lower() in ['?','h','help']:
+            print(helptext)
+            return False
+        else:
+            try:
+                val=int(text)
+                return val
+            except Exception as e:
+                return None
+
+    def mkBootBlank(self):
+        try:
+            while True:
+                bootdirname=self.quick_parse(input("Bootable Directory Name:"))
+                if bootdirname is None:
+                    return
+                elif bootdirname is False:
+                    continue
+                else:
+                    break
+            bt=self.boot_dirs/Path(bootdirname)
+            if not bt.exists():
+                bt.mkdir(parents=True)
+            with open(bt/Path("__bootable__.py"),"wb") as bootfile:
+                bootfile.write(b'')
+        except Exception as e:
+            print(e,repr(e),str(e))
+
+
+    def cmdSystem(self):
+        cmds={
+        str(uuid1()):{
+        'cmds':["mkblnkbt","mk_blnk_bt","make blank bootdir","mk blnk bt"],
+        'exec':self.mkBootBlank,
+        'desc':"make a new bootable instance directory that is completely blank"
+        },
+        str(uuid1()):{
+            'cmds':['list boot','lsbt','lsboot','ls boot'],
+            'exec':self.lsboot,
+            'desc':"list boot dirs"
+        }, 
+        str(uuid1()):{
+            'cmds':['boot','','bt'],
+            'exec':self.legacy_start,
+            'desc':"start the system by selecting instance"
+            },     
+        }
+        cmdhtext=[]
+        ct=len(cmds)
+        for num,i in enumerate(cmds):
+            msg=self.static_colorize(f"{Fore.light_green}{cmds[i]['cmds']} - {Fore.green_yellow}{cmds[i]['desc']}",num,ct)
+            cmdhtext.append(msg)
+        cmdhtext='\n'.join(cmdhtext)
+
+        while True:
+            doWhat=self.quick_parse(input("Boot CMDS:"),helptext=cmdhtext,no_dir_name=True)
+            if doWhat is None:
+                exit("User Quit!")
+            elif doWhat is False:
+                continue
+            for cmd in cmds:
+                if doWhat.lower() in [str(i) for i in cmds[cmd]['cmds']]:
+                    if callable(cmds[cmd]['exec']):
+                        ready=cmds[cmd]['exec']()
+                        print(ready)
+                        if ready is True:
+                            return
+                        break
+                    else:
+                        print(f"cmd({cmds[cmd]['cmds']}) is not callable()")
+
+    def static_colorize(self,m,n,c):
+        msg=f'{Fore.cyan}{n}/{Fore.light_yellow}{n+1}{Fore.light_red} of {c} {Fore.dark_goldenrod}{m}{Style.reset}'
+        return msg
+
+    def __init__(self):
+        self.boot_dirs=Path("RadBoy_Boot_Directory")
+        self.cmdSystem()
+
+
+        #self.legacy_start()
+
+    def lsboot(self):
+        boot_dirs=self.boot_dirs
+        if not boot_dirs.exists():
+            boot_dirs.mkdir()
         bootable_dirs=[]
         bootable_dirs.append(str(Path(".").absolute()))
         for root,dirs,files in boot_dirs.walk(top_down=True):
             for d in dirs:
                 dsub=root/d
                 if dsub not in bootable_dirs:
-                    bootable_dirs.append(dsub)
+                    bootcfg=dsub/Path("__bootable__.py")
+                    if bootcfg.exists():
+                        bootable_dirs.append(dsub)
 
         htext=[]
         ct=len(bootable_dirs)
@@ -52,24 +167,53 @@ while True:
             msg=f"{Fore.light_green}{num}/{Fore.light_yellow}{num+1} of {Fore.light_red}{ct} -> {Fore.dark_goldenrod}{i}{Style.reset}"
             htext.append(msg)
         htext='\n'.join(htext)
-        if ct > 0:
-            print(htext)
-            which=input("Please type an integer index for selection: ")
-            if which.lower() in ['b','d','']:
-                break
-            elif which.lower() in ['q','quit']:
-                exit("User chose to quit!")
+        print(htext)
+        return bootable_dirs
+
+    def legacy_start(self):
+        boot_dirs=self.boot_dirs
+        if not boot_dirs.exists():
+            boot_dirs.mkdir()
+
+        while True:
             try:
-                which=int(which)
-                os.chdir(bootable_dirs[which])
-                break
+                bootable_dirs=[]
+                bootable_dirs.append(str(Path(".").absolute()))
+                for root,dirs,files in boot_dirs.walk(top_down=True):
+                    for d in dirs:
+                        dsub=root/d
+                        if dsub not in bootable_dirs:
+                            bootcfg=dsub/Path("__bootable__.py")
+                            if bootcfg.exists():
+                                bootable_dirs.append(dsub)
+
+                htext=[]
+                ct=len(bootable_dirs)
+                for num,i in enumerate(bootable_dirs):
+                    msg=f"{Fore.light_green}{num}/{Fore.light_yellow}{num+1} of {Fore.light_red}{ct} -> {Fore.dark_goldenrod}{i}{Style.reset}"
+                    htext.append(msg)
+                htext='\n'.join(htext)
+                if ct > 0:
+                    print(htext)
+                    which=input("Please type an integer index for selection: ")
+                    if which.lower() in ['d','']:
+                        return True
+                    elif which.lower() in ['b',]:
+                        break
+                    elif which.lower() in ['q','quit']:
+                        exit("User chose to quit!")
+                    try:
+                        which=int(which)
+                        os.chdir(bootable_dirs[which])
+                        return True
+                    except Exception as e:
+                        print(e)
+                else:
+                    print("No Bootable Directories found!")
+                    return True
             except Exception as e:
                 print(e)
-        else:
-            print("No Bootable Directories found!")
-            break
-    except Exception as e:
-        print(e)
+switch_bootable()
 
 def onAndroid()->bool:
     '''returns True if on Android
@@ -533,6 +677,10 @@ class EntryExtras:
         return -self.Price
 
 class Template:
+    def colorize(self,m,n,c):
+        msg=f'{Fore.cyan}{n}/{Fore.light_yellow}{n+1}{Fore.light_red} of {c} {Fore.dark_goldenrod}{m}{Style.reset}'
+        return msg
+
     def cfmt(self,line,n=4):
         if not line:
             line='None'
@@ -559,12 +707,29 @@ class Template:
 
     def __str__(self,vc=Fore.dark_blue+Style.bold,fc=Fore.light_green,cc=Fore.light_magenta,vg=Back.grey_50):
         m=[]
-        m.append(f"{cc}{self.__tablename__}{Style.reset}(")
+        now=datetime.now()
+        microid=now.timestamp()
+        nowStr=now.strftime(" -> Time:%I:%M:%S %p(12)/%H:%M:%S(24H)\nDate:%m/%d/%Y")+f" Timestamp:{microid}\n"
+        m.append(f"{nowStr} -> {cc}{self.__tablename__}{Style.reset}(")
         fields=[i.name for i in self.__table__.columns]
-        for i in fields:
-            m.append(f"\t{fc}{i}{Style.reset}={vg}{vc}{getattr(self,i)}{Style.reset}")
-        m.append(")")
+        ft={i.name:str(i.type).lower() for i in self.__table__.columns}
+        nsc={
+        0:Fore.green_yellow
+        }
+        settting=0
+        for num,i in enumerate(fields):
+            if isinstance(getattr(self,i),time):
+
+                m.append(f"{fc}{i}{nsc[settting]}[{ft[i]}]{fc}={vg}{Style.bold}{nsc[settting]}'{fc}{vc}{getattr(self,i).strftime(f"{Fore.deep_pink_4a}%I:%M %p(12H)/{Fore.dark_red_1}%H:%M(24H)")}{nsc[settting]}'{Style.reset}{Back.black}")
+            elif isinstance(getattr(self,i),datetime):
+                m.append(f"{fc}{i}{nsc[settting]}[{ft[i]}]{fc}={vg}{Style.bold}{nsc[settting]}'{fc}{vc}{getattr(self,i).strftime(f"{Fore.deep_sky_blue_4a}%m/%d/%Y @ {Fore.deep_pink_4a}%I:%M %p(12H) / {Fore.dark_red_1}%H:%M(24H)")}{nsc[settting]}'{Style.reset}{Back.black}")
+            else:
+                m.append(f"{fc}{i}{nsc[settting]}[{ft[i]}]{fc}={vg}{Style.bold}{nsc[settting]}'{fc}{vc}{getattr(self,i)}{nsc[settting]}'{Style.reset}{Back.black}")
+        m.append(f") {Fore.dark_goldenrod}{nowStr.replace("\n","")}{Style.reset}")
         return '\n'.join(m)
+
+    def __repr__(self,vc=Fore.dark_blue+Style.bold,fc=Fore.light_green,cc=Fore.light_magenta,vg=Back.grey_50):
+        return self.str(self,vc,fc,cc,vg)
 
 
 class EntryDataExtras(BASE,Template):
@@ -588,6 +753,15 @@ class EntryDataExtras(BASE,Template):
         for k in kwargs:
             if k in fields:
                 if k in ('field_note','field_value','field_value','field_name'):
+                    if k == 'field_name' and 'EntryId' in kwargs.keys():
+                        with Session(ENGINE) as session:
+                            check=session.query(self.__class__).filter(self.__class__.field_name==kwargs[k],self.__class__.EntryId==kwargs['EntryId']).first()
+                            if isinstance(check,self.__class__):
+                                if check.field_value == kwargs['field_value']:
+                                    raise Exception(f"Value is duplicated for {k}={kwargs['field_value']}")
+                                else:
+                                    dateStr=datetime.now().strftime("[Updated on %m/%d/%Y at %H:%M:%S.]")
+                                    kwargs[k]=f"{kwargs[k]} {dateStr}"
                     setattr(self,k,str(kwargs[k]))
                 else:
                     setattr(self,k,kwargs[k])
@@ -1439,7 +1613,8 @@ deducted from Total as remainder is to be filled from LOAD{Style.reset}
         {Fore.slate_blue_1}{Style.underline}{'-'*5}{Style.reset}{Style.bold} Short Data {Style.reset}{Fore.slate_blue_1}{Style.underline}{'-'*5}{Style.reset}
         {Fore.light_yellow}{self.Name} ({Fore.light_magenta}{self.Barcode}[{Fore.spring_green_3a}UPC{Style.reset}{Fore.light_magenta}]:{Fore.light_red}{self.cfmt(self.Code)}[{Fore.orange_red_1}SHELF/TAG/CIC]{Fore.light_red}){Style.reset}
         {Fore.medium_violet_red}Total Product Handled/To Be Handled Value: {Fore.spring_green_3a}{total_value}{Style.reset}
-        {Fore.medium_violet_red}Total Product Handled/To Be Handled Value*CaseCount: {Fore.spring_green_3a}{total_value_case}{Style.reset}"""
+        {Fore.medium_violet_red}Total Product Handled/To Be Handled Value*CaseCount: {Fore.spring_green_3a}{total_value_case}{Style.reset}
+        {Fore.orange_red_1}(Estimated/Inverted Shelf Qty) Shelf=ShelfCount - Qty {Fore.light_yellow}[{Fore.cyan}{self.ShelfCount}{Fore.light_yellow} -{Fore.cyan}{self.Shelf}{Fore.light_yellow}]={Fore.pale_green_1b}{self.ShelfCount-self.Shelf}{Style.reset}"""
         if self.imageExists():
             m+=f"""
         {Fore.green}Image {Fore.orange_3}{Style.bold}{Style.underline}ABSOLUTE{Style.reset}{Style.reset}={Path(self.Image).absolute()}"""
@@ -2137,7 +2312,8 @@ deducted from Total as remainder is to be filled from LOAD{Style.reset}
         {Fore.light_steel_blue}LoadCount{Style.reset}:{Fore.grey_70}{types['LoadCount']}{Style.reset}={self.LoadCount},
         
         {Fore.sky_blue_2}Size{Style.reset}:{Fore.grey_70}{types['Size']}{Style.reset}={self.Size}
-        {Fore.tan}Image[{Fore.dark_goldenrod}Exists:{Fore.deep_pink_3b}{self.imageExists()}{Style.reset}{Fore.tan}]{Style.reset}:{Fore.grey_70}{types['Image']}{Style.reset}={self.Image}"""
+        {Fore.tan}Image[{Fore.dark_goldenrod}Exists:{Fore.deep_pink_3b}{self.imageExists()}{Style.reset}{Fore.tan}]{Style.reset}:{Fore.grey_70}{types['Image']}{Style.reset}={self.Image}
+        {Fore.orange_red_1}(Estimated/Inverted Shelf Qty) Shelf=ShelfCount - Qty {Fore.light_yellow}[{Fore.cyan}{self.ShelfCount}{Fore.light_yellow} -{Fore.cyan}{self.Shelf}{Fore.light_yellow}]={Fore.pale_green_1b}{self.ShelfCount-self.Shelf}{Style.reset}"""
         if self.imageExists():
             m+=f"""
         {Fore.green}Image {Fore.orange_3}{Style.bold}{Style.underline}ABSOLUTE{Style.reset}{Style.reset}={Path(self.Image).absolute()}"""
@@ -4809,3 +4985,124 @@ class UniqueRecieptIdInfo(BASE,Template):
 
 
 UniqueRecieptIdInfo.metadata.create_all(ENGINE)
+
+class TaxRates(BASE,Template):
+    __tablename__='TaxRates'
+    trid=Column(Integer,primary_key=True)
+
+    EstablishmentName=Column(String,default='N/A')
+    EstablishmentNumber=Column(String,default="N/A")
+    EstablishmentAddress=Column(String,default='N/A')
+    Establishment_City=Column(String,default='N/A')
+    Establishment_County=Column(String,default="N/A")
+    Establishment_State=Column(String,default='NA')
+    Establishment_ZIP_Code=Column(String,default="00000-0000")
+    Establishment_Country=Column(String,default="Not Available")
+    
+    TaxName=Column(String,default='Zero-Dollar Tax')
+    TaxRatePercentString=Column(String,default='0%')
+    TaxRateDecimal=Column(Float,default=0.000)
+    TaxNote=Column(String,default='')
+    TaxType=Column(String,default='')
+
+    DTOE=Column(DateTime,default=datetime.now())
+    Comment=Column(String,default='N/A')
+
+    def as_json(self):
+        excludes=['trid','DTOE']
+        dd={str(d.name):self.__dict__[d.name] for d in self.__table__.columns if d.name not in excludes}
+        return json.dumps(dd)
+
+    def asID(self):
+        return f"TaxRates(trid={self.trid})"
+
+    def __init__(self,**kwargs):
+        for k in kwargs.keys():
+            if k in [s.name for s in self.__table__.columns]:
+                setattr(self,k,kwargs.get(k))
+
+TaxRates.metadata.create_all(ENGINE)
+
+class BusinessHours(BASE,Template):
+    __tablename__='BusinessHours'
+    bhid=Column(Integer,primary_key=True)
+
+    EstablishmentName=Column(String,default='N/A')
+    EstablishmentNumber=Column(String,default="N/A")
+    EstablishmentAddress=Column(String,default='N/A')
+    Establishment_City=Column(String,default='N/A')
+    Establishment_County=Column(String,default="N/A")
+    Establishment_State=Column(String,default='NA')
+    Establishment_ZIP_Code=Column(String,default="00000-0000")
+    Establishment_Country=Column(String,default="Not Available")
+    
+    OpenTime=Column(Time,default=time(8,0))
+    CloseTime=Column(Time,default=time(21,0))
+    OpenDate=Column(Date,default=date(datetime.now().year,1,1))
+    CloseDate=Column(Date,default=date(datetime.now().year,12,31))
+    OpenDateTime=Column(DateTime,default=datetime(datetime.now().year,1,1))
+    CloseDateTime=Column(DateTime,default=datetime(datetime.now().year,12,25))
+
+    DTOE=Column(DateTime,default=datetime.now())
+    Comment=Column(String,default='N/A')
+
+    def as_json(self):
+        excludes=['bhid','DTOE']
+        dd={str(d.name):self.__dict__[d.name] for d in self.__table__.columns if d.name not in excludes}
+        return json.dumps(dd)
+
+    def asID(self):
+        return f"BusinessHours(bhid={self.trid})"
+
+    def __init__(self,**kwargs):
+        for k in kwargs.keys():
+            if k in [s.name for s in self.__table__.columns]:
+                setattr(self,k,kwargs.get(k))
+
+
+BusinessHours.metadata.create_all(ENGINE)
+
+class Scheduled_And_Appointments(BASE,Template):
+    __tablename__='Scheduled_And_Appointments'
+    saa_id=Column(Integer,primary_key=True)
+
+    EstablishmentName=Column(String,default='N/A')
+    EstablishmentNumber=Column(String,default="N/A")
+    EstablishmentAddress=Column(String,default='N/A')
+    Establishment_City=Column(String,default='N/A')
+    Establishment_County=Column(String,default="N/A")
+    Establishment_State=Column(String,default='NA')
+    Establishment_ZIP_Code=Column(String,default="00000-0000")
+    Establishment_Country=Column(String,default="Not Available")
+    
+    StartTime=Column(Time,default=None)
+    EndTime=Column(Time,default=None)
+
+    StartDate=Column(Date,default=None)
+    EndDate=Column(Date,default=None)
+
+    StartDateTime=Column(DateTime,default=None)
+    EndDateTime=Column(DateTime,default=None)
+
+    TotalCost=Column(Float,default=0.000)
+    CoPay=Column(Float,default=0.000)
+    OutOfPocket=Column(Float,default=0.000)
+
+    DTOE=Column(DateTime,default=datetime.now())
+    Comment=Column(String,default='N/A')
+
+    def as_json(self):
+        excludes=['saa_id','DTOE']
+        dd={str(d.name):self.__dict__[d.name] for d in self.__table__.columns if d.name not in excludes}
+        return json.dumps(dd)
+
+    def asID(self):
+        return f"Scheduled_And_Appointments(saa_id={self.saa_id})"
+
+    def __init__(self,**kwargs):
+        for k in kwargs.keys():
+            if k in [s.name for s in self.__table__.columns]:
+                setattr(self,k,kwargs.get(k))
+
+
+Scheduled_And_Appointments.metadata.create_all(ENGINE)

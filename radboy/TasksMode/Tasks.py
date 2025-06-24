@@ -35,7 +35,7 @@ from radboy.InListRestore.ILR import *
 from radboy.Compare.Compare import *
 from radboy.Unified.Unified2 import Unified2
 from copy import copy
-from decimal import Decimal
+from decimal import Decimal,getcontext
 from radboy.GDOWN.GDOWN import *
 from radboy.Unified.clearalll import clear_all
 
@@ -280,7 +280,48 @@ def TD(time_string):
 def td(time_string):
     return TD(time_string)
 
+
+def save(value):
+    detectGetOrSet("InLineResult",value,setValue=True,literal=True)
+
+
+
 class TasksMode:
+    def process_cmd(self,buffer):
+        data=OrderedDict()
+        for num,line in enumerate(buffer):
+            data[num]={
+            'default':line,
+            'type':'string'
+            }
+        print(f"{Fore.orange_red_1}Don't use #ml# again until cmd fix is completed!{Style.reset}")
+        fd=FormBuilder(data=data)
+        if fd != None:
+            if not fd[0].startswith("#ml#"):
+                fd[0]='#ml#'+fd[0]
+            if not fd[len(buffer)-1].endswith('#ml#'):
+                fd[len(buffer)-1]+='#ml#'
+        text=''
+        for i in range(len(buffer)):
+            text+=fd[i]
+        return text
+    def getInLineResult(self):
+        return str(detectGetOrSet("InLineResult",None,setValue=False,literal=True))
+
+    def executeInLine(self):
+        text=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Formula :",helpText="text script, to save output for elsewhere send results through save()",data="string")
+        if text is None:
+            return
+        else:
+            try:
+                if text != 'd':
+
+                    exec(text)
+            except Exception as e:
+                print(e)
+                print(repr(e))
+                print(str(e))
+
     def prec_calc(self):
         text=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Formula :",helpText="text formula",data="decimal")
         if text is None:
@@ -289,20 +330,23 @@ class TasksMode:
             return text
 
     def pricing(self):
+        prec=int(detectGetOrSet("Price/Tax/CRV Calculator Precision",4,setValue=False,literal=True))
+        getcontext().prec=prec
         while True:
             try:
-                default_taxrate=float(detectGetOrSet("Tax Rate",0.0925,setValue=False,literal=True))
-                default_price=float(detectGetOrSet("pricing default price",1,setValue=False,literal=True))
-                default_bottle_qty=float(detectGetOrSet("pricing default bottle_qty",1,setValue=False,literal=True))
-                default_bottle_size=float(detectGetOrSet("pricing default bottle_size",16.9,setValue=False,literal=True))
-                default_purchased_qty=float(detectGetOrSet("pricing default purchased_qty",1,setValue=False,literal=True))
+                default_taxrate=float(Decimal(detectGetOrSet("Tax Rate",0.0925,setValue=False,literal=True)))
+                default_price=float(Decimal(detectGetOrSet("pricing default price",1,setValue=False,literal=True)))
+                default_bottle_qty=float(Decimal(detectGetOrSet("pricing default bottle_qty",1,setValue=False,literal=True)))
+                default_bottle_size=float(Decimal(detectGetOrSet("pricing default bottle_size",16.9,setValue=False,literal=True)))
+                default_purchased_qty=float(Decimal(detectGetOrSet("pricing default purchased_qty",1,setValue=False,literal=True)))
                 defaults_msg=f"""
 {Fore.orange_red_1}Default Settings [changeable under sysset]{Style.reset}
 {Fore.light_sea_green}default_taxrate=={Fore.turquoise_4}{default_taxrate},
 {Fore.grey_70}default_price=={Fore.light_yellow}{default_price},
 {Fore.light_sea_green}default_bottle_qty=={Fore.turquoise_4}{default_bottle_qty},
 {Fore.grey_70}default_bottle_size=={Fore.light_yellow}{default_bottle_size},
-{Fore.light_sea_green}default_purchased_qty=={Fore.turquoise_4}{default_purchased_qty}{Style.reset}"""
+{Fore.light_sea_green}default_purchased_qty=={Fore.turquoise_4}{default_purchased_qty}
+{Fore.grey_70}Price/Tax/CRV Calculator Precision=={Fore.light_yellow}{prec}{Style.reset}"""
 
                 def beverage_PTCRV_base():
                     result=None
@@ -334,9 +378,9 @@ class TasksMode:
                         bottle_qty=default_bottle_qty
 
                     if xxx.magnitude < 24:
-                        crv=0.05*bottle_qty
+                        crv=float(Decimal(0.05)*Decimal(bottle_qty))
                     else:
-                        crv=0.10*bottle_qty
+                        crv=float(Decimal(0.10)*Decimal(bottle_qty))
 
                     tax_rate=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax Rate (0.01==1%(Default={default_taxrate})):",helpText="A float or integer",data="float")
                     if tax_rate is None:
@@ -350,10 +394,11 @@ class TasksMode:
                     elif purchased_qty in ['d',]:
                         purchased_qty=default_purchased_qty
 
-                    price=(price*purchased_qty)+crv
-                    tax=price*tax_rate
+                    price=(Decimal(price)*Decimal(purchased_qty))+Decimal(crv)
+                    tax=price*Decimal(tax_rate)
 
-                    result=round(price+tax,3)
+
+                    result=round(float(Decimal(price)+tax),prec)
                     return result
 
                 def tax_with_crv():
@@ -386,9 +431,9 @@ class TasksMode:
                         bottle_qty=default_bottle_qty
 
                     if xxx.magnitude < 24:
-                        crv=0.05*bottle_qty
+                        crv=Decimal(0.05)*Decimal(bottle_qty)
                     else:
-                        crv=0.10*bottle_qty
+                        crv=Decimal(0.10)*Decimal(bottle_qty)
 
                     tax_rate=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Tax Rate (0.01==1%(Default={default_taxrate})):",helpText="A float or integer",data="float")
                     if tax_rate is None:
@@ -402,10 +447,10 @@ class TasksMode:
                     elif purchased_qty in ['d',]:
                         purchased_qty=default_purchased_qty
 
-                    price=(price*purchased_qty)+crv
-                    tax=price*tax_rate
+                    price=Decimal(Decimal(price)*Decimal(purchased_qty))+crv
+                    tax=price*Decimal(tax_rate)
 
-                    result=round(tax,3)
+                    result=round(float(tax),prec)
                     return result
 
                 def crv_total():
@@ -431,12 +476,12 @@ class TasksMode:
                         bottle_qty=default_bottle_qty
 
                     if xxx.magnitude < 24:
-                        crv=0.05*bottle_qty
+                        crv=Decimal(0.05)*Decimal(bottle_qty)
                     else:
-                        crv=0.10*bottle_qty
+                        crv=Decimal(0.10)*Decimal(bottle_qty)
 
                     
-                    result=round(crv,3)
+                    result=round(float(crv),prec)
                     return result
 
                 def price_tax():
@@ -461,10 +506,10 @@ class TasksMode:
                     elif tax_rate == 'd':
                         tax_rate=default_taxrate
 
-                    price=price*bottle_qty
-                    tax=price*tax_rate
+                    price=Decimal(price)*Decimal(bottle_qty)
+                    tax=price*Decimal(tax_rate)
 
-                    result=round(price+tax,3)
+                    result=round(float(price+tax),3)
                     return result
 
                 def tax_no_crv():
@@ -489,10 +534,10 @@ class TasksMode:
                     elif tax_rate == 'd':
                         tax_rate=default_taxrate
 
-                    price=price*bottle_qty
-                    tax=price*tax_rate
+                    price=Decimal(price)*Decimal(bottle_qty)
+                    tax=price*Decimal(tax_rate)
 
-                    result=round(tax,3)
+                    result=round(float(tax),prec)
                     return result
 
                 def tax_rate_from_priceAndTax():
@@ -512,9 +557,9 @@ class TasksMode:
                         taxed=0
 
 
-                    tax_rate=taxed/price
+                    tax_rate=Decimal(taxed)/Decimal(price)
 
-                    result=round(tax_rate,3)
+                    result=round(float(tax_rate),prec)
                     return result
 
                 def tax_rate_from_oldPriceAndNewPrice():
@@ -532,10 +577,11 @@ class TasksMode:
                     elif new_price in ['','d']:
                         new_price=default_price
 
-                    taxed=round(new_price-old_price,3)
-                    tax_rate=round(taxed/old_price,3)
+                    taxed=Decimal(new_price)-Decimal(old_price)
+                    tax_rate=taxed/Decimal(old_price)
+                    tax_rate=round(float(tax_rate),prec)
 
-                    result=round(tax_rate,3)
+                    result=tax_rate
                     return result
 
                 while True:
@@ -562,7 +608,7 @@ class TasksMode:
                     },
                     '4':{
                         'cmds':['tax','tax no crv','tax 0 crv','4'],
-                        'desc':f'{Fore.light_yellow}tax+crv{Fore.medium_violet_red} asking questions like price and qty to get total crv{Style.reset}',
+                        'desc':f'{Fore.light_yellow}tax w/o crv{Fore.medium_violet_red} asking questions like price and qty to get total tax without crv{Style.reset}',
                         'exec':tax_no_crv
                     },
                     '5':{
@@ -820,6 +866,7 @@ Distress - ls Distress
         print(f"{m}\n{hr}")
 
     def SearchAuto(self,InList=None,skipReturn=False):
+        state=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
         while True:
             try:
                 with Session(self.engine) as session:
@@ -841,7 +888,10 @@ Distress - ls Distress
                     query=query.filter(or_(*q))
                     if InList != None:
                         query=query.filter(Entry.InList==InList)
-                    results=query.all()
+                    if state == True:
+                        results=query.order_by(Entry.Timestamp.asc()).all()
+                    else:
+                        results=query.order_by(Entry.Timestamp.desc()).all()
                     ct=len(results)
                     for num,r in enumerate(results):
                         if num < round(0.25*ct,0):
@@ -1033,7 +1083,7 @@ Distress - ls Distress
                         continue
                     print(check)
 
-    def NewEntryMenu(self):
+    def NewEntryMenu(self,code=None):
         def mkTl(text,self):
             return text
         fieldname='NewItemMenu'
@@ -1093,7 +1143,7 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
                 if doWhat in [None,]:
                     return
                 elif doWhat.lower() in ['em','extras menu']:
-                    EntryDataExtrasMenu()
+                    EntryDataExtrasMenu(code=code)
                 elif doWhat.lower() in ['nfa',f"nfa","new entry from all","new_entry_from_all","nefa"]:
                     self.NewEntryAll()
                 elif doWhat.lower() in ['edit entry',f"ee","ed en"]:
@@ -1110,73 +1160,73 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
                     self.editNotes()
                 elif doWhat.lower() in "'set field','sf','set'".replace("'","").split(","):  #scan barcode,select item,display fields with index,select index,get data,commit
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName(None)
+                    NEUSetter(code=code).setFieldByName(None)
                 elif doWhat.lower() in "'set code','setcd','s.c'".replace("'","").split(","): #Code
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("Code")
+                    NEUSetter(code=code).setFieldByName("Code")
                 elif doWhat.lower() in "'set price','setp','s.p'".replace("'","").split(","): #Price
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("Price")
+                    NEUSetter(code=code).setFieldByName("Price")
                 elif doWhat.lower() in "'set description','set desc','s.desc'".replace("'","").split(","): #Description
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("Description")
+                    NEUSetter(code=code).setFieldByName("Description")
                 elif doWhat.lower() in "'set facings','setf','s.f'".replace("'","").split(","): #Facings
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("Facings")
+                    NEUSetter(code=code).setFieldByName("Facings")
                 elif doWhat.lower() in "'set size','setsz','s.sz'".replace("'","").split(","): #Size
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("Size")
+                    NEUSetter(code=code).setFieldByName("Size")
                 elif doWhat.lower() in ['set distress','set ds','s.dist','s.dis','s.distress']: #Distress
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("Distress")
+                    NEUSetter(code=code).setFieldByName("Distress")
                 elif doWhat.lower() in "'set casecount',setcc','s.cc'".replace("'","").split(","): #CaseCount
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("CaseCount")
+                    NEUSetter(code=code).setFieldByName("CaseCount")
                 elif doWhat.lower() in "'set tax','settax','s.tax'".replace("'","").split(","): #Tax
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("Tax")
+                    NEUSetter(code=code).setFieldByName("Tax")
                 elif doWhat.lower() in "'set taxnote','settn','s.tn'".replace("'","").split(","): #TaxNote
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("TaxNote")
+                    NEUSetter(code=code).setFieldByName("TaxNote")
                 elif doWhat.lower() in "'set crv','setcrv','s.crv'".replace("'","").split(","): #CRV
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("CRV")
+                    NEUSetter(code=code).setFieldByName("CRV")
                 elif doWhat.lower() in "'set name','setname','s.name'".replace("'","").split(","): #Name
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("Name")
+                    NEUSetter(code=code).setFieldByName("Name")
                 elif doWhat.lower() in "'set location','setloc','s.loc'".replace("'","").split(","): #Location
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("Location")
+                    NEUSetter(code=code).setFieldByName("Location")
                 elif doWhat.lower() in "'set alt_bcd','setaltbcd','s.alt_bcd'".replace("'","").split(","): #ALT_Barcode
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("ALT_Barcode")
+                    NEUSetter(code=code).setFieldByName("ALT_Barcode")
                 elif doWhat.lower() in "'set dup_bcd','setdupbcd','s.dup_bcd'".replace("'","").split(","): #DUP_Barcode
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("DUP_Barcode")
+                    NEUSetter(code=code).setFieldByName("DUP_Barcode")
                 elif doWhat.lower() in "'set csid_ld','setcsidld','s.csid_ld'".replace("'","").split(","): #CaseID_BR
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("CaseID_LD")
+                    NEUSetter(code=code).setFieldByName("CaseID_LD")
                 elif doWhat.lower() in "'set csid_br','setcsidld','s.csid_br'".replace("'","").split(","): #CaseID_LD
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("CaseID_BR")
+                    NEUSetter(code=code).setFieldByName("CaseID_BR")
                 elif doWhat.lower() in "'set csid_6w','setcsidld','s.csid_6w'".replace("'","").split(","): #CaseID_6W
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("CaseID_6W")
+                    NEUSetter(code=code).setFieldByName("CaseID_6W")
                 elif doWhat.lower() in "'set loadcount','set lc','s.lc'".replace("'","").split(","): #LoadCount
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("LoadCount")
+                    NEUSetter(code=code).setFieldByName("LoadCount")
                 elif doWhat.lower() in "'set palletcount','set pc','s.pc'".replace("'","").split(","): #PalletCount
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("PalletCount")
+                    NEUSetter(code=code).setFieldByName("PalletCount")
                 elif doWhat.lower() in "'set shelfcount','set sf','s.sc'".replace("'","").split(","):  #ShelfCount
                     print(doWhat.lower())
-                    NEUSetter().setFieldByName("ShelfCount")
+                    NEUSetter(code=code).setFieldByName("ShelfCount")
                 elif doWhat.lower() in "clean_pc,cleanpc".split(","):
                     print(doWhat.lower())
-                    NEUSetter().newCodesFromPCs()
+                    NEUSetter(code=code).newCodesFromPCs()
                 elif doWhat.lower() in "clean_exp,cleanexp".split(","):
                     print(doWhat.lower())
-                    NEUSetter().newCodesFromExpireds()
+                    NEUSetter(code=code).newCodesFromExpireds()
                 elif doWhat.lower() in ['test_default',]:
                     with Session(ENGINE) as session:
                         check=session.query(Entry).filter(Entry.Barcode=='TEST_DEFAULT',Entry.Code=='TEST_DEFAULT',Entry.Name=='TEST_DEFAULT').all()
@@ -1863,6 +1913,71 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
     entrySepStart=f'{Back.grey_30}{Fore.light_red}\\\\{Fore.light_green}{"*"*10}{Fore.light_yellow}|{Fore.light_steel_blue}#REPLACE#{Fore.light_magenta}|{Fore.orange_red_1}{"+"*10}{Fore.light_yellow}{Style.bold}({today()}){Fore.light_red}//{Style.reset}'
     entrySepEnd=f'{Back.grey_30}{Fore.light_red}\\\\{Fore.orange_red_1}{"+"*10}{Fore.light_yellow}|{Fore.light_steel_blue}#REPLACE#{Fore.light_magenta}|{Fore.light_green}{"*"*10}{Fore.light_yellow}{Style.bold}({today()}){Fore.light_red}//{Style.reset}'
     def setFieldInList(self,fieldname,load=False,repack_exec=None,barcode=None,only_select_qty=False):
+        #determine if ascending or descending by 
+        def hnf(resultx,fieldname,code):
+                            if isinstance(resultx,Entry):
+                                with Session(ENGINE) as session:
+                                    result=session.query(Entry).filter(Entry.EntryId==resultx.EntryId).first()
+
+                                    if result.Price is None:
+                                        result.Price=0
+                                    if result.Tax is None:
+                                        result.Tax=0
+                                    if result.CRV is None:
+                                        result.CRV=0
+                                    for k in ['PalletCount','ShelfCount','LoadCount','CaseCount','Facings']:
+                                        if getattr(result,k) < 1 or getattr(result,k) == None:
+                                            setattr(result,k,1)
+                                            session.commit()
+                                            session.flush()
+                                            session.refresh(result)
+                                    palletcount=result.PalletCount
+                                    facings=result.Facings
+                                    shelfcount=result.ShelfCount
+                                    loadcount=result.LoadCount
+                                    casecount=result.CaseCount
+                                    Name=result.Name
+                                    BCD=result.Barcode
+                                    CD=result.Code
+                                    ABCD=result.ALT_Barcode 
+                                    ci=getattr(result,fieldname)
+                                    code=result.Barcode
+                                    mkTextStore=deepcopy(result)
+                                    total_price=0
+                                    if result.Tax == 0:
+                                        total_price=round(result.Price+result.CRV,3)
+                                    else:
+                                        total_price=round(round(result.Price+result.Tax,3)+round(result.CRV,3),3)
+
+                                    hafnhaf_l=f'''{Fore.grey_70}[{Fore.light_steel_blue}ListMode Entry Info{Fore.grey_70}]{Style.reset}
+{Fore.orange_red_1}Cost({Fore.light_red}${Fore.light_green}{round(total_price,3)}({Fore.light_steel_blue}Price({round(result.Price,3)}),{Fore.light_sea_green}CRV({round(result.CRV,3)}),{Fore.spring_green_3a}Tax({round(result.Tax,3)}){Fore.light_green}){Style.reset}                            
+{Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
+{Fore.green_yellow}LoadCount={Fore.dark_goldenrod}{loadcount}{Style.reset}|{Fore.light_red}PalletCount={Fore.orange_red_1}{palletcount}|{Fore.spring_green_3a}{fieldname}={Fore.light_sea_green}{ci}{Style.reset}
+{Fore.cyan}Name{Fore.light_steel_blue}={Name}{Style.reset}
+{Fore.dark_goldenrod}Barcode={Fore.light_green}{result.rebar()}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
+{Style.bold}{Fore.light_sea_green}Code={Fore.spring_green_3a}{Entry.cfmt(None,CD)}{Style.reset}'''
+                                ptext=f'''{hafnhaf_l}
+{Fore.light_red}Enter {Style.bold}{Style.underline}{Fore.orange_red_1}Quantity/Formula{Style.reset} amount|+amount|-amount|a,+a,-a(advanced)|r,+r,-r(ReParseFormula) (Enter==1)|{Fore.light_green}ipcv={Fore.dark_goldenrod}PalletCount-value[{Fore.light_steel_blue}:-){Fore.dark_goldenrod}]|{Fore.light_green}iscv={Fore.dark_goldenrod}ShelfCount-value[{Fore.light_steel_blue}:-(){Fore.dark_goldenrod}]|{Fore.light_green}ilcv={Fore.dark_goldenrod}LoadCount-value[{Fore.light_steel_blue};-){Fore.dark_goldenrod}]|{Fore.light_green}iccv={Fore.dark_goldenrod}CaseCount-value[{Fore.light_steel_blue}:-P{Fore.dark_goldenrod}]|{Fore.light_green}ipcvc{Fore.dark_goldenrod}=(PalletCount-value)/CaseCount[{Fore.light_steel_blue}:-D{Fore.dark_goldenrod}]|{Fore.light_green}iscvc{Fore.dark_goldenrod}=(ShelfCount-value)/CaseCount[{Fore.light_steel_blue}:-|{Fore.dark_goldenrod}]|{Fore.light_green}ilcvc{Fore.dark_goldenrod}=(LoadCount-value)/CaseCount[{Fore.light_steel_blue}:-*{Fore.dark_goldenrod}]|{Fore.light_green}iccvc{Fore.dark_goldenrod}=(CaseCount-value)/CaseCount[{Fore.light_steel_blue}:O{Fore.dark_goldenrod}]{Style.reset}'''
+                            else:
+                                casecount=0
+                                shelfcount=0
+                                facings=0
+                                loadcount=0
+                                palletcount=0
+                                Name=code
+                                BCD=code
+                                ABCD=''
+                                CD=code
+                                ci=0
+                                hafnhaf_l=f'''{Fore.grey_70}[{Fore.light_steel_blue}ListMode Entry Info{Fore.grey_70}]{Style.reset}
+{Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
+{Fore.green_yellow}LoadCount={Fore.dark_goldenrod}{loadcount}{Style.reset}|{Fore.light_red}PalletCount={Fore.orange_red_1}{palletcount}|{Fore.spring_green_3a}{fieldname}={Fore.light_sea_green}{ci}{Style.reset}
+{Fore.cyan}Name{Fore.light_steel_blue}={Name}{Style.reset}
+{Fore.dark_goldenrod}Barcode={Fore.light_green}{BCD}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
+{Style.bold}{Fore.orange_red_1}Code={Fore.spring_green_3a}{CD}{Style.reset}'''
+                            ptext=f'''{hafnhaf_l}
+{Fore.light_red}Enter {Style.bold}{Style.underline}{Fore.orange_red_1}Quantity/Formula{Style.reset} amount|+amount|-amount|a,+a,-a(advanced)|r,+r,-r(ReParseFormula) (Enter==1)|{Fore.light_green}ipcv={Fore.dark_goldenrod}PalletCount-value[{Fore.light_steel_blue}:-){Fore.dark_goldenrod}]|{Fore.light_green}iscv={Fore.dark_goldenrod}ShelfCount-value[{Fore.light_steel_blue}:-(){Fore.dark_goldenrod}]|{Fore.light_green}ilcv={Fore.dark_goldenrod}LoadCount-value[{Fore.light_steel_blue};-){Fore.dark_goldenrod}]|{Fore.light_green}iccv={Fore.dark_goldenrod}CaseCount-value[{Fore.light_steel_blue}:-P{Fore.dark_goldenrod}]|{Fore.light_green}ipcvc{Fore.dark_goldenrod}=(PalletCount-value)/CaseCount[{Fore.light_steel_blue}:-D{Fore.dark_goldenrod}]|{Fore.light_green}iscvc{Fore.dark_goldenrod}=(ShelfCount-value)/CaseCount[{Fore.light_steel_blue}:-|{Fore.dark_goldenrod}]|{Fore.light_green}ilcvc{Fore.dark_goldenrod}=(LoadCount-value)/CaseCount[{Fore.light_steel_blue}:-*{Fore.dark_goldenrod}]|{Fore.light_green}iccvc{Fore.dark_goldenrod}=(CaseCount-value)/CaseCount[{Fore.light_steel_blue}:O{Fore.dark_goldenrod}]{Style.reset}'''
+                            return ptext
         default_quantity_action=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Set The Default Quantity to the quantity retrieved + this value? 'd'=1",helpText="a positive(+) or Negative(-) integer.",data="float")
 
         if default_quantity_action in [None,]:
@@ -1943,7 +2058,11 @@ so use {Fore.orange_red_1}ls-lq/ls Shelf {Fore.light_yellow}from {Fore.light_mag
                                     'x':1,
                                     'f':1,
                                     }
-                                    result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code)).first()
+                                    state=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
+                                    if state == True:
+                                        result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code)).order_by(Entry.Timestamp.asc()).first()
+                                    else:
+                                        result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code)).order_by(Entry.Timestamp.desc()).first()
                                     if result:
                                         if result.CaseCount==0:
                                             result.CaseCount=1
@@ -2063,7 +2182,12 @@ use of the python3.x module math is valid
                                     '^':1,
                                     '%':1,
                                     }
-                                    result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code)).first()
+                                    state=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
+                                    if state == True:
+                                        result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code)).order_by(Entry.Timestamp.asc()).first()
+                                    else:
+                                        result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code)).order_by(Entry.Timestamp.desc()).first()
+                                    
                                     if result:
                                         if result.CaseCount==0:
                                             result.CaseCount=1
@@ -2351,6 +2475,7 @@ Location Fields:
                                 continue
                             m=f"Item Num |Name|Barcode|ALT_Barcode|Code|{fieldname}|EID"
                             hr='-'*len(m)
+                        '''
                         palletcount=1
                         shelfcount=1
                         loadcount=1
@@ -2361,20 +2486,40 @@ Location Fields:
                         BCD=''
                         ABCD=''
                         ci=''
+                        '''
+                        casecount=0
+                        shelfcount=0
+                        facings=0
+                        loadcount=0
+                        palletcount=0
+                        Name=code
+                        BCD=code
+                        ABCD=''
+                        CD=code
+                        ci=0
 
-                        result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code)),Entry.InList==True).first()
+                        state=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
+                        if state == True:
+                            result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code)),Entry.InList==True).order_by(Entry.Timestamp.asc()).first()
+                        else:
+                            result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code)),Entry.InList==True).order_by(Entry.Timestamp.desc()).first()
+
+                        #result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code)),Entry.InList==True).first()
                         if result == None:
+                            if state == True:
+                                result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code))).order_by(Entry.Timestamp.asc()).first()
+                            else:
+                                result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code))).order_by(Entry.Timestamp.desc()).first()
 
-                            result=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Code==code,Entry.ALT_Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code))).first()
                             #print(isinstance(result,Entry))
                            
 
                             hafnhaf=f'''{Fore.grey_70}[{Fore.light_steel_blue}ListMode Entry Info{Fore.grey_70}]{Style.reset}
-    {Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
-    {Fore.green_yellow}LoadCount={Fore.dark_goldenrod}{loadcount}{Style.reset}|{Fore.light_red}PalletCount={Fore.orange_red_1}{palletcount}|{Fore.spring_green_3a}{fieldname}={Fore.light_sea_green}{ci}{Style.reset}
-    {Fore.cyan}Name{Fore.light_steel_blue}={Name}{Style.reset}
-    {Fore.dark_goldenrod}Barcode={Fore.light_green}{BCD}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
-    {Style.bold}{Fore.orange_red_1}Code={Fore.spring_green_3a}{CD}{Style.reset}'''
+{Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
+{Fore.green_yellow}LoadCount={Fore.dark_goldenrod}{loadcount}{Style.reset}|{Fore.light_red}PalletCount={Fore.orange_red_1}{palletcount}|{Fore.spring_green_3a}{fieldname}={Fore.light_sea_green}{ci}{Style.reset}
+{Fore.cyan}Name{Fore.light_steel_blue}={Name}{Style.reset}
+{Fore.dark_goldenrod}Barcode={Fore.light_green}{BCD}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
+{Style.bold}{Fore.orange_red_1}Code={Fore.spring_green_3a}{CD}{Style.reset}'''
                             if isinstance(result,Entry):
                                 if result.Price is None:
                                     result.Price=0
@@ -2405,17 +2550,27 @@ Location Fields:
                                 else:
                                     total_price=round(round(result.Price+result.Tax,3)+round(result.CRV,3),3)
                                 hafnhaf=f'''{Fore.grey_70}[{Fore.light_steel_blue}ListMode Entry Info{Fore.grey_70}]
-    {Fore.orange_red_1}Cost({Fore.light_red}${Fore.light_green}{round(total_price,3)}({Fore.light_steel_blue}Price({round(result.Price,3)}),{Fore.light_sea_green}CRV({round(result.CRV,3)}),{Fore.spring_green_3a}Tax({round(result.Tax,3)}){Fore.light_green}){Style.reset}
-    {Style.reset}{Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
-    {Fore.green_yellow}LoadCount={Fore.dark_goldenrod}{loadcount}{Style.reset}|{Fore.light_red}PalletCount={Fore.orange_red_1}{palletcount}|{Fore.spring_green_3a}{fieldname}={Fore.light_sea_green}{ci}{Style.reset}
-    {Fore.cyan}Name{Fore.light_steel_blue}={Name}{Style.reset}
-    {Fore.dark_goldenrod}Barcode={Fore.light_green}{result.rebar()}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
-    {Style.bold}{Fore.light_sea_green}Code={Fore.spring_green_3a}{Entry.cfmt(None,CD)}{Style.reset}'''
+{Fore.orange_red_1}Cost({Fore.light_red}${Fore.light_green}{round(total_price,3)}({Fore.light_steel_blue}Price({round(result.Price,3)}),{Fore.light_sea_green}CRV({round(result.CRV,3)}),{Fore.spring_green_3a}Tax({round(result.Tax,3)}){Fore.light_green}){Style.reset}
+{Style.reset}{Fore.light_green}CaseCount={Fore.cyan}{casecount}{Style.reset}|{Fore.medium_violet_red}ShelfCount={Fore.light_magenta}{shelfcount}{Style.reset}|{Fore.orange_red_1}Facings={Fore.turquoise_4}{facings}{Style.reset}
+{Fore.green_yellow}LoadCount={Fore.dark_goldenrod}{loadcount}{Style.reset}|{Fore.light_red}PalletCount={Fore.orange_red_1}{palletcount}|{Fore.spring_green_3a}{fieldname}={Fore.light_sea_green}{ci}{Style.reset}
+{Fore.cyan}Name{Fore.light_steel_blue}={Name}{Style.reset}
+{Fore.dark_goldenrod}Barcode={Fore.light_green}{result.rebar()}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
+{Style.bold}{Fore.light_sea_green}Code={Fore.spring_green_3a}{Entry.cfmt(None,CD)}{Style.reset}'''
 
                             print(hafnhaf)
-                            results=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code),Entry.Code==code,Entry.ALT_Barcode==code)).all()
+
+                            state=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
+                            if state == True:
+                                results=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code),Entry.Code==code,Entry.ALT_Barcode==code)).order_by(Entry.Timestamp.asc()).all()
+                            else:
+                                results=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code),Entry.Code==code,Entry.ALT_Barcode==code)).order_by(Entry.Timestamp.desc()).all()
+
+                            #results=session.query(Entry).filter(or_(Entry.Barcode==code,Entry.Barcode.icontains(code),Entry.Code.icontains(code),Entry.Code==code,Entry.ALT_Barcode==code)).all()
                             results_ct=len(results)
-                            resultsName=session.query(Entry).filter(or_(Entry.Name.icontains(code))).all()
+                            if state == True:
+                                resultsName=session.query(Entry).filter(or_(Entry.Name.icontains(code))).order_by(Entry.Timestamp.asc()).all()
+                            else:
+                                resultsName=session.query(Entry).filter(or_(Entry.Name.icontains(code))).order_by(Entry.Timestamp.desc()).all()
                             resultsName_ct=len(resultsName)
                             if results_ct > 0:
                                 warn1=f"{Fore.light_sea_green}Enter/<CODE> will default to Skipping anything from this option, and will probably present {Fore.light_yellow}another prompt{Style.reset}"
@@ -2510,9 +2665,11 @@ Location Fields:
 {Fore.dark_goldenrod}Barcode={Fore.light_green}{result.rebar()}|{Style.reset}{Fore.light_sea_green}ALT_Barcode={Fore.turquoise_4}{ABCD}{Style.reset}
 {Style.bold}{Fore.light_sea_green}Code={Fore.spring_green_3a}{Entry.cfmt(None,CD)}{Style.reset}'''
 
+                        
                         ptext=f'''{hafnhaf}
 {Fore.light_red}Enter {Style.bold}{Style.underline}{Fore.orange_red_1}Quantity/Formula{Style.reset} amount|+amount|-amount|a,+a,-a(advanced)|r,+r,-r(ReParseFormula) (Enter==1)|{Fore.light_green}ipcv={Fore.dark_goldenrod}PalletCount-value[{Fore.light_steel_blue}:-){Fore.dark_goldenrod}]|{Fore.light_green}iscv={Fore.dark_goldenrod}ShelfCount-value[{Fore.light_steel_blue}:-(){Fore.dark_goldenrod}]|{Fore.light_green}ilcv={Fore.dark_goldenrod}LoadCount-value[{Fore.light_steel_blue};-){Fore.dark_goldenrod}]|{Fore.light_green}iccv={Fore.dark_goldenrod}CaseCount-value[{Fore.light_steel_blue}:-P{Fore.dark_goldenrod}]|{Fore.light_green}ipcvc{Fore.dark_goldenrod}=(PalletCount-value)/CaseCount[{Fore.light_steel_blue}:-D{Fore.dark_goldenrod}]|{Fore.light_green}iscvc{Fore.dark_goldenrod}=(ShelfCount-value)/CaseCount[{Fore.light_steel_blue}:-|{Fore.dark_goldenrod}]|{Fore.light_green}ilcvc{Fore.dark_goldenrod}=(LoadCount-value)/CaseCount[{Fore.light_steel_blue}:-*{Fore.dark_goldenrod}]|{Fore.light_green}iccvc{Fore.dark_goldenrod}=(CaseCount-value)/CaseCount[{Fore.light_steel_blue}:O{Fore.dark_goldenrod}]{Style.reset}'''
-                        p=Prompt.__init2__(None,func=mkT,ptext=f"{ptext}",helpText=self.helpText_barcodes.replace('#CODE#',code_log),data=code)
+                        
+                        p=Prompt.__init2__(None,func=mkT,ptext=f"{ptext}",helpText=self.helpText_barcodes.replace('#CODE#',code_log),data=code,qc=lambda self=self,code=code:self.NewEntryMenu(code=code),replace_ptext=lambda result=result,fieldname=fieldname,code=code:hnf(resultx=result,fieldname=fieldname,code=code))
                         if self.next_barcode():
                             continue
                         if p in [None,]:
@@ -2742,15 +2899,14 @@ result in setting the value to 'Default Qty'+'Location Field'{Style.reset}
     """
     def calculate_tax_crv(self,price):
         tax,crv=0,0
-        useMe=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Do you want to calculate Tax w/ or w/o CRV?",helpText="yes or no, default == No",data="boolean")
+        useMe=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Do you want to calculate Tax w/ or w/o CRV[no=default]?",helpText="yes or no, default == No",data="boolean")
         if useMe in [None,'d',False]:
-
             return tax,crv
-        default_taxrate=float(detectGetOrSet("Tax Rate",0.0925,setValue=False,literal=True))
-        default_price=float(detectGetOrSet("pricing default price",1,setValue=False,literal=True))
-        default_bottle_qty=float(detectGetOrSet("pricing default bottle_qty",1,setValue=False,literal=True))
-        default_bottle_size=float(detectGetOrSet("pricing default bottle_size",16.9,setValue=False,literal=True))
-        default_purchased_qty=float(detectGetOrSet("pricing default purchased_qty",1,setValue=False,literal=True))
+        default_taxrate=Decimal(detectGetOrSet("Tax Rate",0.0925,setValue=False,literal=True)).quantize(Decimal("0.0000"))
+        default_price=Decimal(detectGetOrSet("pricing default price",1,setValue=False,literal=True)).quantize(Decimal("0.00"))
+        default_bottle_qty=Decimal(detectGetOrSet("pricing default bottle_qty",1,setValue=False,literal=True)).quantize(Decimal("0.00"))
+        default_bottle_size=Decimal(detectGetOrSet("pricing default bottle_size",16.9,setValue=False,literal=True)).quantize(Decimal("0.00"))
+        default_purchased_qty=Decimal(detectGetOrSet("pricing default purchased_qty",1,setValue=False,literal=True)).quantize(Decimal("0.00"))
 
         while True:
             try:
@@ -2765,16 +2921,18 @@ result in setting the value to 'Default Qty'+'Location Field'{Style.reset}
                 elif tax_rate in ['d',]:
                     tax_rate=default_taxrate
 
-                price=round(float(price),4)
-                tax_rate=round(float(tax_rate),4)
-                crv=round(float(crv),4)
+                price=Decimal(price).quantize(Decimal("0.00"))
+                tax_rate=Decimal(tax_rate).quantize(Decimal("0.0000"))
+                crv=Decimal(crv).quantize(Decimal("0.00"))
                 
-                tax=((round(price,4)+crv)*round(tax_rate,4))
+                tax=((price+crv)*tax_rate)
                 print(f"{Fore.dark_goldenrod}Total(${price+tax}){Fore.light_green} = ${tax}/{Fore.green_yellow}{tax_rate}% on {Fore.turquoise_4}Total({Fore.orange_red_1}CRV({crv})+{Fore.light_steel_blue}Price({price}){Fore.turquoise_4}){Style.reset}")
+                #return float(tax,2),float(crv,2)
                 return tax,crv
             except Exception as e:
                 print(e)
             return tax,crv
+        return tax,crv
 
     def setBarcodes(self,fieldname):
          while True:
@@ -4021,6 +4179,8 @@ where:
         self.product_history=lambda self=self:DayLogger(engine=ENGINE)
         self.reset_next_barcode()
         self.DateTimePkr=DateTimePkr
+        self.TimePkr=TimePkr
+        self.DatePkr=DatePkr
         of=Path("GeneratedString.txt")
         if of.exists():
             age=datetime.now()-datetime.fromtimestamp(of.stat().st_ctime)
@@ -4268,7 +4428,7 @@ where:
                     'exec':lambda self=self: self.evaluateFormula(),
                     }
         self.options["compare product"]={
-                    'cmds':["#"+str(count),f"compare product","p1==p2?"],
+                    'cmds':["#"+str(count),f"compare product","p1==p2?","compare"],
                     'desc':f'compare two products qty and price',
                     'exec':lambda self=self: CompareUI(),
                     }
@@ -4495,6 +4655,24 @@ where:
                     'cmds':["#"+str(count),"check backup storage","chk bkp strg",],
                     'desc':f"display amount of storage backup dir is using and request if user wishes to cleanup",
                     'exec':check_back_ups,
+                    }
+        count+=1
+        self.options["timepkr"]={
+                    'cmds':["#"+str(count),"timepkr",],
+                    'desc':f"test timepkr",
+                    'exec':lambda self=self: print(self.TimePkr()),
+                    }
+        count+=1
+        self.options["datepkr"]={
+                    'cmds':["#"+str(count),"datepkr",],
+                    'desc':f"test datepkr",
+                    'exec':lambda self=self: print(self.DatePkr()),
+                    }
+        count+=1
+        self.options["datetimepkr"]={
+                    'cmds':["#"+str(count),"datetimepkr",],
+                    'desc':f"test datetimepkr",
+                    'exec':lambda self=self: print(self.DateTimePkr()),
                     }
         count+=1
         #self.product_history=

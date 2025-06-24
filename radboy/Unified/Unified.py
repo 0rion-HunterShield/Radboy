@@ -822,6 +822,13 @@ rmc.quikRn()
                                 print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{export_folder}{Style.reset}")
                                 gzf.add(export_folder)
 
+                        bootable="__bootable__.py"
+                        if bootable:
+                            bootable=Path(bootable)
+                            if bootable.exists() and bootable.is_file():
+                                print(f"{Fore.spring_green_3b}Adding {Fore.green_yellow}{bootable}{Style.reset}")
+                                gzf.add(bootable)
+
                         pay_ws=Path("EstimatedPayCalendarWorkSheet.txt")
                         pay_ws=Path(detectGetOrSet("EstimatedPayCalendarExportFile",pay_ws,setValue=False,literal=True))
                         if pay_ws:

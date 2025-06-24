@@ -82,6 +82,7 @@ class CoinComboUtil:
         with Session(ENGINE) as session:
             ct=session.query(CoinCombo4TTL).count()
             done=session.query(CoinCombo4TTL).delete()
+            session.commit()
             print(self.colorize(ct,ct,f"Cleared CoinCombo4TTL's - {done}"))
 
     def list_combos(self):
@@ -90,7 +91,7 @@ class CoinComboUtil:
             for num,i in enumerate(session.query(CoinCombo4TTL).all()):
                 print(self.colorize(num,ct,i))
 
-    def range_generate(self):
+    def range_generate(self,forwards=True):
         bottom=Prompt.__init2__(None,FormBuilderMkText,ptext="Range Min?",helpText="a value",data="float")
         if bottom in [None,]:
             return
@@ -112,9 +113,9 @@ class CoinComboUtil:
         for num,amount in enumerate(rng):
             amount=round(float(amount),2)
             print(f"{self.colorize(num,ct,amount)}")
-            self.generate(amount=amount)
+            self.generate(amount=amount,forwards=forwards)
 
-    def generate(self,amount=None):
+    def generate(self,amount=None,forwards=True):
         if amount == None or amount < 0:
             amount = Prompt.__init2__(None,FormBuilderMkText,ptext="How much?",helpText="a value",data="float")
         if amount in [None,'d']:
@@ -130,7 +131,7 @@ class CoinComboUtil:
             for i in currencies:
                 bills.append(i.Value)
             bills=sorted(bills)
-            combinations = get_bill_combinations(amount, bills)
+            combinations = get_bill_combinations(amount, bills,forwards=forwards)
 
             # Print the combinations
             for num,combo in enumerate(combinations):
@@ -180,7 +181,14 @@ class CoinComboUtil:
                         
                         try:
                             if amount == finalmsg[k]['Calculated Total']:
-                                coinCombo=CoinCombo4TTL(Calculated_Total=finalmsg[k]['Calculated Total'],TTL=finalmsg[k]['User Provided Amount'],DTOE=NOW,CurrencyName=finalmsg[k]['Name'],CurrencyValue=finalmsg[k]['Value'],CurrencyNeeded4TTL=finalmsg[k]['NeededQty'],group_id=f"{combo}={finalmsg[k]['User Provided Amount']}")
+                                gid=f"{combo}={finalmsg[k]['User Provided Amount']}"
+                                check=session.query(CoinCombo4TTL).filter(CoinCombo4TTL.group_id==gid).first()
+                                if check:
+                                    print(self.colorize(0,0,f"User Provided Amount({Fore.light_yellow}{amount}{Fore.cyan}) as group_id({Fore.orange_red_1}{gid}{Fore.cyan}) was Located In Storage -> {Fore.light_red}Refusing to Store!{Fore.cyan}"))
+                                    continue
+
+                                coinCombo=CoinCombo4TTL(Calculated_Total=finalmsg[k]['Calculated Total'],TTL=finalmsg[k]['User Provided Amount'],DTOE=NOW,CurrencyName=finalmsg[k]['Name'],CurrencyValue=finalmsg[k]['Value'],CurrencyNeeded4TTL=finalmsg[k]['NeededQty'],group_id=gid)
+                                
                                 session.add(coinCombo)
                                 if (num%self.commit_rate)==0:
                                     try:
@@ -222,6 +230,11 @@ class CoinComboUtil:
                 'desc':"Generate Coin Combos for a given amount",
                 },
             f'{uuid.uuid1()}':{
+                'cmds':['genr','generate combos reversed','gccr'],
+                'exec':lambda self=self:self.generate(forwards=False),
+                'desc':"Generate Coin Combos for a given amount in reverse",
+                },
+            f'{uuid.uuid1()}':{
                 'cmds':['scr','set commit rate','st cmt rt'],
                 'exec':self.setCommitRate,
                 'desc':"how fast discoveries are saved (too many too fast=slow,too few too slow=slow);find your balance!",
@@ -235,6 +248,11 @@ class CoinComboUtil:
                 'cmds':['range generate','gen rng','gen range','generate range',',gnrng','gn rng',],
                 'exec':self.range_generate,
                 'desc':"generate combinations for a range of values [will take a while]",
+                },
+            f'{uuid.uuid1()}':{
+                'cmds':['range generate reverse','gen rng rvs','gen range rvs','generate range reverse',',gnrngr','gn rng r',],
+                'exec':self.range_generate,
+                'desc':"generate combinations for a range of values [will take a while] in the reverse direction",
                 },
             f'{uuid.uuid1()}':{
                 'cmds':['skc','scl','seek combo','sk c','search combos',],
