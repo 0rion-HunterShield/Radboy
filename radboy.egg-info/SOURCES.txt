@@ -48,6 +48,7 @@ radboy/x.py
 radboy.egg-info/PKG-INFO
 radboy.egg-info/SOURCES.txt
 radboy.egg-info/dependency_links.txt
+radboy.egg-info/requires.txt
 radboy.egg-info/top_level.txt
 radboy/AlcoholConsumption/__init__.py
 radboy/AlcoholConsumption/ac.py
@@ -331,6 +332,8 @@ radboy/Repack/__pycache__/Repack.cpython-313.pyc
 radboy/Repack/__pycache__/__init__.cpython-311.pyc
 radboy/Repack/__pycache__/__init__.cpython-312.pyc
 radboy/Repack/__pycache__/__init__.cpython-313.pyc
+radboy/RepeatableDates/RepeatableDates.py
+radboy/RepeatableDates/__init__.py
 radboy/Roster/Roster.py
 radboy/Roster/__init__.py
 radboy/Roster/__pycache__/Roster.cpython-312.pyc

@@ -1,1 +1,75 @@
+*************************************************
+0/1 of 2[EID]19837 |-| 5-Hour Energy Extra Strength Grape 1.93 Fl. Oz|[BCD]7194-1072-001 cksm=8|[CD]7194-1072-0018 |-| ListQty = 1.0, |-| Total = 1.0
+Price(3.03)*Total(1.0):3.03
++CRV(0.0)*Total(1.0)
+=TotalCRV(0.0)+TotalPrice(3.03)=NetPrice(3.03)
++Tax(0.2803) w/o CRV(0.0)*Total(1.0)
+=TaxNoCRVTotal(0.2803)+TotalPrice(3.03)=NetPrice(3.3103)
++Tax(0.2803) w/ CRV(0.0)*Total(1.0)
+=TaxCRVTotal(0.2803)+TotalPrice(3.03)=NetPrice(3.3103)
+PercentOfTotal(60.24) of Total(5.4953)
+*************************************************
+*************************************************
+1/2 of 2[EID]19858 |-| Coca-Cola Zero Sugar 1.25 Lt|[BCD]0490-0005-541 cksm=2|[CD]0490-0005-5412 |-| ListQty = 1.0, |-| Total = 1.0
+Price(1.9)*Total(1.0):1.9
++CRV(0.1)*Total(1.0)
+=TotalCRV(0.1)+TotalPrice(1.9)=NetPrice(2.0)
++Tax(0.185) w/o CRV(0.1)*Total(1.0)
+=TaxNoCRVTotal(0.185)+TotalPrice(1.9)=NetPrice(2.085)
++Tax(0.185) w/ CRV(0.1)*Total(1.0)
+=TaxCRVTotal(0.285)+TotalPrice(1.9)=NetPrice(2.185)
+PercentOfTotal(39.76) of Total(5.4953)
+*************************************************
+Total Product Value:4.93
+Total Product Value w/CRV(0.1):5.03
+Total Product Value Taxed w/o CRV(0.4653):5.3953
+Total Product Value Taxed w/ CRV(0.5653):5.4953
+                
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
+Nothing in BldLS!
 Nothing in BldLS!

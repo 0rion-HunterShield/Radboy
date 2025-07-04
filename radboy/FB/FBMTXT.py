@@ -8,6 +8,17 @@ import re
 from datetime import timedelta
 import calendar
 from colored import Fore,Back,Style
+import itertools
+
+def generate_cmds(startcmd,endCmd):
+    cmd=(startcmd,endCmd)
+    cmds=[]
+    for i in itertools.product(startcmd,endCmd):
+        if ''.join(i) not in cmds:
+            cmds.append(''.join(i))
+        if ' '.join(i) not in cmds:
+            cmds.append(' '.join(i))
+    return cmds
 
 fm_data={
         'Decimal':{
@@ -55,6 +66,7 @@ fm_data={
             'default':[],
             },
       }
+UNDER_RND="Under Development; not functional!"
 def FormBuilderHelpText():
     TODAY_IS=datetime.now()
     z=TODAY_IS
@@ -90,6 +102,36 @@ def FormBuilderHelpText():
     {Fore.light_cyan}**{Fore.light_steel_blue}Boolean True={Fore.spring_green_3a}y,yes,Yes,Y,True,T,t,1 or an equation that results in a True such as {Fore.orange_red_1}`datetime.now()`/{datetime.now()}`!=datetime(2001,1,1)`/{datetime(2001,1,1)} or 1==1.{Style.reset}
     {Fore.light_cyan}**{Fore.light_steel_blue}Boolean False={Fore.spring_green_3a}false,no,n,N,No,False,0 or an equation that results in a False such as {Fore.orange_red_1}`datetime.now()`/{datetime.now()}`==datetime(2001,1,1)`/{datetime(2001,1,1)} or 1==0.{Style.reset}
     {Fore.medium_violet_red}**{Fore.light_magenta}When Asked for a List of integers {Fore.magenta}use 1,2,3 for indexes 1-3, {Fore.orange_red_1}or 1,3 for indexes 1 and 3, {Fore.light_red}or 1,4,6-8,10 for indexes 1,4,6,7,8, and 10,{Fore.purple_1a} or 1 for index 1.{Style.reset}
+    {UNDER_RND}
+    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming week start - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming week end - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}previous/last week start - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}previous/last week end - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+
+    {Fore.green_yellow}**{Fore.light_magenta}previous/last saturday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}previous/last sunday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}previous/last monday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}previous/last tuesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}previous/last wednesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}previous/last thursday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}previous/last friday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+
+    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming saturday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming sunday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming monday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming tuesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming wednesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming thursday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming friday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+
+    {Fore.green_yellow}**{Fore.light_magenta}saturday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}sunday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}monday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}tuesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}wednesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}thursday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+    {Fore.green_yellow}**{Fore.light_magenta}friday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+
     '''
     print(msg)
 
@@ -170,7 +212,7 @@ def FormBuilderMkText(text,data,passThru=[],PassThru=True,alternative_false=None
                             return 'd'
                 except Exception as e:
                     return 'd'
-        elif data.lower() in ['str','string',"varchar",]:
+        elif data.lower() in ['str','string',"varchar","text"]:
             value=text
         elif data.lower() == 'date':
             if text.lower() in ['y','yes','1','t','true']:
@@ -269,17 +311,237 @@ def FormBuilderMkText(text,data,passThru=[],PassThru=True,alternative_false=None
                     return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*7)
 
                     '''
-                    #new cmds to be added, tab below backwards
-                    elif text.lower() in ['next week start',]:
-                        return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*7)
-                    elif text.lower() in ['next week end',]:
-                        return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*7)
-
-                    elif text.lower() in ['last week start',]:
-                        return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*7)
-                    elif text.lower() in ['last week end',]:
-                        return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)-timedelta(seconds=60*60*24*7)
+                    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming week start - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming week end - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}previous/last week start - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}previous/last week end - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    [RDY]
+                    {Fore.green_yellow}**{Fore.light_magenta}previous/last saturday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}previous/last sunday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}previous/last monday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}previous/last tuesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}previous/last wednesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}previous/last thursday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}previous/last friday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    [RDY]
+                    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming saturday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming sunday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming monday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming tuesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming wednesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming thursday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}next/this/upcoming friday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} from today{Style.reset}
+                    [RDY]
+                    {Fore.green_yellow}**{Fore.light_magenta}saturday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}sunday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}monday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}tuesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}wednesday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}thursday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
+                    {Fore.green_yellow}**{Fore.light_magenta}friday - {Fore.orange_red_1}WARNING:{Fore.light_cyan} of this week only{Style.reset}
                     '''
+                elif text.lower() in generate_cmds(startcmd=['previous','last','prev'],endCmd=['week end','w e','we']):
+                    today=datetime.now()
+                    friday=6
+                    weekEnd=today+timedelta(days=(friday-today.weekday())%7)
+                    weekEnd-=timedelta(days=7)
+                    return weekEnd
+                elif text.lower() in generate_cmds(startcmd=['previous','last','prev'],endCmd=['week start','w s','ws']):
+                    today=datetime.now()
+                    friday=6
+                    Friday=today+timedelta(days=(friday-today.weekday())%7)
+                    weekStart=Friday-timedelta(days=7)
+                    weekStart-=timedelta(days=6)
+                    return weekStart                    
+                elif text.lower() in generate_cmds(startcmd=['next','upcoming'],endCmd=['week end','w e','we']):
+                    today=datetime.now()
+                    friday=6
+                    weekEnd=today+timedelta(days=(friday-today.weekday())%7)
+                    weekEnd+=timedelta(days=7)
+                    return weekEnd
+                elif text.lower() in generate_cmds(startcmd=['next','upcoming'],endCmd=['week start','w s','ws']):                    
+                    today=datetime.now()
+                    friday=0
+                    Friday=today+timedelta(days=(friday-today.weekday())%7)
+                    weekStart=Friday-timedelta(days=7)
+                    weekStart+=timedelta(days=7)
+                    return weekStart
+                elif text.lower() in generate_cmds(startcmd=['this','current'],endCmd=['week end','w e','we']):                    
+                    today=datetime.now()
+                    friday=6
+                    weekEnd=today+timedelta(days=(friday-today.weekday())%7)
+                    return weekEnd
+                elif text.lower() in generate_cmds(startcmd=['this','current'],endCmd=['week start','w s','ws']):                    
+                    today=datetime.now()
+                    friday=6
+                    Friday=today+timedelta(days=(friday-today.weekday())%7)
+                    weekStart=Friday-timedelta(days=7)
+                    return weekStart
+                elif text.lower() in generate_cmds(startcmd=['previous','last','prev'],endCmd=['friday',]):
+                    dayNum=4
+                    today=datetime.now()
+                    daysUntil=(dayNum-today.weekday())%7
+                    dayOf=today+timedelta(days=daysUntil)
+                    lastDay=dayOf-timedelta(days=7)
+                    return lastDay
+                elif text.lower() in generate_cmds(startcmd=['previous','last','prev'],endCmd=['saturday',]):
+                    dayNum=5
+                    today=datetime.now()
+                    daysUntil=(dayNum-today.weekday())%7
+                    dayOf=today+timedelta(days=daysUntil)
+                    lastDay=dayOf-timedelta(days=7)
+                    return lastDay
+                elif text.lower() in generate_cmds(startcmd=['previous','last','prev'],endCmd=['sunday',]):
+                    dayNum=6
+                    today=datetime.now()
+                    daysUntil=(dayNum-today.weekday())%7
+                    dayOf=today+timedelta(days=daysUntil)
+                    lastDay=dayOf-timedelta(days=7)
+                    return lastDay
+                elif text.lower() in generate_cmds(startcmd=['previous','last','prev'],endCmd=['monday',]):
+                    dayNum=0
+                    today=datetime.now()
+                    daysUntil=(dayNum-today.weekday())%7
+                    dayOf=today+timedelta(days=daysUntil)
+                    lastDay=dayOf-timedelta(days=7)
+                    return lastDay
+                elif text.lower() in generate_cmds(startcmd=['previous','last','prev'],endCmd=['tuesday',]):
+                    dayNum=1
+                    today=datetime.now()
+                    daysUntil=(dayNum-today.weekday())%7
+                    dayOf=today+timedelta(days=daysUntil)
+                    lastDay=dayOf-timedelta(days=7)
+                    return lastDay
+                elif text.lower() in generate_cmds(startcmd=['previous','last','prev'],endCmd=['wednesday',]):
+                    dayNum=2
+                    today=datetime.now()
+                    daysUntil=(dayNum-today.weekday())%7
+                    dayOf=today+timedelta(days=daysUntil)
+                    lastDay=dayOf-timedelta(days=7)
+                    return lastDay
+                elif text.lower() in generate_cmds(startcmd=['previous','last','prev'],endCmd=['thursday',]):
+                    dayNum=3
+                    today=datetime.now()
+                    daysUntil=(dayNum-today.weekday())%7
+                    dayOf=today+timedelta(days=daysUntil)
+                    lastDay=dayOf-timedelta(days=7)
+                    return lastDay
+                elif text.lower() in generate_cmds(startcmd=['next','this','upcoming'],endCmd=['friday',]):
+                    dayOfWeek=4
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)%7
+                    if untilDayOfWeek == 0:
+                        untilDayOfWeek=7
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in generate_cmds(startcmd=['next','this','upcoming'],endCmd=['saturday',]):
+                    dayOfWeek=5
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)%7
+                    if untilDayOfWeek == 0:
+                        untilDayOfWeek=7
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in generate_cmds(startcmd=['next','this','upcoming'],endCmd=['sunday',]):
+                    dayOfWeek=6
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)%7
+                    if untilDayOfWeek == 0:
+                        untilDayOfWeek=7
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in generate_cmds(startcmd=['next','this','upcoming'],endCmd=['monday',]):
+                    dayOfWeek=0
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    #add %7 for next
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)%7
+                    if untilDayOfWeek == 0:
+                        untilDayOfWeek=7
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in generate_cmds(startcmd=['next','this','upcoming'],endCmd=['tuesday',]):
+                    dayOfWeek=1
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)%7
+                    if untilDayOfWeek == 0:
+                        untilDayOfWeek=7
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in generate_cmds(startcmd=['next','this','upcoming'],endCmd=['wednesday',]):
+                    dayOfWeek=2
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)%7
+                    if untilDayOfWeek == 0:
+                        untilDayOfWeek=7
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in generate_cmds(startcmd=['next','this','upcoming'],endCmd=['thursday',]):
+                    dayOfWeek=3
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)%7
+                    if untilDayOfWeek == 0:
+                        untilDayOfWeek=7
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+
+                elif text.lower() in ['friday',]:
+                    dayOfWeek=4
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in ['saturday',]:
+                    dayOfWeek=5
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in ['sunday',]:
+                    dayOfWeek=6
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in ['monday',]:
+                    dayOfWeek=0
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    #add %7 for next
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in ['tuesday',]:
+                    dayOfWeek=1
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in ['wednesday',]:
+                    dayOfWeek=2
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+                elif text.lower() in ['thursday',]:
+                    dayOfWeek=3
+                    today=datetime.now()
+                    todaysDayOfWeek=today.weekday()
+                    untilDayOfWeek=(dayOfWeek-todaysDayOfWeek)
+                    when=datetime(today.year,today.month,today.day)+timedelta(days=untilDayOfWeek)
+                    return when
+
                 elif text.lower() in ['next year',]:
                     TODAY_IS=datetime.now()
                     return datetime(year=TODAY_IS.year,month=TODAY_IS.month,day=TODAY_IS.day)+timedelta(seconds=60*60*24*365)

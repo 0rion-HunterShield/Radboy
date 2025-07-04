@@ -30,6 +30,34 @@ from decimal import Decimal
 import biip
 import radboy.Orders.MilkWaterOrder as MWR
 import itertools
+from inputimeout import inputimeout, TimeoutOccurred
+
+def timedout(ptext):
+    try:
+        t=5
+        past=datetime.now()
+        user_input = inputimeout(prompt=f"{ptext}({t} Seconds Passed='timeout' returned from {past.strftime("%I:%M:%S %p(12H)/%H:%M:%S(24H)")}):", timeout=t)
+        return user_input
+    except TimeoutOccurred:
+        print("Time's up! No input received.")
+        user_input = "timeout"
+        return user_input
+
+def orderQuery(query,orderBy,inverse=False):
+    LookUpState=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
+    if not isinstance(LookUpState,bool):
+        LookUpState=db.detectGetOrSet('list maker lookup order',False,setValue=True,literal=False)
+    if LookUpState == True:
+        if not inverse:
+            query=query.order_by(orderBy.asc())
+        else:
+            query=query.order_by(orderBy.desc())
+    else:
+        if not inverse:
+            query=query.order_by(orderBy.desc())
+        else:
+            query=query.order_by(orderBy.asc())
+    return query
 
 def generate_cmds(startcmd,endCmd):
     cmd=(startcmd,endCmd)
@@ -113,7 +141,7 @@ def getSuperTotal(results,location_fields,colormapped):
             master_total_tax_crv+=tax_crv
             tax_crv=tax_crv
 
-        return {'final total':master_total_tax_crv+master_total,'master_total_tax_crv':master_total_tax_crv,'master_total_tax':master_total_tax,'master_total_crv':master_total_crv,'sub_total':master_total}
+        return {'final total':float(master_total_tax_crv+master_total),'master_total_tax_crv':float(master_total_tax_crv),'master_total_tax':float(master_total_tax),'master_total_crv':float(master_total_crv),'sub_total':float(master_total)}
 
 
 class Obfuscate:
@@ -833,7 +861,7 @@ class Prompt(object):
         return out
             
 
-    def __init2__(self,func,ptext='do what',helpText='',data={},noHistory=False,qc=None,replace_ptext=None):
+    def __init2__(self,func,ptext='do what',helpText='',data={},noHistory=False,qc=None,replace_ptext=None,alt_input=None):
         '''
         lsbld - bldls()
         lsbld- - bldls(minus=True)
@@ -1095,7 +1123,10 @@ class Prompt(object):
 {m}{Fore.black}{Back.grey_70} P_CMDS SncLstCmd:{str(duration).split(".")[0]} {Style.reset}|{Fore.black}{Back.grey_50} TmInShl:{str(InShellElapsed).split(".")[0]}|DT:{now.ctime()}| {Fore.dark_blue}{Style.bold}{Style.underline}Week {datetime.now().strftime("%W")} {Style.reset}|{Fore.light_magenta}#RPLC#={Fore.tan}rplc {Fore.light_magenta}#RPLC#{Fore.tan} frm {Fore.light_red}CB{Fore.orange_3}.{Fore.light_green}default={Fore.light_yellow}True{Fore.light_steel_blue} or by {Fore.light_red}CB{Fore.orange_3}.{Fore.light_green}doe={Fore.light_yellow}Newest{Style.reset}|{Fore.light_salmon_1}c2c=calc2cmd={Fore.sky_blue_2}clctr rslt to inpt{Style.reset}|b={color2}back|{Fore.light_red}h={color3}help{color4}|{Fore.light_red}h+={color3}help+{color4}|{Fore.light_magenta}i={color3}info|{Fore.light_green}{Fore.light_steel_blue}CMD#c2cb[{Fore.light_red}e{Fore.light_steel_blue}]{Fore.light_green}{Fore.light_red}|{Fore.orange_3}c2cb[{Fore.light_red}e{Fore.orange_3}]#CMD{Fore.light_green} - copy CMD to cb and set default | Note: optional [{Fore.light_red}e{Fore.light_green}] executes after copy{Style.reset} {Fore.light_steel_blue}NTE: cmd ends/start-swith [{Fore.light_red}#clr|clr#{Fore.light_green}{Fore.light_steel_blue}] clrs crnt ln 4 a rtry{Style.reset} {Fore.orange_red_1}|c{Fore.light_steel_blue}=calc|{Fore.spring_green_3a}cb={Fore.light_blue}clipboard{Style.reset}|{Fore.light_salmon_1}cdp={Fore.green_yellow}paste cb dflt {Fore.green}|q={Fore.green_yellow}Quit Menu (qm)
 {Fore.light_red+os.get_terminal_size().columns*'.'}
 {Fore.rgb(55,191,78)}HFL:{Fore.rgb(55,130,191)}{lineTotal()}{Fore.light_red}{Fore.light_green}{Back.grey_15}'''
-                    cmd=input(f"{Fore.light_yellow}{'.'*os.get_terminal_size().columns}\n{Back.grey_15}{Fore.light_yellow}{ptext}{Fore.light_steel_blue}\n[{Fore.light_green}cheat/cht=brief cmd helpt{Fore.light_steel_blue}] ({Fore.orange_red_1}Exec{Fore.light_steel_blue})\n ->{Style.reset}")
+                    if alt_input is not None and callable(alt_input):
+                        cmd=alt_input(f"{Fore.light_yellow}{'.'*os.get_terminal_size().columns}\n{Back.grey_15}{Fore.light_yellow}{ptext}{Fore.light_steel_blue}\n[{Fore.light_green}cheat/cht=brief cmd helpt{Fore.light_steel_blue}] ({Fore.orange_red_1}Exec{Fore.light_steel_blue})\n ->{Style.reset}")
+                    else:
+                        cmd=input(f"{Fore.light_yellow}{'.'*os.get_terminal_size().columns}\n{Back.grey_15}{Fore.light_yellow}{ptext}{Fore.light_steel_blue}\n[{Fore.light_green}cheat/cht=brief cmd helpt{Fore.light_steel_blue}] ({Fore.orange_red_1}Exec{Fore.light_steel_blue})\n ->{Style.reset}")
                     
                     def strip_null(text):
                         if '\0' in text:
@@ -1987,6 +2018,9 @@ CMD's are not final until ended with {Fore.magenta}{hw_delim}{Style.reset}""")
                     elif cmd.lower() in ['pc','prec calc',]:
                         resultant=TM.Tasks.TasksMode(parent=self,engine=db.ENGINE,init_only=True).prec_calc()
                         return func(resultant,data)
+                    elif cmd.lower() in generate_cmds(startcmd=['lds2','rdts'],endCmd=['',]):
+                        resultant=TM.Tasks.TasksMode(parent=self,engine=db.ENGINE,init_only=True).rd_ui()
+                        continue
                     elif cmd.lower() in ['b','back']:
                         lastTime=db.detectGetOrSet("PromptLastDTasFloat",datetime.now().timestamp(),setValue=True)
                         return
@@ -2045,6 +2079,8 @@ CMD's are not final until ended with {Fore.magenta}{hw_delim}{Style.reset}""")
 {Fore.grey_85}** {Fore.light_steel_blue}{f'{Fore.light_red},{Fore.light_steel_blue}'.join(generate_cmds(startcmd=['orddt','ordt','loads','lds'],endCmd=['frozen','Frozen','fzn']))}{Fore.light_green} print hard-coded order dates frozen load{Style.reset}
 {Fore.grey_85}** {Fore.light_steel_blue}{f'{Fore.light_red},{Fore.light_steel_blue}'.join(generate_cmds(startcmd=['orddt','ordt','loads','lds'],endCmd=['gm','lqr','general merchandise','liquor','totes','green totes','grn tts','grntts']))}{Fore.light_green} print hard-coded order dates GM Load/Liquor Load{Style.reset}
 {Fore.grey_85}** {Fore.light_steel_blue}{f'{Fore.light_red},{Fore.light_steel_blue}'.join(generate_cmds(startcmd=['orddts','ordts','loads','lds','orders','loads','rxdates'],endCmd=['','all','all dates','all dts','aldts','*']))}{Fore.light_green} print all load dates {Style.reset}
+{Fore.grey_70}** {Fore.light_steel_blue}{f'{Fore.light_red},{Fore.light_steel_blue}'.join(generate_cmds(startcmd=['units',],endCmd=['']))}{Fore.light_green} list supported units{Style.reset}
+{Fore.grey_70}** {Fore.light_steel_blue}{f'{Fore.light_red},{Fore.light_steel_blue}'.join(generate_cmds(startcmd=['lds2','rdts'],endCmd=['',]))}{Fore.light_green} repeable dates,orders,etc...{Style.reset}
 '''
                         print(extra)
                         print(helpText)
@@ -2135,6 +2171,8 @@ CMD's are not final until ended with {Fore.magenta}{hw_delim}{Style.reset}""")
                             dta=MWR.WaterMilkOrder(today=today,department="General Merchandise[GM]/Liquor[LQR]",noMilkDays=['saturday','monday','wednesday','friday'])
                             print(dta.orderMsg)
                         continue
+                    elif cmd.lower() in generate_cmds(startcmd=['units',],endCmd=['']):
+                        TM.Tasks.TasksMode(parent=self,engine=db.ENGINE,init_only=True).listSystemUnits()
                     elif cmd.lower() in ['rllo','reverse list lookup order']:
                         try:
                             state=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
@@ -2146,7 +2184,7 @@ CMD's are not final until ended with {Fore.magenta}{hw_delim}{Style.reset}""")
                     elif cmd.lower() in ['vllo','view list lookup order']:
                         try:
                             state=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
-                            translate={True:"Ascending by Timestamp/Newest First/Last Line==Oldest",False:"Descending by Timestamp/Oldest First/Last Line==Newest"}
+                            translate={True:"Ascending by Timestamp, Newest==First Line & Last Line==Oldest",False:"Descending by Timestamp, Oldest==First Line & Last Line==Newest"}
                             print(f"{state} : {translate[state]}")
                         except Exception as e:
                             state=db.detectGetOrSet('list maker lookup order',True,setValue=True,literal=False)
@@ -2319,6 +2357,11 @@ last month = today-30d
 {Fore.light_red}Tax=(({Fore.cyan}CRV+{Fore.light_blue}Price)*{Fore.light_magenta}(Sales Tax Rate(0.0925))){Style.reset}
 '''
                         print(sales_tax_msg)
+                        ConversionUnitsMSg=f"""
+degress celcius - degC
+degress fahrenheite - degF
+
+                        """
                         continue
                     elif cmd.lower() in ['sftu','search for text universal',]:
                         result=global_search_for_text()

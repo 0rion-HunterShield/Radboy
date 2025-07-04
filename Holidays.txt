@@ -1,7 +1,22 @@
-Sales and use Tax is 9.25%, 0.0925
+Sales and use Tax is 9.25%, 0.0925 for seaside, marina, some of carmel
+for carmel-by-the-sea, the sales and use tax is 8.75%, 0.0875
+I think the sales tax rounding error for some products can be mitigated by using an altered tax rate that results in a closer form to the receipt. Examples Include:
+Alesmith - 812465001955 - seems to be more accurate by using a tax rate of 0.088, in Carmel-By-The-Sea Safeway instead of 0.0925, (8.8%,9.25% respectively) 
 What is hot food taxed at? 
 CRV FOR < 24 Fl. OZ == 0.05
 CRV FOR >= Fl. OZ == 0.10
 Holidays That May Not be Listed:
 Mother's Day
 Easter Sunday
+
+Use this tool in the perspective of Expense is a positive, and profit is a negative. If your cost report is negative then you had more coming in than you did for your expenses going out. 
+
+If it is from the cash can then the value is negative as well, as it is an external source that has not been spent but is readily available.
+
+If it is from a job/service the cash is accounted as a negative when recorded
+
+Anytime cash to/from the cash can, ensure it is logged under bnc, under dlu is bank CMD. 
+
+Ascending by timestamp means newest first, and when printed to screen is first line printed after CMD. Last line printed Is oldest. 
+
+Descending by timestamp means oldest first, and when printed to screen is the first line printed after CMD. Last line printed is newest. 

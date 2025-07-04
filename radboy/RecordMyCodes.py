@@ -146,7 +146,7 @@ async def protect():
                     x_year=new_date.year
                     new_cleared_date=detectGetOrSet("cleared_date",f"{x_month}/{x_day}/{x_year}",setValue=True,literal=True)
                     cleared_times=detectGetOrSet("cleared_times",0,setValue=True)
-                    graveyard=Prompt.__init2__(None,func=lambda text,data,passThru=[],PassThru=False:FormBuilderMkText(text,data,passThru=[],PassThru=PassThru),ptext="Are working overnight?/skip backup==True.",helpText="type a boolean yes or no",data="boolean")
+                    graveyard=Prompt.__init2__(None,func=lambda text,data,passThru=[],PassThru=False:FormBuilderMkText(text,data,passThru=[],PassThru=PassThru),ptext="Are working overnight?/skip backup==True.",helpText="type a boolean yes or no",data="boolean",alt_input=timedout)
                     print(graveyard,"x",type(graveyard))
                     if graveyard in ['d',True]:
                         graveyard=True
@@ -164,7 +164,7 @@ async def protect():
                     bu=detectGetOrSet("daily_backups_count",1,setValue=False,literal=False)
                     cleared_times=detectGetOrSet("cleared_times",0,setValue=False)
                     if cleared_times >= bu:
-                        graveyard=Prompt.__init2__(None,func=lambda text,data,passThru=[],PassThru=False:FormBuilderMkText(text,data,passThru=[],PassThru=PassThru),ptext="Are working overnight?/skip backup==True.",helpText="type a boolean yes or no",data="boolean")
+                        graveyard=Prompt.__init2__(None,func=lambda text,data,passThru=[],PassThru=False:FormBuilderMkText(text,data,passThru=[],PassThru=PassThru),ptext="Are working overnight?/skip backup==True.",helpText="type a boolean yes or no",data="boolean",alt_input=timedout)
                         if graveyard in ['d',True]:
                             graveyard=True
                             return
@@ -178,7 +178,7 @@ async def protect():
                         print(f"{Fore.grey_70}cleared at {Fore.green_3a}{cleared_date}{Fore.grey_70}for a duration of {Fore.green_3a}{dur}{Fore.light_blue} :{Fore.light_cyan} clear protection is enabled and you have to wait ({Fore.light_steel_blue}to alter use the following cmd set {Fore.cyan}`sysset`;`se`;$INDEX_FOR==bypass_clear_time_clear_protection;`true` or `false`{Fore.light_cyan}) {Fore.light_cyan}{waiting}{Fore.orange_red_1} or @ {tomorrow} to clear data to zero to {Fore.light_yellow}prevent {Fore.light_red}duplicate logs!{Style.reset}")
                         return
                     else:
-                        graveyard=Prompt.__init2__(None,func=lambda text,data,passThru=[],PassThru=False:FormBuilderMkText(text,data,passThru=[],PassThru=PassThru),ptext="Are working overnight?/skip backup==True.",helpText="type a boolean yes or no",data="boolean")
+                        graveyard=Prompt.__init2__(None,func=lambda text,data,passThru=[],PassThru=False:FormBuilderMkText(text,data,passThru=[],PassThru=PassThru),ptext="Are working overnight?/skip backup==True.",helpText="type a boolean yes or no",data="boolean",alt_input=timedout)
                         if graveyard in ['d']:
                             graveyard=True
                             return

@@ -31,6 +31,7 @@ import holidays
 import platform
 from uuid import uuid1
 import sys
+from inputimeout import inputimeout, TimeoutOccurred
 
 class switch_bootable:
     '''Template Cmd
@@ -110,7 +111,12 @@ str(uuid1()):{
             'cmds':['boot','','bt'],
             'exec':self.legacy_start,
             'desc':"start the system by selecting instance"
-            },     
+            }, 
+        str(uuid1()):{
+            'cmds':['autoboot','abt'],
+            'exec':self.autoboot,
+            'desc':"start the system by for autoboot to starting current directory instance"
+            },    
         }
         cmdhtext=[]
         ct=len(cmds)
@@ -120,7 +126,21 @@ str(uuid1()):{
         cmdhtext='\n'.join(cmdhtext)
 
         while True:
-            doWhat=self.quick_parse(input("Boot CMDS:"),helptext=cmdhtext,no_dir_name=True)
+            #z=input("Boot CMDS:")
+
+            
+            try:
+                t=5
+                past=datetime.now()
+                user_input = inputimeout(prompt=f"Boot CMDS({t} Seconds Passed=autoboot from {past.strftime("%I:%M:%S %p(12H)/%H:%M:%S(24H)")}):", timeout=t)
+                print(f"You entered: {user_input}")
+            except TimeoutOccurred:
+                print("Time's up! No input received.")
+                user_input = "autoboot"
+            
+            #user_input=z
+            #print(user_input)
+            doWhat=self.quick_parse(user_input,helptext=cmdhtext,no_dir_name=True)
             if doWhat is None:
                 exit("User Quit!")
             elif doWhat is False:
@@ -170,7 +190,9 @@ str(uuid1()):{
         print(htext)
         return bootable_dirs
 
-    def legacy_start(self):
+    def legacy_start(self,auto=False):
+        if auto:
+            return True
         boot_dirs=self.boot_dirs
         if not boot_dirs.exists():
             boot_dirs.mkdir()
@@ -213,6 +235,10 @@ str(uuid1()):{
                     return True
             except Exception as e:
                 print(e)
+
+    def autoboot(self):
+        return self.legacy_start(auto=True)
+
 switch_bootable()
 
 def onAndroid()->bool:
@@ -676,9 +702,19 @@ class EntryExtras:
     def __neg__(self):
         return -self.Price
 
+def std_colorize(m,n,c):
+        if ((n % 2) != 0) and n > 0:
+            msg=f'{Fore.cyan}{n}/{Fore.light_yellow}{n+1}{Fore.light_red} of {c} {Fore.dark_goldenrod}{m}{Style.reset}'
+        else:
+            msg=f'{Fore.light_cyan}{n}/{Fore.green_yellow}{n+1}{Fore.orange_red_1} of {c} {Fore.light_salmon_1}{m}{Style.reset}'
+        return msg
+
 class Template:
     def colorize(self,m,n,c):
-        msg=f'{Fore.cyan}{n}/{Fore.light_yellow}{n+1}{Fore.light_red} of {c} {Fore.dark_goldenrod}{m}{Style.reset}'
+        if ((n % 2) == 0) and n > 0:
+            msg=f'{Fore.cyan}{n}/{Fore.light_yellow}{n+1}{Fore.light_red} of {c} {Fore.dark_goldenrod}{m}{Style.reset}'
+        else:
+            msg=f'{Fore.light_cyan}{n}/{Fore.green_yellow}{n+1}{Fore.orange_red_1} of {c} {Fore.light_salmon_1}{m}{Style.reset}'
         return msg
 
     def cfmt(self,line,n=4):
@@ -709,7 +745,7 @@ class Template:
         m=[]
         now=datetime.now()
         microid=now.timestamp()
-        nowStr=now.strftime(" -> Time:%I:%M:%S %p(12)/%H:%M:%S(24H)\nDate:%m/%d/%Y")+f" Timestamp:{microid}\n"
+        nowStr=now.strftime(" -> Time:%I:%M:%S %p(12)/%H:%M:%S(24H)\nDate:%m/%d/%Y")+f" Today:{now.strftime("%A")} Timestamp:{microid}\n"
         m.append(f"{nowStr} -> {cc}{self.__tablename__}{Style.reset}(")
         fields=[i.name for i in self.__table__.columns]
         ft={i.name:str(i.type).lower() for i in self.__table__.columns}
@@ -729,7 +765,7 @@ class Template:
         return '\n'.join(m)
 
     def __repr__(self,vc=Fore.dark_blue+Style.bold,fc=Fore.light_green,cc=Fore.light_magenta,vg=Back.grey_50):
-        return self.str(self,vc,fc,cc,vg)
+        return self.__str__(vc,fc,cc,vg)
 
 
 class EntryDataExtras(BASE,Template):
@@ -5106,3 +5142,122 @@ class Scheduled_And_Appointments(BASE,Template):
 
 
 Scheduled_And_Appointments.metadata.create_all(ENGINE)
+
+class RepeatableDates(BASE,Template):
+    __tablename__='RepeatableDates'
+    rd_id=Column(Integer,primary_key=True)
+
+    For_Whom=Column(String,default=None)
+    What_Is_It=Column(String,default=None)
+
+    PalletCount=Column(Float,default=0)
+
+    #if true, DO NOT USE info for DTORX
+    #repe
+    Go_By_WeekDayNames=Column(Boolean,default=True)
+    WeekDayNames=Column(String,default='[]')
+    #else, use DTORX
+
+    #DateTime recieved
+    DTORX=Column(DateTime,default=None)
+    #repeats same day every every period of x
+    #every 24h
+       
+    DTOE=Column(DateTime,default=datetime.now())
+    Comment=Column(String,default='N/A')
+
+    def as_json(self):
+        excludes=['rd_id','DTOE']
+        dd={str(d.name):self.__dict__[d.name] for d in self.__table__.columns if d.name not in excludes}
+        return json.dumps(dd)
+
+    def asID(self):
+        return f"RepeatableDates(rd_id={self.rd_id})"
+
+    def __init__(self,**kwargs):
+        for k in kwargs.keys():
+            if k in [s.name for s in self.__table__.columns]:
+                setattr(self,k,kwargs.get(k))
+
+try:
+    RepeatableDates.metadata.create_all(ENGINE)
+except Exception as e:
+    RepeatableDates.__table__.drop(ENGINE)
+    RepeatableDates.metadata.create_all(ENGINE)
+
+
+class CookBook(BASE,Template):
+    __tablename__='CookBook'
+    cbid=Column(Integer,primary_key=True)
+
+    #to bind ingredients together as one
+    recipe_uid=Column(String,default=None)
+    recipe_name=Column(String,default=None)
+
+    IngredientName=Column(String,default=None)
+    IngredientBarcode=Column(String,default=None)
+    IngredientCode=Column(String,default=None)
+    IngredientPricePerPurchase=Column(Float,default=None)
+
+    IngredientQty=Column(Float,default=None)
+    IngredientQtyUnit=Column(String,default="gram")
+
+    carb_per_serving=Column(Float,default=None)
+    carb_per_serving_unit=Column(String,default="gram")
+
+    fiber_per_serving=Column(Float,default=None)
+    fiber_per_serving_unit=Column(String,default="gram")
+
+    protien_per_serving=Column(Float,default=None)
+    protien_per_serving_unit=Column(String,default="gram")
+
+    total_fat_per_serving=Column(Float,default=None)
+    total_fat_per_serving_unit=Column(String,default="gram")
+
+    saturated_fat_per_serving=Column(Float,default=None)
+    saturated_fat_per_serving_unit=Column(String,default="gram")
+
+    trans_fat_per_serving=Column(Float,default=None)
+    trans_fat_per_serving_unit=Column(String,default="gram")
+
+    sodium_per_serving=Column(Float,default=None)
+    sodium_per_serving_unit=Column(String,default="milligram")
+
+    cholesterol_per_serving=Column(Float,default=None)
+    cholesterol_per_serving_unit=Column(String,default="milligram")
+
+    vitamin_d=Column(Float,default=None)
+    vitamin_d_unit=Column(String,default="mg")
+
+    calcium=Column(Float,default=None)
+    calcium_unit=Column(String,default="mg")
+
+    iron=Column(Float,default=None)
+    iron_unit=Column(String,default="mg")
+
+    potassium=Column(Float,default=None)
+    potassium_unit=Column(String,default="mg")
+       
+    DTOE=Column(DateTime,default=datetime.now())
+    Comment=Column(String,default='N/A')
+
+    Instructions=Column(Text,default='')
+
+    def as_json(self):
+        excludes=['cbid','DTOE']
+        dd={str(d.name):self.__dict__[d.name] for d in self.__table__.columns if d.name not in excludes}
+        return json.dumps(dd)
+
+    def asID(self):
+        return f"{self.__class__.__name__}(cbid={self.cbid})"
+
+    def __init__(self,**kwargs):
+        for k in kwargs.keys():
+            if k in [s.name for s in self.__table__.columns]:
+                setattr(self,k,kwargs.get(k))
+
+try:
+    CookBook.metadata.create_all(ENGINE)
+except Exception as e:
+    CookBook.__table__.drop(ENGINE)
+    CookBook.metadata.create_all(ENGINE)

@@ -460,7 +460,7 @@ class Expiration:
 					except Exception as e:
 						print(e)
 
-	def search_expo(self,returnable=False,code=None):
+	def search_expo(self,returnable=False,code=None,group=True,past_due_only=False):
 		with Session(ENGINE) as session:
 			while True:
 				if code != None:
@@ -498,7 +498,25 @@ class Expiration:
 						Expiry.BB_Expiry==dt,
 						)
 					)
-				results=query.order_by(Expiry.DTOE.asc()).order_by(Expiry.BB_Expiry.asc()).all()
+				if group:
+					results=query.order_by(Expiry.DTOE.asc()).order_by(Expiry.BB_Expiry.asc()).group_by(Expiry.Barcode)
+				else:
+					results=query.order_by(Expiry.DTOE.asc()).order_by(Expiry.BB_Expiry.asc())
+				
+				print(past_due_only)
+				#exit()
+				if past_due_only == True:
+					tdy=datetime.today()
+					tdy=datetime(tdy.year,tdy.month,tdy.day)
+					results=results.filter(Expiry.BB_Expiry<=tdy)
+
+				state=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
+				if state == True:
+					results=results.order_by(Expiry.BB_Expiry.asc())
+				else:
+					results=results.order_by(Expiry.BB_Expiry.desc())
+
+				results=results.all()
 				ct=len(results)
 				if returnable:
 					return results
@@ -510,7 +528,19 @@ class Expiration:
 						print(msg)
 
 	def rm_expo(self,short=True):
-		toRm=self.search_expo(returnable=True)
+		group=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Group results by Barcode[default=True/Yes]?",helpText="results will be grouped by barcode",data="boolean")
+		if group is None:
+			return
+		elif group in ['d',]:
+			group=True
+
+		protect_unexpired=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Do not delete/'display for delete' non-past-due expiry's?",helpText="if its not expired, dont show it",data="boolean")
+		if protect_unexpired is None:
+			return
+		elif protect_unexpired in ['d',True]:
+			protect_unexpired=True
+
+		toRm=self.search_expo(group=group,returnable=True,past_due_only=protect_unexpired)
 		if toRm is None:
 			print(f"{Fore.orange_red_1}User Cancelled Early{Style.reset}")
 			return
@@ -551,6 +581,11 @@ class Expiration:
 						session.flush()
 
 	def rm_expo_bar(self):
+		protect_unexpired=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Do not delete/'display for delete' non-past-due expiry's?",helpText="if its not expired, dont show it",data="boolean")
+		if protect_unexpired is None:
+			return
+		elif protect_unexpired in ['d',True]:
+			protect_unexpired=True
 		while True:
 			try:
 				fieldname='Remove Expiry by Barcode'
@@ -563,7 +598,12 @@ class Expiration:
 					continue
 				else:
 					with Session(ENGINE) as session:
-						done=session.query(Expiry).filter(Expiry.Barcode==barcode).delete()
+						done=session.query(Expiry).filter(Expiry.Barcode==barcode)
+						if protect_unexpired:
+							tdy=datetime.today()
+							tdy=datetime(tdy.year,tdy.month,tdy.day)
+							done=done.filter(Expiry.BB_Expiry<=tdy)
+						done.delete()
 						session.commit()
 						session.flush()
 						print(f"{Fore.light_red}Done Deleting {Fore.cyan}{done}{Fore.light_red} Expiration Barcodes!{Style.reset}")
@@ -574,15 +614,41 @@ class Expiration:
 				return
 
 	async def show_warnings_async(self):
-		await asyncio.to_thread(self.show_warnings)
+		await asyncio.to_thread(lambda self=self:self.show_warnings(boot=True))
 
 
-	def show_warnings(self,barcode=None,export=False,regardless=False,code=None):
+	def show_warnings(self,barcode=None,export=False,regardless=False,code=None,boot=False):
 		with Session(ENGINE) as session:
-			if barcode == None:
-				results=session.query(Expiry).all()
+			if not boot:
+				group=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Group results by Barcode[default=True/Yes]?",helpText="results will be grouped by barcode",data="boolean")
+				if group is None:
+					return
+				elif group in ['d',]:
+					group=True
+
+				page=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Show results 1 at a time[default=True/Yes]?",helpText="one result at a time",data="boolean")
+				if page is None:
+					return
+				elif group in ['d',]:
+					page=True
 			else:
-				results=self.search_expo(returnable=True,code=code)
+				group=True
+				page=False
+
+			if barcode == None:
+				if group:
+					results=session.query(Expiry).group_by(Expiry.Barcode)
+				else:
+					results=session.query(Expiry)
+				state=db.detectGetOrSet('list maker lookup order',False,setValue=False,literal=False)
+				if state == True:
+					results=results.order_by(Expiry.BB_Expiry.asc())
+				else:
+					results=results.order_by(Expiry.BB_Expiry.desc())
+
+				results=results.all()
+			else:
+				results=self.search_expo(returnable=True,code=code,group=group)
 			if results in [None,]:
 				return
 			ct=len(results)
@@ -633,10 +699,20 @@ class Expiration:
 								session.flush()
 							else:
 								pass
+					if page:
+						nxt=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Next?",helpText="enter",data="string")
+						if nxt is None:
+							return
+						elif nxt in ['d',True]:
+							print(headers)
+							continue
+						else:
+							break
 					num+=1
 				#postMsg=f'''{warn_date}: Warn Date
 				#{past_warn_date}: Past Warn Date
 				#{del_date}: Deletion Date'''
+
 			if export == True:
 				if len(exportable) < 1:
 					print("Nothing To Export")

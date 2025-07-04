@@ -1,0 +1,233 @@
+from . import *
+
+
+class CookBookUi:
+	def create_new_rcp(self):
+		with Session(ENGINE) as session:
+			uid=uuid1()
+			uid=str(uid)
+			excludes=['cbid','DTOE','recipe_uid','Instructions','recipe_name']
+			while True:
+				try:
+					cb=CookBook()
+					cb.recipe_uid=uid
+					session.add(cb)
+					session.commit()
+					entry=None
+					while True:
+						try:
+							barcode=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Barcode|Code|Name of Ingredient[enter=skip]:",helpText="what to search for in Entry",data="string")
+							if barcode is None:
+								print("User Cancelled Early")
+								return
+							elif barcode in ['d',]:
+								break
+							entry=session.query(Entry).filter(or_(Entry.Barcode==barcode,Entry.Barcode.icontains(barcode),Entry.Name.icontains(barcode),Entry.Code==barcode,Entry.Code.icontains(barcode)))
+
+							entry=orderQuery(entry,Entry.Timestamp)
+							entry=entry.all()
+							ct=len(entry)
+							if ct > 0:
+								htext=[]
+								for num, i in enumerate(entry):
+									msg=f"{Fore.light_red}{num}/{Fore.medium_violet_red}{num+1} of {Fore.light_sea_green}{ct} -> {i.seeShort()}"
+									htext.append(msg)
+									print(msg)
+								htext='\n'.join(htext)
+								which=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Which {Fore.light_red}index?{Fore.light_yellow}",helpText=f"{htext}\n{Fore.light_red}number{Fore.light_yellow} farthest to left of screen{Style.reset}",data="integer")
+								if which not in [None,]:
+									if which == 'd':
+										entry=entry[0]
+									else:
+										entry=entry[which]
+								else:
+									htext=f"{Fore.orange_red_1}No Results for '{Fore.cyan}{barcode}{Fore.orange_red_1}'{Style.reset}"
+									again=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Try another search?[yes/no=default]",helpText=htext,data="boolean")
+									if again is None:
+										return
+									elif again in [False,'d']:
+										entry=None
+										break
+									else:
+										barcode=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{h}Barcode|Code|Name[b=skips search]: ",helpText="what was consumed?",data="string")
+										continue
+							else:
+								entry=None
+								htext=f"{Fore.orange_red_1}No Results for '{Fore.cyan}{barcode}{Fore.orange_red_1}'{Style.reset}"
+								again=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Try another search?[yes/no=default]",helpText=htext,data="boolean")
+								if again is None:
+									return
+								elif again in [False,'d']:
+									break
+								else:
+									barcode=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{h}Barcode|Code|Name[b=skips search]: ",helpText="what was consumed?",data="string")
+									continue
+							break
+						except Exception as e:
+							print(e)
+							return
+
+					fields={i.name:{'default':getattr(cb,i.name),"type":str(i.type).lower()} for i in cb.__table__.columns if str(i.name) not in excludes}
+					if entry is not None:
+						fields['IngredientName']['default']=entry.Name
+						fields['IngredientBarcode']['default']=entry.Barcode
+						fields['IngredientCode']['default']=entry.Code
+						if entry.Price is None:
+							entry.Price=0
+						if entry.Tax is None:
+							entry.Tax=0
+						if entry.CRV is None:
+							entry.CRV=0
+						fields['IngredientPricePerPurchase']['default']=float(Decimal(entry.Price+entry.CRV+entry.Tax).quantize(Decimal("0.00")))
+					fd=FormBuilder(data=fields)
+					if fd is None:
+						session.delete(cb)
+						session.commit()
+						print("User Cancelled Early")
+						return
+								
+					for k in fd:
+						setattr(cb,k,fd[k])
+					session.commit()
+
+					again=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Try another search?[yes/no=default]",helpText=htext,data="boolean")
+					if again is None:
+						return
+					elif again in [False,'d']:
+						break
+					else:
+						continue
+				except Exception as eee:
+					print(eee)
+					return
+			instructions={
+			'Instructions':{'default':'','type':'text'},
+			'recipe_name':{'default':'','type':'string'}}
+			fdi=FormBuilder(data=instructions)
+			if fdi is None:
+				print("User Quit Early, so all work has been deleted!")
+				r=session.query(CookBook).filter(CookBook.recipe_uid==uid).delete()
+				session.commit()
+			else:
+				session.query(CookBook).filter(CookBook.recipe_uid==uid).update(fdi)
+				session.commit()
+
+			results=session.query(CookBook).filter(CookBook.recipe_uid==uid)
+			results=orderQuery(results,CookBook.DTOE,inverse=True)
+			results=results.all()
+			ctt=len(results)
+			for num,i in enumerate(results):
+				msg=std_colorize(i,num,ctt)
+				print(msg)
+
+
+	def fix_table(self):
+		CookBook.__table__.drop(ENGINE)
+		CookBook.metadata.create_all(ENGINE)
+
+
+	def rm_rcp(self):
+		pass
+		#delete everything found by searchtext using recipe_uid as the final selection parameter
+
+	def rm_ingredient(self):
+		pass
+		#find a recipe, list its ingredients, select ingredients to delete, delete selected ingredients
+
+	#asSelector==False,whole==True,names==False - print selector_string_whole
+	#asSelector==False,whole==False,names==True - print selector_string_names
+	#asSelector==False,whole==True,names==True - print selector_string_whole,selector_string_names
+	#asSelector==True,whole==True,names==False - return selector_string_whole,selector_list
+	#asSelector==True,whole==False,names==True - return selector_string_names,selector_list
+	#asSelector==True,whole==True,names==True - return selector_string_names,selector_string_whole,selector_list
+	def ls_rcp(self,asSelector=False,whole=False,names=False):
+		with Session(ENGINE) as session:
+			selector_list=[]
+			selector_string_names=[]
+			selector_string_whole=[]
+
+			searchText=Prompt.__init2__(None,func=FormBuilderMkText,ptext="What are you looking for?",helpText="text to search for",data="string")
+			if searchText is None:
+				return
+			includes=["string","varchar","text"]
+			excludes=['cbid','DTOE']
+			fields=[i.name for i in CookBook.__table__.columns if i.name not in excludes and str(i.type) in includes]
+			q=[]
+			for i in fields:
+				q.append(getattr(CookBook,i).icontains(searchText))
+			print(searchText)
+			query=session.query(CookBook).filter(or_(*q))
+			grouped=query.group_by(CookBook.recipe_uid)
+			ordered=orderQuery(grouped,CookBook.DTOE,inverse=True)
+
+			results=ordered.all()
+			ct=len(results)
+			for num,i in enumerate(results):
+				selector_list.append(i)
+				selector_string_whole.append(std_colorize(i,num,ct))
+				selector_string_names.append(std_colorize(f"{i.recipe_name} - {i.recipe_uid}",num,ct))
+				if not asSelector:
+					if whole:
+						print(selector_string_whole[num])
+					if names:
+						print(selector_string_names[num])
+			if asSelector:
+				if whole and not names:
+					return selector_string_whole,selector_list
+				elif names and not whole:
+					return selector_string_names,selector_list
+				elif names and whole:
+					return selector_string_names,selector_string_whole,selector_list
+					
+
+	def __init__(self):
+		cmds={
+			str(uuid1()):{
+				'cmds':generate_cmds(startcmd=['create new','cn','cnw'],endCmd=['recipe','rcp']),
+				'desc':"create a new recipe",
+				'exec':self.create_new_rcp,
+			},
+			uuid1():{
+				'cmds':generate_cmds(startcmd=['fix','fx'],endCmd=['tbl','table']),
+				'desc':"reinstall table",
+				'exec':self.fix_table,
+			},
+			uuid1():{
+				'cmds':generate_cmds(startcmd=['rm','del','remove','delete'],endCmd=['recipe','rcp']),
+				'desc':"delete a recipe(delete everything found by searchtext using recipe_uid as the final selection parameter)",
+				'exec':self.rm_rcp,
+			},
+			uuid1():{
+				'cmds':generate_cmds(startcmd=['rm','del','remove','delete'],endCmd=['ingredient','ingrdnt','component','cmpnt']),
+				'desc':"delete a recipe ingredient/component(find a recipe, list its ingredients, select ingredients to delete, delete selected ingredients)",
+				'exec':self.rm_ingredient,
+			},
+			uuid1():{
+				'cmds':generate_cmds(startcmd=['ls','list','lst'],endCmd=['rcp','recipe']),
+				'desc':"list recipe names",
+				'exec':lambda self=self:self.ls_rcp(asSelector=False,whole=True,names=True),
+			},
+
+		}
+
+		htext=[]
+		ct=len(cmds)
+		for num,i in enumerate(cmds):
+			m=f"{Fore.light_sea_green}{cmds[i]['cmds']}{Fore.orange_red_1} - {Fore.light_steel_blue}{cmds[i]['desc']}"
+			msg=f"{std_colorize(m,num,ct)}"
+			htext.append(msg)
+		htext='\n'.join(htext)
+		while True:
+			doWhat=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{self.__class__.__name__} @ Do What? ",helpText=htext,data="string")
+			if doWhat is None:
+				return
+			elif doWhat in ['','d',]:
+				print(htext)
+				continue
+			for i in cmds:
+				if doWhat.lower() in [i.lower() for i in cmds[i]['cmds']]:
+					if callable(cmds[i]['exec']):
+						cmds[i]['exec']()
+					else:
+						print(f"{i} - {cmds[i]['cmds']} - {cmds[i]['exec']}() - {cmds[i]['desc']}")
+						return

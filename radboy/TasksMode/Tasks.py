@@ -38,6 +38,8 @@ from copy import copy
 from decimal import Decimal,getcontext
 from radboy.GDOWN.GDOWN import *
 from radboy.Unified.clearalll import clear_all
+from radboy.RepeatableDates import *
+from radboy.CookBook import *
 
 def today():
     dt=datetime.now()
@@ -287,7 +289,14 @@ def save(value):
 
 
 class TasksMode:
+    def rd_ui(self):
+        RepeatableDatesUi()
+        
+    def cookbook(self):
+        CookBookUi()
+
     def process_cmd(self,buffer):
+        ''
         data=OrderedDict()
         for num,line in enumerate(buffer):
             data[num]={
@@ -301,9 +310,9 @@ class TasksMode:
                 fd[0]='#ml#'+fd[0]
             if not fd[len(buffer)-1].endswith('#ml#'):
                 fd[len(buffer)-1]+='#ml#'
-        text=''
-        for i in range(len(buffer)):
-            text+=fd[i]
+            text=''
+            for i in range(len(buffer)):
+                text+=fd[i]
         return text
     def getInLineResult(self):
         return str(detectGetOrSet("InLineResult",None,setValue=False,literal=True))
@@ -678,6 +687,69 @@ class TasksMode:
     alt=f'''
 {Fore.medium_violet_red}A {Style.bold}{Fore.light_green}Honey Well Voyager 1602g{Style.reset}{Fore.medium_violet_red} was connected and transmitted a '{Fore.light_sea_green}^@{Fore.medium_violet_red}'{Style.reset}
     '''
+
+
+    def listSystemUnits(self):
+        ureg = UnitRegistry()
+        units = ureg._units.keys()
+        suffixes = ureg._suffixes.keys()
+        prefixes = ureg._prefixes.keys()
+        search=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Search text?",helpText="filter by",data="string")
+        if search is None:
+            return
+        elif search in ['d',]:
+            search=''
+        def uni(str,num,ct):
+            return std_colorize('"'+str+'"',num,ct)
+
+        # Print all possible units by joining
+        # {prefix}{unit}{suffix}
+        print('# All Units in Pint')
+        print('All suffixes, prefixes, and units in which are used to define all available units.')
+
+        
+        ct=len(prefixes)
+        if ct > 0:
+            print('## Prefixes')
+
+            for num,p in enumerate(prefixes):
+                if search != '':
+                    if search in p:
+                        print(uni(p,num,ct))
+                    else:
+                        continue
+
+                if p == '':
+                    p = ' '
+                print(uni(p,num,ct))
+
+        
+        ct=len(units)
+        if ct > 0:
+            print('## Units')
+            for num,u in enumerate(units):
+                if search != '':
+                    if search in u:
+                        print(uni(u,num,ct))
+                    else:
+                        continue
+                print(uni(u,num,ct))
+
+        
+        ct=len(suffixes)
+        if ct > 0:
+            print('## Suffixes')
+            for num,s in enumerate(suffixes):
+                if search != '':
+                    if search in s:
+                        print(uni(s,num,ct))
+                    else:
+                        continue
+                if s == '':
+                    s = ' '
+                print(uni(s,num,ct))
+
+            
 
     def getTotalwithBreakDownForScan(self,short=False,nonZero=False):
         while True:
@@ -4673,6 +4745,18 @@ where:
                     'cmds':["#"+str(count),"datetimepkr",],
                     'desc':f"test datetimepkr",
                     'exec':lambda self=self: print(self.DateTimePkr()),
+                    }
+        count+=1
+        self.options[str(uuid1())]={
+                    'cmds':["#"+str(count),*[i for i in generate_cmds(startcmd=["cookbook","ckbk"],endCmd=["",])]],
+                    'desc':f"cookbook",
+                    'exec':lambda self=self: print(self.cookbook()),
+                    }
+        count+=1
+        self.options[str(uuid1())]={
+                    'cmds':["#"+str(count),*[i for i in generate_cmds(startcmd=["loads2","lds2"],endCmd=["",])]],
+                    'desc':f"dates that repeat weekly, or upcoming dates that are important",
+                    'exec':lambda self=self: print(self.rd_ui()),
                     }
         count+=1
         #self.product_history=

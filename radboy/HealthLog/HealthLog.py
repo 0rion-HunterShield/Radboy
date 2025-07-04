@@ -58,17 +58,23 @@ class HealthLogUi:
 			entry=None
 			if 'EntryBarcode' in useColumns:
 				h=f'{Fore.light_red}HealthLog{Fore.light_yellow}@{Style.bold}{Fore.deep_sky_blue_3b}AHS{Fore.light_yellow} : '
-				barcode=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{h}Barcode|Code|Name: ",helpText="what was consumed?",data="string")
+				barcode=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{h}Barcode|Code|Name[b=skips search]: ",helpText="what was consumed?",data="string")
 				if barcode not in [None,]:
 					while True:
 						try:
-							entry=session.query(Entry).filter(or_(Entry.Barcode==barcode,Entry.Barcode.icontains(barcode),Entry.Name.icontains(barcode),Entry.Code==barcode,Entry.Code.icontains(barcode))).all()
+							entry=session.query(Entry).filter(or_(Entry.Barcode==barcode,Entry.Barcode.icontains(barcode),Entry.Name.icontains(barcode),Entry.Code==barcode,Entry.Code.icontains(barcode)))
+
+							entry=orderQuery(entry,Entry.Timestamp)
+							entry=entry.all()
 							ct=len(entry)
-							if ct >= 0:
+							if ct > 0:
+								htext=[]
 								for num, i in enumerate(entry):
 									msg=f"{Fore.light_red}{num}/{Fore.medium_violet_red}{num+1} of {Fore.light_sea_green}{ct} -> {i.seeShort()}"
+									htext.append(msg)
 									print(msg)
-								which=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Which {Fore.light_red}index?{Fore.light_yellow}",helpText=f"{Fore.light_red}number{Fore.light_yellow} farthest to left of screen{Style.reset}",data="integer")
+								htext='\n'.join(htext)
+								which=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"Which {Fore.light_red}index?{Fore.light_yellow}",helpText=f"{htext}\n{Fore.light_red}number{Fore.light_yellow} farthest to left of screen{Style.reset}",data="integer")
 								if which not in [None,]:
 									excludes.extend(["EntryBarcode","EntryName","EntryId"])
 									if which == 'd':
@@ -76,11 +82,32 @@ class HealthLogUi:
 									else:
 										entry=entry[which]
 								else:
-									entry=None
+									htext=f"{Fore.orange_red_1}No Results for '{Fore.cyan}{barcode}{Fore.orange_red_1}'{Style.reset}"
+									again=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Try another search?[yes/no=default]",helpText=htext,data="boolean")
+									if again is None:
+										return
+									elif again in [False,'d']:
+										entry=None
+										break
+									else:
+										barcode=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{h}Barcode|Code|Name[b=skips search]: ",helpText="what was consumed?",data="string")
+										continue
+									
+							else:
+								entry=None
+								htext=f"{Fore.orange_red_1}No Results for '{Fore.cyan}{barcode}{Fore.orange_red_1}'{Style.reset}"
+								again=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Try another search?[yes/no=default]",helpText=htext,data="boolean")
+								if again is None:
+									return
+								elif again in [False,'d']:
 									break
+								else:
+									barcode=Prompt.__init2__(None,func=FormBuilderMkText,ptext=f"{h}Barcode|Code|Name[b=skips search]: ",helpText="what was consumed?",data="string")
+									continue
 							break
 						except Exception as e:
 							print(e)
+							return
 
 			hl=HealthLog()
 			
@@ -147,9 +174,10 @@ class HealthLogUi:
 				'''search for name in entry and auto replace name'''
 
 			if 'EntryBarcode' in useColumns and entry != None:
-				data['EntryBarcode']=entry.Barcode
-				data['EntryName']=entry.Name
-				data['EntryId']=entry.EntryId
+				if data is not None:
+					data['EntryBarcode']=entry.Barcode
+					data['EntryName']=entry.Name
+					data['EntryId']=entry.EntryId
 
 			if data in [None,]:
 				return
@@ -184,7 +212,9 @@ class HealthLogUi:
 	def showAll(self):
 		try:
 			with Session(ENGINE) as session:
-				results=session.query(HealthLog).order_by(HealthLog.DTOE.asc()).all()
+				results=session.query(HealthLog)
+				results=orderQuery(results,HealthLog.DTOE)
+				results=results.all()
 				ct=len(results)
 				for num,i in enumerate(results):
 					view=[]
@@ -200,6 +230,7 @@ class HealthLogUi:
 		output=Path("HealthLogAll.xlsx")
 		with Session(ENGINE) as session:
 			query=session.query(HealthLog)
+			query=orderQuery(query,HealthLog.DTOE)
 			df=pd.read_sql(query.statement,session.bind)
 			df.to_excel(output,index=False)
 			print(output.absolute())
@@ -213,6 +244,7 @@ class HealthLogUi:
 		not_none=[i for i in HealthLog.__table__.columns if str(i.name) in not_none]
 		with Session(ENGINE) as session:
 			query=session.query(HealthLog).filter(or_(*[i!=None for i in not_none]))
+			query=orderQuery(query,HealthLog.DTOE)
 			df=pd.read_sql(query.statement,session.bind)
 			df=df[fields]
 			df.to_excel(output,index=False)
@@ -229,7 +261,9 @@ class HealthLogUi:
 			fields=[i for i in HealthLog.__table__.columns if str(i.name) in fields]
 			not_none=[i for i in HealthLog.__table__.columns if str(i.name) in not_none]
 			with Session(ENGINE) as session:
-				results=session.query(HealthLog).filter(or_(*[i!=None for i in not_none])).order_by(HealthLog.DTOE.asc()).all()
+				results=session.query(HealthLog).filter(or_(*[i!=None for i in not_none]))
+				results=orderQuery(results,HealthLog.DTOE)
+				results=results.all()
 				ct=len(results)
 				for num,i in enumerate(results):
 					view=[]
@@ -301,7 +335,7 @@ class HealthLogUi:
 			},
 			'add consumed':{
 				'cmds':['afd','add fd','add food','adfd','add fuel','ad fl','afl'],
-				'desc':'Create a NEW HealthLog for JUST Weight',
+				'desc':'Create a NEW HealthLog for JUST food',
 				'exec':lambda self=self:self.add_healthlog_specific(
 					useColumns=["EntryBarcode",
 								"EntryName",
