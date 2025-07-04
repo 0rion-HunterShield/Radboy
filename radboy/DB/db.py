@@ -5202,6 +5202,12 @@ class CookBook(BASE,Template):
     IngredientQty=Column(Float,default=None)
     IngredientQtyUnit=Column(String,default="gram")
 
+    Serving_Size=Column(Float,default=None)
+    Serving_Size_unit=Column(String,default="gram")
+
+    Servings_Per_Container=Column(Float,default=None)
+    Servings_Per_Container_unit=Column(String,default="")
+
     carb_per_serving=Column(Float,default=None)
     carb_per_serving_unit=Column(String,default="gram")
 

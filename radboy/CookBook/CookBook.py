@@ -2,6 +2,65 @@ from . import *
 
 
 class CookBookUi:
+	def total_rcp(self):
+		with Session(ENGINE) as session:
+			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			if rcp is None:
+				print("User returned, or no results!")
+				return
+			ct=len(rcp[0])
+			htext=[]
+			for i in rcp[0]:
+				htext.append(i)
+			htext='\n'.join(htext)
+			print(htext)
+			which=Prompt.__init2__(self,func=FormBuilderMkText,ptext="which index",helpText=f"{htext}\nindex of rcp to edit",data="integer")
+			if which in [None,'d']:
+				return
+			try:
+				totals={				
+	"carb_per_serving":None,
+    "fiber_per_serving":None,
+    "protien_per_serving":None,
+    "total_fat_per_serving":None,
+    "saturated_fat_per_serving":None,
+    "trans_fat_per_serving":None,
+    "sodium_per_serving":None,
+    "cholesterol_per_serving":None,
+    "vitamin_d":None,
+    "calcium":None,
+    "iron":None,
+    "potassium":None,
+				}
+				ingredients=session.query(CookBook).filter(CookBook.recipe_uid==rcp[-1][which].recipe_uid).all()
+				last_unit=None
+				for i in ingredients:
+					for num,k in enumerate(totals):
+						try:
+							qty=getattr(i,k)
+							unit=getattr(i,f'{k}_unit')
+							QTY=pint.Quantity(qty,unit)
+							
+							used=pint.Quantity(i.IngredientQty,i.IngredientQtyUnit)
+							servingSize=pint.Quantity(i.Serving_Size,i.Serving_Size_unit)
+							ck=Fore.orange_red_1
+							if (num%2)!=0 and num != 0:
+								ck=Fore.light_steel_blue
+							print(f"{ck}{i.recipe_name}|{i.IngredientName}|{k}={QTY}|amount used={used}|servingSize={servingSize}|used/servingSize={used/servingSize}|QTY*(used/servingSize)={QTY*(used/servingSize)}{Style.reset}")
+							if totals[k] is None:
+								totals[k]=QTY*(used/servingSize)
+							else:
+								totals[k]+=(QTY*(used/servingSize))
+								
+						except Exception as e:
+							print(e,f"'{Fore.cyan}{k}{Style.reset}'wont be added to totals")
+				ct=len(totals)
+				for num,k in enumerate(totals):
+					print(std_colorize(f"{k} = {totals[k]}",num,ct))
+				print("Done Totaling!")
+			except Exception as e:
+				print(e)
+		#edit everything found by searchtext using recipe_uid as the final selection parameter
 	def create_new_rcp(self):
 		with Session(ENGINE) as session:
 			uid=uuid1()
@@ -129,6 +188,9 @@ class CookBookUi:
 	def rm_rcp(self):
 		with Session(ENGINE) as session:
 			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			if rcp is None:
+				print("User returned, or no results!")
+				return
 			ct=len(rcp[0])
 			htext=[]
 			for i in rcp[0]:
@@ -149,6 +211,9 @@ class CookBookUi:
 	def edit_rcp(self):
 		with Session(ENGINE) as session:
 			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			if rcp is None:
+				print("User returned, or no results!")
+				return
 			ct=len(rcp[0])
 			htext=[]
 			for i in rcp[0]:
@@ -177,6 +242,9 @@ class CookBookUi:
 	def rm_ingredient(self):
 		with Session(ENGINE) as session:
 			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			if rcp is None:
+				print("User returned, or no results!")
+				return
 			ct=len(rcp[0])
 			htext=[]
 			for i in rcp[0]:
@@ -255,6 +323,9 @@ class CookBookUi:
 	def ls_rcp_ingredients(self):
 		with Session(ENGINE) as session:
 			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			if rcp is None:
+				print("User returned, or no results!")
+				return
 			ct=len(rcp[0])
 			htext=[]
 			for i in rcp[0]:
@@ -277,6 +348,9 @@ class CookBookUi:
 	def edit_rcp_ingredients(self):
 		with Session(ENGINE) as session:
 			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			if rcp is None:
+				print("User returned, or no results!")
+				return
 			ct=len(rcp[0])
 			htext=[]
 			for i in rcp[0]:
@@ -353,6 +427,11 @@ class CookBookUi:
 				'cmds':generate_cmds(startcmd=['ed','edt','edit'],endCmd=['rcp','recipe']),
 				'desc':"edit recipe names and instructions",
 				'exec':lambda self=self:self.edit_rcp(),
+			},
+			uuid1():{
+				'cmds':generate_cmds(startcmd=['ttl','total',],endCmd=['rcp','recipe']),
+				'desc':"total nutritional facts",
+				'exec':lambda self=self:self.total_rcp(),
 			},
 		}
 
