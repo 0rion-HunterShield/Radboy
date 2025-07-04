@@ -1,5 +1,3 @@
-#USER INPUT# -> :""
 #USER INPUT# -> :"t"
-#USER INPUT# -> :"ckbk"
-#USER INPUT# -> :"q"
-#USER INPUT# -> :"e"
+#USER INPUT# -> :"c"
+#USER INPUT# -> :"44.2+1.93"

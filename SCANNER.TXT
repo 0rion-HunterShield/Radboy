@@ -1,5 +1,2 @@
- 
-instructions={'Instructions':{'default':'','type':'string+'},'recipe_name':{'default':'','type':'string'}}
-fdi=FormBuilder(data=instructions)
-print(fdi)
- 
+this needs to
+to be deleted

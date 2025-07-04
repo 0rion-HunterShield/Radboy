@@ -100,6 +100,8 @@ radboy/ConvertCode/__pycache__/__init__.cpython-311.pyc
 radboy/ConvertCode/__pycache__/__init__.cpython-312.pyc
 radboy/ConvertCode/__pycache__/__init__.cpython-313.pyc
 radboy/ConvertCode/__pycache__/codep.cpython-311.pyc
+radboy/CookBook/CookBook.py
+radboy/CookBook/__init__.py
 radboy/DB/CoinCombo.py
 radboy/DB/DatePicker.py
 radboy/DB/DisplayItemDb.py

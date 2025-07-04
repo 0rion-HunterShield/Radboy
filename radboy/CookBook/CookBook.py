@@ -89,7 +89,7 @@ class CookBookUi:
 					for k in fd:
 						setattr(cb,k,fd[k])
 					session.commit()
-
+					htext="Add another ingredient?"
 					again=Prompt.__init2__(None,func=FormBuilderMkText,ptext="Try another search?[yes/no=default]",helpText=htext,data="boolean")
 					if again is None:
 						return
@@ -127,11 +127,82 @@ class CookBookUi:
 
 
 	def rm_rcp(self):
-		pass
+		with Session(ENGINE) as session:
+			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			ct=len(rcp[0])
+			htext=[]
+			for i in rcp[0]:
+				htext.append(i)
+			htext='\n'.join(htext)
+			print(htext)
+			which=Prompt.__init2__(self,func=FormBuilderMkText,ptext="which index",helpText=f"{htext}\nindex of rcp to delete",data="integer")
+			if which in [None,'d']:
+				return
+			try:
+				query_2=session.query(CookBook).filter(CookBook.recipe_uid==rcp[-1][which].recipe_uid).delete()
+				session.commit()
+				print("Done Deleting!")
+			except Exception as e:
+				print(e)
 		#delete everything found by searchtext using recipe_uid as the final selection parameter
+		
+	def edit_rcp(self):
+		with Session(ENGINE) as session:
+			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			ct=len(rcp[0])
+			htext=[]
+			for i in rcp[0]:
+				htext.append(i)
+			htext='\n'.join(htext)
+			print(htext)
+			which=Prompt.__init2__(self,func=FormBuilderMkText,ptext="which index",helpText=f"{htext}\nindex of rcp to edit",data="integer")
+			if which in [None,'d']:
+				return
+			try:
+				query_2=session.query(CookBook).filter(CookBook.recipe_uid==rcp[-1][which].recipe_uid).first()
+				fields={
+				'recipe_name':{'default':getattr(query_2,'recipe_name'),'type':"string"},
+				'Instructions':{'default':getattr(query_2,'Instructions'),'type':"string"},
+				}
+				fd=FormBuilder(data=fields)
+				if fd is not None:
+					r=session.query(CookBook).filter(CookBook.recipe_uid==query_2.recipe_uid)
+					r.update(fd)
+					session.commit()
+				print("Done Editing!")
+			except Exception as e:
+				print(e)
+		#edit everything found by searchtext using recipe_uid as the final selection parameter
 
 	def rm_ingredient(self):
-		pass
+		with Session(ENGINE) as session:
+			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			ct=len(rcp[0])
+			htext=[]
+			for i in rcp[0]:
+				htext.append(i)
+			htext='\n'.join(htext)
+			print(htext)
+			which=Prompt.__init2__(self,func=FormBuilderMkText,ptext="which index",helpText=f"{htext}\nindex of rcp to delete its ingredients",data="integer")
+			if which in [None,'d']:
+				return
+			try:
+				query_2=session.query(CookBook).filter(CookBook.recipe_uid==rcp[-1][which].recipe_uid)
+				ordered_2=orderQuery(query_2,CookBook.DTOE)
+				results_2=ordered_2.all()
+				ct=len(results_2)
+				for num,i in enumerate(results_2):
+					print(std_colorize(i,num,ct))
+					delete=Prompt.__init2__(self,func=FormBuilderMkText,ptext="Delete[default=False]?",helpText="delete it, yes or no?",data="boolean")
+					if delete in [None,]:
+						return
+					elif delete in ['d',]:
+						continue
+					elif delete == True:
+						session.delete(i)
+						session.commit()
+			except Exception as e:
+				print(e)
 		#find a recipe, list its ingredients, select ingredients to delete, delete selected ingredients
 
 	#asSelector==False,whole==True,names==False - print selector_string_whole
@@ -140,7 +211,7 @@ class CookBookUi:
 	#asSelector==True,whole==True,names==False - return selector_string_whole,selector_list
 	#asSelector==True,whole==False,names==True - return selector_string_names,selector_list
 	#asSelector==True,whole==True,names==True - return selector_string_names,selector_string_whole,selector_list
-	def ls_rcp(self,asSelector=False,whole=False,names=False):
+	def ls_rcp_names(self,asSelector=False,whole=False,names=False):
 		with Session(ENGINE) as session:
 			selector_list=[]
 			selector_string_names=[]
@@ -151,17 +222,19 @@ class CookBookUi:
 				return
 			includes=["string","varchar","text"]
 			excludes=['cbid','DTOE']
-			fields=[i.name for i in CookBook.__table__.columns if i.name not in excludes and str(i.type) in includes]
+			fields=[i.name for i in CookBook.__table__.columns if str(i.name) not in excludes and str(i.type).lower() in includes]
 			q=[]
 			for i in fields:
 				q.append(getattr(CookBook,i).icontains(searchText))
-			print(searchText)
 			query=session.query(CookBook).filter(or_(*q))
 			grouped=query.group_by(CookBook.recipe_uid)
 			ordered=orderQuery(grouped,CookBook.DTOE,inverse=True)
 
 			results=ordered.all()
 			ct=len(results)
+			if ct <= 0:
+				print("No Results")
+				return None
 			for num,i in enumerate(results):
 				selector_list.append(i)
 				selector_string_whole.append(std_colorize(i,num,ct))
@@ -178,6 +251,65 @@ class CookBookUi:
 					return selector_string_names,selector_list
 				elif names and whole:
 					return selector_string_names,selector_string_whole,selector_list
+
+	def ls_rcp_ingredients(self):
+		with Session(ENGINE) as session:
+			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			ct=len(rcp[0])
+			htext=[]
+			for i in rcp[0]:
+				htext.append(i)
+			htext='\n'.join(htext)
+			print(htext)
+			which=Prompt.__init2__(self,func=FormBuilderMkText,ptext="which index",helpText=f"{htext}\nindex of rcp to view its ingredients",data="integer")
+			if which in [None,'d']:
+				return
+			try:
+				query_2=session.query(CookBook).filter(CookBook.recipe_uid==rcp[-1][which].recipe_uid)
+				ordered_2=orderQuery(query_2,CookBook.DTOE)
+				results_2=ordered_2.all()
+				ct=len(results_2)
+				for num,i in enumerate(results_2):
+					print(std_colorize(i,num,ct))
+			except Exception as e:
+				print(e)
+
+	def edit_rcp_ingredients(self):
+		with Session(ENGINE) as session:
+			rcp=self.ls_rcp_names(asSelector=True,whole=True,names=True)
+			ct=len(rcp[0])
+			htext=[]
+			for i in rcp[0]:
+				htext.append(i)
+			htext='\n'.join(htext)
+			print(htext)
+			which=Prompt.__init2__(self,func=FormBuilderMkText,ptext="which index",helpText=f"{htext}\nindex of rcp to view its ingredients",data="integer")
+			if which in [None,'d']:
+				return
+			try:
+				query_2=session.query(CookBook).filter(CookBook.recipe_uid==rcp[-1][which].recipe_uid)
+				ordered_2=orderQuery(query_2,CookBook.DTOE)
+				results_2=ordered_2.all()
+				ct=len(results_2)
+				for num,i in enumerate(results_2):
+					print(std_colorize(i,num,ct))
+					edit=Prompt.__init2__(self,func=FormBuilderMkText,ptext="Edit[default=False]?",helpText="Edit it, yes or no?",data="boolean")
+					if edit in [None,]:
+						return
+					elif edit in ['d',]:
+						continue
+					elif edit == True:
+						excludes=['cbid','recipe_uid','recipe_name','DTOE']
+						fields={ii.name:{'default':getattr(i,ii.name),'type':str(ii.type).lower()} for ii in CookBook.__table__.columns if ii.name not in excludes}
+						fd=FormBuilder(data=fields)
+						if fd is not None:
+							for k in fd:
+								setattr(i,k,fd[k])
+							session.commit()
+						else:
+							continue
+			except Exception as e:
+				print(e)
 					
 
 	def __init__(self):
@@ -205,9 +337,23 @@ class CookBookUi:
 			uuid1():{
 				'cmds':generate_cmds(startcmd=['ls','list','lst'],endCmd=['rcp','recipe']),
 				'desc':"list recipe names",
-				'exec':lambda self=self:self.ls_rcp(asSelector=False,whole=True,names=True),
+				'exec':lambda self=self:self.ls_rcp_names(asSelector=False,whole=False,names=True),
 			},
-
+			uuid1():{
+				'cmds':generate_cmds(startcmd=['ls','list','lst'],endCmd=['rcp ingrdnts','recipe ingredients']),
+				'desc':"list recipe names",
+				'exec':lambda self=self:self.ls_rcp_ingredients(),
+			},
+			uuid1():{
+				'cmds':generate_cmds(startcmd=['ed','edt','edit'],endCmd=['rcp ingrdnts','recipe ingredients']),
+				'desc':"edit recipe ingredients",
+				'exec':lambda self=self:self.edit_rcp_ingredients(),
+			},
+			uuid1():{
+				'cmds':generate_cmds(startcmd=['ed','edt','edit'],endCmd=['rcp','recipe']),
+				'desc':"edit recipe names and instructions",
+				'exec':lambda self=self:self.edit_rcp(),
+			},
 		}
 
 		htext=[]
